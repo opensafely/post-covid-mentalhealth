@@ -286,28 +286,48 @@ df <- df[!is.na(df$patient_id),]
 
 print("COVID19 severity determined successfully")
 
+# QC for consultation variable
+# max to 365 (average of one per day)
+
+print("Consultation variable before QC")
+summary(df$cov_num_consulation_rate)
+
+df <- df %>%
+  mutate(cov_num_consulation_rate = replace(cov_num_consulation_rate, cov_num_consulation_rate > 365, 365))
+
+print("Consultation variable after QC")
+summary(df$cov_num_consulation_rate)
 
 # Add diabetes variables and algorithm when relevant (i.e. diabetes outcome active)
 active_analyses <- read_rds("lib/active_analyses.rds")
-diabetes_analyses <- filter(active_analyses, startsWith(outcome_variable, "out_date_diabetes"))
+diabetes_analyses <- filter(active_analyses, startsWith(outcome_group, "diabetes"))
 
 if (any(diabetes_analyses$active==TRUE)){
   
   # Create vars for diabetes outcomes -------------------------------------------------------------
   
   # vars could not be created in common vars file
+  
   df <- df %>% mutate(tmp_out_count_t2dm = tmp_out_count_t2dm_snomed + tmp_out_count_t2dm_hes,
-                      tmp_out_count_t1dm = tmp_out_count_t1dm_snomed + tmp_out_count_t1dm_hes) %>%
-    # cholesterol ratio              
+                      tmp_out_count_t1dm = tmp_out_count_t1dm_snomed + tmp_out_count_t1dm_hes)
+  
+  print("Diabetes count variables created successfully")
+  
+  # remove biologically implausible TC/HDL ratio values: https://doi.org/10.1093/ije/dyz099
+  # Remove TC < 1.75 or > 20 
+  # remove HDL < 0.4 or > 5
+  df <- df %>%
+    mutate(tmp_cov_num_cholesterol = replace(tmp_cov_num_cholesterol, tmp_cov_num_cholesterol < 1.75 | tmp_cov_num_cholesterol > 20, NA),
+           tmp_cov_num_hdl_cholesterol = replace(tmp_cov_num_hdl_cholesterol, tmp_cov_num_hdl_cholesterol < 0.4 | tmp_cov_num_hdl_cholesterol > 5, NA)) %>%
     mutate(cov_num_tc_hdl_ratio = tmp_cov_num_cholesterol / tmp_cov_num_hdl_cholesterol) %>%
-    # remove bmi date var
-    dplyr::select(- cov_num_bmi_date_measured)
+    mutate(cov_num_tc_hdl_ratio = replace(cov_num_tc_hdl_ratio, cov_num_tc_hdl_ratio > 50 | cov_num_tc_hdl_ratio < 1, NA))
   
   # replace NaN and Inf with NA's (probably only an issue with dummy data)
   df$cov_num_tc_hdl_ratio[is.nan(df$cov_num_tc_hdl_ratio)] <- NA
   df$cov_num_tc_hdl_ratio[is.infinite(df$cov_num_tc_hdl_ratio)] <- NA
   
-  print("Diabetes count variables created successfully")
+  print("Cholesterol ratio variable created successfully and QC'd")
+  summary(df$cov_num_tc_hdl_ratio)
 
   # define variables needed for diabetes algorithm 
   
@@ -334,6 +354,35 @@ if (any(diabetes_analyses$active==TRUE)){
   df <- diabetes_algo(df)
   print("Diabetes algorithm run successfully")
 }
+
+# Create vars for mental health outcomes -------------------------------------------------------------
+
+#Mental Health - Primary care
+df<- df %>% mutate(out_date_depression_primarycare = tmp_out_date_depression_snomed,
+                   out_date_anxiety_general_primarycare = tmp_out_date_anxiety_general_snomed,
+                   out_date_anxiety_ocd_primarycare = tmp_out_date_anxiety_ocd_snomed,
+                   out_date_anxiety_ptsd_primarycare = tmp_out_date_anxiety_ptsd_snomed,
+                   out_date_eating_disorders_primarycare = tmp_out_date_eating_disorders_snomed,
+                   out_date_serious_mental_illness_primarycare = tmp_out_date_serious_mental_illness_snomed,
+                   out_date_self_harm_10plus_primarycare = tmp_out_date_self_harm_10plus_snomed,
+                   out_date_self_harm_15plus_primarycare = tmp_out_date_self_harm_15plus_snomed,
+                   out_date_addiction_primarycare = tmp_out_date_addiction_snomed)
+
+print("Mental health primary care variables created successfully")
+
+#Mental Health - Secondary care
+df<- df %>% mutate(out_date_depression_secondarycare = tmp_out_date_depression_hes,
+                   out_date_anxiety_general_secondarycare = tmp_out_date_anxiety_general_hes,
+                   out_date_anxiety_ocd_secondarycare = tmp_out_date_anxiety_ocd_hes,
+                   out_date_anxiety_ptsd_secondarycare = tmp_out_date_anxiety_ptsd_hes,
+                   out_date_eating_disorders_secondarycare = tmp_out_date_eating_disorders_hes,
+                   out_date_serious_mental_illness_secondarycare = tmp_out_date_serious_mental_illness_hes,
+                   out_date_self_harm_10plus_secondarycare = tmp_out_date_self_harm_10plus_hes,
+                   out_date_self_harm_15plus_secondarycare = tmp_out_date_self_harm_15plus_hes,
+                   out_date_suicide_secondarycare = tmp_out_date_suicide_hes,
+                   out_date_addiction_secondarycare = tmp_out_date_addiction_hes)
+
+print("Mental health secondary care variables created successfully")
 
 # Restrict columns and save analysis dataset ---------------------------------
 
