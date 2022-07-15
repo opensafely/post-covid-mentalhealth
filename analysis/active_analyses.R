@@ -197,8 +197,12 @@ for (i in 1:length(outcomes)) {
 #Run Primary care
 #df[c(1:2,4:6,8:9,11:12,14:15,17:19,21:22,24:25,27:31,33), 1] <- FALSE
 #Run secondary care
-df[c(1:3,5:7,9:10,12:13,15:16,18:20,22:23,25:26,28,30:32), 1] <- FALSE
+#df[c(1:3,5:7,9:10,12:13,15:16,18:20,22:23,25:26,28,30:32), 1] <- FALSE
+#Run Secondary outcomes (Prescriptions)
+df[c(1,3:5,7:18,20:30,32:33), 1] <- FALSE
 #df[c(26:28,30:32, 34:35, 37:38,40:41,43:45,47:48,50:51,53,55:57),1] <- FALSE
+
+
 
 #Prior_history variables:
 #Depression
