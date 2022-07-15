@@ -1,12 +1,525 @@
 version: '3.0'
 
 expectations:
-  population_size: 1000
+
+  population_size: 100000
 
 actions:
 
-  generate_study_population:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition
+  ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  ## DO NOT EDIT project.yaml DIRECTLY 
+  ## This file is created by create_project_actions.R 
+  ## Edit and run create_project_actions.R to update the project.yaml 
+  ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+  vax_eligibility_inputs:
+    run: r:latest analysis/vax_eligibility_inputs.R
     outputs:
       highly_sensitive:
-        cohort: output/input.csv
+        vax_study_dates_json: output/vax_study_dates.json
+        vax_jcvi_groups: output/vax_jcvi_groups.csv
+        vax_eligible_dates: output/vax_eligible_dates.csv
+
+  generate_study_population_electively_unvaccinated:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_electively_unvaccinated
+      --output-format feather
+    needs:
+    - vax_eligibility_inputs
+    outputs:
+      highly_sensitive:
+        cohort: output/input_electively_unvaccinated.feather
+
+  generate_study_population_vaccinated:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_vaccinated
+      --output-format feather
+    outputs:
+      highly_sensitive:
+        cohort: output/input_vaccinated.feather
+
+  generate_study_population_index:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_index
+      --output-format feather
+    outputs:
+      highly_sensitive:
+        cohort: output/input_index.feather
+
+  preprocess_data_vaccinated:
+    run: r:latest analysis/preprocess/preprocess_data.R vaccinated
+    needs:
+    - generate_study_population_index
+    - generate_study_population_vaccinated
+    - generate_study_population_electively_unvaccinated
+    outputs:
+      moderately_sensitive:
+        describe: output/not-for-review/describe_input_vaccinated_*.txt
+        describe_index: output/not-for-review/describe_tmp_index_vaccinated.txt
+        describe_cohort: output/not-for-review/describe_tmp_vaccinated.txt
+        descrive_venn: output/not-for-review/describe_venn_vaccinated.txt
+      highly_sensitive:
+        cohort: output/input_vaccinated.rds
+        venn: output/venn_vaccinated.rds
+
+  preprocess_data_electively_unvaccinated:
+    run: r:latest analysis/preprocess/preprocess_data.R electively_unvaccinated
+    needs:
+    - generate_study_population_index
+    - generate_study_population_vaccinated
+    - generate_study_population_electively_unvaccinated
+    outputs:
+      moderately_sensitive:
+        describe: output/not-for-review/describe_input_electively_unvaccinated_*.txt
+        describe_index: output/not-for-review/describe_tmp_index_electively_unvaccinated.txt
+        describe_cohort: output/not-for-review/describe_tmp_electively_unvaccinated.txt
+        descrive_venn: output/not-for-review/describe_venn_electively_unvaccinated.txt
+      highly_sensitive:
+        cohort: output/input_electively_unvaccinated.rds
+        venn: output/venn_electively_unvaccinated.rds
+
+  stage1_data_cleaning_both:
+    run: r:latest analysis/preprocess/Stage1_data_cleaning.R both
+    needs:
+    - preprocess_data_vaccinated
+    - preprocess_data_electively_unvaccinated
+    outputs:
+      moderately_sensitive:
+        refactoring: output/not-for-review/meta_data_factors_*.csv
+        QA_rules: output/review/descriptives/QA_summary_*.csv
+        IE_criteria: output/review/descriptives/Cohort_flow_*.csv
+        histograms: output/not-for-review/numeric_histograms_*.svg
+      highly_sensitive:
+        cohort: output/input_*_stage1*.rds
+
+  stage1_end_date_table_vaccinated:
+    run: r:latest analysis/preprocess/create_follow_up_end_date.R vaccinated
+    needs:
+    - preprocess_data_vaccinated
+    - preprocess_data_electively_unvaccinated
+    - stage1_data_cleaning_both
+    outputs:
+      highly_sensitive:
+        end_date_table: output/follow_up_end_dates_vaccinated*.rds
+
+  stage1_end_date_table_electively_unvaccinated:
+    run: r:latest analysis/preprocess/create_follow_up_end_date.R electively_unvaccinated
+    needs:
+    - preprocess_data_vaccinated
+    - preprocess_data_electively_unvaccinated
+    - stage1_data_cleaning_both
+    outputs:
+      highly_sensitive:
+        end_date_table: output/follow_up_end_dates_electively_unvaccinated*.rds
+
+  stage2_missing_table1_both:
+    run: r:latest analysis/descriptives/Stage2_missing_table1.R both
+    needs:
+    - stage1_data_cleaning_both
+    outputs:
+      moderately_sensitive:
+        Missing_RangeChecks: output/not-for-review/Check_missing_range_*.csv
+        DateChecks: output/not-for-review/Check_dates_range_*.csv
+        Descriptive_Table: output/review/descriptives/Table1_*.csv
+
+  stage3_diabetes_flow_vaccinated:
+    run: r:latest analysis/descriptives/diabetes_flowchart.R vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    outputs:
+      moderately_sensitive:
+        flow_df: output/review/figure-data/diabetes_flow_values_vaccinated_*.csv
+
+  stage3_diabetes_flow_electively_unvaccinated:
+    run: r:latest analysis/descriptives/diabetes_flowchart.R electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    outputs:
+      moderately_sensitive:
+        flow_df: output/review/figure-data/diabetes_flow_values_electively_unvaccinated_*.csv
+
+  ## Stage 4 - Table 2 - vaccinated cohort 
+
+  stage4_table_2_vaccinated:
+    run: r:latest analysis/descriptives/table_2.R vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    outputs:
+      moderately_sensitive:
+        input_table_2: output/review/descriptives/table2_vaccinated_*.csv
+
+  ## Stage 4 - Table 2 - electively_unvaccinated cohort 
+
+  stage4_table_2_electively_unvaccinated:
+    run: r:latest analysis/descriptives/table_2.R electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    outputs:
+      moderately_sensitive:
+        input_table_2: output/review/descriptives/table2_electively_unvaccinated_*.csv
+
+  stage4_venn_diagram_both:
+    run: r:latest analysis/descriptives/venn_diagram.R both
+    needs:
+    - preprocess_data_vaccinated
+    - preprocess_data_electively_unvaccinated
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - stage1_end_date_table_electively_unvaccinated
+    outputs:
+      moderately_sensitive:
+        venn_diagram: output/review/venn-diagrams/venn_diagram_*
+
+  ## Cox model for depression - vaccinated 
+
+  Analysis_cox_depression_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R depression vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_depression_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_depression_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_depression_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_depression_vaccinated.csv
+
+  ## Cox model for depression - electively_unvaccinated 
+
+  Analysis_cox_depression_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R depression electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_depression_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_depression_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_depression_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_depression_electively_unvaccinated.csv
+
+  ## Cox model for anxiety_general - vaccinated 
+
+  Analysis_cox_anxiety_general_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R anxiety_general vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_anxiety_general_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_general_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_general_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_general_vaccinated.csv
+
+  ## Cox model for anxiety_general - electively_unvaccinated 
+
+  Analysis_cox_anxiety_general_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R anxiety_general electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_anxiety_general_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_general_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_general_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_general_electively_unvaccinated.csv
+
+  ## Cox model for anxiety_ocd - vaccinated 
+
+  Analysis_cox_anxiety_ocd_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R anxiety_ocd vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_anxiety_ocd_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ocd_vaccinated.csv
+
+  ## Cox model for anxiety_ocd - electively_unvaccinated 
+
+  Analysis_cox_anxiety_ocd_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R anxiety_ocd electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_anxiety_ocd_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ocd_electively_unvaccinated.csv
+
+  ## Cox model for anxiety_ptsd - vaccinated 
+
+  Analysis_cox_anxiety_ptsd_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R anxiety_ptsd vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_anxiety_ptsd_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ptsd_vaccinated.csv
+
+  ## Cox model for anxiety_ptsd - electively_unvaccinated 
+
+  Analysis_cox_anxiety_ptsd_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R anxiety_ptsd electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_anxiety_ptsd_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ptsd_electively_unvaccinated.csv
+
+  ## Cox model for eating_disorders - vaccinated 
+
+  Analysis_cox_eating_disorders_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R eating_disorders vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_eating_disorders_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_eating_disorders_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_eating_disorders_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_eating_disorders_vaccinated.csv
+
+  ## Cox model for eating_disorders - electively_unvaccinated 
+
+  Analysis_cox_eating_disorders_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R eating_disorders electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_eating_disorders_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_eating_disorders_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_eating_disorders_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_eating_disorders_electively_unvaccinated.csv
+
+  ## Cox model for serious_mental_illness - vaccinated 
+
+  Analysis_cox_serious_mental_illness_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R serious_mental_illness vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_serious_mental_illness_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_serious_mental_illness_vaccinated.csv
+
+  ## Cox model for serious_mental_illness - electively_unvaccinated 
+
+  Analysis_cox_serious_mental_illness_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R serious_mental_illness electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_serious_mental_illness_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_serious_mental_illness_electively_unvaccinated.csv
+
+  ## Cox model for self_harm_10plus - vaccinated 
+
+  Analysis_cox_self_harm_10plus_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R self_harm_10plus vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_self_harm_10plus_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_10plus_vaccinated.csv
+
+  ## Cox model for self_harm_10plus - electively_unvaccinated 
+
+  Analysis_cox_self_harm_10plus_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R self_harm_10plus electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_self_harm_10plus_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_10plus_electively_unvaccinated.csv
+
+  ## Cox model for self_harm_15plus - vaccinated 
+
+  Analysis_cox_self_harm_15plus_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R self_harm_15plus vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_self_harm_15plus_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_15plus_vaccinated.csv
+
+  ## Cox model for self_harm_15plus - electively_unvaccinated 
+
+  Analysis_cox_self_harm_15plus_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R self_harm_15plus electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_self_harm_15plus_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_15plus_electively_unvaccinated.csv
+
+  ## Cox model for suicide - vaccinated 
+
+  Analysis_cox_suicide_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R suicide vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_suicide_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_suicide_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_suicide_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_suicide_vaccinated.csv
+
+  ## Cox model for suicide - electively_unvaccinated 
+
+  Analysis_cox_suicide_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R suicide electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_suicide_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_suicide_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_suicide_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_suicide_electively_unvaccinated.csv
+
+  ## Cox model for addiction - vaccinated 
+
+  Analysis_cox_addiction_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R addiction vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_addiction_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_addiction_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_addiction_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_addiction_vaccinated.csv
+
+  ## Cox model for addiction - electively_unvaccinated 
+
+  Analysis_cox_addiction_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R addiction electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    - select_covariates_for_hosp_covid
+    outputs:
+      moderately_sensitive:
+        analyses_not_run: output/review/model/analyses_not_run_addiction_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_addiction_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_addiction_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_addiction_electively_unvaccinated.csv
+
+  split_hosp_covid_by_region_vaccinated:
+    run: r:latest analysis/descriptives/hospitalised_covid_events_by_region.R vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    outputs:
+      moderately_sensitive:
+        hosp_events_by_region_non_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_non_suppressed.csv
+        hosp_events_by_region_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_suppressed.csv
+
+  split_hosp_covid_by_region_electively_unvaccinated:
+    run: r:latest analysis/descriptives/hospitalised_covid_events_by_region.R electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    outputs:
+      moderately_sensitive:
+        hosp_events_by_region_non_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_non_suppressed.csv
+        hosp_events_by_region_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_suppressed.csv
+
+  ## Hospitalised event counts by covariate - vaccinated 
+
+  hosp_event_counts_by_covariate_level_vaccinated:
+    run: r:latest analysis/descriptives/hospitalised_events_split_by_time_period_and_covariate_level.R
+      vaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_vaccinated
+    outputs:
+      moderately_sensitive:
+        hosp_counts_by_covariate: output/not-for-review/hospitalised_event_counts_by_covariate_level_vaccinated.csv
+
+  ## Hospitalised event counts by covariate - electively_unvaccinated 
+
+  hosp_event_counts_by_covariate_level_electively_unvaccinated:
+    run: r:latest analysis/descriptives/hospitalised_events_split_by_time_period_and_covariate_level.R
+      electively_unvaccinated
+    needs:
+    - stage1_data_cleaning_both
+    - stage1_end_date_table_electively_unvaccinated
+    outputs:
+      moderately_sensitive:
+        hosp_counts_by_covariate: output/not-for-review/hospitalised_event_counts_by_covariate_level_electively_unvaccinated.csv
+
+  select_covariates_for_hosp_covid:
+    run: r:latest analysis/descriptives/determine_covariates_for_hosp_covid.R both
+    needs:
+    - hosp_event_counts_by_covariate_level_vaccinated
+    - hosp_event_counts_by_covariate_level_electively_unvaccinated
+    outputs:
+      moderately_sensitive:
+        covariates_for_hosp_covid_vacc: output/not-for-review/covariates_to_adjust_for_hosp_covid_vaccinated_*.csv
+        covariates_for_hosp_covid_electively_unvacc: output/not-for-review/covariates_to_adjust_for_hosp_covid_electively_unvaccinated_*.csv
+
