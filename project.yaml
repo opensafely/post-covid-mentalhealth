@@ -199,36 +199,6 @@ actions:
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_depression_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_depression_primarycare_electively_unvaccinated.csv
 
-  ## Cox model for depression_secondarycare - vaccinated 
-
-  Analysis_cox_depression_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R depression_secondarycare vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_depression_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_depression_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_depression_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_depression_secondarycare_vaccinated.csv
-
-  ## Cox model for depression_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_depression_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R depression_secondarycare electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_depression_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_depression_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_depression_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_depression_secondarycare_electively_unvaccinated.csv
-
   ## Cox model for anxiety_general_primarycare - vaccinated 
 
   Analysis_cox_anxiety_general_primarycare_vaccinated:
@@ -258,36 +228,6 @@ actions:
         compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_general_primarycare_electively_unvaccinated.csv
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_general_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_general_primarycare_electively_unvaccinated.csv
-
-  ## Cox model for anxiety_general_secondarycare - vaccinated 
-
-  Analysis_cox_anxiety_general_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R anxiety_general_secondarycare vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_anxiety_general_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_general_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_general_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_general_secondarycare_vaccinated.csv
-
-  ## Cox model for anxiety_general_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_anxiety_general_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R anxiety_general_secondarycare electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_anxiety_general_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_general_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_general_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_general_secondarycare_electively_unvaccinated.csv
 
   ## Cox model for anxiety_ocd_primarycare - vaccinated 
 
@@ -319,36 +259,6 @@ actions:
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ocd_primarycare_electively_unvaccinated.csv
 
-  ## Cox model for anxiety_ocd_secondarycare - vaccinated 
-
-  Analysis_cox_anxiety_ocd_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R anxiety_ocd_secondarycare vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_anxiety_ocd_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ocd_secondarycare_vaccinated.csv
-
-  ## Cox model for anxiety_ocd_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_anxiety_ocd_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R anxiety_ocd_secondarycare electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_anxiety_ocd_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ocd_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ocd_secondarycare_electively_unvaccinated.csv
-
   ## Cox model for anxiety_ptsd_primarycare - vaccinated 
 
   Analysis_cox_anxiety_ptsd_primarycare_vaccinated:
@@ -379,36 +289,6 @@ actions:
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ptsd_primarycare_electively_unvaccinated.csv
 
-  ## Cox model for anxiety_ptsd_secondarycare - vaccinated 
-
-  Analysis_cox_anxiety_ptsd_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R anxiety_ptsd_secondarycare vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_anxiety_ptsd_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ptsd_secondarycare_vaccinated.csv
-
-  ## Cox model for anxiety_ptsd_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_anxiety_ptsd_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R anxiety_ptsd_secondarycare electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_anxiety_ptsd_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_anxiety_ptsd_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_anxiety_ptsd_secondarycare_electively_unvaccinated.csv
-
   ## Cox model for eating_disorders_primarycare - vaccinated 
 
   Analysis_cox_eating_disorders_primarycare_vaccinated:
@@ -438,38 +318,6 @@ actions:
         compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_eating_disorders_primarycare_electively_unvaccinated.csv
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_eating_disorders_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_eating_disorders_primarycare_electively_unvaccinated.csv
-
-  ## Cox model for eating_disorders_secondarycare - vaccinated 
-
-  Analysis_cox_eating_disorders_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R eating_disorders_secondarycare
-      vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_eating_disorders_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_eating_disorders_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_eating_disorders_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_eating_disorders_secondarycare_vaccinated.csv
-
-  ## Cox model for eating_disorders_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_eating_disorders_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R eating_disorders_secondarycare
-      electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_eating_disorders_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_eating_disorders_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_eating_disorders_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_eating_disorders_secondarycare_electively_unvaccinated.csv
 
   ## Cox model for serious_mental_illness_primarycare - vaccinated 
 
@@ -505,40 +353,6 @@ actions:
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_serious_mental_illness_primarycare_electively_unvaccinated.csv
 
-  ## Cox model for serious_mental_illness_secondarycare - vaccinated 
-
-  Analysis_cox_serious_mental_illness_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R serious_mental_illness_secondarycare
-      vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_serious_mental_illness_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_serious_mental_illness_secondarycare_vaccinated.csv
-
-  ## Cox model for serious_mental_illness_secondarycare - electively_unvaccinated
-
-    
-
-  Analysis_cox_serious_mental_illness_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R serious_mental_illness_secondarycare
-      electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_serious_mental_illness_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_serious_mental_illness_secondarycare_electively_unvaccinated.csv
-
   ## Cox model for self_harm_10plus_primarycare - vaccinated 
 
   Analysis_cox_self_harm_10plus_primarycare_vaccinated:
@@ -568,38 +382,6 @@ actions:
         compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_primarycare_electively_unvaccinated.csv
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_10plus_primarycare_electively_unvaccinated.csv
-
-  ## Cox model for self_harm_10plus_secondarycare - vaccinated 
-
-  Analysis_cox_self_harm_10plus_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R self_harm_10plus_secondarycare
-      vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_self_harm_10plus_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_10plus_secondarycare_vaccinated.csv
-
-  ## Cox model for self_harm_10plus_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_self_harm_10plus_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R self_harm_10plus_secondarycare
-      electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_self_harm_10plus_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_10plus_secondarycare_electively_unvaccinated.csv
 
   ## Cox model for self_harm_15plus_primarycare - vaccinated 
 
@@ -631,68 +413,6 @@ actions:
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_15plus_primarycare_electively_unvaccinated.csv
 
-  ## Cox model for self_harm_15plus_secondarycare - vaccinated 
-
-  Analysis_cox_self_harm_15plus_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R self_harm_15plus_secondarycare
-      vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_self_harm_15plus_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_15plus_secondarycare_vaccinated.csv
-
-  ## Cox model for self_harm_15plus_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_self_harm_15plus_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R self_harm_15plus_secondarycare
-      electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_self_harm_15plus_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_15plus_secondarycare_electively_unvaccinated.csv
-
-  ## Cox model for suicide_secondarycare - vaccinated 
-
-  Analysis_cox_suicide_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R suicide_secondarycare vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_suicide_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_suicide_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_suicide_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_suicide_secondarycare_vaccinated.csv
-
-  ## Cox model for suicide_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_suicide_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R suicide_secondarycare electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_suicide_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_suicide_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_suicide_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_suicide_secondarycare_electively_unvaccinated.csv
-
   ## Cox model for addiction_primarycare - vaccinated 
 
   Analysis_cox_addiction_primarycare_vaccinated:
@@ -722,36 +442,6 @@ actions:
         compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_addiction_primarycare_electively_unvaccinated.csv
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_addiction_primarycare_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_addiction_primarycare_electively_unvaccinated.csv
-
-  ## Cox model for addiction_secondarycare - vaccinated 
-
-  Analysis_cox_addiction_secondarycare_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R addiction_secondarycare vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_addiction_secondarycare_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_addiction_secondarycare_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_addiction_secondarycare_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_addiction_secondarycare_vaccinated.csv
-
-  ## Cox model for addiction_secondarycare - electively_unvaccinated 
-
-  Analysis_cox_addiction_secondarycare_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R addiction_secondarycare electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_addiction_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_addiction_secondarycare_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_addiction_secondarycare_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_addiction_secondarycare_electively_unvaccinated.csv
 
   split_hosp_covid_by_region_vaccinated:
     run: r:latest analysis/descriptives/hospitalised_covid_events_by_region.R vaccinated

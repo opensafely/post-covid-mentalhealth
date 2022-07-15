@@ -194,8 +194,10 @@ for (i in 1:length(outcomes)) {
 
 #Run main MH outcomes:
 #df[c(2:4,6:8, 10:11,13:14,16:17,19:21,23:24,26:27,29,31:33),1] <- FALSE
-#Run Primary and secondary care
-df[c(1:2,5:6,9,12,15,18:19,22,25,28,30:31), 1] <- FALSE
+#Run Primary care
+df[c(1:2,4:6,8:9,11:12,14:15,17:19,21:22,24:25,27:31,33), 1] <- FALSE
+#Run secondary care
+#df[c(1:3,5:7,9:10,12:13,15:16,18:20,22:23,25:26,28,30:32), 1] <- FALSE
 #df[c(26:28,30:32, 34:35, 37:38,40:41,43:45,47:48,50:51,53,55:57),1] <- FALSE
 
 #Prior_history variables:
