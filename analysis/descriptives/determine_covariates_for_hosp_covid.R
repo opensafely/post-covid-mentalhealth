@@ -4,12 +4,14 @@ library(dplyr)
 library(readr)
 library(stringr)
 
-args = commandArgs(trailingOnly=TRUE)
+args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
-  cohort="both"
+  # use for interactive testing
+  cohort_name <- "vaccinated"
+  #cohort_name = "electively_unvaccinated"
 }else{
-  cohort = args[[1]]
+  cohort_name <- args[[1]]
 }
 
 active_analyses <- read_rds("lib/active_analyses.rds")
@@ -18,9 +20,9 @@ active_analyses <- active_analyses %>%dplyr::filter(active == "TRUE")
 protected_covariates<-str_split(active_analyses$covariates, ";")[[1]]
 protected_covariates <- protected_covariates[grepl("cov_num|cov_cat",protected_covariates)]
 
-select_covariates_for_cox <- function(cohort){
+select_covariates_for_cox <- function(cohort_name, group){
   
-  covariate_counts <- read_csv(paste0("output/not-for-review/hospitalised_event_counts_by_covariate_level_",cohort,".csv"))
+  covariate_counts <- read_csv(paste0("output/not-for-review/hospitalised_event_counts_by_covariate_level_",cohort_name, ".csv"))
   
   covariate_counts <- covariate_counts %>% filter(!Covariate %in% protected_covariates)
   covariate_counts$keep_covariate <- NA
@@ -37,13 +39,27 @@ select_covariates_for_cox <- function(cohort){
     covariates_to_adjust_for[nrow(covariates_to_adjust_for)+1,] <- c(outcome_name,paste(c(unique(df$Covariate),protected_covariates), collapse = ";"),"covid_pheno_hospitalised")
   }
   
-  write.csv(covariates_to_adjust_for, file = paste0("output/not-for-review/covariates_to_adjust_for_hosp_covid_",cohort,".csv"), row.names = F)
+  write.csv(covariates_to_adjust_for, file = paste0("output/not-for-review/covariates_to_adjust_for_hosp_covid_",cohort_name,"_",group,".csv"), row.names = F)
   
 }
 
-if(cohort == "both"){
-  select_covariates_for_cox("vaccinated")
-  select_covariates_for_cox("electively_unvaccinated")
-}else{
-  select_covariates_for_cox(cohort)
+# Run function using specified commandArgs
+active_analyses <- read_rds("lib/active_analyses.rds")
+active_analyses <- active_analyses %>% filter(active==TRUE)
+group <- unique(active_analyses$outcome_group)
+
+for(i in group){
+  if (cohort_name == "both") {
+    select_covariates_for_cox("vaccinated", i)
+    select_covariates_for_cox("electively_unvaccinated", i)
+  } else{
+    select_covariates_for_cox(cohort_name, i)
+  }
 }
+
+# if(cohort == "both"){
+#   select_covariates_for_cox("vaccinated")
+#   select_covariates_for_cox("electively_unvaccinated")
+# }else{
+#   select_covariates_for_cox(cohort)
+# }

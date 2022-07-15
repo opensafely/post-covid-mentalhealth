@@ -108,6 +108,9 @@ stage1 <- function(cohort_name, group){
     levels(input$cov_cat_smoking_status) <- list("Ever smoker" = "E", "Missing" = "M", "Never smoker" = "N", "Current smoker" = "S")
     input$cov_cat_smoking_status <- ordered(input$cov_cat_smoking_status, levels = c("Never smoker","Ever smoker","Current smoker","Missing"))
     
+    ## cov_cat_bmi
+    input$cov_cat_bmi_groups <- ordered(input$cov_cat_bmi_groups, levels = c("Healthy_weight", "Underweight", "Overweight", "Obese", "Missing"))
+    
     ## cov_cat_sex
     levels(input$cov_cat_sex) <- list("Female" = "F", "Male" = "M")
     input$cov_cat_sex <- relevel(input$cov_cat_sex, ref = "Female")
@@ -277,7 +280,7 @@ stage1 <- function(cohort_name, group){
         filter(cov_cat_sex == "Female")
       cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input), as.numeric(cohort_flow[8,1]) - nrow(input), "Gestational diabetes: The study population will be restricted to women.")
       
-    } else if (group == "mental_health"){
+    } else if (group == "Mental_health"){
       # Mental health analyses exclusion criteria
       input <- input %>% 
         filter()

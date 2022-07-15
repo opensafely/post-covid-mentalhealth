@@ -34,14 +34,15 @@ venn_output <- function(cohort_name, group){
   # Identify active outcomes ---------------------------------------------------
   
   active_analyses <- readr::read_rds("lib/active_analyses.rds")
-  outcomes <- active_analyses[active_analyses$active==TRUE,]$outcome_variable
+  # added extra statement to include only those with venn == TRUE - because some diabetes outcomes only use one data source and so venn is not applicable
+  outcomes <- active_analyses[active_analyses$active==TRUE & active_analyses$venn==TRUE & active_analyses$outcome_group==group,]$outcome_variable
   # remove otherdm and gestational dm as we only use a single source to define these
   outcomes <- outcomes[! outcomes %in% c("out_date_otherdm", "out_date_gestationaldm")]
   
   # Load data ------------------------------------------------------------------
   
   input <- readr::read_rds(paste0("output/venn_",cohort_name,".rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name, "_",group, ".rds"))
+  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name, "_", group,".rds"))
   
   input_stage1 <- readr::read_rds(paste0("output/input_", cohort_name,"_stage1_", group,".rds"))
   input_stage1 <- input_stage1[input_stage1$sub_bin_covid19_confirmed_history==FALSE,]
@@ -184,53 +185,55 @@ venn_output <- function(cohort_name, group){
         
       }
     }
+    }
+    
 
     # Proceed to create Venn diagram if all source combos exceed 5 -------------
     #if (min(as.numeric(df[df$outcome==outcome,source_consid]))>5) {
     
       # Calculate contents of each Venn cell for plotting ----------------------
-      
-    #   index1 <- integer(0)
-    #   index2 <- integer(0)
-    #   index3 <- integer(0)
-    #   
-    #   if ("only_snomed" %in% source_consid) {
-    #     index1 <- which(!is.na(tmp$snomed))
-    #   }
-    #   if ("only_hes" %in% source_consid) {
-    #     index2 <- which(!is.na(tmp$hes))
-    #   }
-    #   if ("only_death" %in% source_consid) {
-    #     index3 <- which(!is.na(tmp$death))
-    #   }
-    #   
-    #   index <- list(index1, index2, index3)
-    #   names(index) <- c("Primary care", "Secondary care", "Death record")
-    #   index <- Filter(length, index)
-    #   
-    #   # Fix colours --------------------------------------------------------------
-    #   
-    #   mycol <- c(ifelse("Primary care" %in% names(index),"thistle",""),
-    #              ifelse("Secondary care" %in% names(index),"lightcyan",""),
-    #              ifelse("Death record" %in% names(index),"lemonchiffon",""))
-    #   
-    #   mycol <- mycol[mycol!=""]
-    #   
-    #   # Make Venn diagram --------------------------------------------------------
-    #   svglite::svglite(file = paste0("output/review/venn-diagrams/venn_diagram_",cohort_name,"_",gsub("out_date_","",outcome_save_name),".svg"))
-    #    g <- ggvenn::ggvenn(
-    #     index, 
-    #     fill_color = mycol,
-    #     stroke_color = "white",
-    #     text_size = 5,
-    #     set_name_size = 5, 
-    #     fill_alpha = 0.9
-    #   ) +  ggplot2::ggtitle(active_analyses[active_analyses$outcome_variable==outcome_save_name,]$outcome) +
-    #     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 15, face = "bold"))
-    #   print(g)
-    #   dev.off()
-    #   
-    # }
+
+     #   index1 <- integer(0)
+     #   index2 <- integer(0)
+     #   index3 <- integer(0)
+     # 
+     #   if ("only_snomed" %in% source_consid) {
+     #     index1 <- which(!is.na(tmp$snomed))
+     #   }
+     #   if ("only_hes" %in% source_consid) {
+     #     index2 <- which(!is.na(tmp$hes))
+     #   }
+     #   if ("only_death" %in% source_consid) {
+     #     index3 <- which(!is.na(tmp$death))
+     #   }
+     #   
+     #   index <- list(index1, index2, index3)
+     #   names(index) <- c("Primary care", "Secondary care", "Death record")
+     #   index <- Filter(length, index)
+     #   
+     #   # Fix colours --------------------------------------------------------------
+     #   
+     #   mycol <- c(ifelse("Primary care" %in% names(index),"thistle",""),
+     #              ifelse("Secondary care" %in% names(index),"lightcyan",""),
+     #              ifelse("Death record" %in% names(index),"lemonchiffon",""))
+     #   
+     #   mycol <- mycol[mycol!=""]
+     #   
+     #   # Make Venn diagram --------------------------------------------------------
+     #   svglite::svglite(file = paste0("output/review/venn-diagrams/venn_diagram_",cohort_name,"_",gsub("out_date_","",outcome_save_name),".svg"))
+     #    g <- ggvenn::ggvenn(
+     #     index, 
+     #     fill_color = mycol,
+     #     stroke_color = "white",
+     #     text_size = 5,
+     #     set_name_size = 5, 
+     #     fill_alpha = 0.9
+     #   ) +  ggplot2::ggtitle(active_analyses[active_analyses$outcome_variable==outcome_save_name,]$outcome) +
+     #     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 15, face = "bold"))
+     #   print(g)
+     #   dev.off()
+     #   
+     # }
     
   #}
   
@@ -238,30 +241,28 @@ venn_output <- function(cohort_name, group){
   
   # Merge any cells <= 5 to the highest cell (excluding totals) -------------
   
-  colnamesorder <- colnames(df)
-  a <- df[-c(1,9:12)]
-  a[] <- sapply(a, as.numeric)
-  idx <- cbind(seq(nrow(a)), max.col(a))
-  a[idx] <- a[idx] + rowSums(a * (a <= 5))
-  is.na(a) <- a <= 5
-  df <- cbind(df[c(1,9:12)], a) 
-  df <- setcolorder(df, colnamesorder)
-  # remove totals column as these are calculated in external_venn_script.R
-  df <- select(df, -contains("total"))
-  #change NAs to 0
-  df[is.na(df)] <- 0
-  write.csv(df, file = paste0("output/review/venn-diagrams/venn_diagram_number_check_", cohort_name, "_",group, ".csv"), row.names = F)
+  # colnamesorder <- colnames(df)
+  # a <- df[-c(1,9:12)]
+  # a[] <- sapply(a, as.numeric)
+  # idx <- cbind(seq(nrow(a)), max.col(a))
+  # a[idx] <- a[idx] + rowSums(a * (a <= 5))
+  # is.na(a) <- a <= 5
+  # df <- cbind(df[c(1,9:12)], a)
+  # df <- setcolorder(df, colnamesorder)
+  # # remove totals column as these are calculated in external_venn_script.R
+  # df <- select(df, -contains("total"))
+  # #change NAs to 0
+  # df[is.na(df)] <- 0
+  write.csv(df, file = paste0("output/review/venn-diagrams/venn_diagram_number_check_", cohort_name, "_", group,".csv"), row.names = F)
   
 }
 
 # Run function using specified commandArgs -------------------------------------
 
-  active_analyses <- read_rds("lib/active_analyses.rds")
-  active_analyses <- active_analyses %>% filter(active==TRUE)
-  group <- unique(active_analyses$outcome_group)
-  # remove gestational dm as we only use a single source to define this and so dont need venn diagram
-  group <- group[! group %in% c("diabetes_gestational")]
-  
+   active_analyses <- read_rds("lib/active_analyses.rds")
+   active_analyses <- active_analyses %>% filter(active==TRUE & venn == TRUE)
+   group <- unique(active_analyses$outcome_group)
+
   for(i in group){
     if (cohort_name == "both") {
       venn_output("electively_unvaccinated", i)

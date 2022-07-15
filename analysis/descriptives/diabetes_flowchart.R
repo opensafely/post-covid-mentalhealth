@@ -18,7 +18,7 @@
 
 # Libraries
 
-libraries <- c("readr", "dplyr", "stringr", "tidyverse", "plyr")
+libraries <- c("readr", "plyr", "stringr", "tidyverse", "dplyr")
 # libraries <- c("readr", "dplyr", "stringr", "tidyverse", "DiagrammeR", "DiagrammeRsvg", "rsvg", "plyr")
 lapply(libraries, require, character.only=T)
 
@@ -28,9 +28,10 @@ args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
   # use for interactive testing
-  cohort <- "vaccinated"
+  cohort_name <- "vaccinated"
+  #cohort_name = "electively_unvaccinated"
 } else {
-  cohort <- args[[1]]
+  cohort_name <- args[[1]]
 }
 
 fs::dir_create(here::here("output", "not-for-review"))
@@ -97,7 +98,7 @@ values <- list(
   q = sum(diabetes_df$step_7 == "Yes", na.rm = T),
   q2 = sum(diabetes_df$step_7 == "No", na.rm = T),
   # DIABETES UNSPECIFIED TYPE
-  r = sum(diabetes_df$out_cat_diabetes == "DM unspecified", na.rm = T),
+  r = sum(diabetes_df$out_cat_diabetes == "DM_other", na.rm = T),
   # DIABETES UNLIKELY
   s = sum(diabetes_df$out_cat_diabetes == "DM unlikely", na.rm = T))
 

@@ -30,7 +30,7 @@ cohort_end = as.Date("2021-12-14", format="%Y-%m-%d")
 agebreaks <- c(0, 40, 60, 80, 111)
 agelabels <- c("18_39", "40_59", "60_79", "80_110")
 
-hosp_event_by_covariate_level <- function(cohort_name){
+hosp_event_by_covariate_level <- function(cohort_name, group){
   
   # define analyses of interests
   active_analyses <- read_rds("lib/active_analyses.rds")
@@ -41,8 +41,8 @@ hosp_event_by_covariate_level <- function(cohort_name){
 
   outcomes<-active_analyses$outcome_variable
   
-  survival_data <- read_rds(paste0("output/input_",cohort_name,"_stage1.rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,".rds")) 
+  survival_data <- read_rds(paste0("output/input_", cohort_name,"_stage1_", group,".rds"))
+  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,"_",group,".rds"))
   end_dates$index_date <- NULL
   
   survival_data<- survival_data %>% left_join(end_dates, by="patient_id")
@@ -200,10 +200,23 @@ hosp_event_by_covariate_level_counts <- function(survival_data, event,covar_name
 
 
 # Run function using specified commandArgs
-if(cohort_name == "both"){
-  hosp_event_by_covariate_level("vaccinated")
-  hosp_event_by_covariate_level("electively_unvaccinated")
-}else{
-  hosp_event_by_covariate_level(cohort_name)
+active_analyses <- read_rds("lib/active_analyses.rds")
+active_analyses <- active_analyses %>% filter(active==TRUE)
+group <- unique(active_analyses$outcome_group)
+
+for(i in group){
+  if (cohort_name == "both") {
+    hosp_event_by_covariate_level("vaccinated", i)
+    hosp_event_by_covariate_level("electively_unvaccinated", i)
+  } else{
+    hosp_event_by_covariate_level(cohort_name, i)
+  }
 }
+
+# if(cohort_name == "both"){
+#   hosp_event_by_covariate_level("vaccinated", i)
+#   hosp_event_by_covariate_level("electively_unvaccinated", i)
+# }else{
+#   hosp_event_by_covariate_level(cohort_name, i)
+# }
 

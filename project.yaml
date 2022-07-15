@@ -87,7 +87,7 @@ actions:
         IE_criteria: output/review/descriptives/Cohort_flow_*.csv
         histograms: output/not-for-review/numeric_histograms_*.svg
       highly_sensitive:
-        cohort: output/input_*_stage1.rds
+        cohort: output/input_*_stage1*.rds
 
   stage1_end_date_table_vaccinated:
     run: r:latest analysis/preprocess/create_follow_up_end_date.R vaccinated
@@ -97,7 +97,7 @@ actions:
     - stage1_data_cleaning_both
     outputs:
       highly_sensitive:
-        end_date_table: output/follow_up_end_dates_vaccinated.rds
+        end_date_table: output/follow_up_end_dates_vaccinated*.rds
 
   stage1_end_date_table_electively_unvaccinated:
     run: r:latest analysis/preprocess/create_follow_up_end_date.R electively_unvaccinated
@@ -107,7 +107,7 @@ actions:
     - stage1_data_cleaning_both
     outputs:
       highly_sensitive:
-        end_date_table: output/follow_up_end_dates_electively_unvaccinated.rds
+        end_date_table: output/follow_up_end_dates_electively_unvaccinated*.rds
 
   stage2_missing_table1_both:
     run: r:latest analysis/descriptives/Stage2_missing_table1.R both
@@ -125,7 +125,7 @@ actions:
     - stage1_data_cleaning_both
     outputs:
       moderately_sensitive:
-        flow_df: output/review/figure-data/diabetes_flow_values_vaccinated.csv
+        flow_df: output/review/figure-data/diabetes_flow_values_vaccinated_*.csv
 
   stage3_diabetes_flow_electively_unvaccinated:
     run: r:latest analysis/descriptives/diabetes_flowchart.R electively_unvaccinated
@@ -133,7 +133,7 @@ actions:
     - stage1_data_cleaning_both
     outputs:
       moderately_sensitive:
-        flow_df: output/review/figure-data/diabetes_flow_values_electively_unvaccinated.csv
+        flow_df: output/review/figure-data/diabetes_flow_values_electively_unvaccinated_*.csv
 
   ## Stage 4 - Table 2 - vaccinated cohort 
 
@@ -144,7 +144,7 @@ actions:
     - stage1_end_date_table_vaccinated
     outputs:
       moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_vaccinated.csv
+        input_table_2: output/review/descriptives/table2_vaccinated_*.csv
 
   ## Stage 4 - Table 2 - electively_unvaccinated cohort 
 
@@ -155,7 +155,7 @@ actions:
     - stage1_end_date_table_electively_unvaccinated
     outputs:
       moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_electively_unvaccinated.csv
+        input_table_2: output/review/descriptives/table2_electively_unvaccinated_*.csv
 
   stage4_venn_diagram_both:
     run: r:latest analysis/descriptives/venn_diagram.R both
@@ -476,8 +476,8 @@ actions:
     - stage1_end_date_table_vaccinated
     outputs:
       moderately_sensitive:
-        hosp_events_by_region_non_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_non_suppressed.csv
-        hosp_events_by_region_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_suppressed.csv
+        hosp_events_by_region_non_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_non_suppressed.csv
+        hosp_events_by_region_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_suppressed.csv
 
   split_hosp_covid_by_region_electively_unvaccinated:
     run: r:latest analysis/descriptives/hospitalised_covid_events_by_region.R electively_unvaccinated
@@ -486,8 +486,8 @@ actions:
     - stage1_end_date_table_electively_unvaccinated
     outputs:
       moderately_sensitive:
-        hosp_events_by_region_non_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_non_suppressed.csv
-        hosp_events_by_region_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_suppressed.csv
+        hosp_events_by_region_non_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_non_suppressed.csv
+        hosp_events_by_region_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_suppressed.csv
 
   ## Hospitalised event counts by covariate - vaccinated 
 
@@ -520,6 +520,6 @@ actions:
     - hosp_event_counts_by_covariate_level_electively_unvaccinated
     outputs:
       moderately_sensitive:
-        covariates_for_hosp_covid_vacc: output/not-for-review/covariates_to_adjust_for_hosp_covid_vaccinated.csv
-        covariates_for_hosp_covid_electively_unvacc: output/not-for-review/covariates_to_adjust_for_hosp_covid_electively_unvaccinated.csv
+        covariates_for_hosp_covid_vacc: output/not-for-review/covariates_to_adjust_for_hosp_covid_vaccinated_*.csv
+        covariates_for_hosp_covid_electively_unvacc: output/not-for-review/covariates_to_adjust_for_hosp_covid_electively_unvaccinated_*.csv
 

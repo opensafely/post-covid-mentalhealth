@@ -52,8 +52,8 @@ if(event_name == "out_date_ami" | event_name == "out_date_stroke_isch" | event_n
            event_name == "self_harm_15plus" | event_name == "self_harm_15plus_primarycare" | event_name == "self_harm_15plus_secondarycare" | 
            event_name == "suicide" | event_name == "suicide_primarycare" | event_name == "suicide_secondarycare" | 
            event_name == "addiction" | event_name == "addiction_prescription" | event_name == "addiction_primarycare" | event_name == "addiction_secondarycare"){
-  input <- read_rds(paste0("output/input_",cohort,"stage1_mental_health.rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_mental_health.rds"))
+  input <- read_rds(paste0("output/input_",cohort,"_stage1_Mental_health.rds"))
+  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_Mental_health.rds"))
   
 } 
 
