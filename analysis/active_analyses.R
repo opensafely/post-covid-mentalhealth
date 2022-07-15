@@ -185,8 +185,8 @@ for (i in 1:length(outcomes)) {
                        paste0("out_date_",outcomes_short[i]),
                        "cov_num_age;cov_cat_sex;cov_cat_ethnicity;cov_cat_deprivation;cov_cat_region;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm",
                        rep("all",2),
-                       rep(TRUE,4),
-                       rep(FALSE,14),
+                       rep(TRUE,16),
+                       rep(FALSE,2),
                        "",
                        "Mental_health",
                        outcome_venn[i])
@@ -199,10 +199,11 @@ for (i in 1:length(outcomes)) {
 #Run secondary care
 #df[c(1:3,5:7,9:10,12:13,15:16,18:20,22:23,25:26,28,30:32), 1] <- FALSE
 #Run Secondary outcomes (Prescriptions)
-df[c(1,3:5,7:18,20:30,32:33), 1] <- FALSE
-#df[c(26:28,30:32, 34:35, 37:38,40:41,43:45,47:48,50:51,53,55:57),1] <- FALSE
-
-
+#df[c(1,3:5,7:18,20:30,32:33), 1] <- FALSE
+#Run Depression, Anxiety general, and Serious mental illness
+df[c(2:4,6:17,19:33), c(1, 7:24)] <- FALSE
+#Run Depression, Anxiety general, and Serious mental illness + prior_history
+#df[c(2:4,6:17,19:33), c(1, 7:24)] <- FALSE
 
 #Prior_history variables:
 #Depression
