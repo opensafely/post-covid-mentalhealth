@@ -910,6 +910,13 @@ self_harm_15plus_snomed_clinical = codelist_from_csv(
     column="code",
 )
 
+# Self harm undetermined intent - combined
+
+self_harm_15_10_combined_snomed = combine_codelists(
+    self_harm_10plus_snomed_clinical,
+    self_harm_15plus_snomed_clinical
+)
+
 # Suicide
 suicide_icd10 = codelist_from_csv(
     "codelists/user-hjforbes-suicide-icd-10.csv",

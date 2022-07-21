@@ -26,7 +26,7 @@ args <- commandArgs(trailingOnly=TRUE)
 if(length(args)==0){
   # use for interactive testing
   cohort_name <- "vaccinated"
-#  cohort_name = "electively_unvaccinated"
+  #  cohort_name = "electively_unvaccinated"
 }else{
   cohort_name <- args[[1]]
 }
@@ -45,7 +45,7 @@ table_2_subgroups_output <- function(cohort_name, group){
   
   # define analyses of interests
   active_analyses <- read_rds("lib/active_analyses.rds")
-  active_analyses <- active_analyses %>%dplyr::filter(active == "TRUE")
+  active_analyses <- active_analyses %>%dplyr::filter(active == "TRUE")# & outcome_group == group)
   
   analyses_of_interest <- as.data.frame(matrix(ncol = 8,nrow = 0))
   
@@ -125,7 +125,7 @@ table_2_subgroups_output <- function(cohort_name, group){
   analyses_of_interest$strata[analyses_of_interest$strata=="South_Asian"]<- "South Asian"
   analyses_of_interest <- analyses_of_interest %>% filter(cohort_to_run == cohort_name)
   
-
+  
   unexposed_person_days <- unexposed_event_count <- rep("NA", nrow(analyses_of_interest))
   total_person_days <- post_exposure_event_count <- overall_ir <- overall_ir_lower <- overall_ir_upper <- rep("NA", nrow(analyses_of_interest))
   
@@ -191,7 +191,7 @@ table_2_subgroups_output <- function(cohort_name, group){
 
 table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_by, stratify_by_subgroup){
   data_active <- survival_data
-
+  
   data_active <- data_active %>% mutate(event_date = replace(event_date, which(event_date>follow_up_end | event_date<index_date), NA))
   data_active <- data_active %>% mutate(exp_date_covid19_confirmed = replace(exp_date_covid19_confirmed, which(exp_date_covid19_confirmed>follow_up_end | exp_date_covid19_confirmed<index_date), NA))
   
@@ -251,10 +251,10 @@ table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_b
   data_active = data_active %>% filter((person_days_unexposed >=0 & person_days_unexposed <= 197)
                                        & (person_days >=0 & person_days <= 197)) # filter out follow up period
   
-
+  
   person_days_total_unexposed  = round(sum(data_active$person_days_unexposed, na.rm = TRUE),1)
   person_days_total = round(sum(data_active$person_days, na.rm = TRUE),1)
- 
+  
   if(!startsWith(subgroup,"covid_pheno_")){
     event_count_exposed <- length(which(data_active$event_date >= data_active$index_date &
                                           data_active$event_date >= data_active$exp_date_covid19_confirmed & 
@@ -284,7 +284,7 @@ table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_b
                                             data_active$event_date <= data_active$non_hospitalised_follow_up_end) &
                                            (data_active$event_date < data_active$exp_date_covid19_confirmed | is.na(data_active$exp_date_covid19_confirmed))))
   }
-    
+  
   if(event_count_unexposed <= 5){
     event_count_unexposed <- "[Redacted]"
   }
@@ -311,4 +311,3 @@ for(i in group){
     table_2_subgroups_output(cohort_name, i)
   }
 }
-

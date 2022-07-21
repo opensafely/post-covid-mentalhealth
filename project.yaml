@@ -349,65 +349,35 @@ actions:
         compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_serious_mental_illness_electively_unvaccinated_to_release.csv
         compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_serious_mental_illness_electively_unvaccinated.csv
 
-  ## Cox model for self_harm_10plus - vaccinated 
+  ## Cox model for self_harm - vaccinated 
 
-  Analysis_cox_self_harm_10plus_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R self_harm_10plus vaccinated
+  Analysis_cox_self_harm_vaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R self_harm vaccinated
     needs:
     - stage1_data_cleaning_both
     - stage1_end_date_table_vaccinated
     - select_covariates_for_hosp_covid
     outputs:
       moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_self_harm_10plus_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_10plus_vaccinated.csv
+        analyses_not_run: output/review/model/analyses_not_run_self_harm_vaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_vaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_vaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_vaccinated.csv
 
-  ## Cox model for self_harm_10plus - electively_unvaccinated 
+  ## Cox model for self_harm - electively_unvaccinated 
 
-  Analysis_cox_self_harm_10plus_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R self_harm_10plus electively_unvaccinated
+  Analysis_cox_self_harm_electively_unvaccinated:
+    run: r:latest analysis/model/01_cox_pipeline.R self_harm electively_unvaccinated
     needs:
     - stage1_data_cleaning_both
     - stage1_end_date_table_electively_unvaccinated
     - select_covariates_for_hosp_covid
     outputs:
       moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_self_harm_10plus_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_10plus_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_10plus_electively_unvaccinated.csv
-
-  ## Cox model for self_harm_15plus - vaccinated 
-
-  Analysis_cox_self_harm_15plus_vaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R self_harm_15plus vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_self_harm_15plus_vaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_vaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_vaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_15plus_vaccinated.csv
-
-  ## Cox model for self_harm_15plus - electively_unvaccinated 
-
-  Analysis_cox_self_harm_15plus_electively_unvaccinated:
-    run: r:latest analysis/model/01_cox_pipeline.R self_harm_15plus electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    - select_covariates_for_hosp_covid
-    outputs:
-      moderately_sensitive:
-        analyses_not_run: output/review/model/analyses_not_run_self_harm_15plus_electively_unvaccinated.csv
-        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_electively_unvaccinated.csv
-        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_15plus_electively_unvaccinated_to_release.csv
-        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_15plus_electively_unvaccinated.csv
+        analyses_not_run: output/review/model/analyses_not_run_self_harm_electively_unvaccinated.csv
+        compiled_hrs_csv: output/review/model/suppressed_compiled_HR_results_self_harm_electively_unvaccinated.csv
+        compiled_hrs_csv_to_release: output/review/model/suppressed_compiled_HR_results_self_harm_electively_unvaccinated_to_release.csv
+        compiled_event_counts_csv: output/review/model/suppressed_compiled_event_counts_self_harm_electively_unvaccinated.csv
 
   ## Cox model for suicide - vaccinated 
 
