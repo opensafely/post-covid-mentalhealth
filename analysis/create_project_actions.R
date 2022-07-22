@@ -216,6 +216,17 @@ actions_list <- splice(
       venn = glue("output/venn_electively_unvaccinated.rds")
     )
   ), 
+  
+  # #comment("COVID Incidence Data"),
+  # action(
+  #   name = "create_covid_incidence_data_both",
+  #   run = "r:latest analysis/descriptives/create_incidence_data.R both",
+  #   needs = list("preprocess_data_vaccinated","preprocess_data_electively_unvaccinated","stage1_data_cleaning_both"),
+  #   moderately_sensitive = list(
+  #     weekly = glue("output/review/figure-data/incidence/weekly_*.csv"),
+  #     cumulative = glue("output/review/figure-data/incidence/cum_*.csv")
+  #   ),
+  # ),
 
   #comment("Stage 1 - Data cleaning"),
   action(
