@@ -197,9 +197,9 @@ for (i in 1:length(outcomes)) {
 #df[c(3:4,7:11,14:19),1] <- FALSE
 
 #Depression: main, prescription, primary and secondary care
-df[c(5:21),1] <- FALSE
+#df[c(5:21),1] <- FALSE
 #Anxiety: main, prescription, primary and secondary care
-#df[c(1:4,9:21),1] <- FALSE
+df[c(1:4,9:21),1] <- FALSE
 #Serious mental illness
 #df[c(1:11,16:21),1] <- FALSE
 #self harm

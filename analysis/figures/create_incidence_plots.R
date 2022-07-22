@@ -106,7 +106,7 @@ cov_incidence_plot <- function(cohort_name, group) {
                          labels = c("A: Weekly incidence of COVID-19 cases", "B: Cumulative incidence of COVID-19 cases"),
                          label_x = -0.2,
                          hjust = -0.5, scale = 0.93)
-  png(paste0(local_file_output,"incidence_plot_", cohort_name, "_", group, ".png"),
+  png(paste0("output/review/figure-data/incidence/","incidence_plot_", cohort_name, "_", group, ".png"),
       width = 15, height = 8, units = "in", res = 400)
   plot_grid(title_theme, all_plots, ncol = 1, rel_heights = c(0.1, 1))
   print(all_plots)
@@ -118,7 +118,7 @@ cov_incidence_plot <- function(cohort_name, group) {
                          labels = c("A: Weekly incidence of COVID-19 cases", "B: Cumulative incidence of COVID-19 cases"),
                          label_x = -0.2,
                          hjust = -0.5, scale = 0.93)
-  png(paste0(local_file_output,"incidence_plot_by_age_", cohort_name, "_", group, ".png"),
+  png(paste0("output/review/figure-data/incidence/","incidence_plot_by_age_", cohort_name, "_", group, ".png"),
       width = 15, height = 8, units = "in", res = 400)
   plot_grid(title_theme_age, age_plots, ncol = 1, rel_heights = c(0.1, 1))
   print(age_plots)
@@ -130,7 +130,7 @@ cov_incidence_plot <- function(cohort_name, group) {
                          labels = c("A: Weekly incidence of COVID-19 cases", "B: Cumulative incidence of COVID-19 cases"),
                          label_x = -0.2,
                          hjust = -0.5, scale = 0.93)
-  png(paste0(local_file_output,"incidence_plot_by_sex_", cohort_name, "_", group, ".png"),
+  png(paste0("output/review/figure-data/incidence/","incidence_plot_by_sex_", cohort_name, "_", group, ".png"),
       width = 15, height = 8, units = "in", res = 400)
   plot_grid(title_theme_sex, sex_plots, ncol = 1, rel_heights = c(0.1, 1))
   print(sex_plots)
