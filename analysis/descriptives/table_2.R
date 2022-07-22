@@ -26,7 +26,7 @@ args <- commandArgs(trailingOnly=TRUE)
 if(length(args)==0){
   # use for interactive testing
   cohort_name <- "vaccinated"
-  #  cohort_name = "electively_unvaccinated"
+  #cohort_name = "electively_unvaccinated"
 }else{
   cohort_name <- args[[1]]
 }
@@ -43,7 +43,7 @@ agelabels <- c("18_39", "40_59", "60_79", "80_110")
 
 table_2_subgroups_output <- function(cohort_name, group){
   
-  # define analyses of interests
+  #----------------------Define analyses of interests---------------------------
   active_analyses <- read_rds("lib/active_analyses.rds")
   active_analyses <- active_analyses %>%dplyr::filter(active == "TRUE" & outcome_group == group)
   
@@ -51,6 +51,7 @@ table_2_subgroups_output <- function(cohort_name, group){
   
   outcomes<-active_analyses$outcome_variable
   
+  #--------------------Load data and left join end dates------------------------
   survival_data <- read_rds(paste0("output/input_", cohort_name,"_stage1_", group,".rds"))
   end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,"_",group,".rds"))  
   end_dates$index_date <- NULL
@@ -72,6 +73,7 @@ table_2_subgroups_output <- function(cohort_name, group){
            new = c("sex",
                    "ethnicity"))
   
+  #-----------------------Add in age groups category----------------------------
   setDT(survival_data)[ , agegroup := cut(cov_num_age, 
                                           breaks = agebreaks, 
                                           right = FALSE, 
@@ -92,7 +94,7 @@ table_2_subgroups_output <- function(cohort_name, group){
     analyses_to_run$subgroup <- row.names(analyses_to_run)
     colnames(analyses_to_run) <- c("run","subgroup")
     
-    #analyses_to_run<- analyses_to_run %>% filter(run=="TRUE"  & subgroup != "active" & subgroup != "main") 
+    #analyses_to_run<- analyses_to_run %>% filter(run=="TRUE"  & subgroup != "active" & subgroup != "main" & subgroup !="venn") 
     analyses_to_run<- analyses_to_run %>% filter(run=="TRUE"  & subgroup != "active" & subgroup != "venn")  
     #analyses_to_run<-analyses_to_run %>% filter(run=="TRUE")# & subgroup !="active")
     rownames(analyses_to_run) <- NULL
@@ -101,6 +103,16 @@ table_2_subgroups_output <- function(cohort_name, group){
     
     # Add in  all possible combinations of the subgroups, models and cohorts
     analyses_to_run <- crossing(analyses_to_run,cohort_to_run)
+    
+    # Add in which covariates to stratify by
+    analyses_to_run$stratify_by_subgroup=NA
+    for(j in c("ethnicity","sex")){
+      analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,j),j,analyses_to_run$stratify_by_subgroup)
+    }
+    
+    index = which(active_analyses$outcome_variable == i)
+    analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
+    analyses_to_run$stratify_by_subgroup <- ifelse(is.na(analyses_to_run$stratify_by_subgroup),analyses_to_run$subgroup,analyses_to_run$stratify_by_subgroup)
     
     # Add in which covariates to stratify by
     analyses_to_run$stratify_by_subgroup=NA
@@ -126,21 +138,23 @@ table_2_subgroups_output <- function(cohort_name, group){
   analyses_of_interest$strata[analyses_of_interest$strata=="South_Asian"]<- "South Asian"
   analyses_of_interest <- analyses_of_interest %>% filter(cohort_to_run == cohort_name)
   
+  #-----------------Add subgroup category for low count redaction---------------
+  analyses_of_interest <- analyses_of_interest %>% 
+    dplyr::mutate(subgroup_cat = case_when(
+      startsWith(subgroup, "agegp") ~ "age",
+      startsWith(subgroup, "covid_history") ~ "covid_history",
+      startsWith(subgroup, "covid_pheno") ~ "covid_pheno",
+      startsWith(subgroup, "ethnicity") ~ "ethnicity",
+      startsWith(subgroup, "prior_history") ~ "prior_history",
+      startsWith(subgroup, "sex") ~ "sex",
+      TRUE ~ as.character(subgroup)))
   
-  unexposed_person_days <- unexposed_event_count <- rep("NA", nrow(analyses_of_interest))
-  total_person_days <- post_exposure_event_count <- overall_ir <- overall_ir_lower <- overall_ir_upper <- rep("NA", nrow(analyses_of_interest))
+  analyses_of_interest[,c("unexposed_person_days", "unexposed_event_count","post_exposure_event_count", "total_person_days","day_0_event_counts")] <- NA
   
-  analyses_of_interest <- cbind(analyses_of_interest, unexposed_person_days, unexposed_event_count,
-                                post_exposure_event_count, total_person_days)
-  
-  
-  col_names <- names(analyses_of_interest)
-  start = grep("unexposed_person_days", col_names)
-  end = ncol(analyses_of_interest)
-  
+  #-----------Populate analyses_of_interest with events counts/follow up--------
   for(i in 1:nrow(analyses_of_interest)){
+    print(paste0("Working on ", analyses_of_interest$event[i]," ", analyses_of_interest$subgroup[i]))
     
-    print(i)
     event_short = gsub("out_date_", "",analyses_of_interest$event[i])
     setnames(survival_data,
              old = c(paste0("out_date_",event_short),
@@ -159,12 +173,18 @@ table_2_subgroups_output <- function(cohort_name, group){
                      "hospitalised_date_expo_censor",
                      "non_hospitalised_date_expo_censor"))
     
-    analyses_of_interest[i,start:end] <- table_2_calculation(survival_data, 
-                                                             event=analyses_of_interest$event[i],
-                                                             cohort=analyses_of_interest$cohort_to_run[i],
-                                                             subgroup=analyses_of_interest$subgroup[i], 
-                                                             stratify_by=analyses_of_interest$strata[i], 
-                                                             stratify_by_subgroup=analyses_of_interest$stratify_by_subgroup[i])
+    table2_output <- table_2_calculation(survival_data, 
+                                         event=analyses_of_interest$event[i],
+                                         cohort=analyses_of_interest$cohort_to_run[i],
+                                         subgroup=analyses_of_interest$subgroup[i], 
+                                         stratify_by=analyses_of_interest$strata[i], 
+                                         stratify_by_subgroup=analyses_of_interest$stratify_by_subgroup[i])
+    
+    analyses_of_interest$unexposed_person_days[i] <- table2_output[[1]]
+    analyses_of_interest$unexposed_event_count [i] <- table2_output[[2]]
+    analyses_of_interest$post_exposure_event_count[i] <- table2_output[[3]]
+    analyses_of_interest$total_person_days[i] <- table2_output[[4]]
+    analyses_of_interest$day_0_event_counts[i] <- table2_output[[5]]
     
     setnames(survival_data,
              old = c("event_date",
@@ -183,12 +203,33 @@ table_2_subgroups_output <- function(cohort_name, group){
                      paste0(event_short,"_hospitalised_date_expo_censor"),
                      paste0(event_short,"_non_hospitalised_date_expo_censor")))
     
-    print(paste0("event count and person years have been produced successfully for", analyses_of_interest$event[i], " in ", cohort_name, " population!"))
+    print(paste0("event count and person years have been produced successfully for ", analyses_of_interest$event[i], " in ", cohort_name, " population!"))
   }
+  
+  #Redact all subgroups levels if one level is redacted so that back calculation 
+  #is not possible
+  analyses_of_interest <- analyses_of_interest %>%
+    group_by(subgroup_cat,event) %>%
+    dplyr::mutate(post_exposure_event_count = case_when(
+      any(post_exposure_event_count == "[Redacted]") ~ "[Redacted]",
+      TRUE ~ as.character(post_exposure_event_count)))
+  
+  analyses_of_interest <- analyses_of_interest %>%
+    group_by(subgroup_cat,event) %>%
+    dplyr::mutate(unexposed_event_count = case_when(
+      any(unexposed_event_count == "[Redacted]") ~ "[Redacted]",
+      TRUE ~ as.character(unexposed_event_count)))
+  
+  analyses_of_interest <- analyses_of_interest %>%
+    group_by(subgroup_cat,event) %>%
+    dplyr::mutate(day_0_event_counts = case_when(
+      any(day_0_event_counts == "[Redacted]") ~ "[Redacted]",
+      TRUE ~ as.character(day_0_event_counts)))
   
   # write output for table2
   write.csv(analyses_of_interest, file=paste0("output/review/descriptives/table2_",cohort_name,"_",group, ".csv"), row.names = F)
 }
+
 
 table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_by, stratify_by_subgroup){
   data_active <- survival_data
@@ -264,6 +305,11 @@ table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_b
     event_count_unexposed<- length(which((data_active$event_date >= data_active$index_date & 
                                             data_active$event_date <= data_active$follow_up_end) &
                                            (data_active$event_date < data_active$exp_date_covid19_confirmed | is.na(data_active$exp_date_covid19_confirmed))))
+    
+    day_0_event_count <- length(which(data_active$event_date >= data_active$index_date &
+                                        data_active$event_date == data_active$exp_date_covid19_confirmed & 
+                                        data_active$event_date <= data_active$follow_up_end))
+    
   }
   
   if(subgroup=="covid_pheno_hospitalised"){
@@ -274,6 +320,11 @@ table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_b
     event_count_unexposed<- length(which((data_active$event_date >= data_active$index_date & 
                                             data_active$event_date <= data_active$hospitalised_follow_up_end) &
                                            (data_active$event_date < data_active$exp_date_covid19_confirmed | is.na(data_active$exp_date_covid19_confirmed))))
+    
+    day_0_event_count <- length(which(data_active$event_date >= data_active$index_date &
+                                        data_active$event_date == data_active$exp_date_covid19_confirmed & 
+                                        data_active$event_date <= data_active$hospitalised_follow_up_end))
+    
   }
   
   if(subgroup=="covid_pheno_non_hospitalised"){
@@ -284,6 +335,15 @@ table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_b
     event_count_unexposed<- length(which((data_active$event_date >= data_active$index_date & 
                                             data_active$event_date <= data_active$non_hospitalised_follow_up_end) &
                                            (data_active$event_date < data_active$exp_date_covid19_confirmed | is.na(data_active$exp_date_covid19_confirmed))))
+    
+    day_0_event_count <- length(which(data_active$event_date >= data_active$index_date &
+                                        data_active$event_date == data_active$exp_date_covid19_confirmed &
+                                        data_active$event_date <= data_active$non_hospitalised_follow_up_end))
+    
+  }
+  
+  if(day_0_event_count <= 5 | (event_count_exposed - day_0_event_count) <=5){
+    day_0_event_count <- "[Redacted]"
   }
   
   if(event_count_unexposed <= 5){
@@ -294,7 +354,7 @@ table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_b
     event_count_exposed <- "[Redacted]"
   }
   
-  return(c(person_days_total_unexposed, event_count_unexposed, event_count_exposed,person_days_total))
+  return(list(person_days_total_unexposed, event_count_unexposed, event_count_exposed,person_days_total, day_0_event_count))
 }
 
 
