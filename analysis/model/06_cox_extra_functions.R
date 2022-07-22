@@ -44,7 +44,7 @@ rm_lowvar_covars <- function(data_surv){
 
 
 
-collapse_categorical_covars <- function(data_surv){
+collapse_categorical_covars <- function(data_surv,subgroup){
   cov_cat <-colnames(data_surv)[grepl("cov_cat", colnames(data_surv))]
   df <- data_surv %>% dplyr::select(c( "expo", "event", all_of(cov_cat), "patient_id")) %>% distinct() %>% filter((expo==1) & (event==1))
   df <- df %>%  dplyr::select(!c("expo", "event", "patient_id"))
@@ -68,17 +68,17 @@ collapse_categorical_covars <- function(data_surv){
   }
   
   if("cov_cat_smoking_status" %in% cat_cov_to_remove){
-    if(covar_fit != "test_all"){
+    if(subgroup != "covid_pheno_hospitalised"){
       data_surv=data_surv %>% mutate(cov_cat_smoking_status = as.character(cov_cat_smoking_status)) %>%
         mutate(cov_cat_smoking_status= case_when(cov_cat_smoking_status=="Never smoker"~"Never smoker",
                                                  cov_cat_smoking_status=="Ever smoker"~"Ever smoker",
                                                  cov_cat_smoking_status=="Current smoker"~"Ever smoker",
-                                                 cov_cat_smoking_status=="Missing"~"Missing"))
+                                                 cov_cat_smoking_status=="Missing"~"Never smoker"))
       
       smoking_status_mode <- get_mode(data_surv,"cov_cat_smoking_status")
       data_surv <- data_surv %>% mutate(cov_cat_smoking_status = as.factor(cov_cat_smoking_status)) %>%
         mutate(cov_cat_smoking_status = relevel(cov_cat_smoking_status,ref=smoking_status_mode))
-    }else if (covar_fit == "test_all"){
+    }else if (subgroup == "covid_pheno_hospitalised"){
       data_surv=data_surv %>% mutate(cov_cat_smoking_status = as.character(cov_cat_smoking_status)) %>%
         mutate(cov_cat_smoking_status= case_when(cov_cat_smoking_status=="Never smoker"~"Never smoker",
                                                  cov_cat_smoking_status=="Ever smoker"~"Ever smoker",
