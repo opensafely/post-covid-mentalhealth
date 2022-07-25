@@ -73,9 +73,6 @@ for (i in 1:length(outcomes)) {
                        outcome_venn[i])
 }
 
-#depression
-#df[c(2:21),1] <- FALSE
-
 #Run main MH outcomes:
 #df[c(2:4,6:8,13:15,17:18,21),1] <- FALSE
 
@@ -83,10 +80,13 @@ for (i in 1:length(outcomes)) {
 #df[c(3:4,7:11,14:19),1] <- FALSE
 
 #Depression: main, prescription, primary and secondary care
-df[c(5:21),1] <- FALSE
-df[c(2:4),c(8:10)] <- FALSE
-df[1,8] <- FALSE
+#df[c(5:21),1] <- FALSE
+#df[c(2:4),c(8:10)] <- FALSE
+#df[1,8] <- FALSE
 #Anxiety: main, prescription, primary and secondary care
+df[c(1:4,9:21),1] <- FALSE
+df[c(6:8),c(8:10)] <- FALSE
+df[5,8] <- FALSE
 #df[c(1:4,9:21),1] <- FALSE
 #Serious mental illness
 #df[c(1:11,16:21),1] <- FALSE
