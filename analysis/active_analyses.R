@@ -88,11 +88,13 @@ for (i in 1:length(outcomes)) {
 #df[c(6:8),c(8:10)] <- FALSE
 #df[5,8] <- FALSE
 #Serious mental illness
-df[c(1:11,16:21),1] <- FALSE
-df[c(13:15),c(8:10)] <- FALSE
-df[12,8] <- FALSE
 #df[c(1:11,16:21),1] <- FALSE
+#df[c(13:15),c(8:10)] <- FALSE
+#df[12,8] <- FALSE
 #self harm
+df[c(1:15,19:21),1] <- FALSE
+df[c(17:18),c(8:10)] <- FALSE
+df[16,8] <- FALSE
 #df[c(1:15,19:21),1] <- FALSE
 
 #self harm
