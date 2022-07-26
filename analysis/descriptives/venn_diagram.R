@@ -40,7 +40,7 @@ venn_output <- function(cohort_name, group){
   
   if(length(outcomes) == 0){
     print(paste0("No venn diagram generated for outcome group ",group))
-  } 
+  } else{
   
   # Load data ------------------------------------------------------------------
   
@@ -223,18 +223,18 @@ venn_output <- function(cohort_name, group){
        mycol <- mycol[mycol!=""]
 
        # Make Venn diagram --------------------------------------------------------
-       svglite::svglite(file = paste0("output/review/venn-diagrams/venn_diagram_",cohort_name,"_",gsub("out_date_","",outcome_save_name),".svg"))
-        g <- ggvenn::ggvenn(
-         index,
-         fill_color = mycol,
-         stroke_color = "white",
-         text_size = 5,
-         set_name_size = 5,
-         fill_alpha = 0.9
-       ) +  ggplot2::ggtitle(active_analyses[active_analyses$outcome_variable==outcome_save_name,]$outcome) +
-         ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 15, face = "bold"))
-       print(g)
-       dev.off()
+       # svglite::svglite(file = paste0("output/review/venn-diagrams/venn_diagram_",cohort_name,"_",gsub("out_date_","",outcome_save_name),".svg"))
+       #  g <- ggvenn::ggvenn(
+       #   index,
+       #   fill_color = mycol,
+       #   stroke_color = "white",
+       #   text_size = 5,
+       #   set_name_size = 5,
+       #   fill_alpha = 0.9
+       # ) +  ggplot2::ggtitle(active_analyses[active_analyses$outcome_variable==outcome_save_name,]$outcome) +
+       #   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 15, face = "bold"))
+       # print(g)
+       # dev.off()
 
      }
     
@@ -244,20 +244,20 @@ venn_output <- function(cohort_name, group){
   
   # Merge any cells <= 5 to the highest cell (excluding totals) -------------
   
-  # colnamesorder <- colnames(df)
-  # a <- df[-c(1,9:12)]
-  # a[] <- sapply(a, as.numeric)
-  # idx <- cbind(seq(nrow(a)), max.col(a))
-  # a[idx] <- a[idx] + rowSums(a * (a <= 5))
-  # is.na(a) <- a <= 5
-  # df <- cbind(df[c(1,9:12)], a)
-  # df <- setcolorder(df, colnamesorder)
-  # # remove totals column as these are calculated in external_venn_script.R
-  # df <- select(df, -contains("total"))
-  # #change NAs to 0
-  # df[is.na(df)] <- 0
+  colnamesorder <- colnames(df)
+  a <- df[-c(1,9:12)]
+  a[] <- sapply(a, as.numeric)
+  idx <- cbind(seq(nrow(a)), max.col(a))
+  a[idx] <- a[idx] + rowSums(a * (a <= 5))
+  is.na(a) <- a <= 5
+  df <- cbind(df[c(1,9:12)], a)
+  df <- setcolorder(df, colnamesorder)
+  # remove totals column as these are calculated in external_venn_script.R
+  df <- select(df, -contains("total"))
+  #change NAs to 0
+  df[is.na(df)] <- 0
   write.csv(df, file = paste0("output/review/venn-diagrams/venn_diagram_number_check_", cohort_name, "_", group,".csv"), row.names = F)
-  
+  }
 }
 
 # Run function using specified commandArgs -------------------------------------

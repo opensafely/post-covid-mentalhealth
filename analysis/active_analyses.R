@@ -73,6 +73,11 @@ for (i in 1:length(outcomes)) {
                        outcome_venn[i])
 }
 
+#Remove column covid_history
+df[,8] <- FALSE
+#Remove not necessary columns for prescriptions, primary and secondary care
+df[c(2:4,6:8,13:15,17:18,21),c(9:24)] <- FALSE
+
 #Run main MH outcomes:
 #df[c(2:4,6:8,13:15,17:18,21),1] <- FALSE
 
@@ -101,7 +106,7 @@ for (i in 1:length(outcomes)) {
 #df[20,8] <- FALSE
 
 #Key outcomes + prior_history
-df[c(2:4,6:11,13:15,17:21),c(1,8)]<- FALSE
+#df[c(2:4,6:11,13:15,17:21),c(1,8)]<- FALSE
 
 #Prior_history variables:
 #Depression
