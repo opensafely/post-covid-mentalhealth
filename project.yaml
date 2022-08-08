@@ -139,22 +139,6 @@ actions:
         counts_by_covariate_level: output/not-for-review/event_counts_by_covariate_level_electively_unvaccinated_*.csv
         selected_covariates: output/not-for-review/non_zero_selected_covariates_electively_unvaccinated_*.csv
 
-  stage3_diabetes_flow_vaccinated:
-    run: r:latest analysis/descriptives/diabetes_flowchart.R vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    outputs:
-      moderately_sensitive:
-        flow_df: output/review/figure-data/diabetes_flow_values_vaccinated_*.csv
-
-  stage3_diabetes_flow_electively_unvaccinated:
-    run: r:latest analysis/descriptives/diabetes_flowchart.R electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    outputs:
-      moderately_sensitive:
-        flow_df: output/review/figure-data/diabetes_flow_values_electively_unvaccinated_*.csv
-
   ## Stage 4 - Table 2 - vaccinated cohort 
 
   stage4_table_2_vaccinated:
@@ -164,7 +148,7 @@ actions:
     - stage1_end_date_table_vaccinated
     outputs:
       moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_vaccinated_*.csv
+        input_table_2: output/review/descriptives/table2_vaccinated.csv
 
   ## Stage 4 - Table 2 - electively_unvaccinated cohort 
 
@@ -175,7 +159,7 @@ actions:
     - stage1_end_date_table_electively_unvaccinated
     outputs:
       moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_electively_unvaccinated_*.csv
+        input_table_2: output/review/descriptives/table2_electively_unvaccinated.csv
 
   stage4_venn_diagram_both:
     run: r:latest analysis/descriptives/venn_diagram.R both
@@ -1040,58 +1024,4 @@ actions:
       highly_sensitive:
         dataset: output/input_addiction_prescription_*_electively_unvaccinated_*_time_periods.csv
         sampled_dataset: output/input_sampled_data_addiction_prescription_*_electively_unvaccinated_*_time_periods.csv
-
-  split_hosp_covid_by_region_vaccinated:
-    run: r:latest analysis/descriptives/hospitalised_covid_events_by_region.R vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    outputs:
-      moderately_sensitive:
-        hosp_events_by_region_non_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_non_suppressed.csv
-        hosp_events_by_region_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_suppressed.csv
-
-  split_hosp_covid_by_region_electively_unvaccinated:
-    run: r:latest analysis/descriptives/hospitalised_covid_events_by_region.R electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    outputs:
-      moderately_sensitive:
-        hosp_events_by_region_non_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_non_suppressed.csv
-        hosp_events_by_region_suppressed: output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_suppressed.csv
-
-  ## Hospitalised event counts by covariate - vaccinated 
-
-  hosp_event_counts_by_covariate_level_vaccinated:
-    run: r:latest analysis/descriptives/hospitalised_events_split_by_time_period_and_covariate_level.R
-      vaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_vaccinated
-    outputs:
-      moderately_sensitive:
-        hosp_counts_by_covariate: output/not-for-review/hospitalised_event_counts_by_covariate_level_vaccinated.csv
-
-  ## Hospitalised event counts by covariate - electively_unvaccinated 
-
-  hosp_event_counts_by_covariate_level_electively_unvaccinated:
-    run: r:latest analysis/descriptives/hospitalised_events_split_by_time_period_and_covariate_level.R
-      electively_unvaccinated
-    needs:
-    - stage1_data_cleaning_both
-    - stage1_end_date_table_electively_unvaccinated
-    outputs:
-      moderately_sensitive:
-        hosp_counts_by_covariate: output/not-for-review/hospitalised_event_counts_by_covariate_level_electively_unvaccinated.csv
-
-  select_covariates_for_hosp_covid:
-    run: r:latest analysis/descriptives/determine_covariates_for_hosp_covid.R both
-    needs:
-    - hosp_event_counts_by_covariate_level_vaccinated
-    - hosp_event_counts_by_covariate_level_electively_unvaccinated
-    outputs:
-      moderately_sensitive:
-        covariates_for_hosp_covid_vacc: output/not-for-review/covariates_to_adjust_for_hosp_covid_vaccinated_*.csv
-        covariates_for_hosp_covid_electively_unvacc: output/not-for-review/covariates_to_adjust_for_hosp_covid_electively_unvaccinated_*.csv
 

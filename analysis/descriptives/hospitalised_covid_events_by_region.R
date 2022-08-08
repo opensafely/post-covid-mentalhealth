@@ -25,7 +25,7 @@ cohort_start = as.Date("2021-06-01", format="%Y-%m-%d")
 cohort_end = as.Date("2021-12-14", format="%Y-%m-%d")
 
 
-hosp_covid_events <- function(cohort_name, group){
+hosp_covid_events <- function(cohort_name){#, group
   
   # define analyses of interests
   active_analyses <- read_rds("lib/active_analyses.rds")
@@ -33,8 +33,8 @@ hosp_covid_events <- function(cohort_name, group){
   
   event<-active_analyses$outcome_variable
   
-  survival_data <- read_rds(paste0("output/input_", cohort_name,"_stage1_", group,".rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,"_",group,".rds")) 
+  survival_data <- read_rds(paste0("output/input_", cohort_name,"_stage1_", ".rds"))#"_stage1_", group,
+  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,"_", "Mental_health",".rds")) #cohort_name,"_",group,
   end_dates$index_date <- NULL
   
   survival_data<- survival_data %>% left_join(end_dates, by="patient_id")
@@ -135,7 +135,7 @@ hosp_covid_events <- function(cohort_name, group){
   #     TRUE ~ as.character(post_exposure_event_counts)))
   
   # write output for table2
-  write.csv(analyses_of_interest, file=paste0("output/not-for-review/hospitalised_covid_event_counts_by_region_",cohort_name, "_",group, "_non_suppressed.csv"), row.names = F)
+  write.csv(analyses_of_interest, file=paste0("output/not-for-review/hospitalised_covid_event_counts_by_region_",cohort_name, "_", "_non_suppressed.csv"), row.names = F)#cohort_name, "_",group,
   
   analyses_of_interest$unexposed_event_counts <- round(analyses_of_interest$unexposed_event_counts, -1)
   analyses_of_interest$post_exposure_event_counts <- round(analyses_of_interest$post_exposure_event_counts, -1)
@@ -144,7 +144,7 @@ hosp_covid_events <- function(cohort_name, group){
   analyses_of_interest$post_exposure_event_counts <- ifelse(analyses_of_interest$post_exposure_event_counts<10, "<10",analyses_of_interest$post_exposure_event_counts)
   
   
-  write.csv(analyses_of_interest, file=paste0("output/not-for-review/hospitalised_covid_event_counts_by_region_",cohort_name,"_",group, "_suppressed.csv"), row.names = F)
+  write.csv(analyses_of_interest, file=paste0("output/not-for-review/hospitalised_covid_event_counts_by_region_",cohort_name,"_", "_suppressed.csv"), row.names = F)#cohort_name,"_",group,
 }
 
 hosp_covid_event_counts <- function(survival_data, event, region){
@@ -180,19 +180,25 @@ hosp_covid_event_counts <- function(survival_data, event, region){
 
 
 # Run function using specified commandArgs
-active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses %>% filter(active==TRUE)
-group <- unique(active_analyses$outcome_group)
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# active_analyses <- active_analyses %>% filter(active==TRUE)
+# group <- unique(active_analyses$outcome_group)
 
-
-for(i in group){
-  if (cohort_name == "both") {
-    hosp_covid_events("electively_unvaccinated", i)
-    hosp_covid_events("vaccinated", i)
-  } else{
-    hosp_covid_events(cohort_name, i)
-  }
+if (cohort_name == "both") {
+  hosp_covid_events("electively_unvaccinated")
+  hosp_covid_events("vaccinated")
+} else{
+  hosp_covid_events(cohort_name)
 }
+
+# for(i in group){
+#   if (cohort_name == "both") {
+#     hosp_covid_events("electively_unvaccinated", i)
+#     hosp_covid_events("vaccinated", i)
+#   } else{
+#     hosp_covid_events(cohort_name, i)
+#   }
+# }
 
 # END
 

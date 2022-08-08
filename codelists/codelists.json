@@ -960,59 +960,35 @@
       "downloaded_at": "2022-04-21 14:09:17.684042Z",
       "sha": "ce9f10f91453a33d5de195b7d02656bf11782760"
     },
-    "bristol-pe_i26.csv": {
-      "id": "bristol/pe_i26/00398cbc",
-      "url": "https://codelists.opensafely.org/codelist/bristol/pe_i26/00398cbc/",
-      "downloaded_at": "2022-04-21 14:09:17.797805Z",
-      "sha": "066b79182d212664aff52aa293ba048295499eb9"
-    },
-    "bristol-pe_i260.csv": {
-      "id": "bristol/pe_i260/672a1986",
-      "url": "https://codelists.opensafely.org/codelist/bristol/pe_i260/672a1986/",
-      "downloaded_at": "2022-04-21 14:09:17.924279Z",
-      "sha": "badb40c49b3608c9391e0eff1b0a7731cfd6c254"
-    },
-    "bristol-pe_i269.csv": {
-      "id": "bristol/pe_i269/4e1aa651",
-      "url": "https://codelists.opensafely.org/codelist/bristol/pe_i269/4e1aa651/",
-      "downloaded_at": "2022-04-21 14:09:18.041261Z",
-      "sha": "7ec5e75887483b1918e3c2ad3ed512c4d64f452e"
-    },
     "user-RochelleKnight-confirmed-hospitalised-covid-19.csv": {
       "id": "user/RochelleKnight/confirmed-hospitalised-covid-19/1f0d2526",
       "url": "https://codelists.opensafely.org/codelist/user/RochelleKnight/confirmed-hospitalised-covid-19/1f0d2526/",
       "downloaded_at": "2022-04-22 11:35:44.071847Z",
       "sha": "7b472652a66eed89b0495a2cf43cf6e894451cb8"
     },
-    "bristol-antidepressants-snomedct.csv": {
-      "id": "bristol/antidepressants-snomedct/677f55d2",
-      "url": "https://codelists.opensafely.org/codelist/bristol/antidepressants-snomedct/677f55d2/",
-      "downloaded_at": "2022-07-08 09:03:28.099174Z",
-      "sha": "e79f8e54a2548b07a50487b1974020dc9ef00020"
+    "bristol-antidepressant-drugs.csv": {
+      "id": "bristol/antidepressant-drugs/1d04ddc8",
+      "url": "https://codelists.opensafely.org/codelist/bristol/antidepressant-drugs/1d04ddc8/",
+      "downloaded_at": "2022-08-03 13:18:44.653869Z",
+      "sha": "fb4cb53355b95e41fae6c9fe0d875c428e2ecbad"
     },
-    "bristol-anxiolitycs-bnf.csv": {
-      "id": "bristol/anxiolitycs-bnf/5562c9a7",
-      "url": "https://codelists.opensafely.org/codelist/bristol/anxiolitycs-bnf/5562c9a7/",
-      "downloaded_at": "2022-07-08 09:03:28.385503Z",
-      "sha": "a956286c304d075ec72897ce6345f4e706ba564e"
+    "bristol-antipsychotic-drugs.csv": {
+      "id": "bristol/antipsychotic-drugs/51d68428",
+      "url": "https://codelists.opensafely.org/codelist/bristol/antipsychotic-drugs/51d68428/",
+      "downloaded_at": "2022-08-03 13:18:44.964067Z",
+      "sha": "5d00961d58be2eb928f235bad8ba2d2dbdb0c03e"
     },
-    "bristol-anxiolytics-snomed.csv": {
-      "id": "bristol/anxiolytics-snomed/01b421e0",
-      "url": "https://codelists.opensafely.org/codelist/bristol/anxiolytics-snomed/01b421e0/",
-      "downloaded_at": "2022-07-08 09:03:28.650281Z",
-      "sha": "8f2ce7a14ba89b9ad5778ec443c1003c6808f1ec"
+    "bristol-opioid-dependence.csv": {
+      "id": "bristol/opioid-dependence/6ae5f75d",
+      "url": "https://codelists.opensafely.org/codelist/bristol/opioid-dependence/6ae5f75d/",
+      "downloaded_at": "2022-08-03 13:18:45.280031Z",
+      "sha": "a397995fa7a20e8225362ae60e89a73df9f6851b"
     },
-    "bristol-opioid-agonist-therapy-oat-snomed-ct.csv": {
-      "id": "bristol/opioid-agonist-therapy-oat-snomed-ct/00f6d74e",
-      "url": "https://codelists.opensafely.org/codelist/bristol/opioid-agonist-therapy-oat-snomed-ct/00f6d74e/",
-      "downloaded_at": "2022-07-08 09:03:28.931987Z",
-      "sha": "cc5079fcc9fa6a34f2fd9605d0ba684960d420e7"
-    },
-    "bristol-opioid-agonist-therapy-oat.csv": {
-      "id": "bristol/opioid-agonist-therapy-oat/7b915761",
-      "url": "https://codelists.opensafely.org/codelist/bristol/opioid-agonist-therapy-oat/7b915761/",
-      "downloaded_at": "2022-07-08 09:03:29.191037Z",
-      "sha": "ccbde9dcb72f59c127c114c82d83d010dd090af0"
+    "bristol-anxiolytics_040102.csv": {
+      "id": "bristol/anxiolytics_040102/38c710f3",
+      "url": "https://codelists.opensafely.org/codelist/bristol/anxiolytics_040102/38c710f3/",
+      "downloaded_at": "2022-08-03 13:18:45.569471Z",
+      "sha": "8a5cbbc840b72cd7391affd0e39ada5fe6b6029d"
     }
   }
 }

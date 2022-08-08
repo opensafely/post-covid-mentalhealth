@@ -26,9 +26,9 @@ cohort_end_date <- as.Date("2021-12-14")
 active_analyses <- read_rds("lib/active_analyses.rds")
 active_analyses <- active_analyses %>% filter(active == "TRUE") %>% select(outcome_variable)
 
-follow_up_end_dates <- function(cohort_name, group){
+follow_up_end_dates <- function(cohort_name){#, group
   # Load relevant data
-  input <- read_rds(paste0("output/input_",cohort_name,"_stage1_",group,".rds"))
+  input <- read_rds(paste0("output/input_",cohort_name,"_stage1",".rds"))#"_stage1_",group,
   
   input <- input[,c("patient_id","death_date","index_date","sub_cat_covid19_hospital",active_analyses$outcome_variable,
                     colnames(input)[grepl("exp_",colnames(input))], 
@@ -120,19 +120,26 @@ follow_up_end_dates <- function(cohort_name, group){
                     colnames(input)[grepl("follow_up",colnames(input))],
                     colnames(input)[grepl("censor",colnames(input))])] 
   
-  saveRDS(input, paste0("output/follow_up_end_dates_",cohort_name, "_",group, ".rds"))
+  saveRDS(input, paste0("output/follow_up_end_dates_",cohort_name,".rds"))#cohort_name, "_",group - #cohort_name, "_",
 }
 
 # Run function using specified commandArgs
-active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses %>% filter(active==TRUE)
-group <- unique(active_analyses$outcome_group)
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# active_analyses <- active_analyses %>% filter(active==TRUE)
+# group <- unique(active_analyses$outcome_group)
 
-for(i in group){
-  if (cohort_name == "both") {
-    follow_up_end_dates("electively_unvaccinated", i)
-    follow_up_end_dates("vaccinated", i)
-  } else{
-    follow_up_end_dates(cohort_name, i)
-  }
+if (cohort_name == "both") {
+  follow_up_end_dates("electively_unvaccinated")
+  follow_up_end_dates("vaccinated")
+} else{
+  follow_up_end_dates(cohort_name)
 }
+
+# for(i in group){
+#   if (cohort_name == "both") {
+#     follow_up_end_dates("electively_unvaccinated", i)
+#     follow_up_end_dates("vaccinated", i)
+#   } else{
+#     follow_up_end_dates(cohort_name, i)
+#   }
+# }

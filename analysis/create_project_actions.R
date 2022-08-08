@@ -134,7 +134,7 @@ table2 <- function(cohort){
       arguments = c(cohort),
       needs = list("stage1_data_cleaning_both",glue("stage1_end_date_table_{cohort}")),
       moderately_sensitive = list(
-        input_table_2 = glue("output/review/descriptives/table2_{cohort}_*.csv")
+        input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
       )
     )
   )
@@ -156,24 +156,20 @@ event_counts_by_covariate_level <- function(cohort){
   )
 }
 
-hosp_event_counts_by_covariate_level <- function(cohort){
-  splice(
-    comment(glue("Hospitalised event counts by covariate - {cohort}")),
-    action(
-      name = glue("hosp_event_counts_by_covariate_level_{cohort}"),
-      run = "r:latest analysis/descriptives/hospitalised_events_split_by_time_period_and_covariate_level.R",
-      arguments = c(cohort),
-      needs = list("stage1_data_cleaning_both",glue("stage1_end_date_table_{cohort}")),
-      moderately_sensitive = list(
-        hosp_counts_by_covariate = glue("output/not-for-review/hospitalised_event_counts_by_covariate_level_{cohort}.csv")
-      )
-    )
-  )
-}
-
-
-
-
+# hosp_event_counts_by_covariate_level <- function(cohort){
+#   splice(
+#     comment(glue("Hospitalised event counts by covariate - {cohort}")),
+#     action(
+#       name = glue("hosp_event_counts_by_covariate_level_{cohort}"),
+#       run = "r:latest analysis/descriptives/hospitalised_events_split_by_time_period_and_covariate_level.R",
+#       arguments = c(cohort),
+#       needs = list("stage1_data_cleaning_both",glue("stage1_end_date_table_{cohort}")),
+#       moderately_sensitive = list(
+#         hosp_counts_by_covariate = glue("output/not-for-review/hospitalised_event_counts_by_covariate_level_{cohort}.csv")
+#       )
+#     )
+#   )
+# }
 
 ##########################################################
 ## Define and combine all actions into a list of actions #
@@ -283,27 +279,27 @@ actions_list <- splice(
       histograms = glue("output/not-for-review/numeric_histograms_*.svg")
     ),
     highly_sensitive = list(
-      cohort = glue("output/input_*_stage1*.rds")
+      cohort = glue("output/input_*_stage1*.rds")#stage1*
     )
   ),
   
-  #comment("Stage 1 - End date table"),
+  #comment("Stage 1 - End date table vaccinated"),
   action(
     name = "stage1_end_date_table_vaccinated",
     run = "r:latest analysis/preprocess/create_follow_up_end_date.R vaccinated",
     needs = list("preprocess_data_vaccinated","preprocess_data_electively_unvaccinated","stage1_data_cleaning_both"),
     highly_sensitive = list(
-      end_date_table = glue("output/follow_up_end_dates_vaccinated*.rds")
+      end_date_table = glue("output/follow_up_end_dates_vaccinated*.rds")#vaccinated_*
     )
   ),
   
-  #comment("Stage 1 - End date table"),
+  #comment("Stage 1 - End date table electively_unvaccinated"),
   action(
     name = "stage1_end_date_table_electively_unvaccinated",
     run = "r:latest analysis/preprocess/create_follow_up_end_date.R electively_unvaccinated",
     needs = list("preprocess_data_vaccinated","preprocess_data_electively_unvaccinated","stage1_data_cleaning_both"),
     highly_sensitive = list(
-      end_date_table = glue("output/follow_up_end_dates_electively_unvaccinated*.rds")
+      end_date_table = glue("output/follow_up_end_dates_electively_unvaccinated*.rds")#unvaccinated_*
     )
   ),
   
@@ -329,27 +325,27 @@ actions_list <- splice(
 
   #comment("Stage 3 - Diabetes flow - vaccinated"),  
   
-  action(
-    name = "stage3_diabetes_flow_vaccinated",
-    run = "r:latest analysis/descriptives/diabetes_flowchart.R vaccinated",
-    needs = list("stage1_data_cleaning_both"),
-    moderately_sensitive = list(
-      flow_df = glue("output/review/figure-data/diabetes_flow_values_vaccinated_*.csv")
-      # flow_fig = glue("output/diabetes_flow.png"),
-    ),
-  ),
+  # action(
+  #   name = "stage3_diabetes_flow_vaccinated",
+  #   run = "r:latest analysis/descriptives/diabetes_flowchart.R vaccinated",
+  #   needs = list("stage1_data_cleaning_both"),
+  #   moderately_sensitive = list(
+  #     flow_df = glue("output/review/figure-data/diabetes_flow_values_vaccinated_*.csv")
+  #     # flow_fig = glue("output/diabetes_flow.png"),
+  #   ),
+  # ),
 
   #comment("Stage 3 - Diabetes flow - electively_unvaccinated"),  
   
-  action(
-    name = "stage3_diabetes_flow_electively_unvaccinated",
-    run = "r:latest analysis/descriptives/diabetes_flowchart.R electively_unvaccinated",
-    needs = list("stage1_data_cleaning_both"),
-    moderately_sensitive = list(
-      flow_df = glue("output/review/figure-data/diabetes_flow_values_electively_unvaccinated_*.csv")
-      # flow_fig = glue("output/diabetes_flow.png"),
-    ),
-  ),
+  # action(
+  #   name = "stage3_diabetes_flow_electively_unvaccinated",
+  #   run = "r:latest analysis/descriptives/diabetes_flowchart.R electively_unvaccinated",
+  #   needs = list("stage1_data_cleaning_both"),
+  #   moderately_sensitive = list(
+  #     flow_df = glue("output/review/figure-data/diabetes_flow_values_electively_unvaccinated_*.csv")
+  #     # flow_fig = glue("output/diabetes_flow.png"),
+  #   ),
+  # ),
   
   
   #comment("Stage 4 - Create input for table2"),
@@ -371,42 +367,42 @@ actions_list <- splice(
   splice(
     # over outcomes
     unlist(lapply(outcomes_model, function(x) splice(unlist(lapply(cohort_to_run, function(y) apply_model_function(outcome = x, cohort = y)), recursive = FALSE))
-      ),recursive = FALSE)),
+      ),recursive = FALSE))
 
-  #comment("Split hospitalised COVID by region - vaccinated"),
-  action(
-    name = "split_hosp_covid_by_region_vaccinated",
-    run = "r:latest analysis/descriptives/hospitalised_covid_events_by_region.R vaccinated",
-    needs = list("stage1_data_cleaning_both","stage1_end_date_table_vaccinated"),
-    moderately_sensitive = list(
-      hosp_events_by_region_non_suppressed = "output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_non_suppressed.csv",
-      hosp_events_by_region_suppressed = "output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_suppressed.csv")),
-
-  #comment("Split hospitalised COVID by region - electively unvaccinated"),
-  action(
-    name = "split_hosp_covid_by_region_electively_unvaccinated",
-    run = "r:latest analysis/descriptives/hospitalised_covid_events_by_region.R electively_unvaccinated",
-    needs = list("stage1_data_cleaning_both","stage1_end_date_table_electively_unvaccinated"),
-    moderately_sensitive = list(
-    hosp_events_by_region_non_suppressed = "output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_non_suppressed.csv",
-    hosp_events_by_region_suppressed = "output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_suppressed.csv")),
-  
+  # #comment("Split hospitalised COVID by region - vaccinated"),
+  # action(
+  #   name = "split_hosp_covid_by_region_vaccinated",
+  #   run = "r:latest analysis/descriptives/hospitalised_covid_events_by_region.R vaccinated",
+  #   needs = list("stage1_data_cleaning_both","stage1_end_date_table_vaccinated"),
+  #   moderately_sensitive = list(
+  #     hosp_events_by_region_non_suppressed = "output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_non_suppressed.csv",#vaccinated_*_non_suppressed
+  #     hosp_events_by_region_suppressed = "output/not-for-review/hospitalised_covid_event_counts_by_region_vaccinated_*_suppressed.csv")),#region_vaccinated_*_suppressed
+  # 
+  # #comment("Split hospitalised COVID by region - electively unvaccinated"),
+  # action(
+  #   name = "split_hosp_covid_by_region_electively_unvaccinated",
+  #   run = "r:latest analysis/descriptives/hospitalised_covid_events_by_region.R electively_unvaccinated",
+  #   needs = list("stage1_data_cleaning_both","stage1_end_date_table_electively_unvaccinated"),
+  #   moderately_sensitive = list(
+  #   hosp_events_by_region_non_suppressed = "output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_non_suppressed.csv",#electively_unvaccinated_*_non_suppressed
+  #   hosp_events_by_region_suppressed = "output/not-for-review/hospitalised_covid_event_counts_by_region_electively_unvaccinated_*_suppressed.csv"))#region_electively_unvaccinated_*_suppressed
+  # 
   #comment("Hospitalised event counts by covariate level"),
-  splice(
-    # over cohort
-    unlist(lapply(cohort_to_run, function(x) hosp_event_counts_by_covariate_level(cohort = x)), recursive = FALSE)
-  ),
+  # splice(
+  #   # over cohort
+  #   unlist(lapply(cohort_to_run, function(x) hosp_event_counts_by_covariate_level(cohort = x)), recursive = FALSE)
+  # ),
   
   #comment("Select covariates for hosp COVID)
-  action(
-    name = "select_covariates_for_hosp_covid",
-    run = "r:latest analysis/descriptives/determine_covariates_for_hosp_covid.R both",
-    needs = list("hosp_event_counts_by_covariate_level_vaccinated","hosp_event_counts_by_covariate_level_electively_unvaccinated"),
-    moderately_sensitive = list(
-      covariates_for_hosp_covid_vacc = "output/not-for-review/covariates_to_adjust_for_hosp_covid_vaccinated_*.csv",
-      covariates_for_hosp_covid_electively_unvacc = "output/not-for-review/covariates_to_adjust_for_hosp_covid_electively_unvaccinated_*.csv")
+  # action(
+  #   name = "select_covariates_for_hosp_covid",
+  #   run = "r:latest analysis/descriptives/determine_covariates_for_hosp_covid.R both",
+  #   needs = list("hosp_event_counts_by_covariate_level_vaccinated","hosp_event_counts_by_covariate_level_electively_unvaccinated"),
+  #   moderately_sensitive = list(
+  #     covariates_for_hosp_covid_vacc = "output/not-for-review/covariates_to_adjust_for_hosp_covid_vaccinated_*.csv",
+  #     covariates_for_hosp_covid_electively_unvacc = "output/not-for-review/covariates_to_adjust_for_hosp_covid_electively_unvaccinated_*.csv")
+  #   ),
 
-  )
 )
 
 

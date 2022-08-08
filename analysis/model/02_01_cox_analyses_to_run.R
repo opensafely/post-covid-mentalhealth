@@ -12,7 +12,7 @@ active_analyses <- active_analyses %>%dplyr::filter(outcome_variable==paste0("ou
 
 ## Select covariates of interest 
 for(i in c("normal","reduced")){
-  assign(paste0("non_zero_covar_names_",i),read_csv(paste0("output/not-for-review/non_zero_selected_covariates_",cohort,"_",active_analyses$outcome_group,"_",i,"_time_periods.csv")))
+  assign(paste0("non_zero_covar_names_",i),read_csv(paste0("output/not-for-review/non_zero_selected_covariates_",cohort,"_",i,"_time_periods.csv")))#active_analyses$outcome_group,"_",i,"_time_periods
 }
 
 non_zero_covar_names <- rbind(non_zero_covar_names_normal, non_zero_covar_names_reduced)
@@ -39,7 +39,7 @@ if(active_analyses$model=="all"){
 analyses_to_run <- as.data.frame(t(active_analyses))
 analyses_to_run$subgroup <- row.names(analyses_to_run)
 colnames(analyses_to_run) <- c("run","subgroup")
-analyses_to_run<- analyses_to_run %>% filter(run=="TRUE" & subgroup != "active" & subgroup != "venn")
+analyses_to_run<- analyses_to_run %>% filter(run=="TRUE" & subgroup != "active" & subgroup != "venn")#CHECK
 rownames(analyses_to_run) <- NULL
 analyses_to_run <- analyses_to_run %>% select(!run)
 analyses_to_run$event=event_name
@@ -54,14 +54,16 @@ for(i in c("ethnicity","sex")){
 }
 analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history"),active_analyses$prior_history_var,analyses_to_run$stratify_by_subgroup)
 analyses_to_run$stratify_by_subgroup <- ifelse(is.na(analyses_to_run$stratify_by_subgroup),analyses_to_run$subgroup,analyses_to_run$stratify_by_subgroup)
-
+#MH specific
+#analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_recent_MH"),active_analyses$prior_history_var,analyses_to_run$stratify_by_subgroup)
+# analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history_MH"),active_analyses$prior_history_var,analyses_to_run$stratify_by_subgroup)
 
 ## Add in relevant subgroup levels to specify which stratum to run for
 analyses_to_run$strata <- NA
 analyses_to_run$strata <- ifelse(analyses_to_run$subgroup=="main","main",analyses_to_run$strata)
 analyses_to_run$strata <- ifelse(analyses_to_run$subgroup=="covid_history","TRUE",analyses_to_run$strata)
 
-for(i in c("covid_pheno_","agegp_","sex_","ethnicity_","prior_history_")){
+for(i in c("covid_pheno_","agegp_","sex_","ethnicity_","prior_history_")){#,"prior_history_MH_","prior_recent_MH_"
   analyses_to_run$strata <- ifelse(startsWith(analyses_to_run$subgroup,i),gsub(i,"",analyses_to_run$subgroup),analyses_to_run$strata)
   
 }
@@ -78,6 +80,8 @@ analyses_to_run <- analyses_to_run %>%
     startsWith(subgroup, "ethnicity") ~ "ethnicity",
     startsWith(subgroup, "main") ~ "main",
     startsWith(subgroup, "prior_history") ~ "prior_history",
+    #startsWith(subgroup, "prior_recent_MH") ~ "prior_recent_MH", #MH specific
+    #startsWith(subgroup, "prior_history_MH") ~ "prior_history_MH", #MH specific
     startsWith(subgroup, "sex") ~ "sex",
     TRUE ~ as.character(subgroup)))
 

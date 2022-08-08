@@ -763,6 +763,12 @@ hba1c_new_codes = codelist(
     ["XaPbt", "Xaeze", "Xaezd"], system="ctv3"
 )
 
+#HbA1c - SNOMED (International)
+# XaPbt - 999791000000106 / Xaeze - 1049321000000109 / Xaezd - 1049301000000100
+hba1c_new_codes_snomed = codelist(
+    ["999791000000106","1049321000000109","1049301000000100"], system = "snomed"
+)
+
 # Other arterial embolism
 other_arterial_embolism_snomed_clinical = codelist_from_csv(
     "codelists/user-tomsrenin-other_art_embol.csv",
@@ -1052,83 +1058,18 @@ serious_mental_illness_icd10 = combine_codelists(
     schizophrenia_icd10
 )
 
-# SSRI prescription 
-ssri_depression_prescription = codelist_from_csv(
-    "codelists/opensafely-selective-serotonin-reuptake-inhibitors.csv",
-    system="snomed",
-    column="code",
-)
-
-# Depression prescriptions - SNRI 
-# These can be found in Others
-
-# Depression prescriptions - NASSAs
-# These can be found in Others
-
-# Depression prescriptions - TCA 
-tca_depression_prescription = codelist_from_csv(
-    "codelists/opensafely-tricyclic-and-related-antidepressants-dmd.csv",
-    system="snomed",
-    column="dmd_id",
-)
-
-# Depression prescriptions - SARIs 
-# These can be found in Others
-
-# Depression prescriptions - MAOIs 
-maoi_depression_prescription = codelist_from_csv(
-    "codelists/opensafely-monoamine-oxidase-inhibitors-dmd.csv",
-    system="snomed",
-    column="dmd_id",
-)
-# Depression prescriptions - Others  
-other_depression_prescription = codelist_from_csv(
-    "codelists/opensafely-other-antidepressants-dmd.csv",
-    system="snomed",
-    column="dmd_id",
-)
-
 #Antidepressants
-antidepressants_prescription_snomed = codelist_from_csv(
-    "codelists/bristol-antidepressants-snomedct.csv",
-    system="snomed",
-    column="code"
-)
-
-# Combined depression prescriptions: SSRI, TCA, MAOI and others 
-all_depression_prescriptions = combine_codelists(
-    ssri_depression_prescription,
-    tca_depression_prescription,
-    maoi_depression_prescription,
-    other_depression_prescription,
-    antidepressants_prescription_snomed
-)
-
-# Anxiolytics 
-anxiolytic_prescription = codelist_from_csv(
-    "local_codelists/uom-anxiolytics-snomed.csv", 
-    system="snomed", 
-    column="SNOMEDID"
-)
-
-# 2nd gen antipsychotics prescription
-second_gen_antipsychotics = codelist_from_csv(
-    "codelists/opensafely-second-generation-antipsychotics-excluding-long-acting-injections.csv",
+antidepressants_prescriptions_bnf= codelist_from_csv(
+    "local_codelists/bristol-antidepressant-drugs-1d04ddc8-dmd.csv",
     system="snomed",
     column="dmd_id",
 )
 
-# Prochlorperazine prescription
-prochlorperazine = codelist_from_csv(
-    "codelists/opensafely-prochlorperazine-dmd.csv",
+#Antipsychotic - Serious mental illness
+antipsychotics_prescriptions_bnf = codelist_from_csv(
+    "local_codelists/bristol-antipsychotic-drugs-51d68428-dmd.csv",
     system="snomed",
     column="dmd_id",
-)
-
-# Combined serious mental illness prescriptions
-all_mental_illness_prescriptions = combine_codelists(
-    second_gen_antipsychotics,
-    prochlorperazine
 )
 
 # Combined anxiety covariate primary care
@@ -1147,42 +1088,18 @@ anxiety_combined_hes_cov = combine_codelists(
     ptsd_icd10
 )
 
-# Anxiolytic
-anxiolytic_prescription_bnf = codelist_from_csv(
-    "local_codelists/bristol-anxiolitycs-bnf-5562c9a7-dmd.csv",
+#Anxiolytics
+anxiolytics_prescriptions_bnf = codelist_from_csv(
+    "local_codelists/bristol-anxiolytics_040102-38c710f3-dmd.csv",
     system="snomed",
     column="dmd_id"
 )
 
-anxiolytic_prescription_snomed = codelist_from_csv(
-    "codelists/bristol-anxiolytics-snomed.csv",
-    system="snomed",
-    column="code"
-)
-
-# Opioid antagonist therapy
-opioid_prescription_bnf = codelist_from_csv(
-    "local_codelists/bristol-opioid-agonist-therapy-oat-7b915761-dmd.csv",
+# Opioid antagonist therapy new
+opioids_prescriptions_bnf = codelist_from_csv(
+    "local_codelists/bristol-opioid-dependence-6ae5f75d-dmd.csv",
     system="snomed",
     column="dmd_id"
-)
-
-opioid_prescription_snomed = codelist_from_csv(
-    "codelists/bristol-opioid-agonist-therapy-oat-snomed-ct.csv",
-    system="snomed",
-    column="code"
-)
-
-# Combine anxiolytics
-all_anxiolytic_prescriptions = combine_codelists(
-    anxiolytic_prescription_bnf,
-    anxiolytic_prescription_snomed
-)
-
-# Combine opioid antagonist therapy
-all_opioid_prescriptions = combine_codelists(
-    opioid_prescription_bnf,
-    opioid_prescription_snomed
 )
 
 # Total Cholesterol
@@ -1206,20 +1123,20 @@ prediabetes_snomed = codelist_from_csv(
     column="code",
 )
 
-pe_i26_icd10 = codelist_from_csv(
-    "codelists/bristol-pe_i26.csv",
-    system="icd10",
-    column="code",
-)
+# pe_i26_icd10 = codelist_from_csv(
+#     "codelists/bristol-pe_i26.csv",
+#     system="icd10",
+#     column="code",
+# )
 
-pe_i260_icd10 = codelist_from_csv(
-    "codelists/bristol-pe_i260.csv",
-    system="icd10",
-    column="code",
-)
+# pe_i260_icd10 = codelist_from_csv(
+#     "codelists/bristol-pe_i260.csv",
+#     system="icd10",
+#     column="code",
+# )
 
-pe_i269_icd10 = codelist_from_csv(
-    "codelists/bristol-pe_i269.csv",
-    system="icd10",
-    column="code",
-)
+# pe_i269_icd10 = codelist_from_csv(
+#     "codelists/bristol-pe_i269.csv",
+#     system="icd10",
+#     column="code",
+# )

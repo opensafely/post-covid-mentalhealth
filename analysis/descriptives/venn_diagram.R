@@ -30,24 +30,26 @@ if(length(args)==0){
 fs::dir_create(here::here("output", "not-for-review"))
 fs::dir_create(here::here("output", "review", "venn-diagrams"))
 
-venn_output <- function(cohort_name, group){
+venn_output <- function(cohort_name){#, group
   
   # Identify active outcomes ---------------------------------------------------
   
   active_analyses <- readr::read_rds("lib/active_analyses.rds")
   # added extra statement to include only those with venn == TRUE - because some diabetes outcomes only use one data source and so venn is not applicable
-  outcomes <- active_analyses[active_analyses$active==TRUE & active_analyses$venn==TRUE & active_analyses$outcome_group==group,]$outcome_variable
+  outcomes <- active_analyses[active_analyses$active==TRUE & active_analyses$venn==TRUE,]$outcome_variable
+  #outcomes <- active_analyses[active_analyses$active==TRUE,]$outcome_variable
+  #outcomes <- active_analyses[active_analyses$active==TRUE & active_analyses$venn==TRUE & active_analyses$outcome_group==group,]$outcome_variable
   
-  if(length(outcomes) == 0){
-    print(paste0("No venn diagram generated for outcome group ",group))
-  } else{
+  # if(length(outcomes) == 0){
+  #   print(paste0("No venn diagram generated for outcome group ",group))
+  # } else{
   
   # Load data ------------------------------------------------------------------
   
   input <- readr::read_rds(paste0("output/venn_",cohort_name,".rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name, "_", group,".rds"))
+  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name, ".rds"))#cohort_name, "_", group,
   
-  input_stage1 <- readr::read_rds(paste0("output/input_", cohort_name,"_stage1_", group,".rds"))
+  input_stage1 <- readr::read_rds(paste0("output/input_", cohort_name,"_stage1", ".rds"))#cohort_name,"_stage1_", group,
   input_stage1 <- input_stage1[input_stage1$sub_bin_covid19_confirmed_history==FALSE,]
   
   input <- input[input$patient_id %in% input_stage1$patient_id,]
@@ -223,18 +225,18 @@ venn_output <- function(cohort_name, group){
        mycol <- mycol[mycol!=""]
 
        # Make Venn diagram --------------------------------------------------------
-       # svglite::svglite(file = paste0("output/review/venn-diagrams/venn_diagram_",cohort_name,"_",gsub("out_date_","",outcome_save_name),".svg"))
-       #  g <- ggvenn::ggvenn(
-       #   index,
-       #   fill_color = mycol,
-       #   stroke_color = "white",
-       #   text_size = 5,
-       #   set_name_size = 5,
-       #   fill_alpha = 0.9
-       # ) +  ggplot2::ggtitle(active_analyses[active_analyses$outcome_variable==outcome_save_name,]$outcome) +
-       #   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 15, face = "bold"))
-       # print(g)
-       # dev.off()
+       svglite::svglite(file = paste0("output/review/venn-diagrams/venn_diagram_",cohort_name,"_",gsub("out_date_","",outcome_save_name),".svg"))
+        g <- ggvenn::ggvenn(
+         index,
+         fill_color = mycol,
+         stroke_color = "white",
+         text_size = 5,
+         set_name_size = 5,
+         fill_alpha = 0.9
+       ) +  ggplot2::ggtitle(active_analyses[active_analyses$outcome_variable==outcome_save_name,]$outcome) +
+         ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 15, face = "bold"))
+       print(g)
+       dev.off()
 
      }
     
@@ -244,6 +246,7 @@ venn_output <- function(cohort_name, group){
   
   # Merge any cells <= 5 to the highest cell (excluding totals) -------------
   
+  df[is.na(df)] <- 0 # RK's suggestion
   colnamesorder <- colnames(df)
   a <- df[-c(1,9:12)]
   a[] <- sapply(a, as.numeric)
@@ -256,21 +259,28 @@ venn_output <- function(cohort_name, group){
   df <- select(df, -contains("total"))
   #change NAs to 0
   df[is.na(df)] <- 0
-  write.csv(df, file = paste0("output/review/venn-diagrams/venn_diagram_number_check_", cohort_name, "_", group,".csv"), row.names = F)
-  }
+  write.csv(df, file = paste0("output/review/venn-diagrams/venn_diagram_number_check_", cohort_name, ".csv"), row.names = F)#cohort_name, "_", group,
+  #}
 }
 
 # Run function using specified commandArgs -------------------------------------
 
-   active_analyses <- read_rds("lib/active_analyses.rds")
-   active_analyses <- active_analyses %>% filter(active==TRUE)# & venn == TRUE)
-   group <- unique(active_analyses$outcome_group)
+   # active_analyses <- read_rds("lib/active_analyses.rds")
+   # active_analyses <- active_analyses %>% filter(active==TRUE)# & venn == TRUE)
+   # group <- unique(active_analyses$outcome_group)
 
-  for(i in group){
-    if (cohort_name == "both") {
-      venn_output("electively_unvaccinated", i)
-      venn_output("vaccinated", i)
-    } else{
-      venn_output(cohort_name, i)
-    }
-  }
+if (cohort_name == "both") {
+  venn_output("electively_unvaccinated")
+  venn_output("vaccinated")
+} else{
+  venn_output(cohort_name)
+}
+
+  # for(i in group){
+  #   if (cohort_name == "both") {
+  #     venn_output("electively_unvaccinated", i)
+  #     venn_output("vaccinated", i)
+  #   } else{
+  #     venn_output(cohort_name, i)
+  #   }
+  # }

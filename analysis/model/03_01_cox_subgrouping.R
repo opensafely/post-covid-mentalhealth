@@ -37,10 +37,49 @@ get_vacc_res <- function(event,subgroup,stratify_by_subgroup,stratify_by,time_po
     }
   }
   
+  #MH specific subgroup
+  #Recent
+  # if(startsWith(subgroup,"prior_recent_MH")){
+  #   survival_data <- input %>% dplyr::select(all_of(cohort_cols),all_of(stratify_by_subgroup))
+  # }else{
+  #   survival_data <- input %>% dplyr::select(all_of(cohort_cols))
+  # }
+  # 
+  # for(i in c("hospitalised","non_hospitalised")){
+  #   if(stratify_by == i & !is.na(stratify_by)){
+  #     survival_data$follow_up_end <- NULL
+  #     setnames(survival_data,
+  #              old = c(c(paste0(i,"_follow_up_end")),
+  #                      c(paste0(i,"_censor_date"))),
+  # 
+  #              new = c("follow_up_end",
+  #                      "date_expo_censor"))
+  #   }
+  # }
+
+  # #History
+  # if(startsWith(subgroup,"prior_history_MH")){
+  #   survival_data <- input %>% dplyr::select(all_of(cohort_cols),all_of(stratify_by_subgroup))
+  # }else{
+  #   survival_data <- input %>% dplyr::select(all_of(cohort_cols))
+  # }
+  # 
+  # for(i in c("hospitalised","non_hospitalised")){
+  #   if(stratify_by == i & !is.na(stratify_by)){
+  #     survival_data$follow_up_end <- NULL
+  #     setnames(survival_data, 
+  #              old = c(c(paste0(i,"_follow_up_end")),
+  #                      c(paste0(i,"_censor_date"))),
+  #              
+  #              new = c("follow_up_end",
+  #                      "date_expo_censor"))
+  #   }
+  # }
+  
   # Stratify to the relevant subgroup if either sex/ethnicity/prior history subgroup
   # COVID pheno subgroup is filtered later in this script
   
-  for(i in c("ethnicity","sex","prior_history")){
+  for(i in c("ethnicity","sex","prior_history")){#,"prior_history_MH","prior_recent_MH")){
     if(startsWith(subgroup,i)){
       survival_data=survival_data%>%filter_at(stratify_by_subgroup,all_vars(.==stratify_by))
     }

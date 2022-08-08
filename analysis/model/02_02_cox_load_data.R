@@ -24,34 +24,34 @@ if(active_analyses$prior_history_var != ""){
   read_in_cols <- unique(append(read_in_cols, c(covar_names)))
 }
 
-if(event_name == "out_date_ami" | event_name == "out_date_stroke_isch" | event_name == "out_date_dvt" |
-   event_name == "out_date_pe" | event_name == "out_date_tia" | event_name == "out_date_stroke_sah_hs" |
-   event_name == "out_date_hf" | event_name == "out_date_angina" | event_name == "out_date_ate" |
-   event_name == "out_date_vte" | event_name == "out_date_ami_primary_position" | event_name == "out_date_stroke_isch_primary_position" |
-   event_name == "out_date_dvt_primary_position" | event_name == "out_date_pe_primary_position" | event_name == "out_date_tia_primary_position" |
-   event_name == "out_date_stroke_sah_hs_primary_position" | event_name == "out_date_hf_primary_position" | event_name == "out_date_angina_primary_position" |
-   event_name == "out_date_ate_primary_position" | event_name == "out_date_vte_primary_position"){
-  input <- read_rds(paste0("output/input_",cohort,"_stage1_CVD.rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_CVD.rds"))
+# if(event_name == "out_date_ami" | event_name == "out_date_stroke_isch" | event_name == "out_date_dvt" |
+#    event_name == "out_date_pe" | event_name == "out_date_tia" | event_name == "out_date_stroke_sah_hs" |
+#    event_name == "out_date_hf" | event_name == "out_date_angina" | event_name == "out_date_ate" |
+#    event_name == "out_date_vte" | event_name == "out_date_ami_primary_position" | event_name == "out_date_stroke_isch_primary_position" |
+#    event_name == "out_date_dvt_primary_position" | event_name == "out_date_pe_primary_position" | event_name == "out_date_tia_primary_position" |
+#    event_name == "out_date_stroke_sah_hs_primary_position" | event_name == "out_date_hf_primary_position" | event_name == "out_date_angina_primary_position" |
+#    event_name == "out_date_ate_primary_position" | event_name == "out_date_vte_primary_position"){
+#   input <- read_rds(paste0("output/input_",cohort,"_stage1_CVD.rds"))
+#   end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_CVD.rds"))
+#   
+# } else if(event_name == "t1dm" | event_name == "t2dm" | event_name == "otherdm"){
+#   input <- read_rds(paste0("output/input_",cohort,"_stage1_diabetes.rds"))
+#   end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_diabetes.rds"))
+#   
+# } else if (event_name == "gestationaldm"){
+#   input <- read_rds(paste0("output/input_",cohort,"_stage1_diabetes_gestational.rds"))
+#   end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_diabetes_gestational.rds"))
+#   
+# } else if (event_name == "depression" | event_name == "depression_prescription" | event_name == "depression_primarycare" | event_name == "depression_secondarycare" |
+#            event_name == "anxiety_general" | event_name == "anxiety_general_prescription" | event_name == "anxiety_general_primarycare" | event_name == "anxiety_general_secondarycare" | 
+#            event_name == "anxiety_ocd" | event_name == "anxiety_ptsd" | event_name == "eating_disorders" | event_name == "serious_mental_illness" | 
+#            event_name == "serious_mental_illness_prescription" | event_name == "serious_mental_illness_primarycare" | event_name == "serious_mental_illness_secondarycare" |
+#            event_name == "self_harm" | event_name == "self_harm_primarycare" | event_name == "self_harm_secondarycare" | event_name == "suicide" | 
+#            event_name == "addiction" | event_name == "addiction_prescription"){
+  input <- read_rds(paste0("output/input_",cohort,"_stage1.rds"))#cohort,"_stage1_Mental_health
+  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,".rds"))#cohort,"_Mental_health
   
-} else if(event_name == "t1dm" | event_name == "t2dm" | event_name == "otherdm"){
-  input <- read_rds(paste0("output/input_",cohort,"_stage1_diabetes.rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_diabetes.rds"))
-  
-} else if (event_name == "gestationaldm"){
-  input <- read_rds(paste0("output/input_",cohort,"_stage1_diabetes_gestational.rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_diabetes_gestational.rds"))
-  
-} else if (event_name == "depression" | event_name == "depression_prescription" | event_name == "depression_primarycare" | event_name == "depression_secondarycare" |
-           event_name == "anxiety_general" | event_name == "anxiety_general_prescription" | event_name == "anxiety_general_primarycare" | event_name == "anxiety_general_secondarycare" | 
-           event_name == "anxiety_ocd" | event_name == "anxiety_ptsd" | event_name == "eating_disorders" | event_name == "serious_mental_illness" | 
-           event_name == "serious_mental_illness_prescription" | event_name == "serious_mental_illness_primarycare" | event_name == "serious_mental_illness_secondarycare" |
-           event_name == "self_harm" | event_name == "self_harm_primarycare" | event_name == "self_harm_secondarycare" | event_name == "suicide" | 
-           event_name == "addiction" | event_name == "addiction_prescription"){
-  input <- read_rds(paste0("output/input_",cohort,"_stage1_Mental_health.rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort,"_Mental_health.rds"))
-  
-} 
+#} 
 
 input <- input %>% select(all_of(read_in_cols))
 
@@ -88,6 +88,7 @@ cohort_end_date <- as.Date("2021-12-14")
 #cuts_days_since_expo <- c(28, 197) 
 cuts_days_since_expo <- c(7, 14, 28, 56, 84, 197) 
 cuts_days_since_expo_reduced <- c(28,197) 
+cuts_days_since_expo_alternative <- c(1,8,43,197)
 
 #Rename input variable names (by renaming here it means that these scripts can be used for other datasets without
 ## having to keep updating all the variable names throughout the following scripts)

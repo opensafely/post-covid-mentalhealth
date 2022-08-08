@@ -38,17 +38,17 @@ time_periods_normal <- c(7, 14, 28, 56, 84, 197)
 time_periods_reduced <- c(28,197)
 time_periods_alternative <- c(1,8,43,197)
 
-event_by_covariate_level <- function(cohort_name, group,time_periods,save_name){
+event_by_covariate_level <- function(cohort_name, time_periods,save_name){#cohort_name, group,time_periods,save_name
   
   # define analyses of interests
   active_analyses <- read_rds("lib/active_analyses.rds")
-  active_analyses <- active_analyses %>%dplyr::filter(active == "TRUE" & outcome_group == group)
+  active_analyses <- active_analyses %>%dplyr::filter(active == "TRUE")# & outcome_group == group)
   
   analyses_of_interest <- as.data.frame(matrix(ncol = 8,nrow = 0))
   
   #Left join end dates table
-  survival_data <- read_rds(paste0("output/input_", cohort_name,"_stage1_", group,".rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,"_",group,".rds")) 
+  survival_data <- read_rds(paste0("output/input_", cohort_name,"_stage1.rds"))#"_stage1_", group,
+  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,".rds")) #cohort_name,"_",group, - cohort_name,"_","Mental_health",
   end_dates$index_date <- NULL
   
   survival_data<- survival_data %>% left_join(end_dates, by="patient_id")
@@ -105,13 +105,16 @@ event_by_covariate_level <- function(cohort_name, group,time_periods,save_name){
     index = which(active_analyses$outcome_variable == i)
     analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
     analyses_to_run$stratify_by_subgroup <- ifelse(is.na(analyses_to_run$stratify_by_subgroup),analyses_to_run$subgroup,analyses_to_run$stratify_by_subgroup)
+    #MH specific
+    #analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_recent_MH"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
+    #analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history_MH"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
     
     # Add in relevant subgroup levels to specify which stratum to run for
     analyses_to_run$strata <- NA
     analyses_to_run$strata <- ifelse(analyses_to_run$subgroup=="main","main",analyses_to_run$strata)
     analyses_to_run$strata <- ifelse(analyses_to_run$subgroup=="covid_history","TRUE",analyses_to_run$strata)
     
-    for(k in c("covid_pheno_","agegp_","sex_","ethnicity_","prior_history_")){
+    for(k in c("covid_pheno_","agegp_","sex_","ethnicity_","prior_history_")){#, "prior_recent_MH_")){
       analyses_to_run$strata <- ifelse(startsWith(analyses_to_run$subgroup,k),gsub(k,"",analyses_to_run$subgroup),analyses_to_run$strata)
     }
     analyses_of_interest <- rbind(analyses_of_interest,analyses_to_run)
@@ -190,7 +193,7 @@ event_by_covariate_level <- function(cohort_name, group,time_periods,save_name){
   # write output for covariate count table
   write.csv(results, file=paste0(output_dir,"/event_counts_by_covariate_level_",cohort_name,"_",save_name,"_time_periods.csv"), row.names = F)
   
-  select_covariates_for_cox(results, save_name, time_periods_names, active_analyses, cohort_name,group)
+  select_covariates_for_cox(results, save_name, time_periods_names, active_analyses, cohort_name)#active_analyses, cohort_name,group
 }
 
 
@@ -218,7 +221,7 @@ event_by_covariate_level_counts <- function(survival_data,event,subgroup,stratif
   
   # filter the population according to the subgroup level
   
-  for(i in c("ethnicity","sex","prior_history")){
+  for(i in c("ethnicity","sex","prior_history")){#,"prior_recent_MH")){#,"prior_history_MH")){
     if(startsWith(subgroup,i)){
       survival_data=survival_data%>%filter_at(stratify_by_subgroup,all_vars(.==stratify_by))
     }
@@ -324,7 +327,7 @@ event_by_covariate_level_counts <- function(survival_data,event,subgroup,stratif
 }
 
 
-select_covariates_for_cox <- function(results, save_name,time_periods_names, active_analyses,cohort_name, group){
+select_covariates_for_cox <- function(results, save_name,time_periods_names, active_analyses,cohort_name){#active_analyses,cohort_name, group
   print(paste0("Starting work on selecting covariates"))
   
   results <- results %>% mutate(across(c(unexposed_event_counts, all_of(time_periods_names)), as.numeric))
@@ -376,7 +379,7 @@ select_covariates_for_cox <- function(results, save_name,time_periods_names, act
   
   
   covariates_to_adjust_for$time_period <-  save_name
-  write.csv(covariates_to_adjust_for, file=paste0(output_dir,"/non_zero_selected_covariates_",cohort_name,"_",group,"_",save_name,"_time_periods.csv"), row.names = F)
+  write.csv(covariates_to_adjust_for, file=paste0(output_dir,"/non_zero_selected_covariates_",cohort_name,"_",save_name,"_time_periods.csv"), row.names = F)#cohort_name,"_",group,"_",save_name
   
 }
 
@@ -384,19 +387,31 @@ select_covariates_for_cox <- function(results, save_name,time_periods_names, act
 
 # Run function using specified commandArgs
 
-active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses %>% filter(active==TRUE)
-group <- unique(active_analyses$outcome_group)
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# active_analyses <- active_analyses %>% filter(active==TRUE)
+# group <- unique(active_analyses$outcome_group)
 
-
-for(i in group){
-  if(cohort_name == "both"){
-    event_by_covariate_level("vaccinated",i, time_periods_normal,"normal")
-    event_by_covariate_level("vaccinated",i, time_periods_reduced,"reduced")
-    event_by_covariate_level("electively_unvaccinated",i, time_periods_normal,"normal")
-    event_by_covariate_level("electively_unvaccinated",i, time_periods_reduced,"reduced")
-  }else{
-    event_by_covariate_level(cohort_name,i, time_periods_normal,"normal")
-    event_by_covariate_level(cohort_name,i, time_periods_reduced,"reduced")
-  }
+if(cohort_name == "both"){
+  event_by_covariate_level("vaccinated", time_periods_normal,"normal")
+  event_by_covariate_level("vaccinated", time_periods_reduced,"reduced")
+  #event_by_covariate_level("vaccinated",time_periods_alternative,"alternative")
+  event_by_covariate_level("electively_unvaccinated", time_periods_normal,"normal")
+  event_by_covariate_level("electively_unvaccinated", time_periods_reduced,"reduced")
+  #event_by_covariate_level("electively_unvaccinated",time_periods_alternative,"alternative")
+}else{
+  event_by_covariate_level(cohort_name, time_periods_normal,"normal")
+  event_by_covariate_level(cohort_name, time_periods_reduced,"reduced")
+  #event_by_covariate_level(cohort_name,time_periods_alternative,"alternative")
 }
+
+# for(i in group){
+#   if(cohort_name == "both"){
+#     event_by_covariate_level("vaccinated",i, time_periods_normal,"normal")
+#     event_by_covariate_level("vaccinated",i, time_periods_reduced,"reduced")
+#     event_by_covariate_level("electively_unvaccinated",i, time_periods_normal,"normal")
+#     event_by_covariate_level("electively_unvaccinated",i, time_periods_reduced,"reduced")
+#   }else{
+#     event_by_covariate_level(cohort_name,i, time_periods_normal,"normal")
+#     event_by_covariate_level(cohort_name,i, time_periods_reduced,"reduced")
+#   }
+# }

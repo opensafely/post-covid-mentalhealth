@@ -34,6 +34,8 @@ df <- arrow::read_feather(file = "output/input_index.feather",
                                          "qa_num_birth_year",
                                          "death_date"))
 
+print("Spine dataset (input index feather) read in successfully")
+
 # Load data --------------------------------------------------------------------
 
 tmp1 <- arrow::read_feather(file = "output/input_electively_unvaccinated.feather",
@@ -41,6 +43,8 @@ tmp1 <- arrow::read_feather(file = "output/input_electively_unvaccinated.feather
                                            "cov_cat_sex",
                                            "vax_date_eligible",
                                            "vax_cat_jcvi_group"))
+
+print("tmp1 dataset (input index electively unvaccinated) read in successfully")
 
 tmp2 <- arrow::read_feather(file = "output/input_vaccinated.feather",
                             col_select = c("patient_id",
@@ -54,6 +58,8 @@ tmp2 <- arrow::read_feather(file = "output/input_vaccinated.feather",
                                            "vax_date_Moderna_2",
                                            "vax_date_Moderna_3"))
 
+print("tmp2 dataset (input index vaccinated) read in successfully")
+
 # Overwrite patient IDs for dummy data only ------------------------------------
 
 if(Sys.getenv("OPENSAFELY_BACKEND") %in% c("", "expectations")) {
@@ -65,7 +71,13 @@ if(Sys.getenv("OPENSAFELY_BACKEND") %in% c("", "expectations")) {
 # Make single spine dataset ----------------------------------------------------
 
 df <- merge(df,tmp1, by = "patient_id")
+
+print("df (spine) and tmp1 (input index electively unvaccinated) merged successfully")
+
 df <- merge(df,tmp2, by = "patient_id")
+
+print("df (merged dataset) and tmp2  merged successfully")
+
 rm(tmp1,tmp2)
 
 print("Spine dataset created successfully")
@@ -75,6 +87,8 @@ print("Spine dataset created successfully")
 for (i in colnames(df)[grepl("_date",colnames(df))]) {
   df[,i] <- as.Date(df[,i])
 }
+
+print("Dates converted to date format")
 
 # Overwrite vaccination information for dummy data only ------------------------
 
@@ -104,6 +118,8 @@ for (cat_product in c("AstraZeneca","Pfizer","Moderna")) {
   
 }
 
+print("New tmp df with vaccinations for a given product")
+
 # Combine vaccinations for each product into a wide format table ---------------
 
 tmp <- df %>% 
@@ -115,6 +131,8 @@ tmp <- df %>%
       dplyr::full_join(tmp_Moderna, by=c("patient_id", "date_covid")),
     by = "patient_id"
   ) 
+
+print("Vaccinations combined for each product into a wide format table")
 
 # Determine product at each vaccination date -----------------------------------
 
@@ -140,6 +158,8 @@ tmp$cat_product <- ifelse((!is.na(tmp$vax_index_AstraZeneca)) +
                             (!is.na(tmp$vax_index_Moderna)) > 1,
                           "duplicate",tmp$cat_product)
 
+print("Produce at each vaccination date determined")
+
 # Determine vaccination order --------------------------------------------------
 
 tmp <- tmp %>%
@@ -147,6 +167,8 @@ tmp <- tmp %>%
   dplyr::group_by(patient_id) %>%
   dplyr::mutate(vax_index=dplyr::row_number()) %>%
   dplyr::ungroup()
+
+print("Vaccination order determined")
 
 # Make summary variables for vaccination dates and products --------------------
 
@@ -157,6 +179,8 @@ tmp <- tmp %>%
     values_from = c("date_covid", "cat_product"),
     names_glue = "vax_{.value}_{vax_index}"
   )
+
+print("Summary variables made for vaccination dates and products")
 
 # Add summary variables to main data -------------------------------------------
 
@@ -174,6 +198,8 @@ df <- df[,c("patient_id","death_date",
             colnames(df)[grepl("vax_cat_",colnames(df))], # Vaccination products
             colnames(df)[grepl("cov_",colnames(df))])] # Covariates
 
+print("Dataset column names tidied")
+
 # Determine patient index date -----------------------------------------------
 
 df$study_start_date <- as.Date(study_start)
@@ -187,6 +213,7 @@ if(cohort_name=="electively_unvaccinated"){
 }
 
 df$index_source <- ifelse(df$study_start_date>df$pat_start_date ,"study_start_date","pat_start_date")
+#df$index_source <- ifelse(df$study_start_date>df$pat_start_date | is.na(df$pat_start_date) ,"study_start_date","pat_start_date")
 
 df$index_date <- as.Date(ifelse(df$study_start_date>df$pat_start_date ,df$study_start_date,df$pat_start_date), origin = "1970-01-01")# Convert dates to date format -------------------------------------------------
 
@@ -196,6 +223,8 @@ print("Index date and source determined successfully")
 
 tmp_index <- arrow::read_feather(file = "output/input_index.feather")
 tmp_other <- arrow::read_feather(file = paste0("output/input_",cohort_name,".feather"))
+
+print("Covariate data loaded")
 
 # Describe data --------------------------------------------------------------
 
@@ -237,9 +266,9 @@ df[,c("cov_num_bmi")] <- NULL
 
 # Convert dates to date format -------------------------------------------------
 
-df <- df %>%
-  dplyr::rename(tmp_out_max_hba1c_mmol_mol_date = tmp_out_num_max_hba1c_date,
-                tmp_out_bmi_date_measured = cov_num_bmi_date_measured)
+# df <- df %>%
+#   dplyr::rename(tmp_out_max_hba1c_mmol_mol_date = tmp_out_num_max_hba1c_date,
+#                 tmp_out_bmi_date_measured = cov_num_bmi_date_measured)
 
 for (i in colnames(df)[grepl("_date",colnames(df))]) {
   df[,i] <- as.Date(df[,i])
@@ -299,61 +328,61 @@ print("Consultation variable after QC")
 summary(df$cov_num_consulation_rate)
 
 # Add diabetes variables and algorithm when relevant (i.e. diabetes outcome active)
-active_analyses <- read_rds("lib/active_analyses.rds")
-diabetes_analyses <- filter(active_analyses, startsWith(outcome_group, "diabetes"))
-
-if (any(diabetes_analyses$active==TRUE)){
-  
-  # Create vars for diabetes outcomes -------------------------------------------------------------
-  
-  # vars could not be created in common vars file
-  
-  df <- df %>% mutate(tmp_out_count_t2dm = tmp_out_count_t2dm_snomed + tmp_out_count_t2dm_hes,
-                      tmp_out_count_t1dm = tmp_out_count_t1dm_snomed + tmp_out_count_t1dm_hes)
-  
-  print("Diabetes count variables created successfully")
-  
-  # remove biologically implausible TC/HDL ratio values: https://doi.org/10.1093/ije/dyz099
-  # Remove TC < 1.75 or > 20 
-  # remove HDL < 0.4 or > 5
-  df <- df %>%
-    mutate(tmp_cov_num_cholesterol = replace(tmp_cov_num_cholesterol, tmp_cov_num_cholesterol < 1.75 | tmp_cov_num_cholesterol > 20, NA),
-           tmp_cov_num_hdl_cholesterol = replace(tmp_cov_num_hdl_cholesterol, tmp_cov_num_hdl_cholesterol < 0.4 | tmp_cov_num_hdl_cholesterol > 5, NA)) %>%
-    mutate(cov_num_tc_hdl_ratio = tmp_cov_num_cholesterol / tmp_cov_num_hdl_cholesterol) %>%
-    mutate(cov_num_tc_hdl_ratio = replace(cov_num_tc_hdl_ratio, cov_num_tc_hdl_ratio > 50 | cov_num_tc_hdl_ratio < 1, NA))
-  
-  # replace NaN and Inf with NA's (probably only an issue with dummy data)
-  df$cov_num_tc_hdl_ratio[is.nan(df$cov_num_tc_hdl_ratio)] <- NA
-  df$cov_num_tc_hdl_ratio[is.infinite(df$cov_num_tc_hdl_ratio)] <- NA
-  
-  print("Cholesterol ratio variable created successfully and QC'd")
-  summary(df$cov_num_tc_hdl_ratio)
-
-  # define variables needed for diabetes algorithm 
-  
-  df <- df %>% 
-    mutate(tmp_out_year_first_diabetes_diag = format(tmp_out_date_first_diabetes_diag,"%Y")) %>%
-    mutate(tmp_out_year_first_diabetes_diag = as.integer(tmp_out_year_first_diabetes_diag),
-           age_1st_diag = tmp_out_year_first_diabetes_diag - qa_num_birth_year) %>%
-    mutate(age_1st_diag = replace(age_1st_diag, which(age_1st_diag < 0), NA)) %>% # assign negative ages to NA)
-    mutate(age_under_35_30_1st_diag = ifelse(!is.na(age_1st_diag) &
-                                               (age_1st_diag < 35 & 
-                                                  (cov_cat_ethnicity == 1 | cov_cat_ethnicity == 2  | cov_cat_ethnicity == 5)) | 
-                                               (age_1st_diag < 30), "Yes", "No")) %>%
-    # HBA1C date var - earliest date for only those with >=47.5
-    mutate(hba1c_date_step7 = as_date(case_when(tmp_out_num_max_hba1c_mmol_mol >= 47.5 ~ pmin(tmp_out_max_hba1c_mmol_mol_date, na.rm = TRUE))),
-           # process codes - this is taking the first process code date in those individuals that have 5 or more process codes
-           over5_pocc_step7 = as_date(case_when(tmp_out_count_poccdm_snomed >= 5 ~ pmin(out_date_poccdm, na.rm = TRUE))))
-  
-  print("COVID-19 and diabetes variables needed for algorithm created successfully")
-  
-  # Define diabetes outcome (using Sophie Eastwood algorithm) ----------------------------
-  
-  scripts_dir <- "analysis/preprocess"
-  source(file.path(scripts_dir,"diabetes_algorithm.R"))
-  df <- diabetes_algo(df)
-  print("Diabetes algorithm run successfully")
-}
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# diabetes_analyses <- filter(active_analyses, startsWith(outcome_group, "diabetes"))
+# 
+# if (any(diabetes_analyses$active==TRUE)){
+#   
+#   # Create vars for diabetes outcomes -------------------------------------------------------------
+#   
+#   # vars could not be created in common vars file
+#   
+#   df <- df %>% mutate(tmp_out_count_t2dm = tmp_out_count_t2dm_snomed + tmp_out_count_t2dm_hes,
+#                       tmp_out_count_t1dm = tmp_out_count_t1dm_snomed + tmp_out_count_t1dm_hes)
+#   
+#   print("Diabetes count variables created successfully")
+#   
+#   # remove biologically implausible TC/HDL ratio values: https://doi.org/10.1093/ije/dyz099
+#   # Remove TC < 1.75 or > 20 
+#   # remove HDL < 0.4 or > 5
+#   df <- df %>%
+#     mutate(tmp_cov_num_cholesterol = replace(tmp_cov_num_cholesterol, tmp_cov_num_cholesterol < 1.75 | tmp_cov_num_cholesterol > 20, NA),
+#            tmp_cov_num_hdl_cholesterol = replace(tmp_cov_num_hdl_cholesterol, tmp_cov_num_hdl_cholesterol < 0.4 | tmp_cov_num_hdl_cholesterol > 5, NA)) %>%
+#     mutate(cov_num_tc_hdl_ratio = tmp_cov_num_cholesterol / tmp_cov_num_hdl_cholesterol) %>%
+#     mutate(cov_num_tc_hdl_ratio = replace(cov_num_tc_hdl_ratio, cov_num_tc_hdl_ratio > 50 | cov_num_tc_hdl_ratio < 1, NA))
+#   
+#   # replace NaN and Inf with NA's (probably only an issue with dummy data)
+#   df$cov_num_tc_hdl_ratio[is.nan(df$cov_num_tc_hdl_ratio)] <- NA
+#   df$cov_num_tc_hdl_ratio[is.infinite(df$cov_num_tc_hdl_ratio)] <- NA
+#   
+#   print("Cholesterol ratio variable created successfully and QC'd")
+#   summary(df$cov_num_tc_hdl_ratio)
+# 
+#   # define variables needed for diabetes algorithm 
+#   
+#   df <- df %>% 
+#     mutate(tmp_out_year_first_diabetes_diag = format(tmp_out_date_first_diabetes_diag,"%Y")) %>%
+#     mutate(tmp_out_year_first_diabetes_diag = as.integer(tmp_out_year_first_diabetes_diag),
+#            age_1st_diag = tmp_out_year_first_diabetes_diag - qa_num_birth_year) %>%
+#     mutate(age_1st_diag = replace(age_1st_diag, which(age_1st_diag < 0), NA)) %>% # assign negative ages to NA)
+#     mutate(age_under_35_30_1st_diag = ifelse(!is.na(age_1st_diag) &
+#                                                (age_1st_diag < 35 & 
+#                                                   (cov_cat_ethnicity == 1 | cov_cat_ethnicity == 2  | cov_cat_ethnicity == 5)) | 
+#                                                (age_1st_diag < 30), "Yes", "No")) %>%
+#     # HBA1C date var - earliest date for only those with >=47.5
+#     mutate(hba1c_date_step7 = as_date(case_when(tmp_out_num_max_hba1c_mmol_mol >= 47.5 ~ pmin(tmp_out_max_hba1c_mmol_mol_date, na.rm = TRUE))),
+#            # process codes - this is taking the first process code date in those individuals that have 5 or more process codes
+#            over5_pocc_step7 = as_date(case_when(tmp_out_count_poccdm_snomed >= 5 ~ pmin(out_date_poccdm, na.rm = TRUE))))
+#   
+#   print("COVID-19 and diabetes variables needed for algorithm created successfully")
+#   
+#   # Define diabetes outcome (using Sophie Eastwood algorithm) ----------------------------
+#   
+#   scripts_dir <- "analysis/preprocess"
+#   source(file.path(scripts_dir,"diabetes_algorithm.R"))
+#   df <- diabetes_algo(df)
+#   print("Diabetes algorithm run successfully")
+# }
 
 # Create vars for mental health outcomes -------------------------------------------------------------
 

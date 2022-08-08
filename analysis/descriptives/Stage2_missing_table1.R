@@ -57,8 +57,8 @@ cohort_end = as.Date("2021-12-14", format="%Y-%m-%d")
 
 stage2 <- function(cohort_name, covid_history, group) {
 
-  # Load relevant data
-  input <- readr::read_rds(file.path("output", paste0("input_",cohort_name,"_stage1_",group,".rds")))
+  # Load relevant datas
+  input <- readr::read_rds(file.path("output", paste0("input_",cohort_name,"_stage1.rds")))#group, - cohort_name,"_stage1_",".rds"
   
   # Select data depending on covid history
   if(covid_history == "without_covid_history"){

@@ -41,19 +41,19 @@ cohort_end = as.Date("2021-12-14", format="%Y-%m-%d")
 agebreaks <- c(0, 40, 60, 80, 111)
 agelabels <- c("18_39", "40_59", "60_79", "80_110")
 
-table_2_subgroups_output <- function(cohort_name, group){
+table_2_subgroups_output <- function(cohort_name){#, group
   
   #----------------------Define analyses of interests---------------------------
   active_analyses <- read_rds("lib/active_analyses.rds")
-  active_analyses <- active_analyses %>%dplyr::filter(active == "TRUE" & outcome_group == group)
+  active_analyses <- active_analyses %>%dplyr::filter(active == "TRUE")# & outcome_group == group)
   
   analyses_of_interest <- as.data.frame(matrix(ncol = 8,nrow = 0))
   
   outcomes<-active_analyses$outcome_variable
   
   #--------------------Load data and left join end dates------------------------
-  survival_data <- read_rds(paste0("output/input_", cohort_name,"_stage1_", group,".rds"))
-  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,"_",group,".rds"))  
+  survival_data <- read_rds(paste0("output/input_", cohort_name,"_stage1", ".rds"))#"_stage1_", group,
+  end_dates <- read_rds(paste0("output/follow_up_end_dates_",cohort_name,".rds"))  #cohort_name,"_",group,
   end_dates$index_date <- NULL
   
   survival_data<- survival_data %>% left_join(end_dates, by="patient_id")
@@ -94,8 +94,8 @@ table_2_subgroups_output <- function(cohort_name, group){
     analyses_to_run$subgroup <- row.names(analyses_to_run)
     colnames(analyses_to_run) <- c("run","subgroup")
     
-    analyses_to_run<- analyses_to_run %>% filter(run=="TRUE"  & subgroup != "active" & subgroup != "main" & subgroup !="venn") 
-    #analyses_to_run<- analyses_to_run %>% filter(run=="TRUE"  & subgroup != "active" & subgroup != "venn")  
+    #analyses_to_run<- analyses_to_run %>% filter(run=="TRUE"  & subgroup != "active" & subgroup != "main" & subgroup !="venn") 
+    analyses_to_run<- analyses_to_run %>% filter(run=="TRUE"  & subgroup != "active" & subgroup != "venn")  
     #analyses_to_run<-analyses_to_run %>% filter(run=="TRUE")# & subgroup !="active")
     rownames(analyses_to_run) <- NULL
     analyses_to_run <- analyses_to_run %>% select(!run)
@@ -113,6 +113,9 @@ table_2_subgroups_output <- function(cohort_name, group){
     index = which(active_analyses$outcome_variable == i)
     analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
     analyses_to_run$stratify_by_subgroup <- ifelse(is.na(analyses_to_run$stratify_by_subgroup),analyses_to_run$subgroup,analyses_to_run$stratify_by_subgroup)
+    #MH specific
+    #analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_recent_MH"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
+    # analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history_MH"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
     
     # Add in which covariates to stratify by
     analyses_to_run$stratify_by_subgroup=NA
@@ -123,12 +126,15 @@ table_2_subgroups_output <- function(cohort_name, group){
     index = which(active_analyses$outcome_variable == i)
     analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
     analyses_to_run$stratify_by_subgroup <- ifelse(is.na(analyses_to_run$stratify_by_subgroup),analyses_to_run$subgroup,analyses_to_run$stratify_by_subgroup)
+    #MH specific
+    #analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_recent_MH"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
+    # analyses_to_run$stratify_by_subgroup <- ifelse(startsWith(analyses_to_run$subgroup,"prior_history_MH"),active_analyses$prior_history_var[index],analyses_to_run$stratify_by_subgroup)
     
     # Add in relevant subgroup levels to specify which stratum to run for
     analyses_to_run$strata <- NA
     analyses_to_run$strata <- ifelse(analyses_to_run$subgroup=="covid_history","TRUE",analyses_to_run$strata)
     
-    for(k in c("covid_pheno_","agegp_","sex_","ethnicity_","prior_history_")){
+    for(k in c("covid_pheno_","agegp_","sex_","ethnicity_","prior_history_")){#,"prior_history_MH_","prior_recent_MH_")){
       analyses_to_run$strata <- ifelse(startsWith(analyses_to_run$subgroup,k),gsub(k,"",analyses_to_run$subgroup),analyses_to_run$strata)
     }
     analyses_of_interest <- rbind(analyses_of_interest,analyses_to_run)
@@ -146,6 +152,8 @@ table_2_subgroups_output <- function(cohort_name, group){
       startsWith(subgroup, "covid_pheno") ~ "covid_pheno",
       startsWith(subgroup, "ethnicity") ~ "ethnicity",
       startsWith(subgroup, "prior_history") ~ "prior_history",
+      #startsWith(subgroup, "prior_recent_MH") ~ "prior_recent_MH", #MH specific
+      #startsWith(subgroup, "prior_history_MH") ~ "prior_history_MH", #MH specific
       startsWith(subgroup, "sex") ~ "sex",
       TRUE ~ as.character(subgroup)))
   
@@ -227,7 +235,7 @@ table_2_subgroups_output <- function(cohort_name, group){
       TRUE ~ as.character(day_0_event_counts)))
   
   # write output for table2
-  write.csv(analyses_of_interest, file=paste0("output/review/descriptives/table2_",cohort_name,"_",group, ".csv"), row.names = F)
+  write.csv(analyses_of_interest, file=paste0("output/review/descriptives/table2_",cohort_name, ".csv"), row.names = F)#cohort_name,"_",group,
 }
 
 
@@ -246,7 +254,7 @@ table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_b
   
   # filter the population according to the subgroup level
   
-  for(i in c("ethnicity","sex","prior_history")){
+  for(i in c("ethnicity","sex","prior_history")){#,"prior_history_MH","prior_recent_MH"
     if(startsWith(subgroup,i)){
       data_active=data_active%>%filter_at(stratify_by_subgroup,all_vars(.==stratify_by))
     }
@@ -359,16 +367,23 @@ table_2_calculation <- function(survival_data, event,cohort,subgroup, stratify_b
 
 
 # Run function using specified commandArgs
-active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses %>% filter(active==TRUE)
-group <- unique(active_analyses$outcome_group)
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# active_analyses <- active_analyses %>% filter(active==TRUE)
+# group <- unique(active_analyses$outcome_group)
 
-
-for(i in group){
-  if (cohort_name == "both") {
-    table_2_subgroups_output("electively_unvaccinated", i)
-    table_2_subgroups_output("vaccinated", i)
-  } else{
-    table_2_subgroups_output(cohort_name, i)
-  }
+if (cohort_name == "both") {
+  table_2_subgroups_output("electively_unvaccinated")
+  table_2_subgroups_output("vaccinated")
+} else{
+  table_2_subgroups_output(cohort_name)
 }
+
+
+# for(i in group){
+#   if (cohort_name == "both") {
+#     table_2_subgroups_output("electively_unvaccinated", i)
+#     table_2_subgroups_output("vaccinated", i)
+#   } else{
+#     table_2_subgroups_output(cohort_name, i)
+#   }
+# }
