@@ -64,18 +64,7 @@ study = StudyDefinition(
     },
 
     # Specify index date for MH prevax
-    index_date_prevax_MH = patients.with_value_from_file(
-        f_path = 'outout/index_dates.csv',
-        returning = 'index_prevax',
-        returning_type = 'date',
-        date_format = 'YYYY-MM-DD',
-    ),
-    # expectations
-    default_expectations={
-        "date": {"earliest": study_dates["pandemic_start"], "latest": "today"},
-        "rate": "uniform",
-        "incidence": 0.1,
-    },
+    index_date_prevax_MH = "2020-01-01",
 
     # Define the study population 
     # NB: not all inclusions and exclusions are written into study definition
