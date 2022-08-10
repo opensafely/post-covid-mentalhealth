@@ -34,7 +34,7 @@ pandemic_start = study_dates["pandemic_start"]
 # cov_recent_ = between(index_date - 168 days, index_date - 1 day)
 # cov_history_ = on_or_before(index_date - 169 days)
 
-def generate_common_variables(index_date_variable,end_date_variable):#,index_date_MH):
+def generate_common_variables(index_date_variable,end_date_variable,index_date_MH):
     dynamic_variables = dict(
     
 # DEFINE EXPOSURES ------------------------------------------------------
@@ -151,20 +151,20 @@ def generate_common_variables(index_date_variable,end_date_variable):#,index_dat
 ####  MENTAL HEALTH OUTCOMES ####
 #################################
 
-    # ## Depression
-    #     # Primary Care
-    # tmp_out_date_depression_snomed=patients.with_these_clinical_events(
-    #     depression_snomed_clinical,
-    #     returning="date",
-    #     on_or_after=f"{index_date_variable}",
-    #     date_format="YYYY-MM-DD",
-    #     find_first_match_in_period=True,
-    #     return_expectations={
-    #         "date": {"earliest": "index_date_variable", "latest" : "today"},
-    #         "rate": "uniform",
-    #         "incidence": 0.1,
-    #     },
-    # ),
+    ## Depression
+        # Primary Care
+    tmp_out_date_depression_snomed=patients.with_these_clinical_events(
+        depression_snomed_clinical,
+        returning="date",
+        on_or_after=f"{index_date_variable}",
+        date_format="YYYY-MM-DD",
+        find_first_match_in_period=True,
+        return_expectations={
+            "date": {"earliest": "index_date_MH", "latest" : "today"},
+            "rate": "uniform",
+            "incidence": 0.1,
+        },
+    ),
     #     # HES
     # tmp_out_date_depression_hes=patients.admitted_to_hospital(
     #     returning="date_admitted",

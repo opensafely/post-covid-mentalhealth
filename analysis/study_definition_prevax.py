@@ -27,7 +27,7 @@ import study_definition_helper_functions as helpers
 from common_variables import generate_common_variables
 (
     dynamic_variables
-) = generate_common_variables(index_date_variable="index_date_prevax", end_date_variable="end_date_prevax")#, index_date_MH="index_date_prevax")
+) = generate_common_variables(index_date_variable="index_date_prevax", end_date_variable="end_date_prevax", index_date_MH="index_date_prevax_MH")
 
 ## Variables for deriving JCVI groups
 from grouping_variables import (
@@ -61,6 +61,20 @@ study = StudyDefinition(
         "date": {"earliest": study_dates["earliest_expec"], "latest": "today"},
         "rate": "uniform",
         "incidence": 0.5,
+    },
+
+    # Specify index date for MH prevax
+    index_date_prevax_MH = patients.with_value_from_file(
+        f_path = 'outout/index_dates.csv',
+        returning = 'index_prevax',
+        returning_type = 'date',
+        date_format = 'YYYY-MM-DD',
+    ),
+    # expectations
+    default_expectations={
+        "date": {"earliest": study_dates["pandemic_start"], "latest": "today"},
+        "rate": "uniform",
+        "incidence": 0.1,
     },
 
     # Define the study population 
