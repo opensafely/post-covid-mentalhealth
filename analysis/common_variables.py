@@ -160,7 +160,7 @@ def generate_common_variables(index_date_variable,end_date_variable,index_date_M
         date_format="YYYY-MM-DD",
         find_first_match_in_period=True,
         return_expectations={
-            "date": {"earliest": "index_date_MH", "latest" : "today"},
+            "date": {"earliest": index_date_MH, "latest" : "today"},
             "rate": "uniform",
             "incidence": 0.1,
         },
