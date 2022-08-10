@@ -27,7 +27,7 @@ import study_definition_helper_functions as helpers
 from common_variables import generate_common_variables
 (
     dynamic_variables
-) = generate_common_variables(index_date_variable="index_date_unvax", end_date_variable="end_date_unvax")
+) = generate_common_variables(index_date_variable="index_date_unvax", end_date_variable="end_date_unvax")#, index_date_MH="index__date_unvax")
 
 ## Variables for deriving JCVI groups
 from grouping_variables import (
