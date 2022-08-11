@@ -38,7 +38,6 @@ from grouping_variables import (
     pandemic_start
 )
 
-
 study = StudyDefinition(
 
     # Specify index date for study
@@ -62,8 +61,6 @@ study = StudyDefinition(
         "rate": "uniform",
         "incidence": 0.5,
     },
-
-    
 
     # Define the study population 
     # NB: not all inclusions and exclusions are written into study definition
