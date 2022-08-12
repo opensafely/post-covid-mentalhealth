@@ -82,8 +82,8 @@ preprocess <- function(cohort_name){
   # dates, numerics, factors, logicals
   
   df <- df %>%
-    #dplyr::rename(#tmp_out_max_hba1c_mmol_mol_date = tmp_out_num_max_hba1c_date,
-                  #tmp_out_bmi_date_measured = cov_num_bmi_date_measured) %>%
+    dplyr::rename(#tmp_out_max_hba1c_mmol_mol_date = tmp_out_num_max_hba1c_date,
+                  tmp_out_bmi_date_measured = cov_num_bmi_date_measured) %>%
     mutate(across(contains('_date'), ~ as.Date(as.character(.)))) %>% #convert to date format
     mutate(across(contains('_birth_year'), ~ format(as.Date(.), "%Y"))) %>% #convert numbers to numbers format p1
     mutate(across(contains('_num'), ~ as.numeric(.))) %>% #convert numbers to numbers format p2

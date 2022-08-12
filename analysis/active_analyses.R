@@ -74,7 +74,7 @@ for (i in 1:length(outcomes)) {
 }
 
 #Remove column covid_history
-#df[,8] <- FALSE
+df[,8] <- FALSE
 #Remove not necessary columns for prescriptions, primary and secondary care
 #df[c(2:4,6:8,13:15,17:18,21),c(9:24)] <- FALSE
 #df[c(2:4,6:8,13:15,17:18,21),c(9:24)] <- FALSE #remove unnecessary columns for prescriptions, primary, and secondary care
@@ -86,8 +86,9 @@ for (i in 1:length(outcomes)) {
 #df[c(2:4,6:11,13:15,17:21),c(1,8)]<- FALSE
 
 #Just depression
-df[c(2:21),1] <- FALSE
-df[,c(8:24)] <- FALSE
+df[c(5:21),1] <- FALSE
+df[,c(11:24)] <- FALSE
+df[c(2:4),c(9:10)] <- FALSE
 
 #------------------------------------------------------------------------------#
 

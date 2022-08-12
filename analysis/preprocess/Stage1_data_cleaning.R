@@ -51,7 +51,7 @@ args <- commandArgs(trailingOnly=TRUE)
 if(length(args)==0){
   # use for interactive testing
   cohort_name <- "all"
-  group <- "depression"
+  #group <- "depression"
 } else {
   cohort_name <- args[[1]]
 }
@@ -135,7 +135,7 @@ stage1 <- function(cohort_name){#, group
   
   ## cov_cat_bmi
   
-  input$cov_cat_bmi_groups <- ordered(input$cov_cat_bmi_groups, levels = c("Healthy_weight", "Underweight", "Overweight", "Obese", "Missing"))
+  #input$cov_cat_bmi_groups <- ordered(input$cov_cat_bmi_groups, levels = c("Healthy_weight", "Underweight", "Overweight", "Obese", "Missing"))
   
   ## cov_cat_sex
   levels(input$cov_cat_sex) <- list("Female" = "F", "Male" = "M")
@@ -152,6 +152,17 @@ stage1 <- function(cohort_name){#, group
   bin_factors <- colnames(input)[grepl("cov_bin_",colnames(input))]
   input[,bin_factors] <- lapply(input[,bin_factors], function(x) factor(x, levels = c("FALSE","TRUE")))
   
+  # QC for consultation variable
+  # max to 365 (average of one per day)
+  
+  # print("Consultation variable before QC")
+  # summary(input$cov_num_consulation_rate)
+  # 
+  # input <- input %>%
+  #   mutate(cov_num_consulation_rate = replace(cov_num_consulation_rate, cov_num_consulation_rate > 365, 365))
+  # 
+  # print("Consultation variable after QC")
+  # summary(input$cov_num_consulation_rate)
   
   #####################
   # 2. Apply QA rules #
@@ -220,7 +231,7 @@ stage1 <- function(cohort_name){#, group
   # Remove QA variables from dataset
   input <- input_QA[ , !names(input_QA) %in% c("qa_num_birth_year", "qa_bin_pregnancy", "qa_bin_prostate_cancer")]
   
-  print(paste0(cohort_name, " ", group, " ", nrow(input), " rows in the input file after QA"))
+  #print(paste0(cohort_name, " ", nrow(input), " rows in the input file after QA"))#cohort_name, " ", group,
   
   #########################################
   # 3. Apply exclusion/inclusion criteria #
@@ -282,7 +293,7 @@ stage1 <- function(cohort_name){#, group
   print(meta_data_factors)
   sink()
   
-  print(paste0(cohort_name, " ",nrow(input), " rows in the input file after common inclusion criteria")) #cohort_name, " ", group, " ", nrow(
+  #print(paste0(cohort_name, " ",nrow(input), " rows in the input file after common inclusion criteria")) #cohort_name, " ", group, " ", nrow(
   
   #-------------------------------------------------#
   # 3.b. Apply criteria specific to each sub-cohort #
@@ -373,7 +384,7 @@ stage1 <- function(cohort_name){#, group
     
   }
   
-  print(paste0(cohort_name, " ",nrow(input), " rows in the input file after cohort specificinclusion criteria")) #cohort_name, " ", group, " ",
+  #print(paste0(cohort_name, " ",nrow(input), " rows in the input file after cohort specificinclusion criteria")) #cohort_name, " ", group, " ",
   
   #-------------------------------------------------#
   # 3.c. Apply outcome specific exclusions criteria #
@@ -487,9 +498,9 @@ stage1 <- function(cohort_name){#, group
 }
 
 # Run function using outcome group
-active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses %>% filter(active==TRUE)
-group <- unique(active_analyses$outcome_group)
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# active_analyses <- active_analyses %>% filter(active==TRUE)
+# group <- unique(active_analyses$outcome_group)
 
   if (cohort_name == "all") {
     stage1("prevax")
