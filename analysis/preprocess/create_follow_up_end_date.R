@@ -149,16 +149,24 @@ follow_up_end_dates <- function(cohort_name, group){
 
 # Run function using specified commandArgs and active analyses for group
 
-active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses %>% filter(active==TRUE)
-group <- unique(active_analyses$outcome_group)
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# active_analyses <- active_analyses %>% filter(active==TRUE)
+# group <- unique(active_analyses$outcome_group)
 
-for(i in group){
   if (cohort_name == "all") {
-    follow_up_end_dates("prevax", i)
-    follow_up_end_dates("vax", i)
-    follow_up_end_dates("unvax", i)
+    follow_up_end_dates("prevax")
+    follow_up_end_dates("vax")
+    follow_up_end_dates("unvax")
   } else{
-    follow_up_end_dates(cohort_name, i)
-  }
+    follow_up_end_dates(cohort_name)
 }
+
+# for(i in group){
+#   if (cohort_name == "all") {
+#     follow_up_end_dates("prevax", i)
+#     follow_up_end_dates("vax", i)
+#     follow_up_end_dates("unvax", i)
+#   } else{
+#     follow_up_end_dates(cohort_name, i)
+#   }
+# }
