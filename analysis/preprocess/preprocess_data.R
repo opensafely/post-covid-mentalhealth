@@ -78,6 +78,13 @@ preprocess <- function(cohort_name){
     mutate(cov_bin_obesity = ifelse(cov_bin_obesity == TRUE | cov_cat_bmi_groups == "Obese", TRUE, FALSE)) %>%
     dplyr::select(- cov_num_bmi)
   
+  # Overwrite vaccination information for dummy data only ------------------------
+  
+  # if(Sys.getenv("OPENSAFELY_BACKEND") %in% c("", "expectations")) {
+  #   source("analysis/modify_dummy_vax_data.R")
+  #   print("Vaccine information overwritten successfully")
+  # }
+  # 
   # Format columns -----------------------------------------------------
   # dates, numerics, factors, logicals
   

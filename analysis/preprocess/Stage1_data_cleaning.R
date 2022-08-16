@@ -51,7 +51,7 @@ args <- commandArgs(trailingOnly=TRUE)
 if(length(args)==0){
   # use for interactive testing
   cohort_name <- "all"
-  group <- "depression"
+  #group <- "depression"
 } else {
   cohort_name <- args[[1]]
 }
@@ -134,8 +134,7 @@ stage1 <- function(cohort_name){#, group
   input$cov_cat_smoking_status <- ordered(input$cov_cat_smoking_status, levels = c("Never smoker","Ever smoker","Current smoker","Missing"))
   
   ## cov_cat_bmi
-  
-  input$cov_cat_bmi_groups <- ordered(input$cov_cat_bmi_groups, levels = c("Healthy_weight", "Underweight", "Overweight", "Obese", "Missing"))
+  #input$cov_cat_bmi_groups <- ordered(input$cov_cat_bmi_groups, levels = c("Healthy_weight", "Underweight", "Overweight", "Obese", "Missing"))
   
   ## cov_cat_sex
   levels(input$cov_cat_sex) <- list("Female" = "F", "Male" = "M")
@@ -220,7 +219,7 @@ stage1 <- function(cohort_name){#, group
   # Remove QA variables from dataset
   input <- input_QA[ , !names(input_QA) %in% c("qa_num_birth_year", "qa_bin_pregnancy", "qa_bin_prostate_cancer")]
   
-  print(paste0(cohort_name, " ", group, " ", nrow(input), " rows in the input file after QA"))
+  print(paste0(cohort_name, " ", nrow(input), " rows in the input file after QA"))#cohort_name, " ", group, " ", nrow
   
   #########################################
   # 3. Apply exclusion/inclusion criteria #
@@ -487,9 +486,9 @@ stage1 <- function(cohort_name){#, group
 }
 
 # Run function using outcome group
-active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses %>% filter(active==TRUE)
-group <- unique(active_analyses$outcome_group)
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# active_analyses <- active_analyses %>% filter(active==TRUE)
+# group <- unique(active_analyses$outcome_group)
 
   if (cohort_name == "all") {
     stage1("prevax")
