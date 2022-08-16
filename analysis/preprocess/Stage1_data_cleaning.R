@@ -134,7 +134,6 @@ stage1 <- function(cohort_name){#, group
   input$cov_cat_smoking_status <- ordered(input$cov_cat_smoking_status, levels = c("Never smoker","Ever smoker","Current smoker","Missing"))
   
   ## cov_cat_bmi
-  
   #input$cov_cat_bmi_groups <- ordered(input$cov_cat_bmi_groups, levels = c("Healthy_weight", "Underweight", "Overweight", "Obese", "Missing"))
   
   ## cov_cat_sex
@@ -231,7 +230,7 @@ stage1 <- function(cohort_name){#, group
   # Remove QA variables from dataset
   input <- input_QA[ , !names(input_QA) %in% c("qa_num_birth_year", "qa_bin_pregnancy", "qa_bin_prostate_cancer")]
   
-  #print(paste0(cohort_name, " ", nrow(input), " rows in the input file after QA"))#cohort_name, " ", group,
+  print(paste0(cohort_name, " ", nrow(input), " rows in the input file after QA"))#cohort_name, " ", group,
   
   #########################################
   # 3. Apply exclusion/inclusion criteria #

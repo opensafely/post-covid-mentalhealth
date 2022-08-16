@@ -25,14 +25,14 @@ cohort_end_date_prevax <- as.Date("2021-06-18")
 cohort_start_date_delta <- as.Date("2021-06-01")
 cohort_end_date_delta <- as.Date("2021-12-14")
 
-follow_up_end_dates <- function(cohort_name, group){
+follow_up_end_dates <- function(cohort_name){#, group
   
   ## Read in active analyses table and filter to relevant outcomes
   
   active_analyses <- read_rds("lib/active_analyses.rds")
   active_analyses <- active_analyses %>% 
     filter(active == "TRUE") %>%  #& outcome_group == group) %>% 
-    select(outcome_variable, outcome_group)
+    select(outcome_variable)#, outcome_group)
   
   # Load relevant data
   input <- read_rds(paste0("output/input_",cohort_name,"_stage1",".rds")) #cohort_name,"_stage1_",group,
@@ -153,9 +153,10 @@ follow_up_end_dates <- function(cohort_name, group){
 # active_analyses <- active_analyses %>% filter(active==TRUE)
 # group <- unique(active_analyses$outcome_group)
 
-if (cohort_name == "both") {
-  follow_up_end_dates("electively_unvaccinated")
-  follow_up_end_dates("vaccinated")
+if (cohort_name == "all") {
+  follow_up_end_dates("prevax")
+  follow_up_end_dates("vax")
+  follow_up_end_dates("unvax")
 } else{
   follow_up_end_dates(cohort_name)
 }
