@@ -19,7 +19,7 @@ defaults_list <- list(
 active_analyses <- read_rds("lib/active_analyses.rds")
 active_analyses_table <- subset(active_analyses, active_analyses$active =="TRUE")
 outcomes_model <- active_analyses_table$outcome_variable %>% str_replace("out_date_", "")
-cohort_to_run <- c("vaccinated", "electively_unvaccinated")
+cohort_to_run <- c("prevax", "vax", "unvax")
 analyses <- c("main", "subgroups")
 
 # create action functions ----
@@ -76,10 +76,10 @@ convert_comment_actions <-function(yaml.txt){
 }
 
 
-# #################################################
-# ## Function for typical actions to analyse data #
-# #################################################
-# # Updated to a typical action running Cox models for one outcome
+#################################################
+## Function for typical actions to analyse data #
+#################################################
+# Updated to a typical action running Cox models for one outcome
 # apply_model_function <- function(outcome, cohort){
 #   splice(
 #     comment(glue("Cox model for {outcome} - {cohort}")),
@@ -87,42 +87,69 @@ convert_comment_actions <-function(yaml.txt){
 #       name = glue("Analysis_cox_{outcome}_{cohort}"),
 #       run = "r:latest analysis/model/01_cox_pipeline.R",
 #       arguments = c(outcome,cohort),
-#       needs = list("stage1_data_cleaning_both", glue("stage1_end_date_table_{cohort}"),"select_covariates_for_hosp_covid"),
+#       needs = list("stage1_data_cleaning_all", glue("stage1_end_date_table_{cohort}"),glue("stage_2_events_split_by_covariate_level_{cohort}")),
 #       moderately_sensitive = list(
 #         analyses_not_run = glue("output/review/model/analyses_not_run_{outcome}_{cohort}.csv"),
 #         compiled_hrs_csv = glue("output/review/model/suppressed_compiled_HR_results_{outcome}_{cohort}.csv"),
 #         compiled_hrs_csv_to_release = glue("output/review/model/suppressed_compiled_HR_results_{outcome}_{cohort}_to_release.csv"),
-#         compiled_event_counts_csv = glue("output/review/model/suppressed_compiled_event_counts_{outcome}_{cohort}.csv")
+#         compiled_event_counts_NOT_for_release_csv = glue("output/review/model/suppressed_compiled_event_counts_NOT_for_release_{outcome}_{cohort}.csv"),
+#         compiled_event_counts_NOT_for_release_csv_non_supressed = glue("output/review/model/compiled_event_counts_NOT_for_release_{outcome}_{cohort}.csv"),
+#         describe_data_surv = glue("output/not-for-review/describe_data_surv_{outcome}_*_{cohort}_*_time_periods.txt")
+#       ),
+#       highly_sensitive = list(
+#         dataset = glue("output/input_{outcome}_*_{cohort}_*_time_periods.csv"),
+#         sampled_dataset = glue("output/input_sampled_data_{outcome}_*_{cohort}_*_time_periods.csv")
 #       )
 #     )
 #   )
 # }
 
-# table2 <- function(cohort){
+# Updated to a typical action running Cox models for one outcome
+# apply_model_function_covariate_testing <- function(outcome, cohort){
 #   splice(
-#     comment(glue("Stage 4 - Table 2 - {cohort} cohort")),
+#     comment(glue("Cox model {outcome} - {cohort}, covariate_testing")),
 #     action(
-#       name = glue("stage4_table_2_{cohort}"),
-#       run = "r:latest analysis/descriptives/table_2.R",
-#       arguments = c(cohort),
-#       needs = list("stage1_data_cleaning_both",glue("stage1_end_date_table_{cohort}")),
+#       name = glue("Analysis_cox_{outcome}_{cohort}_covariate_testing"),
+#       run = "r:latest analysis/model/01_cox_pipeline.R",
+#       arguments = c(outcome,cohort,"test_all"),
+#       needs = list("stage1_data_cleaning_all", glue("stage1_end_date_table_{cohort}"),glue("stage_2_events_split_by_covariate_level_{cohort}")),
 #       moderately_sensitive = list(
-#         input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
+#         analyses_not_run = glue("output/review/model/analyses_not_run_{outcome}_{cohort}_covariate_testing_test_all.csv"),
+#         compiled_hrs_csv = glue("output/review/model/suppressed_compiled_HR_results_{outcome}_{cohort}_covariate_testing_test_all.csv"),
+#         compiled_hrs_csv_to_release = glue("output/review/model/suppressed_compiled_HR_results_{outcome}_{cohort}_covariate_testing_test_all_to_release.csv"),
+#         compiled_event_counts_NOT_for_release_csv = glue("output/review/model/suppressed_compiled_event_counts_NOT_for_release_{outcome}_{cohort}_covariate_testing_test_all.csv"),
+#         compiled_event_counts_NOT_for_release_csv_non_supressed = glue("output/review/model/compiled_event_counts_NOT_for_release_{outcome}_{cohort}_covariate_testing_test_all.csv"),
+#         describe_data_surv = glue("output/not-for-review/describe_data_surv_{outcome}_*_{cohort}_*_covariate_testing_test_all.txt")
 #       )
 #     )
 #   )
 # }
+table2 <- function(cohort){
+  splice(
+    comment(glue("Stage 4 - Table 2 - {cohort} cohort")),
+    action(
+      name = glue("stage4_table_2_{cohort}"),
+      run = "r:latest analysis/descriptives/table_2.R",
+      arguments = c(cohort),
+      needs = list("stage1_data_cleaning_all",glue("stage1_end_date_table_{cohort}")),
+      moderately_sensitive = list(
+        input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")#table2_{cohort}_*
+      )
+    )
+  )
+}
 
-# hosp_event_counts_by_covariate_level <- function(cohort){
+# event_counts_by_covariate_level <- function(cohort){
 #   splice(
-#     comment(glue("Hospitalised event counts by covariate - {cohort}")),
 #     action(
-#       name = glue("hosp_event_counts_by_covariate_level_{cohort}"),
-#       run = "r:latest analysis/descriptives/hospitalised_events_split_by_time_period_and_covariate_level.R",
+#       name = glue("stage_2_events_split_by_covariate_level_{cohort}"),
+#       run = "r:latest analysis/descriptives/events_split_by_covariate_level.R",
 #       arguments = c(cohort),
-#       needs = list("stage1_data_cleaning_both",glue("stage1_end_date_table_{cohort}")),
+#       needs = list("stage1_data_cleaning_all",glue("stage1_end_date_table_{cohort}")),
 #       moderately_sensitive = list(
-#         hosp_counts_by_covariate = glue("output/not-for-review/hospitalised_event_counts_by_covariate_level_{cohort}.csv")
+#         counts_by_covariate_level = glue("output/not-for-review/event_counts_by_covariate_level_{cohort}_*.csv"),
+#         selected_covariates = glue("output/not-for-review/non_zero_selected_covariates_{cohort}_*.csv")
+#         
 #       )
 #     )
 #   )
@@ -285,6 +312,7 @@ actions_list <- splice(
       end_date_table = glue("output/follow_up_end_dates_unvax.rds")#unvax_*
     )
   ),
+  
   #comment("Stage 2 - Missing - Table 1 - all cohorts"),
   action(
     name = "stage2_missing_table1_all",
@@ -295,8 +323,39 @@ actions_list <- splice(
       DateChecks = glue("output/not-for-review/Check_dates_range_*.csv"),
       Descriptive_Table = glue("output/review/descriptives/Table1_*.csv")
     )
-  )
+  ),
+  
+  # #comment("Stage 2 - Event counts by covariate level),
+  # splice(
+  #   # over cohorts
+  #   unlist(lapply(cohort_to_run, function(x) event_counts_by_covariate_level(cohort = x)), recursive = FALSE)
+  # ),
+  
+  #comment("Stage 3 - Diabetes flow - prevax"),  
+  #comment("Stage 3 - Diabetes flow - vax"), 
+  #comment("Stage 3 - Diabetes flow - unvax"),
+  
+  #comment("Stage 4 - Create input for table2"),
+  splice(
+    # over outcomes
+    unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
+  )#,
+  # #comment("Stage 4 - Venn diagrams - all cohorts"),
+  # action(
+  #   name = "stage4_venn_diagram_all",
+  #   run = "r:latest analysis/descriptives/venn_diagram.R all",
+  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
+  #   moderately_sensitive = list(
+  #     venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*")
+  #   )
+  # ),
+  # #comment("Stage 5 - Apply models"),
+  # splice(
+  #   # over outcomes
+  #   unlist(lapply(outcomes_model, function(x) splice(unlist(lapply(cohort_to_run, function(y) apply_model_function(outcome = x, cohort = y)), recursive = FALSE))
+  #   ),recursive = FALSE))
 )
+
   
   
   # #comment("Generate dummy data for study_definition - index"),
