@@ -95,7 +95,13 @@ study = StudyDefinition(
         f_path = 'output/index_dates.csv',
         returning = 'cov_cat_sex',
         returning_type = 'str',  
-        ),
+    ),
+    #Death date
+    death_date = patients.with_value_from_file(
+        f_path = 'output/index_dates.csv',
+        returning = 'death_date',
+        returning_type = 'date', 
+    ),
 
     # Define vaccine eligibility variables
 

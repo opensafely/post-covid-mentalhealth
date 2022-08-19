@@ -1223,14 +1223,14 @@ def generate_common_variables(index_date_variable,end_date_variable,index_date_M
     tmp_cov_bin_serious_mental_illness_snomed=patients.with_these_clinical_events(
         serious_mental_illness_snomed_clinical,
         returning='binary_flag',
-        on_or_before=f"{index_date_variable} + 1 day",
+        on_or_before=f"{index_date_variable} - 1 day",
         return_expectations={"incidence": 0.03},
     ),
      ### HES
     tmp_cov_bin_serious_mental_illness_icd10=patients.admitted_to_hospital(
         returning='binary_flag',
         with_these_diagnoses=serious_mental_illness_icd10,
-        on_or_before=f"{index_date_variable} + 1 day",
+        on_or_before=f"{index_date_variable} - 1 day",
         return_expectations={"incidence": 0.03},
     ),
      ### Combined serious mental illness
@@ -1243,14 +1243,14 @@ def generate_common_variables(index_date_variable,end_date_variable,index_date_M
     tmp_cov_bin_self_harm_snomed=patients.with_these_clinical_events(
         self_harm_15_10_combined_snomed,
         returning='binary_flag',
-        on_or_before=f"{index_date_variable} + 1 day",
+        on_or_before=f"{index_date_variable} - 1 day",
         return_expectations={"incidence": 0.1},
     ),
     ### HES
     tmp_cov_bin_self_harm_hes=patients.admitted_to_hospital(
         returning='binary_flag',
         with_these_diagnoses=self_harm_15_10_combined_icd,
-        on_or_before=f"{index_date_variable} + 1 day",
+        on_or_before=f"{index_date_variable} - 1 day",
         return_expectations={"incidence": 0.1},
     ),
     ### Combined Self harm
