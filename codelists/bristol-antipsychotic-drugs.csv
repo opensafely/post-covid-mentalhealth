@@ -1,0 +1,600 @@
+code,term
+040201,Antipsychotic drugs
+0402010,Antipsychotic drugs
+040201010,Zuclopenthixol acetate
+040201010AA,Zuclopenthixol acetate
+040201010AAAAAA,Zuclopenthixol acetate 50mg/1ml inj ampoules
+040201010AAABAB,Zuclopenthixol acetate 100mg/2ml inj ampoules
+040201010BB,Clopixol Acuphase
+040201010BBAAAA,Clopixol Acuphase 50mg/1ml solution for injection ampoules
+040201010BBABAB,Clopixol Acuphase 100mg/2ml solution for injection ampoules
+040201030,Risperidone
+040201030AA,Risperidone (Systemic)
+040201030AAAAAA,Risperidone 1mg tablets
+040201030AAABAB,Risperidone 2mg tablets
+040201030AAACAC,Risperidone 3mg tablets
+040201030AAADAD,Risperidone 4mg tablets
+040201030AAAEAE,Risperidone 1mg/ml oral solution sugar free
+040201030AAAFAF,Risperidone 6mg tablets
+040201030AAAKAK,Risperidone 500microgram tablets
+040201030AAALAL,Risperidone 1mg orodispersible tablets sugar free
+040201030AAAMAM,Risperidone 2mg orodispersible tablets sugar free
+040201030AAANAN,Risperidone 500microgram orodispersible tablets sugar free
+040201030AAAPAP,Risperidone 3mg orodispersible tablets sugar free
+040201030AAAQAQ,Risperidone 4mg orodispersible tablets sugar free
+040201030AAARAR,Risperidone 125micrograms/5ml oral solution
+040201030AAASAS,Risperidone 250micrograms/5ml oral suspension
+040201030AAATAT,Risperidone 250microgram tablets
+040201030BB,Risperdal
+040201030BBAAAA,Risperdal 1mg tablets
+040201030BBABAB,Risperdal 2mg tablets
+040201030BBACAC,Risperdal 3mg tablets
+040201030BBADAD,Risperdal 4mg tablets
+040201030BBAEAE,Risperdal 1mg/ml oral solution
+040201030BBAFAF,Risperdal 6mg tablets
+040201030BBAGAK,Risperdal 500microgram tablets
+040201030BBAHAL,Risperdal Quicklet 1mg orodispersible tablets
+040201030BBAIAM,Risperdal Quicklet 2mg orodispersible tablets
+040201030BBAJAN,Risperdal Quicklet 500microgram orodispersible tablets
+040201030BBAKAP,Risperdal Quicklet 3mg orodispersible tablets
+040201030BBALAQ,Risperdal Quicklet 4mg orodispersible tablets
+040201050,Sertindole
+040201050AA,Sertindole
+040201050AAAAAA,Sertindole 4mg tablets
+040201050AAABAB,Sertindole 12mg tablets
+040201050AAACAC,Sertindole 16mg tablets
+040201050AAADAD,Sertindole 20mg tablets
+040201050BB,Serdolect
+040201050BBAAAA,Serdolect 4mg tablets
+040201050BBABAB,Serdolect 12mg tablets
+040201050BBACAC,Serdolect 16mg tablets
+040201050BBADAD,Serdolect 20mg tablets
+040201060,Olanzapine
+040201060AA,Olanzapine
+040201060AAAAAA,Olanzapine 5mg tablets
+040201060AAABAB,Olanzapine 7.5mg tablets
+040201060AAACAC,Olanzapine 10mg tablets
+040201060AAADAD,Olanzapine 2.5mg tablets
+040201060AAAEAE,Olanzapine 5mg oral lyophilisates sugar free
+040201060AAAFAF,Olanzapine 10mg oral lyophilisates sugar free
+040201060AAAIAI,Olanzapine 2.5mg/5ml oral solution
+040201060AAAJAJ,Olanzapine 1.25mg/5ml oral liquid
+040201060AAAKAK,Olanzapine 15mg oral lyophilisates sugar free
+040201060AAALAL,Olanzapine 15mg tablets
+040201060AAANAN,Olanzapine 10mg powder for solution for injection vials
+040201060AAAPAP,Olanzapine 20mg oral lyophilisates sugar free
+040201060AAAQAQ,Olanzapine 20mg tablets
+040201060AAASAS,Olanzapine 5mg orodispersible tablets sugar free
+040201060AAATAT,Olanzapine 10mg orodispersible tablets sugar free
+040201060AAAUAU,Olanzapine 15mg orodispersible tablets sugar free
+040201060AAAVAV,Olanzapine 20mg orodispersible tablets sugar free
+040201060AAAWAW,Olanzapine 5mg orodispersible tablets
+040201060AAAXAX,Olanzapine 10mg orodispersible tablets
+040201060AAAYAY,Olanzapine 15mg orodispersible tablets
+040201060AAAZAZ,Olanzapine 20mg orodispersible tablets
+040201060AABABA,Olanzapine 2.5mg/5ml oral suspension
+040201060AABBBB,Olanzapine 12.5mg/5ml oral suspension
+040201060AABCBC,Olanzapine 15mg/5ml oral solution
+040201060AABDBD,Olanzapine 6mg/5ml oral suspension
+040201060AABEBE,Olanzapine 6.5mg/5ml oral suspension
+040201060AABFBF,Olanzapine 5mg/5ml oral suspension
+040201060AABGBG,Olanzapine 2.5mg orodispersible tablets sugar free
+040201060AABHBH,Olanzapine 7.5mg orodispersible tablets sugar free
+040201060BB,Zyprexa
+040201060BBAAAA,Zyprexa 5mg tablets
+040201060BBABAB,Zyprexa 7.5mg tablets
+040201060BBACAC,Zyprexa 10mg tablets
+040201060BBADAD,Zyprexa 2.5mg tablets
+040201060BBAEAE,Zyprexa 5mg Velotabs
+040201060BBAFAF,Zyprexa 10mg Velotabs
+040201060BBAGAK,Zyprexa 15mg Velotabs
+040201060BBAHAL,Zyprexa 15mg tablets
+040201060BBAIAN,Zyprexa 10mg powder for solution for injection vials
+040201060BBAJAP,Zyprexa 20mg Velotabs
+040201060BBAKAQ,Zyprexa 20mg tablets
+040201060BC,Zalasta
+040201060BCAAAD,Zalasta 2.5mg tablets
+040201060BCABAA,Zalasta 5mg tablets
+040201060BCACAB,Zalasta 7.5mg tablets
+040201060BCADAC,Zalasta 10mg tablets
+040201060BCAEAL,Zalasta 15mg tablets
+040201060BCAFAQ,Zalasta 20mg tablets
+040201060BCAGAS,Zalasta 5mg orodispersible tablets
+040201060BCAHAT,Zalasta 10mg orodispersible tablets
+040201060BCAIAU,Zalasta 15mg orodispersible tablets
+040201060BCAJAV,Zalasta 20mg orodispersible tablets
+040201060BD,Arkolamyl
+040201060BDAAAT,Arkolamyl 10mg orodispersible tablets
+040201060BDABAU,Arkolamyl 15mg orodispersible tablets
+040201060BDACAS,Arkolamyl 5mg orodispersible tablets
+040201060BDADAV,Arkolamyl 20mg orodispersible tablets
+0402010A0,Amisulpride
+0402010A0AA,Amisulpride
+0402010A0AAAAAA,Amisulpride 200mg tablets
+0402010A0AAABAB,Amisulpride 50mg tablets
+0402010A0AAACAC,Amisulpride 50mg/5ml oral liquid
+0402010A0AAADAD,Amisulpride 25mg/5ml oral liquid
+0402010A0AAAEAE,Amisulpride 400mg tablets
+0402010A0AAAGAG,Amisulpride 100mg tablets
+0402010A0AAAHAH,Amisulpride 100mg/ml oral solution sugar free
+0402010A0AAAJAJ,Amisulpride 12.5mg/5ml oral liquid
+0402010A0AAAMAM,Amisulpride 200mg/5ml oral solution
+0402010A0BB,Solian
+0402010A0BBAAAA,Solian 200 tablets
+0402010A0BBABAB,Solian 50 tablets
+0402010A0BBACAE,Solian 400 tablets
+0402010A0BBAEAG,Solian 100 tablets
+0402010A0BBAFAH,Solian 100mg/ml oral solution
+0402010AB,Quetiapine
+0402010ABAA,Quetiapine
+0402010ABAAABAB,Quetiapine 25mg tablets
+0402010ABAAACAC,Quetiapine 100mg tablets
+0402010ABAAADAD,Quetiapine 200mg tablets
+0402010ABAAAEAE,Quetiapine 125mg/5ml oral liquid
+0402010ABAAAFAF,Quetiapine 150mg tablets
+0402010ABAAAGAG,Generic Seroquel tablets starter pack
+0402010ABAAAHAH,Quetiapine 25mg/5ml oral solution
+0402010ABAAAIAI,Quetiapine 12.5mg/5ml oral solution
+0402010ABAAAJAJ,Quetiapine 150mg/5ml oral liquid
+0402010ABAAAKAK,Quetiapine 300mg tablets
+0402010ABAAALAL,Quetiapine 50mg/5ml oral solution
+0402010ABAAAMAM,Quetiapine 100mg/5ml oral liquid
+0402010ABAAANAN,Quetiapine 50mg oral powder sachets
+0402010ABAAAPAP,Quetiapine 100mg oral powder sachets
+0402010ABAAAQAQ,Quetiapine 25mg oral powder sachets
+0402010ABAAARAR,Quetiapine 200mg/5ml oral suspension
+0402010ABAAATAT,Quetiapine 400mg/5ml oral liquid
+0402010ABAAAUAU,Quetiapine 75mg/5ml oral liquid
+0402010ABAAAVAV,Quetiapine 50mg modified-release tablets
+0402010ABAAAWAW,Quetiapine 200mg modified-release tablets
+0402010ABAAAXAX,Quetiapine 300mg modified-release tablets
+0402010ABAAAYAY,Quetiapine 400mg modified-release tablets
+0402010ABAAAZAZ,Quetiapine 6.25mg/5ml oral liquid
+0402010ABAABABA,Quetiapine 150mg modified-release tablets
+0402010ABAABBBB,Quetiapine 12.5mg/5ml oral suspension
+0402010ABAABDBD,Quetiapine 25mg/5ml oral suspension
+0402010ABAABEBE,Quetiapine 50mg/5ml oral suspension
+0402010ABAABFBF,Quetiapine 20mg/ml oral suspension sugar free
+0402010ABAABGBG,Quetiapine 600mg modified-release tablets
+0402010ABBB,Seroquel
+0402010ABBBABAB,Seroquel 25mg tablets
+0402010ABBBACAC,Seroquel 100mg tablets
+0402010ABBBADAD,Seroquel 200mg tablets
+0402010ABBBAEAF,Seroquel 150mg tablets
+0402010ABBBAFAG,Seroquel tablets starter pack
+0402010ABBBAGAK,Seroquel 300mg tablets
+0402010ABBBAHAV,Seroquel XL 50mg tablets
+0402010ABBBAIAW,Seroquel XL 200mg tablets
+0402010ABBBAJAX,Seroquel XL 300mg tablets
+0402010ABBBAKAY,Seroquel XL 400mg tablets
+0402010ABBBALBA,Seroquel XL 150mg tablets
+0402010ABBC,Sondate
+0402010ABBCAAAV,Sondate XL 50mg tablets
+0402010ABBCABAW,Sondate XL 200mg tablets
+0402010ABBCACAX,Sondate XL 300mg tablets
+0402010ABBCADAY,Sondate XL 400mg tablets
+0402010ABBCAEBA,Sondate XL 150mg tablets
+0402010ABBD,Tenprolide XL
+0402010ABBDAAAV,Tenprolide XL 50mg tablets
+0402010ABBDABAW,Tenprolide XL 200mg tablets
+0402010ABBDACAX,Tenprolide XL 300mg tablets
+0402010ABBDADAY,Tenprolide XL 400mg tablets
+0402010ABBE,Seotiapim XL
+0402010ABBEAAAW,Seotiapim XL 200mg tablets
+0402010ABBEABAY,Seotiapim XL 400mg tablets
+0402010ABBEACAX,Seotiapim XL 300mg tablets
+0402010ABBF,Ebesque XL
+0402010ABBFAAAV,Ebesque XL 50mg tablets
+0402010ABBFABAW,Ebesque XL 200mg tablets
+0402010ABBFACAX,Ebesque XL 300mg tablets
+0402010ABBFADAY,Ebesque XL 400mg tablets
+0402010ABBG,Atrolak XL
+0402010ABBGAAAV,Atrolak XL 50mg tablets
+0402010ABBGABAW,Atrolak XL 200mg tablets
+0402010ABBGACAX,Atrolak XL 300mg tablets
+0402010ABBGADAY,Atrolak XL 400mg tablets
+0402010ABBGAEBA,Atrolak XL 150mg tablets
+0402010ABBH,Zaluron XL
+0402010ABBHAAAV,Zaluron XL 50mg tablets
+0402010ABBHABBA,Zaluron XL 150mg tablets
+0402010ABBHACAW,Zaluron XL 200mg tablets
+0402010ABBHADAX,Zaluron XL 300mg tablets
+0402010ABBHAEAY,Zaluron XL 400mg tablets
+0402010ABBI,Biquelle XL
+0402010ABBIAAAV,Biquelle XL 50mg tablets
+0402010ABBIABBA,Biquelle XL 150mg tablets
+0402010ABBIACAW,Biquelle XL 200mg tablets
+0402010ABBIADAX,Biquelle XL 300mg tablets
+0402010ABBIAEAY,Biquelle XL 400mg tablets
+0402010ABBIAFBG,Biquelle XL 600mg tablets
+0402010ABBJ,Mintreleq XL
+0402010ABBJAAAV,Mintreleq XL 50mg tablets
+0402010ABBJABBA,Mintreleq XL 150mg tablets
+0402010ABBJACAW,Mintreleq XL 200mg tablets
+0402010ABBJADAX,Mintreleq XL 300mg tablets
+0402010ABBJAEAY,Mintreleq XL 400mg tablets
+0402010ABBK,Psyquet XL
+0402010ABBKAAAV,Psyquet XL 50mg tablets
+0402010ABBKABBA,Psyquet XL 150mg tablets
+0402010ABBKACAW,Psyquet XL 200mg tablets
+0402010ABBKADAX,Psyquet XL 300mg tablets
+0402010ABBKAEAY,Psyquet XL 400mg tablets
+0402010ABBL,Brancico XL
+0402010ABBLAAAX,Brancico XL 300mg tablets
+0402010ABBLABAW,Brancico XL 200mg tablets
+0402010ABBLACBA,Brancico XL 150mg tablets
+0402010ABBLADAV,Brancico XL 50mg tablets
+0402010ABBLAEAY,Brancico XL 400mg tablets
+0402010AC,Zotepine
+0402010ACAA,Zotepine
+0402010ACAAAAAA,Zotepine 25mg tablets
+0402010ACAAABAB,Zotepine 50mg tablets
+0402010ACAAACAC,Zotepine 100mg tablets
+0402010ACBB,Zoleptil
+0402010ACBBAAAA,Zoleptil 25 tablets
+0402010ACBBABAB,Zoleptil 50 tablets
+0402010ACBBACAC,Zoleptil 100 tablets
+0402010AD,Aripiprazole
+0402010ADAA,Aripiprazole
+0402010ADAAAAAA,Aripiprazole 10mg tablets
+0402010ADAAABAB,Aripiprazole 15mg tablets
+0402010ADAAACAC,Aripiprazole 30mg tablets
+0402010ADAAADAD,Aripiprazole 5mg tablets
+0402010ADAAAEAE,Aripiprazole 10mg orodispersible tablets sugar free
+0402010ADAAAFAF,Aripiprazole 15mg orodispersible tablets sugar free
+0402010ADAAAGAG,Aripiprazole 1mg/ml oral solution
+0402010ADAAAHAH,Aripiprazole 9.75mg/1.3ml solution for injection vials
+0402010ADAAAJAJ,Aripiprazole 7.5mg/ml oral solution
+0402010ADAAAKAK,Aripiprazole 1mg/ml oral solution sugar free
+0402010ADBB,Abilify
+0402010ADBBAAAA,Abilify 10mg tablets
+0402010ADBBABAB,Abilify 15mg tablets
+0402010ADBBACAC,Abilify 30mg tablets
+0402010ADBBADAD,Abilify 5mg tablets
+0402010ADBBAEAE,Abilify 10mg orodispersible tablets
+0402010ADBBAFAF,Abilify 15mg orodispersible tablets
+0402010ADBBAGAG,Abilify 1mg/ml oral solution
+0402010ADBBAHAH,Abilify 9.75mg/1.3ml solution for injection vials
+0402010ADBD,Arpoya
+0402010ADBDAAAD,Arpoya 5mg tablets
+0402010ADBDABAA,Arpoya 10mg tablets
+0402010ADBDACAB,Arpoya 15mg tablets
+0402010ADBDADAC,Arpoya 30mg tablets
+0402010AE,Paliperidone
+0402010AEAA,Paliperidone
+0402010AEAAAAAA,Paliperidone 3mg modified-release tablets
+0402010AEAAABAB,Paliperidone 6mg modified-release tablets
+0402010AEAAACAC,Paliperidone 9mg modified-release tablets
+0402010AEBB,Invega
+0402010AEBBAAAA,Invega 3mg modified-release tablets
+0402010AEBBABAB,Invega 6mg modified-release tablets
+0402010AEBBACAC,Invega 9mg modified-release tablets
+0402010AF,Melperone hydrochloride
+0402010AFAA,Melperone hydrochloride
+0402010AFAAAAAA,Melperone hydrochloride 100mg tablets
+0402010AG,Ziprasidone hydrochloride
+0402010AGAA,Ziprasidone hydrochloride
+0402010AGAAAAAA,Ziprasidone 40mg capsules
+0402010AGAAABAB,Ziprasidone 80mg capsules
+0402010AGAAACAC,Ziprasidone 60mg capsules
+0402010AGAAADAD,Ziprasidone 20mg capsules
+0402010AGBB,Zeldox
+0402010AGBBAAAA,Zeldox 40mg capsules
+0402010AGBBABAB,Zeldox 80mg capsules
+0402010AGBBACAC,Zeldox 60mg capsules
+0402010AH,Clotiapine
+0402010AHAA,Clotiapine
+0402010AHAAAAAA,Clotiapine 40mg tablets
+0402010AI,Lurasidone
+0402010AIAA,Lurasidone
+0402010AIAAAAAA,Lurasidone 18.5mg tablets
+0402010AIAAABAB,Lurasidone 37mg tablets
+0402010AIAAACAC,Lurasidone 74mg tablets
+0402010AIBB,Latuda
+0402010AIBBAAAA,Latuda 18.5mg tablets
+0402010AIBBABAB,Latuda 37mg tablets
+0402010AIBBACAC,Latuda 74mg tablets
+0402010AJ,Cariprazine
+0402010AJAA,Cariprazine
+0402010AJAAAAAA,Cariprazine 1.5mg capsules
+0402010AJAAABAB,Cariprazine 3mg capsules
+0402010AJAAACAC,Cariprazine 4.5mg capsules
+0402010AJAAADAD,Cariprazine 6mg capsules
+0402010AJBB,Reagila
+0402010AJBBAAAA,Reagila 1.5mg capsules
+0402010AJBBABAB,Reagila 3mg capsules
+0402010AJBBACAC,Reagila 4.5mg capsules
+0402010AJBBADAD,Reagila 6mg capsules
+0402010B0,Benperidol
+0402010B0AA,Benperidol
+0402010B0AAAAAA,Benperidol 250microgram tablets
+0402010B0AAABAB,Benperidol 250micrograms/5ml oral suspension
+0402010B0AAACAC,Benperidol 500micrograms/5ml oral suspension
+0402010B0BB,Anquil
+0402010B0BBAAAA,Anquil 250microgram tablets
+0402010B0BC,Benquil
+0402010B0BCAAAA,Benquil 250microgram tablets
+0402010C0,Clozapine
+0402010C0AA,Clozapine
+0402010C0AAAAAA,Clozapine 25mg tablets
+0402010C0AAABAB,Clozapine 100mg tablets
+0402010C0AAACAC,Clozapine 50mg tablets
+0402010C0AAADAD,Clozapine 200mg tablets
+0402010C0AAAEAE,Clozapine 50mg/ml oral suspension sugar free
+0402010C0AAAFAF,Clozapine 100mg/5ml oral liquid
+0402010C0AAAHAH,Clozapine 12.5mg orodispersible tablets sugar free
+0402010C0AAAIAI,Clozapine 25mg orodispersible tablets sugar free
+0402010C0AAAJAJ,Clozapine 50mg orodispersible tablets sugar free
+0402010C0AAAKAK,Clozapine 100mg orodispersible tablets sugar free
+0402010C0AAALAL,Clozapine 200mg orodispersible tablets sugar free
+0402010C0BB,Clozaril
+0402010C0BBAAAA,Clozaril 25mg tablets
+0402010C0BBABAB,Clozaril 100mg tablets
+0402010C0BC,Denzapine
+0402010C0BCAAAA,Denzapine 25mg tablets
+0402010C0BCABAB,Denzapine 100mg tablets
+0402010C0BCACAC,Denzapine 50mg tablets
+0402010C0BCADAD,Denzapine 200mg tablets
+0402010C0BCAEAE,Denzapine 50mg/ml oral suspension
+0402010C0BD,Zaponex
+0402010C0BDAAAA,Zaponex 25mg tablets
+0402010C0BDABAB,Zaponex 100mg tablets
+0402010C0BDACAH,Zaponex 12.5mg orodispersible tablets
+0402010C0BDADAI,Zaponex 25mg orodispersible tablets
+0402010C0BDAEAJ,Zaponex 50mg orodispersible tablets
+0402010C0BDAFAK,Zaponex 100mg orodispersible tablets
+0402010C0BDAGAL,Zaponex 200mg orodispersible tablets
+0402010D0,Chlorpromazine hydrochloride
+0402010D0AA,Chlorpromazine hydrochloride
+0402010D0AAA2A2,Chlorpromazine 100mg/5ml oral suspension
+0402010D0AAA3A3,Chlorpromazine 50mg/5ml oral liquid
+0402010D0AAA6A6,Chlorpromazine 10mg/5ml oral liquid
+0402010D0AAABAB,Chlorpromazine 25mg/5ml oral solution
+0402010D0AAADAD,Chlorpromazine 25mg/1ml solution for injection ampoules
+0402010D0AAAFAF,Chlorpromazine 100mg/5ml oral solution
+0402010D0AAAHAH,Chlorpromazine 10mg tablets
+0402010D0AAAIAI,Chlorpromazine 25mg tablets
+0402010D0AAAJAJ,Chlorpromazine 50mg tablets
+0402010D0AAAKAK,Chlorpromazine 100mg tablets
+0402010D0AAAMAM,Chlorpromazine 50mg/2ml solution for injection ampoules
+0402010D0AAAPAP,Chlorpromazine 100mg/5ml oral suspension sugar free
+0402010D0AAARAR,Chlorpromazine 100mg suppositories
+0402010D0AAASAS,Chlorpromazine 25mg suppositories
+0402010D0AAAVAV,Chlorpromazine 25mg/5ml oral solution sugar free
+0402010D0AABABA,Chlorpromazine 1.5mg/5ml oral liquid
+0402010D0AABBBB,Chlorpromazine 12.5mg/5ml oral liquid
+0402010D0AABDBD,Chlorpromazine 10mg capsules
+0402010D0BD,Largactil
+0402010D0BDAAAH,Largactil 10mg tablets
+0402010D0BDABAI,Largactil 25mg tablets
+0402010D0BDACAJ,Largactil 50mg tablets
+0402010D0BDADAK,Largactil 100mg tablets
+0402010D0BDAEAB,Largactil 25mg/5ml syrup
+0402010D0BDAFAP,Largactil Forte 100mg/5ml oral suspension
+0402010D0BDALAM,Largactil 50mg/2ml solution for injection ampoules
+0402010F0,Chlorprothixene
+0402010F0AA,Chlorprothixene
+0402010F0AAABAB,Chlorprothixene 50mg tablets
+0402010F0BC,Truxal
+0402010F0BCABAB,Truxal 50mg tablets
+0402010G0,Droperidol
+0402010G0AA,Droperidol
+0402010G0AAADAD,Droperidol 1mg capsules
+0402010G0AAAEAE,Droperidol 500microgram capsules
+0402010G0AAAKAK,Droperidol 5mg/5ml oral liquid
+0402010H0,Flupentixol hydrochloride
+0402010H0AA,Flupentixol hydrochloride (Antipsychotic)
+0402010H0AAAAAA,Flupentixol 3mg tablets
+0402010H0BB,Depixol (Systemic)
+0402010H0BBAAAA,Depixol 3mg tablets
+0402010I0,Fluphenazine hydrochloride
+0402010I0AA,Fluphenazine hydrochloride
+0402010I0AAABAB,Fluphenazine 1mg tablets
+0402010I0AAACAC,Fluphenazine 2.5mg tablets
+0402010I0AAADAD,Fluphenazine 5mg tablets
+0402010I0BB,Moditen
+0402010I0BBAAAB,Moditen 1mg tablets
+0402010I0BBABAC,Moditen 2.5mg tablets
+0402010I0BBACAD,Moditen 5mg tablets
+0402010J0,Haloperidol
+0402010J0AA,Haloperidol
+0402010J0AAA4A4,Haloperidol 5mg/5ml oral liquid
+0402010J0AAA5A5,Haloperidol 250micrograms/5ml oral liquid
+0402010J0AAA6A6,Haloperidol 2mg/5ml oral liquid
+0402010J0AAA7A7,Haloperidol 1mg/5ml oral liquid
+0402010J0AAA8A8,Haloperidol 500micrograms/5ml oral liquid
+0402010J0AAAAAA,Haloperidol 500microgram capsules
+0402010J0AAACAC,Haloperidol 5mg/1ml solution for injection ampoules
+0402010J0AAADAD,Haloperidol 20mg/2ml solution for injection ampoules
+0402010J0AAAGAG,Haloperidol 10mg/5ml oral solution sugar free
+0402010J0AAAIAI,Haloperidol 500microgram tablets
+0402010J0AAAJAJ,Haloperidol 1.5mg tablets
+0402010J0AAAKAK,Haloperidol 5mg tablets
+0402010J0AAALAL,Haloperidol 10mg tablets
+0402010J0AAAMAM,Haloperidol 20mg tablets
+0402010J0AABBBB,Haloperidol 1.5mg/5ml oral liquid
+0402010J0AABCBC,Haloperidol 5mg/5ml oral solution sugar free
+0402010J0AABDBD,Haloperidol 25micrograms/5ml oral liquid
+0402010J0AABGBG,Haloperidol 200micrograms/5ml oral liquid
+0402010J0AABJBJ,Haloperidol 750micrograms/5ml oral liquid
+0402010J0AABKBK,Haloperidol 2.5mg/5ml oral liquid
+0402010J0AABNBN,Haloperidol 200micrograms/ml oral solution sugar free
+0402010J0BB,Dozic
+0402010J0BBAABC,Dozic 5mg/5ml oral solution
+0402010J0BD,Haldol
+0402010J0BDAAAK,Haldol 5mg tablets
+0402010J0BDABAL,Haldol 10mg tablets
+0402010J0BDACAG,Haldol 2mg/ml oral solution
+0402010J0BDAEAC,Haldol 5mg/1ml solution for injection ampoules
+0402010J0BE,Serenace
+0402010J0BEAAAA,Serenace 500microgram capsules
+0402010J0BEABAJ,Serenace 1.5mg tablets
+0402010J0BEACAK,Serenace 5mg tablets
+0402010J0BEADAL,Serenace 10mg tablets
+0402010J0BEAEAM,Serenace 20mg tablets
+0402010J0BEAFAG,Serenace 2mg/ml liquid
+0402010J0BEAGAC,Serenace 5mg/1ml solution for injection ampoules
+0402010J0BEAHAD,Serenace 20mg/2ml solution for injection ampoules
+0402010J0BH,Halkid
+0402010J0BHAABN,Halkid 200micrograms/ml oral solution
+0402010K0,Levomepromazine maleate
+0402010K0AA,Levomepromazine maleate
+0402010K0AAAAAA,Levomepromazine 25mg tablets
+0402010K0AAADAD,Levomepromazine 6.25mg/5ml oral liquid
+0402010K0AAAEAE,Levomepromazine 12.5mg/5ml oral liquid
+0402010K0AAAFAF,Levomepromazine 25mg/5ml oral liquid
+0402010K0AAAGAG,Levomepromazine 5mg/5ml oral liquid
+0402010K0AAAHAH,Levomepromazine 50mg/5ml oral liquid
+0402010K0AAAJAJ,Levomepromazine 10mg/5ml oral liquid
+0402010K0AAAKAK,Levomepromazine 4mg/5ml oral liquid
+0402010K0AAALAL,Levomepromazine 2.5mg/5ml oral solution
+0402010K0AAAMAM,Levomepromazine 6mg tablets
+0402010K0AAAPAP,Levomepromazine 6mg/5ml oral solution
+0402010K0AAAQAQ,Levomepromazine 3mg/5ml oral liquid
+0402010K0AAARAR,Levomepromazine 2.5mg/5ml oral suspension
+0402010K0AAASAS,Levomepromazine 62.5mg/5ml oral suspension
+0402010K0AAATAT,Levomepromazine 1mg capsules
+0402010K0AAAUAU,Levomepromazine 6mg/5ml oral suspension
+0402010K0AAAVAV,Levomepromazine 50mg tablets
+0402010K0BC,Nozinan (Systemic)
+0402010K0BCAAAA,Nozinan 25mg tablets
+0402010K0BD,Levinan
+0402010K0BDAAAM,Levinan 6mg tablets
+0402010L0,Levomepromazine hydrochloride
+0402010L0AA,Levomepromazine hydrochloride
+0402010L0AAAAAA,Levomepromazine 25mg/1ml solution for injection ampoules
+0402010L0BB,Nozinan (Parenteral)
+0402010L0BBAAAA,Nozinan 25mg/1ml solution for injection ampoules
+0402010M0,Loxapine succinate
+0402010M0AA,Loxapine succinate
+0402010M0AAAAAA,Loxapine 10mg capsules
+0402010M0AAABAB,Loxapine 25mg capsules
+0402010M0AAACAC,Loxapine 50mg capsules
+0402010M0BB,Loxapac
+0402010M0BBAAAA,Loxapac 10mg capsules
+0402010M0BBABAB,Loxapac 25mg capsules
+0402010M0BBACAC,Loxapac 50mg capsules
+0402010N0,Oxypertine
+0402010N0AA,Oxypertine
+0402010N0AAAAAA,Oxypertine 10mg capsules
+0402010N0AAABAB,Oxypertine 40mg tablets
+0402010N0BB,Integrin
+0402010N0BBAAAA,Integrin 10mg capsules
+0402010P0,Pericyazine
+0402010P0AA,Pericyazine
+0402010P0AAACAC,Pericyazine 10mg/5ml oral solution
+0402010P0AAADAD,Pericyazine 2.5mg tablets
+0402010P0AAAEAE,Pericyazine 10mg tablets
+0402010P0AAAGAG,Pericyazine 2.5mg/5ml oral liquid
+0402010P0BB,Neulactil
+0402010P0BBAAAD,Neulactil 2.5mg tablets
+0402010P0BBABAE,Neulactil 10mg tablets
+0402010P0BBADAC,Neulactil Forte syrup
+0402010Q0,Perphenazine
+0402010Q0AA,Perphenazine
+0402010Q0AAACAC,Perphenazine 2mg tablets
+0402010Q0AAADAD,Perphenazine 4mg tablets
+0402010Q0AAAKAK,Perphenazine 2mg/5ml oral suspension
+0402010Q0AAALAL,Perphenazine 4mg/5ml oral suspension
+0402010Q0BB,Fentazin
+0402010Q0BBAAAC,Fentazin 2mg tablets
+0402010Q0BBABAD,Fentazin 4mg tablets
+0402010R0,Pimozide
+0402010R0AA,Pimozide
+0402010R0AAAAAA,Pimozide 2mg tablets
+0402010R0AAABAB,Pimozide 4mg tablets
+0402010R0AAAGAG,Pimozide 1.25mg/5ml oral suspension
+0402010R0AAAHAH,Pimozide 2mg/5ml oral suspension
+0402010R0BB,Orap
+0402010R0BBAAAA,Orap 2mg tablets
+0402010R0BBABAB,Orap 4mg tablets
+0402010S0,Promazine hydrochloride
+0402010S0AA,Promazine hydrochloride
+0402010S0AAADAD,Promazine 25mg/5ml oral solution
+0402010S0AAAEAE,Promazine 25mg tablets
+0402010S0AAAFAF,Promazine 50mg tablets
+0402010S0AAAIAI,Promazine 50mg/5ml oral solution
+0402010S0AAALAL,Promazine 25mg/5ml oral suspension
+0402010S0AAAMAM,Promazine 12.5mg/5ml oral liquid
+0402010S0AAANAN,Promazine 50mg/5ml oral suspension
+0402010S0AAAQAQ,Promazine 10mg/5ml oral liquid
+0402010S0AAARAR,Promazine 6.25mg/5ml oral liquid
+0402010S0BD,Prazine
+0402010S0BDAAAE,Prazine 25mg tablets
+0402010T0,Zuclopenthixol hydrochloride
+0402010T0AA,Zuclopenthixol hydrochloride
+0402010T0AAAAAA,Zuclopenthixol 2mg tablets
+0402010T0AAABAB,Zuclopenthixol 10mg tablets
+0402010T0AAACAC,Zuclopenthixol 25mg tablets
+0402010T0BB,Clopixol (Systemic)
+0402010T0BBAAAA,Clopixol 2mg tablets
+0402010T0BBABAB,Clopixol 10mg tablets
+0402010T0BBACAC,Clopixol 25mg tablets
+0402010U0,Sulpiride
+0402010U0AA,Sulpiride
+0402010U0AAAEAE,Sulpiride 200mg/5ml oral solution sugar free
+0402010U0AAAHAH,Sulpiride 200mg tablets
+0402010U0AAAMAM,Sulpiride 50mg/5ml oral liquid
+0402010U0AAANAN,Sulpiride 200mg/5ml oral liquid
+0402010U0AAAPAP,Sulpiride 100mg/5ml oral liquid
+0402010U0AAAQAQ,Sulpiride 400mg tablets
+0402010U0AAARAR,Sulpiride 300mg/5ml oral liquid
+0402010U0AAASAS,Sulpiride 400mg/5ml oral liquid
+0402010U0AAATAT,Sulpiride 25mg/5ml oral liquid
+0402010U0AAAUAU,Sulpiride 150mg/5ml oral liquid
+0402010U0AAAVAV,Sulpiride 250mg/5ml oral liquid
+0402010U0AAAWAW,Sulpiride 70mg/5ml oral liquid
+0402010U0AAAYAY,Sulpiride 500mg/5ml oral liquid
+0402010U0AAAZAZ,Sulpiride 10mg/5ml oral liquid
+0402010U0BB,Dolmatil
+0402010U0BBAAAH,Dolmatil 200mg tablets
+0402010U0BBABAQ,Dolmatil 400mg tablets
+0402010U0BC,Sulpitil
+0402010U0BCAAAH,Sulpitil 200mg tablets
+0402010U0BF,Sulpor
+0402010U0BFAAAE,Sulpor 200mg/5ml oral solution
+0402010W0,Thioridazine
+0402010W0AA,Thioridazine
+0402010W0AAAAAA,Thioridazine 25mg/5ml oral suspension
+0402010W0AAABAB,Thioridazine 100mg/5ml oral suspension
+0402010W0AAACAC,Thioridazine 25mg/5ml oral solution
+0402010W0AAAEAE,Thioridazine 10mg tablets
+0402010W0AAAFAF,Thioridazine 25mg tablets
+0402010W0AAAGAG,Thioridazine 50mg tablets
+0402010W0AAAHAH,Thioridazine 100mg tablets
+0402010W0AAAYAY,Thioridazine 50mg/5ml oral suspension
+0402010W0BB,Melleril
+0402010W0BBAAAE,Melleril 10mg tablets
+0402010W0BBABAF,Melleril 25mg tablets
+0402010W0BBACAG,Melleril 50mg tablets
+0402010W0BBADAH,Melleril 100mg tablets
+0402010W0BBAEAA,Melleril 25mg/5ml oral suspension
+0402010W0BBAFAB,Melleril 100mg/5ml oral suspension
+0402010W0BBAGAC,Melleril 25mg/5ml syrup
+0402010W0BC,Rideril
+0402010W0BCAAAF,Rideril 25mg tablets
+0402010W0BCABAH,Rideril 100mg tablets
+0402010W0BCACAG,Rideril 50mg tablets
+0402010X0,Trifluoperazine
+0402010X0AA,Trifluoperazine
+0402010X0AAAAAA,Trifluoperazine 2mg modified-release capsules
+0402010X0AAABAB,Trifluoperazine 10mg modified-release capsules
+0402010X0AAACAC,Trifluoperazine 15mg modified-release capsules
+0402010X0AAAFAF,Trifluoperazine 1mg/5ml oral solution sugar free
+0402010X0AAAHAH,Trifluoperazine 1mg tablets
+0402010X0AAAIAI,Trifluoperazine 5mg tablets
+0402010X0AAAKAK,Trifluoperazine 5mg/5ml oral solution sugar free
+0402010X0AAALAL,Trifluoperazine 1mg/5ml oral suspension
+0402010X0BB,Stelazine
+0402010X0BBAAAH,Stelazine 1mg tablets (Mercury Pharma)
+0402010X0BBABAI,Stelazine 5mg tablets (Mercury Pharma)
+0402010X0BBACAA,Stelazine 2mg Spansules
+0402010X0BBADAB,Stelazine 10mg Spansules
+0402010X0BBAEAC,Stelazine 15mg Spansules
+0402010X0BBAFAF,Stelazine 1mg/5ml syrup
+0402010X0BBAJAK,Stelazine Forte 1mg/ml oral solution
+0402010X0BBAKAH,Stelazine 1mg tablets (Imported)
+0402010X0BBALAI,Stelazine 5mg tablets (Imported)
+0402010X0BC,Terrazine
+0402010X0BCAAAH,Terrazine 1mg tablets
+0402010X0BCABAI,Terrazine 5mg tablets

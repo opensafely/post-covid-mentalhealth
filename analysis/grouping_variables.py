@@ -42,6 +42,7 @@ ref_ar=study_dates["ref_ar"] #reference date for caluclating at risk group
 start_date=study_dates["start_date"] # start of phase 1
 end_date=study_dates["end_date"] # end of followup
 pandemic_start=study_dates["pandemic_start"]
+#delta_date=study_dates["delta_date"]
 
 ## function to add days to a string date
 from datetime import datetime, timedelta

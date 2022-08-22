@@ -1,0 +1,121 @@
+code,term
+040102,Anxiolytics
+0401020,Anxiolytics
+0401020A0,Alprazolam
+0401020A0AA,Alprazolam
+0401020A0AAAAAA,Alprazolam 250microgram tablets
+0401020A0AAABAB,Alprazolam 500microgram tablets
+0401020A0BB,Xanax
+0401020A0BBAAAA,Xanax 250microgram tablets
+0401020A0BBABAB,Xanax 500microgram tablets
+0401020B0,Buspirone hydrochloride
+0401020B0AA,Buspirone hydrochloride
+0401020B0AAAAAA,Buspirone 5mg tablets
+0401020B0AAABAB,Buspirone 10mg tablets
+0401020B0AAACAC,Buspirone 5mg/5ml oral liquid
+0401020B0AAADAD,Buspirone 7.5mg tablets
+0401020B0AAAEAE,Buspirone 15mg tablets
+0401020B0AAAFAF,Buspirone 30mg tablets
+0401020B0BB,Buspar
+0401020B0BBAAAA,Buspar 5mg tablets
+0401020B0BBABAB,Buspar 10mg tablets
+0401020E0,Chlordiazepoxide hydrochloride
+0401020E0AA,Chlordiazepox hydrochloride
+0401020E0AAAAAA,Chlordiazepoxide 5mg tablets
+0401020E0AAABAB,Chlordiazepoxide 10mg tablets
+0401020E0AAADAD,Chlordiazepoxide 5mg capsules
+0401020E0AAAEAE,Chlordiazepoxide 10mg capsules
+0401020E0AAASAS,Chlordiazepoxide 4mg/5ml oral liquid
+0401020E0AAAUAU,Chlordiazepoxide 5mg/5ml oral suspension
+0401020E0AAAVAV,Chlordiazepoxide 10mg/5ml oral liquid
+0401020E0AAAYAY,Chlordiazepoxide 2.5mg/5ml oral liquid
+0401020E0BB,Librium (Capsule/Injection)
+0401020E0BBABAD,Librium 5mg capsules
+0401020E0BBACAE,Librium 10mg capsules
+0401020E0BC,Tropium
+0401020E0BCAAAA,Tropium 5mg tablets
+0401020E0BCABAB,Tropium 10mg tablets
+0401020E0BCADAE,Tropium 10mg capsules
+0401020E0BCAEAD,Tropium 5mg capsules
+0401020G0,Bromazepam
+0401020G0AA,Bromazepam
+0401020G0AAAAAA,Bromazepam 3mg tablets
+0401020K0,Diazepam
+0401020K0AA,Diazepam
+0401020K0AAA1A1,Diazepam 10mg/5ml oral liquid
+0401020K0AAA6A6,Diazepam 2mg/5ml oral solution
+0401020K0AAACAC,Diazepam 10mg/2ml solution for injection ampoules
+0401020K0AAADAD,Diazepam 5mg/2.5ml rectal solution tube
+0401020K0AAAEAE,Diazepam 10mg/2.5ml rectal solution tube
+0401020K0AAAHAH,Diazepam 2mg tablets
+0401020K0AAAIAI,Diazepam 5mg tablets
+0401020K0AAAJAJ,Diazepam 10mg tablets
+0401020K0AAAQAQ,Diazepam 10mg/2ml emulsion for injection ampoules
+0401020K0AAAWAW,Diazepam 2mg/5ml oral solution sugar free
+0401020K0AABBBB,Diazepam 10mg suppositories
+0401020K0AABKBK,Diazepam 1mg/5ml oral solution
+0401020K0AABMBM,Diazepam 25mg/5ml oral solution
+0401020K0AABQBQ,Diazepam 2.5mg/1.25ml rectal solution tube
+0401020K0AABWBW,Diazepam 5mg/5ml oral solution
+0401020K0AACBCB,Diazepam 2.5mg/5ml oral liquid
+0401020K0AACHCH,Diazepam 15mg/5ml oral solution
+0401020K0AACICI,Diazepam 2mg/5ml oral suspension
+0401020K0AACJCJ,Diazepam 5mg/5ml oral suspension
+0401020K0AACKCK,Diazepam 10mg/5ml oral suspension
+0401020K0BB,Diazemuls
+0401020K0BBAAAQ,Diazemuls 10mg/2ml emulsion for injection ampoules
+0401020K0BD,Stesolid
+0401020K0BDABAD,Stesolid 5mg rectal tube
+0401020K0BDACAE,Stesolid 10mg rectal tube
+0401020K0BK,Valclair
+0401020K0BKAABB,Valclair 10mg suppositories
+0401020K0BL,Diazepam (CP Pharm)
+0401020K0BLAAAD,Diazepam 5mg RecTubes
+0401020K0BLABAE,Diazepam 10mg RecTubes
+0401020K0BLACBQ,Diazepam 2.5mg RecTubes
+0401020K0BM,Tensium
+0401020K0BMABAJ,Tensium 10mg tablets
+0401020K0BMACAH,Tensium 2mg tablets
+0401020P0,Lorazepam
+0401020P0AA,Lorazepam
+0401020P0AAAAAA,Lorazepam 4mg/1ml solution for injection ampoules
+0401020P0AAABAB,Lorazepam 1mg tablets
+0401020P0AAACAC,Lorazepam 2.5mg tablets
+0401020P0AAADAD,Lorazepam 500microgram tablets
+0401020P0AABHBH,Lorazepam 250micrograms/5ml oral liquid
+0401020P0AABJBJ,Lorazepam 5mg/5ml oral liquid
+0401020P0AABRBR,Lorazepam 2mg/5ml oral liquid
+0401020P0AABSBS,Lorazepam 400micrograms/5ml oral liquid
+0401020P0AABXBX,Lorazepam 4mg/5ml oral liquid
+0401020P0AABZBZ,Lorazepam 3.75mg/5ml oral liquid
+0401020P0AACACA,Lorazepam 1.125mg/5ml oral liquid
+0401020P0AACDCD,Lorazepam 1mg/5ml oral solution
+0401020P0AACECE,Lorazepam 1mg/5ml oral suspension
+0401020P0AACFCF,Lorazepam 500micrograms/5ml oral solution
+0401020P0AACGCG,Lorazepam 500micrograms/5ml oral suspension
+0401020P0AACHCH,Lorazepam 2mg/1ml solution for injection ampoules
+0401020P0AACICI,Lorazepam 1mg/ml oral solution sugar free
+0401020P0AACJCJ,Lorazepam 2mg/1ml solution for injection vials
+0401020P0AACKCK,Lorazepam 1mg orodispersible tablets
+0401020P0AACLCL,Lorazepam 2.5mg orodispersible tablets
+0401020P0BC,Ativan
+0401020P0BCAAAA,Ativan 4mg/1ml solution for injection ampoules
+0401020R0,Meprobamate
+0401020R0AA,Meprobamate
+0401020R0AAABAB,Meprobamate 400mg tablets
+0401020R0AAAEAE,Meprobamate 5mg/5ml oral liquid
+0401020T0,Oxazepam
+0401020T0AA,Oxazepam
+0401020T0AAABAB,Oxazepam 10mg tablets
+0401020T0AAACAC,Oxazepam 15mg tablets
+0401020T0AAAHAH,Oxazepam 2.5mg/5ml oral suspension
+0401020T0AAAIAI,Oxazepam 12.5mg/5ml oral suspension
+0401020T0AAAJAJ,Oxazepam 10mg/5ml oral suspension
+0401020T0AAAKAK,Oxazepam 2mg/5ml oral suspension
+0401020V0,Clorazepate dipotassium
+0401020V0AA,Clorazepate dipot
+0401020V0AAAAAA,Dipotassium clorazepate 7.5mg capsules
+0401020V0AAABAB,Dipotassium clorazepate 15mg capsules
+0401020V0BB,Tranxene
+0401020V0BBAAAA,Tranxene 7.5mg capsules
+0401020V0BBABAB,Tranxene 15mg capsules

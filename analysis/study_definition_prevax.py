@@ -22,12 +22,12 @@ from datetime import date
 
 ## Study definition helper
 import study_definition_helper_functions as helpers
-
+# Specify index date for MH prevax
 ## Import common variables function
 from common_variables import generate_common_variables
 (
     dynamic_variables
-) = generate_common_variables(index_date_variable="index_date_prevax", end_date_variable="end_date_prevax")
+) = generate_common_variables(index_date_variable="index_date_prevax", end_date_variable="end_date_prevax", index_date_MH="2020-01-01")
 
 ## Variables for deriving JCVI groups
 from grouping_variables import (
@@ -37,7 +37,6 @@ from grouping_variables import (
     end_date,
     pandemic_start
 )
-
 
 study = StudyDefinition(
 
@@ -96,7 +95,14 @@ study = StudyDefinition(
         f_path = 'output/index_dates.csv',
         returning = 'cov_cat_sex',
         returning_type = 'str',  
-        ),
+    ),
+    # Death date
+    death_date = patients.with_value_from_file(
+        f_path = 'output/index_dates.csv',
+        returning = 'death_date',
+        returning_type = 'date', 
+    ),
+
     # Define vaccine eligibility variables
 
         **jcvi_variables, 
