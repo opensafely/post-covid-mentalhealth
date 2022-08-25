@@ -1578,8 +1578,8 @@ def generate_common_variables(index_date_variable,end_date_variable,index_date_M
     #         "incidence": 0.5,
     #     },
     # ),
-    ## History of COVID-19 
-    ### Positive SARS-COV-2 PCR antigen test
+    # # History of COVID-19 
+    # ## Positive SARS-COV-2 PCR antigen test
     # tmp_sub_bin_covid19_confirmed_history_sgss=patients.with_test_result_in_sgss(
     #     pathogen="SARS-CoV-2",
     #     test_result="positive",
@@ -1587,7 +1587,7 @@ def generate_common_variables(index_date_variable,end_date_variable,index_date_M
     #     on_or_before=f"{index_date_variable} - 1 day",
     #     return_expectations={"incidence": 0.1},
     # ),
-    ### COVID-19 code (diagnosis, positive test or sequalae) in primary care
+    # ## COVID-19 code (diagnosis, positive test or sequalae) in primary care
     # tmp_sub_bin_covid19_confirmed_history_snomed=patients.with_these_clinical_events(
     #     combine_codelists(
     #         covid_primary_care_code,
@@ -1598,14 +1598,14 @@ def generate_common_variables(index_date_variable,end_date_variable,index_date_M
     #     on_or_before=f"{index_date_variable} - 1 day",
     #     return_expectations={"incidence": 0.1},
     # ),
-    ### Hospital episode with confirmed diagnosis in any position
+    # ## Hospital episode with confirmed diagnosis in any position
     # tmp_sub_bin_covid19_confirmed_history_hes=patients.admitted_to_hospital(
     #     with_these_diagnoses=covid_codes,
     #     returning='binary_flag',
     #     on_or_before=f"{index_date_variable} - 1  day",
     #     return_expectations={"incidence": 0.1},
     # ),
-    ## Generate variable to identify first date of confirmed COVID
+    # # Generate variable to identify first date of confirmed COVID
     # sub_bin_covid19_confirmed_history=patients.maximum_of(
     #     "tmp_sub_bin_covid19_confirmed_history_sgss","tmp_sub_bin_covid19_confirmed_history_snomed","tmp_sub_bin_covid19_confirmed_history_hes"
     # ),

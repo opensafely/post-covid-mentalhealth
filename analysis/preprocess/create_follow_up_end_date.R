@@ -12,18 +12,22 @@ args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
   # use for interactive testing
-  cohort_name <- "vax"
+  cohort_name <- "all"
 } else {
   cohort_name <- args[[1]]
 }
 
+#These are the study start and end dates for the Delta era
+cohort_start_date <- as.Date("2021-06-01")
+cohort_end_date <- as.Date("2021-12-14")
+
 #These are the study start and end dates
 
-cohort_start_date_prevax <- as.Date("2020-01-01")
-cohort_end_date_prevax <- as.Date("2021-06-18")
-
-cohort_start_date_delta <- as.Date("2021-06-01")
-cohort_end_date_delta <- as.Date("2021-12-14")
+# cohort_start_date_prevax <- as.Date("2020-01-01")
+# cohort_end_date_prevax <- as.Date("2021-06-18")
+# 
+# cohort_start_date_delta <- as.Date("2021-06-01")
+# cohort_end_date_delta <- as.Date("2021-12-14")
 
 follow_up_end_dates <- function(cohort_name){#, group
   
@@ -41,15 +45,17 @@ follow_up_end_dates <- function(cohort_name){#, group
                     colnames(input)[grepl("exp_",colnames(input))], 
                     colnames(input)[grepl("vax_date_",colnames(input))])] 
   
-  if (cohort_name == "prevax") {
-    
-    input$cohort_end_date<- cohort_end_date_prevax
-    
-  } else if (cohort_name == "unvax" | cohort_name == "vax"){
-    
-    input$cohort_end_date<- cohort_end_date_delta
-    
-  }
+  input$cohort_end_date<- cohort_end_date
+  
+  # if (cohort_name == "prevax") {
+  #   
+  #   input$cohort_end_date<- cohort_end_date_prevax
+  #   
+  # } else if (cohort_name == "unvax" | cohort_name == "vax"){
+  #   
+  #   input$cohort_end_date<- cohort_end_date_delta
+  #   
+  # }
   
   for(event in active_analyses$outcome_variable){
     print(paste0("Working on ",event))
@@ -62,16 +68,8 @@ follow_up_end_dates <- function(cohort_name){#, group
     # Calculate follow up end dates based on cohort
     # follow_up_end_unexposed is required in Table 2 script and follow_up_end is 
     # the general follow up end date for each patient
-    if(cohort_name=="prevax"){
-      
-      input$follow_up_end_unexposed <- apply(input[,c("vax_date_covid_1", "vax_date_eligible", "event_date", "expo_date", "death_date", "cohort_end_date")],1, min,na.rm=TRUE)
-      input$follow_up_end <- apply(input[,c("vax_date_covid_1", "vax_date_eligible", "event_date", "death_date", "cohort_end_date")],1, min,na.rm=TRUE)
-      
-      input$follow_up_end_unexposed <- as.Date(input$follow_up_end_unexposed)
-      input$follow_up_end <- as.Date(input$follow_up_end)
-      
-    }else if(cohort_name=="vax"){
-      
+    
+    if(cohort_name=="vax"){
       input$follow_up_end_unexposed <- apply(input[,c("event_date", "expo_date", "death_date", "cohort_end_date")],1, min,na.rm=TRUE)
       input$follow_up_end <- apply(input[,c("event_date", "death_date", "cohort_end_date")],1, min, na.rm=TRUE)
       
@@ -79,13 +77,37 @@ follow_up_end_dates <- function(cohort_name){#, group
       input$follow_up_end <- as.Date(input$follow_up_end)
       
     }else if(cohort_name=="unvax"){
-      
       input$follow_up_end_unexposed <- apply(input[,c("vax_date_covid_1","event_date", "expo_date", "death_date","cohort_end_date")],1, min,na.rm=TRUE)
       input$follow_up_end <- apply(input[,c("vax_date_covid_1","event_date", "death_date","cohort_end_date")],1, min, na.rm=TRUE)
       
       input$follow_up_end_unexposed <- as.Date(input$follow_up_end_unexposed)
       input$follow_up_end <- as.Date(input$follow_up_end)
     }
+    
+    # if(cohort_name=="prevax"){
+    # 
+    #   input$follow_up_end_unexposed <- apply(input[,c("vax_date_covid_1", "vax_date_eligible", "event_date", "expo_date", "death_date", "cohort_end_date")],1, min,na.rm=TRUE)
+    #   input$follow_up_end <- apply(input[,c("vax_date_covid_1", "vax_date_eligible", "event_date", "death_date", "cohort_end_date")],1, min,na.rm=TRUE)
+    # 
+    #   input$follow_up_end_unexposed <- as.Date(input$follow_up_end_unexposed)
+    #   input$follow_up_end <- as.Date(input$follow_up_end)
+    # 
+    # }else if(cohort_name=="vax"){
+    # 
+    #   input$follow_up_end_unexposed <- apply(input[,c("event_date", "expo_date", "death_date", "cohort_end_date")],1, min,na.rm=TRUE)
+    #   input$follow_up_end <- apply(input[,c("event_date", "death_date", "cohort_end_date")],1, min, na.rm=TRUE)
+    # 
+    #   input$follow_up_end_unexposed <- as.Date(input$follow_up_end_unexposed)
+    #   input$follow_up_end <- as.Date(input$follow_up_end)
+    # 
+    # }else if(cohort_name=="unvax"){
+    # 
+    #   input$follow_up_end_unexposed <- apply(input[,c("vax_date_covid_1","event_date", "expo_date", "death_date","cohort_end_date")],1, min,na.rm=TRUE)
+    #   input$follow_up_end <- apply(input[,c("vax_date_covid_1","event_date", "death_date","cohort_end_date")],1, min, na.rm=TRUE)
+    # 
+    #   input$follow_up_end_unexposed <- as.Date(input$follow_up_end_unexposed)
+    #   input$follow_up_end <- as.Date(input$follow_up_end)
+    # }
     
     # Calculate date_expo_censor which is the COVID exposure date for the phenotype  not of interest
     # in the phenotype analyses. This is needed to re-calculate follow-up end for pheno analyses

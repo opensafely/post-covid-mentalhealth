@@ -16,11 +16,13 @@ defaults_list <- list(
   expectations= list(population_size=10000L)
 )
 
-active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses_table <- subset(active_analyses, active_analyses$active =="TRUE")
-outcomes_model <- active_analyses_table$outcome_variable %>% str_replace("out_date_", "")
-cohort_to_run <- c("vaccinated", "electively_unvaccinated")
-analyses <- c("main", "subgroups")
+# active_analyses <- read_rds("lib/active_analyses.rds")
+# active_analyses_table <- subset(active_analyses, active_analyses$active =="TRUE")
+# outcomes_model <- active_analyses_table$outcome_variable %>% str_replace("out_date_", "")
+#cohort_to_run <- c("prevax", "vax", "unvax")
+# analyses <- c("main", "subgroups")
+
+cohort <- c("prevax", "vax", "unvax")
 
 # create action functions ----
 
@@ -79,6 +81,28 @@ convert_comment_actions <-function(yaml.txt){
 # #################################################
 # ## Function for typical actions to analyse data #
 # #################################################
+# # Preprocess data 
+apply_preprocess <- function(cohort){
+  splice(
+    comment(glue("Preproces data - {cohort}")),
+    action(
+      name = glue("preprocess_data_{cohort}"),
+      run = "r:latest analysis/preprocess/preprocess_data.R",
+      arguments = c(cohort),
+      needs = list("generate_index_dates", 
+                   glue("generate_study_population_{cohort}")),
+      moderately_sensitive = list(
+        describe = glue("output/not-for-review/describe_input_{cohort}_*.txt"),
+        descrive_venn = glue("output/not-for-review/describe_venn_{cohort}.txt")
+      ),
+      highly_sensitive = list(
+        cohort = glue("output/input_{cohort}.rds"),
+        venn = glue("output/venn_{cohort}.rds")
+      )
+    )
+  )
+}
+
 # # Updated to a typical action running Cox models for one outcome
 # apply_model_function <- function(outcome, cohort){
 #   splice(
@@ -128,10 +152,6 @@ convert_comment_actions <-function(yaml.txt){
 #   )
 # }
 
-
-
-
-
 ##########################################################
 ## Define and combine all actions into a list of actions #
 ##########################################################
@@ -163,8 +183,8 @@ actions_list <- splice(
       cohort = glue("output/input_prelim.feather")
     )
   ),
-  #comment("Generate dates for all study cohorts"),
-   action(
+  #comment("Generate dates for all study cohorts"), #YW
+  action(
     name = "generate_index_dates",
     run = "r:latest analysis/prelim.R",
     needs = list("vax_eligibility_inputs","generate_study_population_prelim"),
@@ -172,8 +192,15 @@ actions_list <- splice(
       index_dates = glue("output/index_dates.csv")
     )
   ),
-
-
+  # #comment("Generate dates for all study cohorts"),
+  #  action(
+  #   name = "generate_index_dates",
+  #   run = "r:latest analysis/prelim.R",
+  #   needs = list("vax_eligibility_inputs","generate_study_population_prelim"),
+  #   highly_sensitive = list(
+  #     index_dates = glue("output/index_dates.csv")
+  #   )
+  # ),
   #comment("Generate dummy data for study_definition - prevax"),
   action(
     name = "generate_study_population_prevax",
@@ -202,90 +229,97 @@ actions_list <- splice(
       cohort = glue("output/input_unvax.feather")
     )
   ),
-  action(
-    name = "preprocess_data_prevax",
-    run = "r:latest analysis/preprocess/preprocess_data.R prevax",
-    needs = list("generate_study_population_prelim", "generate_study_population_prevax", "generate_study_population_vax", "generate_study_population_unvax"),
-    moderately_sensitive = list(
-      describe = glue("output/not-for-review/describe_input_prevax_*.txt")
-    ),
-    highly_sensitive = list(
-      cohort = glue("output/input_prevax.rds"),
-      venn = glue("output/venn_prevax.rds")
-    )
-  ), 
-  #comment("Preprocess data - vax"),
-  action(
-    name = "preprocess_data_vax",
-    run = "r:latest analysis/preprocess/preprocess_data.R vax",
-    needs = list("generate_study_population_prelim", "generate_study_population_prevax", "generate_study_population_vax", "generate_study_population_unvax"),
-    moderately_sensitive = list(
-      describe = glue("output/not-for-review/describe_input_vax_*.txt")
-    ),
-    highly_sensitive = list(
-      cohort = glue("output/input_vax.rds"),
-      venn = glue("output/venn_vax.rds")
-    )
-  ), 
-  #comment("Preprocess data - unvax"),
-  action(
-    name = "preprocess_data_unvax",
-    run = "r:latest analysis/preprocess/preprocess_data.R unvax",
-    needs = list("generate_study_population_prelim", "generate_study_population_prevax", "generate_study_population_vax", "generate_study_population_unvax"),
-    moderately_sensitive = list(
-      describe = glue("output/not-for-review/describe_input_unvax_*.txt")
-    ),
-    highly_sensitive = list(
-      cohort = glue("output/input_unvax.rds"),
-      venn = glue("output/venn_unvax.rds")
-    )
-  ),
-  #comment("Stage 1 - Data cleaning - all cohorts"),
-  action(
-    name = "stage1_data_cleaning_all",
-    run = "r:latest analysis/preprocess/Stage1_data_cleaning.R all",
-    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax"),
-    moderately_sensitive = list(
-      refactoring = glue("output/not-for-review/meta_data_factors_*.csv"),
-      QA_rules = glue("output/review/descriptives/QA_summary_*.csv"),
-      IE_criteria = glue("output/review/descriptives/Cohort_flow_*.csv"),
-      histograms = glue("output/not-for-review/numeric_histograms_*.svg")
-    ),
-    highly_sensitive = list(
-      cohort = glue("output/input_*.rds")
-    )
-  ),
-  
-  #comment("Stage 1 - End date table - prevax"),
-  action(
-    name = "stage1_end_date_table_prevax",
-    run = "r:latest analysis/preprocess/create_follow_up_end_date.R prevax",
-    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all"),
-    highly_sensitive = list(
-      end_date_table = glue("output/follow_up_end_dates_prevax.rds")#prevax_*
-    )
-  ),
-  
-  #comment("Stage 1 - End date table - vax"),
-  action(
-    name = "stage1_end_date_table_vax",
-    run = "r:latest analysis/preprocess/create_follow_up_end_date.R vax",
-    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all"),
-    highly_sensitive = list(
-      end_date_table = glue("output/follow_up_end_dates_vax.rds")#vax_*
-    )
-  ),
-  
-  #comment("Stage 1 - End date table - unvax"),
-  action(
-    name = "stage1_end_date_table_unvax",
-    run = "r:latest analysis/preprocess/create_follow_up_end_date.R unvax",
-    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all"),
-    highly_sensitive = list(
-      end_date_table = glue("output/follow_up_end_dates_unvax.rds")#unvax_*
-    )
+  ##comment("Preprocess data"),
+  splice(
+    unlist(lapply(cohort, function(x) apply_preprocess(cohort = x)), recursive = FALSE)
   )
 )
+  # #comment("Preprocess data - prevax"),
+  # action(
+  #   name = "preprocess_data_prevax",
+  #   run = "r:latest analysis/preprocess/preprocess_data.R prevax",
+  #   needs = list("generate_study_population_prelim", "generate_study_population_prevax", "generate_study_population_vax", "generate_study_population_unvax"),
+  #   moderately_sensitive = list(
+  #     describe = glue("output/not-for-review/describe_input_prevax_*.txt")
+  #   ),
+  #   highly_sensitive = list(
+  #     cohort = glue("output/input_prevax.rds"),
+  #     venn = glue("output/venn_prevax.rds")
+  #   )
+  # ),
+  # #comment("Preprocess data - vax"),
+  # action(
+  #   name = "preprocess_data_vax",
+  #   run = "r:latest analysis/preprocess/preprocess_data.R vax",
+  #   needs = list("generate_study_population_prelim", "generate_study_population_prevax", "generate_study_population_vax", "generate_study_population_unvax"),
+  #   moderately_sensitive = list(
+  #     describe = glue("output/not-for-review/describe_input_vax_*.txt")
+  #   ),
+  #   highly_sensitive = list(
+  #     cohort = glue("output/input_vax.rds"),
+  #     venn = glue("output/venn_vax.rds")
+  #   )
+  # ),
+  # #comment("Preprocess data - unvax"),
+  # action(
+  #   name = "preprocess_data_unvax",
+  #   run = "r:latest analysis/preprocess/preprocess_data.R unvax",
+  #   needs = list("generate_study_population_prelim", "generate_study_population_prevax", "generate_study_population_vax", "generate_study_population_unvax"),
+  #   moderately_sensitive = list(
+  #     describe = glue("output/not-for-review/describe_input_unvax_*.txt")
+  #   ),
+  #   highly_sensitive = list(
+  #     cohort = glue("output/input_unvax.rds"),
+  #     venn = glue("output/venn_unvax.rds")
+  #   )
+  #)#,
+  #comment("Stage 1 - Data cleaning - all cohorts"),
+  # action(
+  #   name = "stage1_data_cleaning_all",
+  #   run = "r:latest analysis/preprocess/Stage1_data_cleaning.R all",
+  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax"),
+  #   moderately_sensitive = list(
+  #     refactoring = glue("output/not-for-review/meta_data_factors_*.csv"),
+  #     QA_rules = glue("output/review/descriptives/QA_summary_*.csv"),
+  #     IE_criteria = glue("output/review/descriptives/Cohort_flow_*.csv"),
+  #     histograms = glue("output/not-for-review/numeric_histograms_*.svg")
+  #   ),
+  #   highly_sensitive = list(
+  #     cohort = glue("output/input_*.rds")
+  #   )
+  # ),
+
+  # #comment("Stage 1 - End date table - prevax"),
+  # comment("Stage 1 - End date table - prevax"),
+  # action(
+  #   name = "stage1_end_date_table_prevax",
+  #   run = "r:latest analysis/preprocess/create_follow_up_end_date.R prevax",
+  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all"),
+  #   highly_sensitive = list(
+  #     end_date_table = glue("output/follow_up_end_dates_prevax.rds")#prevax_*
+  #   )
+  # ),
+  # 
+  # #comment("Stage 1 - End date table - vax"),
+  # action(
+  #   name = "stage1_end_date_table_vax",
+  #   run = "r:latest analysis/preprocess/create_follow_up_end_date.R vax",
+  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all"),
+  #   highly_sensitive = list(
+  #     end_date_table = glue("output/follow_up_end_dates_vax.rds")#vax_*
+  #   )
+  # ),
+  # 
+  # #comment("Stage 1 - End date table - unvax"),
+  # action(
+  #   name = "stage1_end_date_table_unvax",
+  #   run = "r:latest analysis/preprocess/create_follow_up_end_date.R unvax",
+  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all"),
+  #   highly_sensitive = list(
+  #     end_date_table = glue("output/follow_up_end_dates_unvax.rds")#unvax_*
+  # )
+  #)
+#)
   
   
   # #comment("Generate dummy data for study_definition - index"),
