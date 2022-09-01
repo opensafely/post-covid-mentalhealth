@@ -52,8 +52,8 @@ actions:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_vax
       --output-format feather
     needs:
-    - vax_eligibility_inputs
     - generate_index_dates
+    - vax_eligibility_inputs
     outputs:
       highly_sensitive:
         cohort: output/input_vax.feather
@@ -62,13 +62,11 @@ actions:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_unvax
       --output-format feather
     needs:
-    - generate_index_dates
     - vax_eligibility_inputs
+    - generate_index_dates
     outputs:
       highly_sensitive:
         cohort: output/input_unvax.feather
-
-  ## Preproces data - prevax 
 
   preprocess_data_prevax:
     run: r:latest analysis/preprocess/preprocess_data.R prevax
@@ -77,13 +75,11 @@ actions:
     - generate_study_population_prevax
     outputs:
       moderately_sensitive:
-        describe: output/not-for-review/describe_input_prevax_*.txt
-        descrive_venn: output/not-for-review/describe_venn_prevax.txt
+        describe: output/not-for-review/describe_input_prevax_stage0.txt
+        describe_venn: output/not-for-review/describe_venn_prevax.txt
       highly_sensitive:
         cohort: output/input_prevax.rds
         venn: output/venn_prevax.rds
-
-  ## Preproces data - vax 
 
   preprocess_data_vax:
     run: r:latest analysis/preprocess/preprocess_data.R vax
@@ -92,13 +88,11 @@ actions:
     - generate_study_population_vax
     outputs:
       moderately_sensitive:
-        describe: output/not-for-review/describe_input_vax_*.txt
+        describe: output/not-for-review/describe_input_vax_stage0.txt
         descrive_venn: output/not-for-review/describe_venn_vax.txt
       highly_sensitive:
         cohort: output/input_vax.rds
         venn: output/venn_vax.rds
-
-  ## Preproces data - unvax 
 
   preprocess_data_unvax:
     run: r:latest analysis/preprocess/preprocess_data.R unvax
@@ -107,8 +101,8 @@ actions:
     - generate_study_population_unvax
     outputs:
       moderately_sensitive:
-        describe: output/not-for-review/describe_input_unvax_*.txt
-        descrive_venn: output/not-for-review/describe_venn_unvax.txt
+        describe: output/not-for-review/describe_input_unvax_stage0.txt
+        describe_venn: output/not-for-review/describe_venn_unvax.txt
       highly_sensitive:
         cohort: output/input_unvax.rds
         venn: output/venn_unvax.rds

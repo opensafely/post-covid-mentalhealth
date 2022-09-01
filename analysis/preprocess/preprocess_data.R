@@ -62,11 +62,11 @@ df <- df %>%
 
 # Overwrite vaccination information for dummy data and vax cohort only --
 
-# if(Sys.getenv("OPENSAFELY_BACKEND") %in% c("", "expectations") &&
-#    cohort_name %in% c("vax")) {
-#   source("analysis/preprocess/modify_dummy_vax_data.R")
-#   message("Vaccine information overwritten successfully")
-# }
+if(Sys.getenv("OPENSAFELY_BACKEND") %in% c("", "expectations") &&
+   cohort_name %in% c("vax")) {
+  source("analysis/preprocess/modify_dummy_vax_data.R")
+  message("Vaccine information overwritten successfully")
+}
 
 # Describe data ----------------------------------------------------------------
 
@@ -88,65 +88,6 @@ df <- df %>%
   mutate(cov_num_consulation_rate = replace(cov_num_consulation_rate, 
                                             cov_num_consulation_rate > 365, 365))
 
-# Format columns ---------------------------------------------------------------
-
-# READ IN INDEX DATES AND SUMMARISE TO LOG FILE
-
-# index_dates <- readr::read_csv(file = "output/index_dates.csv")
-# for(i in names(index_dates)){
-#   print(summary(index_dates[i]))
-# }
-
-# CREATE PREPROCESS FUNCTION
-
-# preprocess <- function(cohort_name){
-#   # Create spine dataset ---------------------------------------------------------
-# 
-#   if(cohort_name == "prevax" | cohort_name == "unvax"){
-# 
-#     dfspine <- arrow::read_feather(file = "output/input_prelim.feather",
-#                                    col_select = -c("cov_cat_sex",
-#                                                    "vax_jcvi_age_1",
-#                                                    "vax_jcvi_age_2",
-#                                                    "vax_cat_jcvi_group",
-#                                                    "vax_date_eligible"))
-#   } else if (cohort_name == "vax"){
-# 
-#     dfspine <- arrow::read_feather(file = "output/input_prelim.feather",
-#                                    col_select = -c("cov_cat_sex"))
-#   }
-# 
-#   print(paste0(cohort_name," Spine dataset (input prelim feather) read in successfully"))
-#   print(paste0(cohort_name," ", nrow(dfspine), " rows in spine dataset"))
-# 
-#   ## Load dataset
-#   df <- arrow::read_feather(file = paste0("output/input_",cohort_name,".feather"))
-# 
-#   print(paste0(cohort_name," ", nrow(df), " rows in input dataset"))
-#   print(purrr::map(df, ~sum(is.na(.))))
-#   print(summary(df))
-# 
-#   ## merge with spine
-# 
-#   df <- merge(df,dfspine, by = "patient_id")
-# 
-#   print(paste0(cohort_name," ", nrow(df), " rows in dataset after merging spine with input"))
-
-
-  # Format columns -----------------------------------------------------
-  # dates, numerics, factors, logicals
-  
-  # df <- df %>%
-  #   #dplyr::rename(#tmp_out_max_hba1c_mmol_mol_date = tmp_out_num_max_hba1c_date,
-  #                 #tmp_out_bmi_date_measured = cov_num_bmi_date_measured) %>%
-  #   mutate(across(contains('_date'), ~ as.Date(as.character(.)))) %>% #convert to date format
-  #   mutate(across(contains('_birth_year'), ~ format(as.Date(.), "%Y"))) %>% #convert numbers to numbers format p1
-  #   mutate(across(contains('_num'), ~ as.numeric(.))) %>% #convert numbers to numbers format p2
-  #   mutate(across(contains('_cat'), ~ as.factor(.))) %>% #convert categories to factor format
-  #   mutate(across(contains('_bin'), ~ as.logical(.))) #convert binaries to logical format
-  
-  # print("Columns formatted successfully")
-  
   # Define COVID-19 severity --------------------------------------------------------------
   
   df <- df %>%
@@ -200,14 +141,7 @@ df <- df %>%
                       #contains("vax_cat_")# Vaccination products
   )
   
-  # df1 <- df %>% 
-  #   # dplyr::select(- vax_jcvi_age_1, - vax_jcvi_age_2) %>% #  remove JCVI variables
-  #   # select patient id, death date and variables: subgroups, exposures, outcomes, covariates, quality assurance and vaccination
-  #   # need diabetes "step" variables for flowchart (diabetes_flowchart.R)
-  #   # dplyr::select(patient_id, death_date,
-  #   #               contains(c("sub_", "exp_", "out_", "cov_", "qa_", "vax_", "step"))) %>%
-  #   # dplyr::select(-contains("df_out_")) %>%
-  #   dplyr::select(-contains("tmp_"))
+  df1[,colnames(df)[grepl("tmp_",colnames(df))]] <- NULL
   
   # Repo specific preprocessing 
   
@@ -242,23 +176,3 @@ df <- df %>%
   message("Venn diagram data saved successfully")
   tictoc::toc() 
   
-#   # SAVE
-#   ## create folders for outputs
-#   # fs::dir_create(here::here("output", "venn"))
-#   saveRDS(df, file = paste0("output/venn_",cohort_name,".rds"))
-#   
-#   print(paste0(cohort_name,"Venn dataset saved successfully"))
-#   
-# }
-
-# Run function using specified commandArgs
-
-# if(cohort_name == "all"){
-#   preprocess("prevax")
-#   preprocess("vax")
-#   preprocess("unvax")
-# }else{
-#   preprocess(cohort_name)
-# }
-
-# END
