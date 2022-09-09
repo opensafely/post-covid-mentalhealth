@@ -80,7 +80,7 @@ message ("Cohort ",cohort_name, " description written successfully!")
 
 df$cov_bin_obesity <- ifelse(df$cov_bin_obesity == TRUE | 
                                df$cov_cat_bmi_groups=="Obese",TRUE,FALSE)
-df[,c("cov_num_bmi")] <- NULL
+#df[,c("cov_num_bmi")] <- NULL
 
 # QC for consultation variable--------------------------------------------------
 #max to 365 (average of one per day)
@@ -135,10 +135,10 @@ df <- df %>%
                       contains("out_"), # Outcomes
                       contains("cov_"), # Covariates
                       contains("qa_"), # Quality assurance
-                      #contains("step"), # diabetes steps
+                      contains("step"), # diabetes steps
                       contains("vax_date_eligible"), # Vaccination eligibility
                       contains("vax_date_"), # Vaccination dates and vax type 
-                      #contains("vax_cat_")# Vaccination products
+                      contains("vax_cat_")# Vaccination products
   )
   
   df1[,colnames(df)[grepl("tmp_",colnames(df))]] <- NULL
