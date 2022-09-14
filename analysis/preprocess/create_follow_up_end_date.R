@@ -16,7 +16,7 @@ args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
   # use for interactive testing
-  cohort_name <- "all"
+  cohort_name <- "prevax"
 } else {
   cohort_name <- args[[1]]
 }
@@ -42,7 +42,7 @@ active_analyses <- active_analyses %>% filter(active == "TRUE") %>% select(outco
 
 follow_up_end_dates <- function(cohort_name){
   # Load relevant data
-  input <- read_rds(paste0("output/input_",cohort_name,"_stage1.rds"))
+  input <- read_rds(paste0("output/input_",cohort_name,"_stage1.rds")) #input <- read_rds(paste0("output/input_vax_stage1.rds"))
   
   input <- input[,c("patient_id","death_date","index_date","sub_cat_covid19_hospital",active_analyses$outcome_variable,
                     colnames(input)[grepl("exp_",colnames(input))], 
@@ -103,17 +103,26 @@ follow_up_end_dates <- function(cohort_name){
     # to find this time period
     event_short <- gsub("out_date_","", event)
     
-    for(pheno in c("hospitalised","non_hospitalised")){
+    for(pheno in c("hospitalised","non_hospitalised")){#pheno <- c("hospitalised","non_hospitalised")
       input$date_expo_censor <- as.Date(ifelse(!(input$expo_pheno %in% pheno),
                                                input$expo_date, 
                                                NA), origin='1970-01-01')
       setnames(input,
                old="date_expo_censor",
                new=paste0(pheno,"_date_expo_censor"))
+      # input <- input %>%
+      #   rename( "_date_expo_censor" ="date_expo_censor")
+      
     }
     
     input$hospitalised_follow_up_end <- apply(input[,c("follow_up_end","hospitalised_date_expo_censor")],1, min,na.rm=TRUE)
     input$non_hospitalised_follow_up_end <- apply(input[,c("follow_up_end","non_hospitalised_date_expo_censor")],1, min,na.rm=TRUE)
+    
+    # my_follow <- function(x) ifelse( !all(is.na(x)), min(x, na.rm=T), NA)
+    # input$hospitalised_follow_up_end = apply(input[c("follow_up_end","hospitalised_date_expo_censor")], 1, my_follow)
+    # 
+    # my_hospitalised <- function(x) ifelse( !all(is.na(x)), min(x, na.rm=T), NA)
+    # input$non_hospitalised_follow_up_end = apply(input[c("follow_up_end","non_hospitalised_date_expo_censor")], 1, my_hospitalised)
     
     input$hospitalised_follow_up_end <- as.Date(input$hospitalised_follow_up_end)
     input$non_hospitalised_follow_up_end <- as.Date(input$non_hospitalised_follow_up_end)
