@@ -13,7 +13,7 @@ library(dplyr)
 ## defaults ----
 defaults_list <- list(
   version = "3.0",
-  expectations= list(population_size=10000L)
+  expectations= list(population_size=200000L)
 )
 
 # active_analyses <- read_rds("lib/active_analyses.rds")
@@ -257,36 +257,34 @@ actions_list <- splice(
     highly_sensitive = list(
       cohort = glue("output/input_*.rds")
     )
-  # ),
-  # 
-  # #comment("Stage 1 - End date table - prevax"),
-  # action(
-  #   name = "stage1_end_date_table_prevax",
-  #   run = "r:latest analysis/preprocess/create_follow_up_end_date.R prevax",
-  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
-  #   highly_sensitive = list(
-  #     end_date_table = glue("output/follow_up_end_dates_prevax_*.rds")
-  #   )
-  # ),
-  # 
-  # #comment("Stage 1 - End date table - vax"),
-  # action(
-  #   name = "stage1_end_date_table_vax",
-  #   run = "r:latest analysis/preprocess/create_follow_up_end_date.R vax",
-  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
-  #   highly_sensitive = list(
-  #     end_date_table = glue("output/follow_up_end_dates_vax_*.rds")
-  #   )
-  # ),
-  # 
-  # #comment("Stage 1 - End date table - unvax"),
-  # action(
-  #   name = "stage1_end_date_table_unvax",
-  #   run = "r:latest analysis/preprocess/create_follow_up_end_date.R unvax",
-  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
-  #   highly_sensitive = list(
-  #     end_date_table = glue("output/follow_up_end_dates_unvax_*.rds")
-  #   )
+  ),
+
+  #comment("Stage 1 - End date table - prevax"),
+  action(
+    name = "stage1_end_date_table_prevax",
+    run = "r:latest analysis/preprocess/create_follow_up_end_date.R prevax",
+    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
+    highly_sensitive = list(
+      end_date_table = glue("output/follow_up_end_dates_prevax.rds")
+    )
+  ),
+  #comment("Stage 1 - End date table - vax"),
+  action(
+    name = "stage1_end_date_table_vax",
+    run = "r:latest analysis/preprocess/create_follow_up_end_date.R vax",
+    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
+    highly_sensitive = list(
+      end_date_table = glue("output/follow_up_end_dates_vax.rds")
+    )
+  ),
+  #comment("Stage 1 - End date table - unvax"),
+  action(
+    name = "stage1_end_date_table_unvax",
+    run = "r:latest analysis/preprocess/create_follow_up_end_date.R unvax",
+    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
+    highly_sensitive = list(
+      end_date_table = glue("output/follow_up_end_dates_unvax.rds")
+    )
   )
 )
   

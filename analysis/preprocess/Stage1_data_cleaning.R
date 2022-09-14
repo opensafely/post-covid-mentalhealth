@@ -219,14 +219,14 @@ stage1 <- function(cohort_name){
     cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 4 (Inclusion): Known deprivation")
     
     #Inclusion criteria 5: Registered in an English GP with TPP software for at least 6 months prior to the study start date
-    #input <- subset(input, input$has_follow_up_previous_6months == TRUE)
-    #cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 5 (Inclusion): Registered in an English GP with TPP software for at least 6 months prior to the study start date")
+    input <- subset(input, input$has_follow_up_previous_6months == TRUE)
+    cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 5 (Inclusion): Registered in an English GP with TPP software for at least 6 months prior to the study start date")
     
     #Inclusion criteria 6: Not deregistered 
-    #input <- input %>%
-    #  filter(is.na(dereg_date))
+    input <- input %>%
+      filter(is.na(dereg_date))
     #cohort_flow <- rbind(cohort_flow,c(nrow(input),as.numeric(cohort_flow[(nrow(input)-1),1]) - nrow(input)))
-    #cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 6 (Exclusion): Not deregistered from all support practices between index and end of study date")
+    cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 6 (Exclusion): Not deregistered from all support practices between index and end of study date")
     
     #Inclusion criteria 7: Known region
     input <- input %>% mutate(cov_cat_region = as.character(cov_cat_region)) %>%
