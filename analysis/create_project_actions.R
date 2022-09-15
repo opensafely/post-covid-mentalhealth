@@ -259,15 +259,15 @@ actions_list <- splice(
     )
   ),
 
-  # #comment("Stage 1 - End date table - prevax"),
-  # action(
-  #   name = "stage1_end_date_table_prevax",
-  #   run = "r:latest analysis/preprocess/create_follow_up_end_date.R prevax",
-  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
-  #   highly_sensitive = list(
-  #     end_date_table = glue("output/follow_up_end_dates_prevax.rds")#_*
-  #   )
-  # ),
+  #comment("Stage 1 - End date table - prevax"),
+  action(
+    name = "stage1_end_date_table_prevax",
+    run = "r:latest analysis/preprocess/create_follow_up_end_date.R prevax",
+    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
+    highly_sensitive = list(
+      end_date_table = glue("output/follow_up_end_dates_prevax.rds")#_*
+    )
+  ),
   #comment("Stage 1 - End date table - vax"),
   action(
     name = "stage1_end_date_table_vax",
