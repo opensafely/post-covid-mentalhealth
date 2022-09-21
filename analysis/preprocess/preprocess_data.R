@@ -18,6 +18,9 @@ library(magrittr)
 library(dplyr)
 library(tidyverse)
 library(lubridate)
+library(data.table)
+library(readr)
+#library(R.utils)
 
 args <- commandArgs(trailingOnly=TRUE)
 print(length(args))
@@ -36,7 +39,10 @@ fs::dir_create(here::here("output", "review"))
 
 # Read cohort dataset ---------------------------------------------------------- 
 
-df <- arrow::read_feather(file = paste0("output/input_",cohort_name,".feather") )
+#df <- arrow::read_feather(file = paste0("output/input_",cohort_name,".feather") )
+#df <- data.table::fread(file = paste0("output/input_",cohort_name,".csv.gz") ) %>%
+#  as_tibble()
+df <- readr::read_csv(file = paste0("output/input_",cohort_name,".csv.gz") )
 
 message(paste0("Dataset has been read successfully with N = ", nrow(df), " rows"))
 
@@ -52,9 +58,9 @@ message("Death date added!")
 
 df <- df %>%
   mutate(across(c(contains("_date")),
-                ~ floor_date(as.Date(., format="%Y-%m-%d"), unit = "days")),
+                ~ floor_date(as.Date(., format="%Y-%m-%d", origin = lubridate::origin), unit = "days")),
          across(contains('_birth_year'),
-                ~ format(as.Date(.), "%Y")),
+                ~ format(as.Date(., , origin = lubridate::origin), "%Y")),
          across(contains('_num') & !contains('date'), ~ as.numeric(.)),
          across(contains('_cat'), ~ as.factor(.)),
          across(contains('_bin'), ~ as.logical(.)))
