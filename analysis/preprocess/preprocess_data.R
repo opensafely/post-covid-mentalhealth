@@ -1,48 +1,27 @@
-##################################################################################
-# 
-# Description: This script reads in the input data and prepares it for data cleaning.
-#
-# Input: output/input.feather
-# Output: output/
-#
-# Author(s): Rachel Denholm,  Kurt Taylor
-#
-# Date last updated: 
-#
-##################################################################################
-
 # Load libraries ---------------------------------------------------------------
-
 tictoc::tic()
 library(magrittr)
 library(dplyr)
 library(tidyverse)
 library(lubridate)
-library(data.table)
-library(readr)
-#library(R.utils)
 
+# Specify command arguments ----------------------------------------------------
 args <- commandArgs(trailingOnly=TRUE)
 print(length(args))
 if(length(args)==0){
-  # interactive testing
-  cohort_name <- "prevax" #"all"
-  # cohort_name <- "vax"
-  # cohort_name <- "unvax"
+  # use for interactive testing
+  cohort_name <- "prevax"
 } else {
   cohort_name <- args[[1]]
 }
-# FILE PATHS
 
 fs::dir_create(here::here("output", "not-for-review"))
 fs::dir_create(here::here("output", "review"))
 
+
 # Read cohort dataset ---------------------------------------------------------- 
 
-#df <- arrow::read_feather(file = paste0("output/input_",cohort_name,".feather") )
-#df <- data.table::fread(file = paste0("output/input_",cohort_name,".csv.gz") ) %>%
-#  as_tibble()
-df <- readr::read_csv(file = paste0("output/input_",cohort_name,".csv.gz") )
+df <- readr::read_csv(file = paste0("output/input_",cohort_name,".csv.gz"))
 
 message(paste0("Dataset has been read successfully with N = ", nrow(df), " rows"))
 
@@ -53,18 +32,18 @@ df <- df %>% inner_join(prelim_data,by="patient_id")
 
 message("Death date added!")
 
+
 # Format columns ---------------------------------------------------------------
 # dates, numerics, factors, logicals
 
 df <- df %>%
   mutate(across(c(contains("_date")),
-                ~ floor_date(as.Date(., format="%Y-%m-%d", origin = lubridate::origin), unit = "days")),
+                ~ floor_date(as.Date(., format="%Y-%m-%d"), unit = "days")),
          across(contains('_birth_year'),
-                ~ format(as.Date(., , origin = lubridate::origin), "%Y")),
+                ~ format(as.Date(., origin = "1970-01-01"), "%Y")),
          across(contains('_num') & !contains('date'), ~ as.numeric(.)),
          across(contains('_cat'), ~ as.factor(.)),
          across(contains('_bin'), ~ as.logical(.)))
-
 
 # Overwrite vaccination information for dummy data and vax cohort only --
 
