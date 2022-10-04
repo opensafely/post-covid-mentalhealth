@@ -30,13 +30,14 @@ library(dplyr)
 library(data.table)
 library(tidyverse)
 library(lubridate)
+library(stringr)
 
 # Specify command arguments ----------------------------------------------------
 
 args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
-  cohort_name <- "vax" # interactive testing
+  cohort_name <- "all" # interactive testing
   #group <- "Mental_health"
 } else {
   cohort_name <- args[[1]]
@@ -225,9 +226,13 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
   
   table1$Covariate_level <-  sub('\\:.*', '', table1$Covariate_level) # Remove everything after :
   
+  # table1 <- table1 %>%
+  #   filter(!(Covariate == "cov_num_consulation_rate" & !Covariate_level=="Mean   ")) #%>%
+  #   #filter(!(Covariate == "cov_num_tc_hdl_ratio" & !Covariate_level=="Mean   "))
+  
   table1 <- table1 %>%
-    filter(!(Covariate == "cov_num_consulation_rate" & !Covariate_level=="Mean   ")) #%>%
-    #filter(!(Covariate == "cov_num_tc_hdl_ratio" & !Covariate_level=="Mean   "))
+    filter(!(Covariate == "cov_num_age" & !Covariate_level=="Mean   ")) %>%
+    filter(!(Covariate == "cov_num_consulation_rate" & !Covariate_level=="Mean   "))
   
   table1_count_all <- as.data.frame(matrix(nrow = 1, ncol = 2))
   colnames(table1_count_all) <- c("Covariate","Covariate_level")
@@ -297,6 +302,14 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
     
   }
   
+  # PRINT MEAN AND SD FOR NUMERIC VARS
+  
+  print(summary(input[numeric_var_names]))
+  print(sd(input$cov_num_age))
+  print(sd(input$cov_num_consulation_rate))
+  
+  # print(s)
+  
   # Tidy table 1
   
   table1$Covariate <- gsub("cov_bin_", "History of ",table1$Covariate)
@@ -340,7 +353,13 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
   # Save table 1
   write.csv(table1_suppressed, file = file.path("output/review/descriptives", paste0("Table1_",cohort_name, "_",covid_history,"_",group,".csv")) , row.names=F)#covid_history,"_",group, 
   
+  print(paste0("Table 1 ran and saved succesfully for ", cohort_name, " ", group, " ", covid_history))
+  
 }
+
+# Run function using specified commandArgs
+# Only generate Table 1 for the main Diabetes analyses for the paper
+# Probably won't include subgroup Table 1's.
 
 # Run function using specified commandArgs
 
