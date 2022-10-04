@@ -42,7 +42,6 @@ ref_ar=study_dates["ref_ar"] #reference date for caluclating at risk group
 start_date=study_dates["start_date"] # start of phase 1
 end_date=study_dates["end_date"] # end of followup
 pandemic_start=study_dates["pandemic_start"]
-#delta_date=study_dates["delta_date"]
 
 ## function to add days to a string date
 from datetime import datetime, timedelta
@@ -77,15 +76,6 @@ jcvi_variables = dict(
             "rate": "universal",
         },
     ),
-
-    # patient sex
-    # sex=patients.sex(
-    #     return_expectations={
-    #     "rate": "universal",
-    #     "category": {"ratios": {"M": 0.49, "F": 0.51}},
-    #     "incidence": 0.99,
-    #     }
-    # ),
 
     vax_cat_jcvi_group=patients.categorised_as(
         dict_jcvi,
