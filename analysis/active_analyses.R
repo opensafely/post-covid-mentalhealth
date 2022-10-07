@@ -75,43 +75,45 @@ for (i in 1:length(outcomes)) {
 
 #Remove column covid_history
 df[,8] <- FALSE
+#remove 
+
 #Remove not necessary columns for prescriptions, primary and secondary care
-#df[c(2:4,6:8,13:15,17:18,21),c(9:24)] <- FALSE
-#df[c(2:4,6:8,13:15,17:18,21),c(9:24)] <- FALSE #remove unnecessary columns for prescriptions, primary, and secondary care
-#df[c(9:11,19:21),c(11:24)] <- FALSE #remove unnecessary columns for other MH outcomes (not key outcomes)
-###df[c(1,5,12,16), c(25:28)] <- FALSE #remove prior_recent & prior_history
-####df[c(1,5,12,16), c(27:28)] <- FALSE
+df[c(2:4,6:8,13:15,17:18,21),c(9:24)] <- FALSE
+df[c(2:4,6:8,13:15,17:18,21),c(9:24)] <- FALSE #remove unnecessary columns for prescriptions, primary, and secondary care
+df[c(9:11,19:21),c(11:24)] <- FALSE #remove unnecessary columns for other MH outcomes (not key outcomes)
+#df[c(1,5,12,16), c(25:28)] <- FALSE #remove prior_recent & prior_history
+#df[c(1,5,12,16), c(27:28)] <- FALSE
 
 #Key outcomes + prior_history
 #df[c(2:4,6:11,13:15,17:21),c(1,8)]<- FALSE
 
 #Just depression
-df[c(5:21),1] <- FALSE
-df[,c(11:24)] <- FALSE
-df[c(2:4),c(9:10)] <- FALSE
+# df[c(5:21),1] <- FALSE
+# df[,c(11:24)] <- FALSE
+# df[c(2:4),c(9:10)] <- FALSE
 
 #------------------------------------------------------------------------------#
 
 #Prior_history variables:
 #Depression
-# df$prior_history_var <- ifelse(df$outcome=="Depression" ,"sub_bin_depression",df$prior_history_var)
-# df$prior_history_TRUE <- ifelse(df$outcome=="Depression" ,TRUE,df$prior_history_TRUE)
-# df$prior_history_FALSE <- ifelse(df$outcome=="Depression" ,TRUE,df$prior_history_FALSE)
+df$prior_history_var <- ifelse(df$outcome=="Depression" ,"sub_bin_depression",df$prior_history_var)
+df$prior_history_true <- ifelse(df$outcome=="Depression" ,TRUE,df$prior_history_TRUE)
+df$prior_history_false <- ifelse(df$outcome=="Depression" ,TRUE,df$prior_history_FALSE)
 
-# # #Anxiety - general
-# df$prior_history_var <- ifelse(df$outcome=="Anxiety - general" ,"sub_bin_anxiety_general",df$prior_history_var)
-# df$prior_history_TRUE <- ifelse(df$outcome=="Anxiety - general" ,TRUE,df$prior_history_TRUE)
-# df$prior_history_FALSE <- ifelse(df$outcome=="Anxiety - general" ,TRUE,df$prior_history_FALSE)
+#anxiety - general
+df$prior_history_var <- ifelse(df$outcome=="Anxiety - general" ,"sub_bin_anxiety_general",df$prior_history_var)
+df$prior_history_true <- ifelse(df$outcome=="Anxiety - general" ,TRUE,df$prior_history_TRUE)
+df$prior_history_false <- ifelse(df$outcome=="Anxiety - general" ,TRUE,df$prior_history_FALSE)
 
-# # #Serious mental illness
-# df$prior_history_var <- ifelse(df$outcome=="Serious mental illness" ,"sub_bin_serious_mental_illness",df$prior_history_var)
-# df$prior_history_TRUE <- ifelse(df$outcome=="Serious mental illness" ,TRUE,df$prior_history_TRUE)
-# df$prior_history_FALSE <- ifelse(df$outcome=="Serious mental illness" ,TRUE,df$prior_history_FALSE)
+#serious mental illness
+df$prior_history_var <- ifelse(df$outcome=="Serious mental illness" ,"sub_bin_serious_mental_illness",df$prior_history_var)
+df$prior_history_true <- ifelse(df$outcome=="Serious mental illness" ,TRUE,df$prior_history_TRUE)
+df$prior_history_false <- ifelse(df$outcome=="Serious mental illness" ,TRUE,df$prior_history_FALSE)
 
-# # #Self harm
-# df$prior_history_var <- ifelse(df$outcome=="Self harm" ,"sub_bin_self_harm",df$prior_history_var)
-# df$prior_history_TRUE <- ifelse(df$outcome=="Self harm" ,TRUE,df$prior_history_TRUE)
-# df$prior_history_FALSE <- ifelse(df$outcome=="Self harm" ,TRUE,df$prior_history_FALSE)
+#self harm
+df$prior_history_var <- ifelse(df$outcome=="Self harm" ,"sub_bin_self_harm",df$prior_history_var)
+df$prior_history_true <- ifelse(df$outcome=="Self harm" ,TRUE,df$prior_history_TRUE)
+df$prior_history_false <- ifelse(df$outcome=="Self harm" ,TRUE,df$prior_history_FALSE)
 
 #------------------------------------------------------------------------------#
 
@@ -154,21 +156,21 @@ df[c(2:4),c(9:10)] <- FALSE
 
 #Remove History of Depression as covariate
 
-# # # #Anxiety - general
+# # #Anxiety - general
 # df$prior_history_MH_var <- ifelse(df$outcome=="Anxiety - general" ,"sub_bin_history_anxiety_general",df$prior_history_MH_var)
 # df$prior_history_MH_TRUE <- ifelse(df$outcome=="Anxiety - general" ,TRUE,df$prior_history_MH_TRUE)
 # df$prior_history_MH_FALSE <- ifelse(df$outcome=="Anxiety - general" ,TRUE,df$prior_history_MH_FALSE)
 
 #Remove History of Anxiety as covariate
 
-# # # #Serious mental illness
+#Serious mental illness
 # df$prior_history_MH_var <- ifelse(df$outcome=="Serious mental illness" ,"sub_bin_history_serious_mental_illness",df$prior_history_MH_var)
 # df$prior_history_MH_TRUE <- ifelse(df$outcome=="Serious mental illness" ,TRUE,df$prior_history_MH_TRUE)
 # df$prior_history_MH_FALSE <- ifelse(df$outcome=="Serious mental illness" ,TRUE,df$prior_history_MH_FALSE)
 
 #Remove History of Serious mental illness as covariate
 
-# # # #Self harm
+#Self harm
 # df$prior_history_MH_var <- ifelse(df$outcome=="Self harm" ,"sub_bin_history_self_harm",df$prior_history_MH_var)
 # df$prior_history_MH_TRUE <- ifelse(df$outcome=="Self harm" ,TRUE,df$prior_history_MH_TRUE)
 # df$prior_history_MH_FALSE <- ifelse(df$outcome=="Self harm" ,TRUE,df$prior_history_MH_FALSE)

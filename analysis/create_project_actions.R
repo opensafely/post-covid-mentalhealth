@@ -16,11 +16,11 @@ defaults_list <- list(
   expectations= list(population_size=200000L)
 )
 
-# active_analyses <- read_rds("lib/active_analyses.rds")
-# active_analyses_table <- subset(active_analyses, active_analyses$active =="TRUE")
-# outcomes_model <- active_analyses_table$outcome_variable %>% str_replace("out_date_", "")
-#cohort_to_run <- c("prevax", "vax", "unvax")
-# analyses <- c("main", "subgroups")
+active_analyses <- read_rds("lib/active_analyses.rds")
+active_analyses_table <- subset(active_analyses, active_analyses$active =="TRUE")
+outcomes_model <- active_analyses_table$outcome_variable %>% str_replace("out_date_", "")
+cohort_to_run <- c("prevax", "vax", "unvax")
+analyses <- c("main", "subgroups")
 
 #cohort <- c("prevax", "vax", "unvax")
 
@@ -101,35 +101,20 @@ convert_comment_actions <-function(yaml.txt){
 #   )
 # }
 
-# table2 <- function(cohort){
-#   splice(
-#     comment(glue("Stage 4 - Table 2 - {cohort} cohort")),
-#     action(
-#       name = glue("stage4_table_2_{cohort}"),
-#       run = "r:latest analysis/descriptives/table_2.R",
-#       arguments = c(cohort),
-#       needs = list("stage1_data_cleaning_both",glue("stage1_end_date_table_{cohort}")),
-#       moderately_sensitive = list(
-#         input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
-#       )
-#     )
-#   )
-# }
-
-# hosp_event_counts_by_covariate_level <- function(cohort){
-#   splice(
-#     comment(glue("Hospitalised event counts by covariate - {cohort}")),
-#     action(
-#       name = glue("hosp_event_counts_by_covariate_level_{cohort}"),
-#       run = "r:latest analysis/descriptives/hospitalised_events_split_by_time_period_and_covariate_level.R",
-#       arguments = c(cohort),
-#       needs = list("stage1_data_cleaning_both",glue("stage1_end_date_table_{cohort}")),
-#       moderately_sensitive = list(
-#         hosp_counts_by_covariate = glue("output/not-for-review/hospitalised_event_counts_by_covariate_level_{cohort}.csv")
-#       )
-#     )
-#   )
-# }
+table2 <- function(cohort){
+  splice(
+    comment(glue("Stage 4 - Table 2 - {cohort} cohort")),
+    action(
+      name = glue("stage4_table_2_{cohort}"),
+      run = "r:latest analysis/descriptives/table_2.R",
+      arguments = c(cohort),
+      needs = list("stage1_data_cleaning_all",glue("stage1_end_date_table_{cohort}")),
+      moderately_sensitive = list(
+        input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
+      )
+    )
+  )
+}
 
 ##########################################################
 ## Define and combine all actions into a list of actions #
@@ -287,7 +272,7 @@ actions_list <- splice(
     )
   ),
 
-  
+
   #comment("Stage 2 - Missing - Table 1 - all cohorts"),
   action(
     name = "stage2_missing_table1_all",
@@ -299,40 +284,25 @@ actions_list <- splice(
       Descriptive_Table = glue("output/review/descriptives/Table1_*.csv")
     )
   )
-)
-
-  # #comment("Stage 3 - No action there for CVD outcomes"),  
-
-  # #comment("Stage 3 - Diabetes flow - vaccinated"),  
-  
+)  
+  # #comment("Format Table 1"),
   # action(
-  #   name = "stage3_diabetes_flow_vaccinated",
-  #   run = "r:latest analysis/descriptives/diabetes_flowchart.R vaccinated",
-  #   needs = list("stage1_data_cleaning_both"),
+  #   name = "format_table1",
+  #   run = "r:latest analysis/descriptives/format_table1.R",
+  #   needs = list("stage2_missing_table1_all"),
   #   moderately_sensitive = list(
-  #     flow_df = glue("output/review/figure-data/diabetes_flow_values_vaccinated.csv")
-  #     # flow_fig = glue("output/diabetes_flow.png"),
-  #   ),
+  #     formatted_tables = glue("output/review/descriptives/Table1_Formatted_To_Release_*.csv")
+  #   )
   # ),
 
-  # #comment("Stage 3 - Diabetes flow - electively_unvaccinated"),  
-  
-  # action(
-  #   name = "stage3_diabetes_flow_electively_unvaccinated",
-  #   run = "r:latest analysis/descriptives/diabetes_flowchart.R electively_unvaccinated",
-  #   needs = list("stage1_data_cleaning_both"),
-  #   moderately_sensitive = list(
-  #     flow_df = glue("output/review/figure-data/diabetes_flow_values_electively_unvaccinated.csv")
-  #     # flow_fig = glue("output/diabetes_flow.png"),
-  #   ),
-  # ),
-  
-  
-  # #comment("Stage 4 - Create input for table2"),
-  # splice(
-  #   # over outcomes
-  #   unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
-  # ),
+  # #comment("Stage 3 - No action there for Mental Health outcomes"),  
+
+  #comment("Stage 4 - Create input for table2"),
+#   splice(
+#     # over outcomes
+#     unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
+#   )#,
+# )
   
   # #comment("Stage 4 - Venn diagrams"),
   # action(

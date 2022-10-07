@@ -139,17 +139,17 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
   
   #Define populations of interest
   
-  # pop <- data.frame(rbind(c("Whole_population","!is.na(input$patient_id)"),
-  #                         c("COVID_exposed","!is.na(input$exp_date_covid19_confirmed)"),
-  #                         c("COVID_hospitalised","!is.na(input$exp_date_covid19_confirmed) & input$sub_cat_covid19_hospital=='hospitalised'"),
-  #                         c("COVID_non_hospitalised","!is.na(input$exp_date_covid19_confirmed) & input$sub_cat_covid19_hospital=='non_hospitalised'")),
-  #                   stringsAsFactors = FALSE)
-  
   pop <- data.frame(rbind(c("Whole_population","!is.na(input$patient_id)"),
-                          c("COVID_exposed","is.na(input$exp_date_covid19_confirmed)==F"),
-                          c("COVID_hospitalised","input$sub_cat_covid19_hospital=='hospitalised'"),
-                          c("COVID_non_hospitalised","input$sub_cat_covid19_hospital=='non_hospitalised'")),
+                          c("COVID_exposed","!is.na(input$exp_date_covid19_confirmed)"),
+                          c("COVID_hospitalised","!is.na(input$exp_date_covid19_confirmed) & input$sub_cat_covid19_hospital=='hospitalised'"),
+                          c("COVID_non_hospitalised","!is.na(input$exp_date_covid19_confirmed) & input$sub_cat_covid19_hospital=='non_hospitalised'")),
                     stringsAsFactors = FALSE)
+  
+  # pop <- data.frame(rbind(c("Whole_population","!is.na(input$patient_id)"),
+  #                         c("COVID_exposed","is.na(input$exp_date_covid19_confirmed)==F"),
+  #                         c("COVID_hospitalised","input$sub_cat_covid19_hospital=='hospitalised'"),
+  #                         c("COVID_non_hospitalised","input$sub_cat_covid19_hospital=='non_hospitalised'")),
+  #                   stringsAsFactors = FALSE)
   
   colnames(pop) <- c("name","condition")
   
@@ -194,7 +194,7 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
   
   #numerical_cov <- colnames(input)[grep("cov_num", colnames(input))]
   numerical_cov <- covar_names[grep("cov_num", covar_names)]
-  numerical_cov <- numerical_cov[!numerical_cov=="cov_num_age"]
+  #numerical_cov <- numerical_cov[!numerical_cov=="cov_num_age"]
   
   #binary_cov <- colnames(input)[grep("cov_bin", colnames(input))]
   binary_cov <- covar_names[grep("cov_bin", covar_names)]
@@ -232,7 +232,9 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
   
   table1 <- table1 %>%
     filter(!(Covariate == "cov_num_age" & !Covariate_level=="Mean   ")) %>%
-    filter(!(Covariate == "cov_num_consulation_rate" & !Covariate_level=="Mean   "))
+    filter(!(Covariate == "cov_num_consulation_rate" & !Covariate_level=="Mean   ")) #%>%
+    # filter(!(Covariate == "cov_num_bmi" & !Covariate_level=="Mean   ")) %>%
+    # filter(!(Covariate == "cov_num_tc_hdl_ratio" & !Covariate_level=="Mean   "))
   
   table1_count_all <- as.data.frame(matrix(nrow = 1, ncol = 2))
   colnames(table1_count_all) <- c("Covariate","Covariate_level")
@@ -307,6 +309,8 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
   print(summary(input[numeric_var_names]))
   print(sd(input$cov_num_age))
   print(sd(input$cov_num_consulation_rate))
+  # print(sd(input$cov_num_bmi))
+  # print(sd(input$cov_num_tc_hdl_ratio))
   
   # print(s)
   
@@ -349,6 +353,10 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
   }
   #table1_suppressed[which(startsWith(table1_suppressed$Covariate_level, "Mean")),] <- table1[startsWith(table1$Covariate_level, "Mean"),]
   table1_suppressed <- table1_suppressed %>% filter(!str_detect(Covariate_level, "^FALSE"))
+  
+  # CAPITALISE COV COLUMN FOR AESTHETICS
+  
+  table1_suppressed$Covariate <- str_to_sentence(table1_suppressed$Covariate)
   
   # Save table 1
   write.csv(table1_suppressed, file = file.path("output/review/descriptives", paste0("Table1_",cohort_name, "_",covid_history,"_",group,".csv")) , row.names=F)#covid_history,"_",group, 
