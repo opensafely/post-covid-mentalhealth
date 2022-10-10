@@ -283,8 +283,8 @@ actions_list <- splice(
       DateChecks = glue("output/not-for-review/Check_dates_range_*.csv"),
       Descriptive_Table = glue("output/review/descriptives/Table1_*.csv")
     )
-  )
-)  
+  ),
+
   # #comment("Format Table 1"),
   # action(
   #   name = "format_table1",
@@ -297,12 +297,12 @@ actions_list <- splice(
 
   # #comment("Stage 3 - No action there for Mental Health outcomes"),  
 
-  #comment("Stage 4 - Create input for table2"),
-#   splice(
-#     # over outcomes
-#     unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
-#   )#,
-# )
+#comment("Stage 4 - Create input for table2"),
+  splice(
+    # over outcomes
+    unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
+  )
+)
   
   # #comment("Stage 4 - Venn diagrams"),
   # action(
