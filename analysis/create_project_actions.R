@@ -78,7 +78,7 @@ convert_comment_actions <-function(yaml.txt){
 # #################################################
 
 # Updated to a typical action running Cox models for one outcome
-apply_model_function <- function(name, ipw, strata, 
+apply_model_function <- function(name, cohort, analysis, ipw, strata, 
                                  covariate_sex, covariate_age, covariate_other, 
                                  cox_start, cox_stop, study_start, study_stop,
                                  cut_points, controls_per_case,
@@ -88,10 +88,23 @@ apply_model_function <- function(name, ipw, strata,
     #comment(glue("Cox model for {outcome} - {cohort}")),
     action(
       name = glue("cox_ipw-{name}"),
-      run = glue("cox-ipw:v0.0.8 --df_input=model_input-{name}.csv --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=results_{name}"),
-      needs = list("make_model_input-cohort_vax","make_model_input-cohort_unvax","make_model_input-cohort_prevax"),
+      run = glue("cox-ipw:v0.0.9 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=results_{name}"),
+      needs = list(glue("make_model_input-cohort_{cohort}-{analysis}")),
       moderately_sensitive = list(
-        model_input = glue("output/results-*.csv"))
+        model_output = glue("output/model_output-{name}.csv"))
+    )
+  )
+}
+
+make_model_input <- function(cohort, analysis){
+  splice(
+    action(
+      name = glue("make_model_input-cohort_{cohort}-{analysis}"),
+      run = glue("r:latest analysis/model/make_model_input.R cohort_{cohort}-{analysis}"),
+      needs = list("stage1_data_cleaning_all"),
+      highly_sensitive = list(
+        model_input = glue("output/model_input-cohort_{cohort}-{analysis}*.rds")
+      )
     )
   )
 }
@@ -286,39 +299,19 @@ actions_list <- splice(
   comment("Stage 5a - Make model input"),
   # Note: this can be split in various ways, cohort seems to be a fair compromise on number of actions vs runtime
 
-  action(
-    name = "make_model_input-cohort_vax",
-    run = "r:latest analysis/model/make_model_input.R cohort_vax",
-    needs = list("stage1_data_cleaning_all"),
-    highly_sensitive = list(
-      model_input = glue("output/model_input-cohort_vax*.csv")
-    )
-  ),
-  
-  action(
-    name = "make_model_input-cohort_unvax",
-    run = "r:latest analysis/model/make_model_input.R cohort_unvax",
-    needs = list("stage1_data_cleaning_all"),
-    highly_sensitive = list(
-      model_input = glue("output/model_input-cohort_unvax*.csv")
-    )
-  ),
-  
-  action(
-    name = "make_model_input-cohort_prevax",
-    run = "r:latest analysis/model/make_model_input.R cohort_prevax",
-    needs = list("stage1_data_cleaning_all"),
-    highly_sensitive = list(
-      model_input = glue("output/model_input-cohort_prevax*.csv")
-    )
-  ),
-  
+ splice(
+   # over outcomes
+   unlist(lapply(unique(active_analyses$cohort), function(x) splice(unlist(lapply(unique(active_analyses$analysis), function(y) make_model_input(cohort = x, analysis = y)), recursive = FALSE))
+   ),recursive = FALSE)),
+ 
   comment("Stage 5b - Run models"),
   
   splice(
     # over outcomes
     unlist(lapply(1:nrow(active_analyses), 
                   function(x) apply_model_function(name = active_analyses$name[x],
+                                                   cohort = active_analyses$cohort[x],
+                                                   analysis = active_analyses$analysis[x],
                                                    ipw = active_analyses$ipw[x],
                                                    strata = active_analyses$strata[x],
                                                    covariate_sex = active_analyses$covariate_sex[x],

@@ -525,8 +525,8 @@ for (c in cohorts) {
 # Assign unique name -----------------------------------------------------------
 
 df$name <- paste0("cohort_",df$cohort, "-", 
-                  gsub("out_date_","",df$outcome), "-", 
-                  df$analysis, 
+                  df$analysis, "-", 
+                  gsub("out_date_","",df$outcome), 
                   ifelse(df$priorhistory_var=="","", paste0("-",df$priorhistory_var)))
 
 # Fix anxiety prior history variables ------------------------------------------

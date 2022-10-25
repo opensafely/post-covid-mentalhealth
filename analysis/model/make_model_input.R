@@ -16,8 +16,7 @@ args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
   # name <- "all" # prepare datasets for all active analyses 
-  # name <- "cohort_vax-depression" # prepare datasets for all active analyses whose name contains X
-  name <- "cohort_vax" # prepare datasets for all active analyses whose name contains X
+  name <- "cohort_prevax-main" # prepare datasets for all active analyses whose name contains X
   # name <- "vax-depression-main;vax-depression-sub_covid_hospitalised;vax-depression-sub_covid_nonhospitalised" # prepare datasets for specific active analyses
 } else {
   name <- args[[1]]
@@ -100,7 +99,8 @@ for (i in 1:nrow(active_analyses)) {
   print('Update end date to be outcome date where applicable')
   
   input <- input %>% 
-    dplyr::mutate(end_date = replace(end_date, which(out_date<end_date), out_date))
+    dplyr::rowwise() %>% 
+    dplyr::mutate(end_date = min(end_date, out_date))
   
   # Make model input: main -------------------------------------------------------
   
@@ -108,8 +108,8 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: main')
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -129,8 +129,8 @@ for (i in 1:nrow(active_analyses)) {
     
     df <- df[df$end_date>=df$index_date,]
     
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -150,8 +150,8 @@ for (i in 1:nrow(active_analyses)) {
     
     df <- df[df$end_date>=df$index_date,]
     
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -165,8 +165,8 @@ for (i in 1:nrow(active_analyses)) {
     df <- input[input$sub_bin_covid19_confirmed_history==TRUE,]
     
     df[,c("sub_bin_covid19_confirmed_history")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -182,8 +182,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_cat_sex=="Female",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_sex")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -198,8 +198,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_cat_sex=="Male",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_sex")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -215,8 +215,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_num_age<40,]
     
     df[,c("sub_bin_covid19_confirmed_history")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -232,8 +232,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_num_age<60,]
     
     df[,c("sub_bin_covid19_confirmed_history")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -249,8 +249,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_num_age<80,]
     
     df[,c("sub_bin_covid19_confirmed_history")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -266,8 +266,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_num_age<111,]
     
     df[,c("sub_bin_covid19_confirmed_history")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -282,8 +282,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_cat_ethnicity=="White",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -298,8 +298,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_cat_ethnicity=="Black",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -314,8 +314,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_cat_ethnicity=="Mixed",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -330,8 +330,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_cat_ethnicity=="South Asian",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -346,8 +346,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_cat_ethnicity=="Other",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -363,8 +363,8 @@ for (i in 1:nrow(active_analyses)) {
     df <- df[df$priorhistory==TRUE,]
     
     df[,c("sub_bin_covid19_confirmed_history","priorhistory")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
@@ -380,8 +380,8 @@ for (i in 1:nrow(active_analyses)) {
     df <- df[df$priorhistory==FALSE,]
     
     df[,c("sub_bin_covid19_confirmed_history","priorhistory")] <- NULL
-    write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
+    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
+    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
     
   }
