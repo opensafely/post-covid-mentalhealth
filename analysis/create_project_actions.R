@@ -77,24 +77,53 @@ convert_comment_actions <-function(yaml.txt){
 # ## Function for typical actions to analyse data #
 # #################################################
 
-# # Updated to a typical action running Cox models for one outcome
-# apply_model_function <- function(outcome, cohort){
-#   splice(
-#     comment(glue("Cox model for {outcome} - {cohort}")),
-#     action(
-#       name = glue("Analysis_cox_{outcome}_{cohort}"),
-#       run = "r:latest analysis/model/01_cox_pipeline.R",
-#       arguments = c(outcome,cohort),
-#       needs = list("stage1_data_cleaning_both", glue("stage1_end_date_table_{cohort}"),"select_covariates_for_hosp_covid"),
-#       moderately_sensitive = list(
-#         analyses_not_run = glue("output/review/model/analyses_not_run_{outcome}_{cohort}.csv"),
-#         compiled_hrs_csv = glue("output/review/model/suppressed_compiled_HR_results_{outcome}_{cohort}.csv"),
-#         compiled_hrs_csv_to_release = glue("output/review/model/suppressed_compiled_HR_results_{outcome}_{cohort}_to_release.csv"),
-#         compiled_event_counts_csv = glue("output/review/model/suppressed_compiled_event_counts_{outcome}_{cohort}.csv")
-#       )
-#     )
-#   )
-# }
+
+action(
+  name = glue("cox_ipw-",active_analyses$name[1]),
+  run = glue("cox-ipw:v0.0.8",
+             " --df_input=model_input-", active_analyses$name[1], ".csv",
+             " --ipw=",active_analyses$ipw[1],
+             " --exposure=exp_date",
+             " --outcome=out_date",
+             " --strata=",active_analyses$strata[1],
+             " --covariate_sex=",active_analyses$covariate_sex[1],
+             " --covariate_age=",active_analyses$covariate_age[1],
+             " --covariate_other=",active_analyses$covariate_other[1],
+             " --cox_start=",active_analyses$cox_start[1],
+             " --cox_stop=",active_analyses$cox_stop[1],
+             " --study_start=",active_analyses$study_start[1],
+             " --study_stop=",active_analyses$study_stop[1],
+             " --cut_points=",active_analyses$cut_points[1],
+             " --controls_per_case=",active_analyses$controls_per_case[1],
+             " --total_event_threshold=",active_analyses$total_event_threshold[1],
+             " --episode_event_threshold=",active_analyses$episode_event_threshold[1],
+             " --covariate_threshold=",active_analyses$covariate_threshold[1],
+             " --age_spline=",active_analyses$age_spline[1],
+             " --df_output=results-",active_analyses$name[1],".csv"),
+  needs = list("make_model_input-cohort_vax"),
+  moderately_sensitive = list(
+    model_input = glue("output/results-*.csv")
+  )
+)
+
+# Updated to a typical action running Cox models for one outcome
+apply_model_function <- function(name, ipw, strata, 
+                                 covariate_sex, covariate_age, covariate_other, 
+                                 cox_start, cox_stop, study_start, study_stop,
+                                 cut_points, controls_per_case,
+                                 total_event_threshold, episode_event_threshold,
+                                 covariate_threshold, age_spline){
+  splice(
+    #comment(glue("Cox model for {outcome} - {cohort}")),
+    action(
+      name = glue("cox_ipw-{name}"),
+      run = glue("cox-ipw:v0.0.8 --df_input=model_input-{name}.csv --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=results_{name}"),
+      needs = list("make_model_input-cohort_vax","make_model_input-cohort_unvax","make_model_input-cohort_prevax"),
+      moderately_sensitive = list(
+        model_input = glue("output/results-*.csv"))
+    )
+  )
+}
 
 table2 <- function(cohort){
   splice(
@@ -301,37 +330,29 @@ actions_list <- splice(
   
   comment("Stage 5b - Run models"),
   
-  action(
-    name = "cox_ipw-cohort_vax-anxiety_ocd-main",
-    run = glue("cox-ipw:v0.0.8",
-    " --df_input=model_input-", active_analyses$name[1], ".csv",
-    " --ipw=",active_analyses$ipw[1],
-    " --exposure=exp_date",
-    " --outcome=out_date",
-    " --strata=",active_analyses$strata[1],
-    " --covariate_sex=",active_analyses$covariate_sex[1],
-    " --covariate_age=",active_analyses$covariate_age[1],
-    " --covariate_other=",active_analyses$covariate_other[1],
-    " --cox_start=",active_analyses$cox_start[1],
-    " --cox_stop=",active_analyses$cox_stop[1],
-    " --study_start=",active_analyses$study_start[1],
-    " --study_stop=",active_analyses$study_stop[1],
-    " --cut_points=",active_analyses$cut_points[1],
-    " --controls_per_case=",active_analyses$controls_per_case[1],
-    " --total_event_threshold=",active_analyses$total_event_threshold[1],
-    " --episode_event_threshold=",active_analyses$episode_event_threshold[1],
-    " --covariate_threshold=",active_analyses$covariate_threshold[1],
-    " --age_spline=",active_analyses$age_spline[1],
-    " --df_output=results-",active_analyses$name[1],".csv"),
-    needs = list("make_model_input-cohort_vax"),
-    moderately_sensitive = list(
-      model_input = glue("output/results-*.csv")
+  splice(
+    # over outcomes
+    unlist(lapply(1:nrow(active_analyses), 
+                  function(x) apply_model_function(name = active_analyses$name[x],
+                                                   ipw = active_analyses$ipw[x],
+                                                   strata = active_analyses$strata[x],
+                                                   covariate_sex = active_analyses$covariate_sex[x],
+                                                   covariate_age = active_analyses$covariate_age[x],
+                                                   covariate_other = active_analyses$covariate_other[x],
+                                                   cox_start = active_analyses$cox_start[x],
+                                                   cox_stop = active_analyses$cox_stop[x],
+                                                   study_start = active_analyses$study_start[x],
+                                                   study_stop = active_analyses$study_stop[x],
+                                                   cut_points = active_analyses$cut_points[x],
+                                                   controls_per_case = active_analyses$controls_per_case[x],
+                                                   total_event_threshold = active_analyses$total_event_threshold[x],
+                                                   episode_event_threshold = active_analyses$episode_event_threshold[x],
+                                                   covariate_threshold = active_analyses$covariate_threshold[x],
+                                                   age_spline = active_analyses$age_spline[x])), recursive = FALSE
     )
   )
   
-  
 )
-
 
 ## combine everything ----
 project_list <- splice(
