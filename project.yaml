@@ -6671,3 +6671,17 @@ actions:
       moderately_sensitive:
         model_input: output/results-*.csv
 
+  stage4_venn_diagram_all:
+    run: r:latest analysis/descriptives/venn_diagram.R all
+    needs:
+    - preprocess_data_prevax
+    - preprocess_data_vax
+    - preprocess_data_unvax
+    - stage1_data_cleaning_all
+    - stage1_end_date_table_prevax
+    - stage1_end_date_table_vax
+    - stage1_end_date_table_unvax
+    outputs:
+      moderately_sensitive:
+        venn_diagram: output/review/venn-diagrams/venn_diagram_*
+
