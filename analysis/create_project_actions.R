@@ -91,7 +91,7 @@ apply_model_function <- function(name, ipw, strata,
       run = glue("cox-ipw:v0.0.8 --df_input=model_input-{name}.csv --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=results_{name}"),
       needs = list("make_model_input-cohort_vax","make_model_input-cohort_unvax","make_model_input-cohort_prevax"),
       moderately_sensitive = list(
-        model_input = glue("output/results-*.csv"))
+        model_input = glue("output/results-{name}.csv"))
     )
   )
 }
