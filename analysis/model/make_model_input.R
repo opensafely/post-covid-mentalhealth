@@ -120,7 +120,9 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_covid_hospitalised')
     
-    df <- input %>% 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
+    
+    df <- df %>% 
       dplyr::mutate(end_date = replace(end_date, which(sub_cat_covid19_hospital=="non_hospitalised"), exp_date-1),
                     exp_date = replace(exp_date, which(sub_cat_covid19_hospital=="non_hospitalised"), NA),
                     out_date = replace(out_date, which(out_date>end_date), NA))
@@ -139,7 +141,9 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_covid_nonhospitalised')
     
-    df <- input %>% 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
+    
+    df <- df %>% 
       dplyr::mutate(end_date = replace(end_date, which(sub_cat_covid19_hospital=="hospitalised"), exp_date-1),
                     exp_date = replace(exp_date, which(sub_cat_covid19_hospital=="hospitalised"), NA),
                     out_date = replace(out_date, which(out_date>end_date), NA))
@@ -174,7 +178,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_sex_female')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_sex=="Female",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_sex")] <- NULL
@@ -190,7 +194,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_sex_male')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_sex=="Male",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_sex")] <- NULL
@@ -206,7 +210,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_age_18_39')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_num_age>=18 &
                   input$cov_num_age<40,]
     
@@ -223,7 +227,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_age_40_59')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_num_age>=40 &
                   input$cov_num_age<60,]
     
@@ -240,7 +244,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_age_60_79')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_num_age>=60 &
                   input$cov_num_age<80,]
     
@@ -257,7 +261,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_age_80_110')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_num_age>=80 &
                   input$cov_num_age<111,]
     
@@ -274,7 +278,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_ethnicity_white')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_ethnicity=="White",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
@@ -290,7 +294,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_ethnicity_black')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_ethnicity=="Black",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
@@ -306,7 +310,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_ethnicity_mixed')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_ethnicity=="Mixed",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
@@ -322,7 +326,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_ethnicity_asian')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_ethnicity=="South Asian",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
@@ -338,7 +342,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_ethnicity_other')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE & 
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_ethnicity=="Other",]
     
     df[,c("sub_bin_covid19_confirmed_history","cov_cat_ethnicity")] <- NULL
@@ -354,7 +358,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_priorhistory_true')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE,]
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     df <- dplyr::rename(df, "priorhistory" = active_analyses$priorhistory_var[i])
     df <- df[df$priorhistory==TRUE,]
     
@@ -371,7 +375,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print('Make model input: sub_priorhistory_false')
     
-    df <- input[input$sub_bin_covid19_confirmed_history==TRUE,]
+    df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     df <- dplyr::rename(df, "priorhistory" = active_analyses$priorhistory_var[i])
     df <- df[df$priorhistory==FALSE,]
     
