@@ -104,7 +104,6 @@ for (i in 1:nrow(active_analyses)) {
   
   # Make model input: main -------------------------------------------------------
   
-  
   if (active_analyses$analysis[i]=="main") {
     
     print('Make model input: main')
@@ -122,9 +121,11 @@ for (i in 1:nrow(active_analyses)) {
     print('Make model input: sub_covid_hospitalised')
     
     df <- input %>% 
-      dplyr::mutate(end_date = replace(end_date, which(sub_cat_covid19_hospital=="non_hospitalised"), exp_date),
+      dplyr::mutate(end_date = replace(end_date, which(sub_cat_covid19_hospital=="non_hospitalised"), exp_date-1),
                     exp_date = replace(exp_date, which(sub_cat_covid19_hospital=="non_hospitalised"), NA),
                     out_date = replace(out_date, which(out_date>end_date), NA))
+    
+    df <- df[df$end_date>=df$index_date,]
     
     write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
     print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
@@ -139,9 +140,11 @@ for (i in 1:nrow(active_analyses)) {
     print('Make model input: sub_covid_nonhospitalised')
     
     df <- input %>% 
-      dplyr::mutate(end_date = replace(end_date, which(sub_cat_covid19_hospital=="hospitalised"), exp_date),
+      dplyr::mutate(end_date = replace(end_date, which(sub_cat_covid19_hospital=="hospitalised"), exp_date-1),
                     exp_date = replace(exp_date, which(sub_cat_covid19_hospital=="hospitalised"), NA),
                     out_date = replace(out_date, which(out_date>end_date), NA))
+    
+    df <- df[df$end_date>=df$index_date,]
     
     write.csv(x = df, file = paste0("output/model_input-",active_analyses$name[i],".csv"), row.names=FALSE)
     print(paste0("Saved: output/model_input-",active_analyses$name[i],".csv"))
