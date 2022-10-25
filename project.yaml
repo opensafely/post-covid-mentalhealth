@@ -11,6 +11,7 @@ actions:
   ## This file is created by create_project_actions.R 
   ## Edit and run create_project_actions.R to update the project.yaml 
   ## # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  ## Generate vaccination eligibility information 
 
   vax_eligibility_inputs:
     run: r:latest analysis/metadates.R
@@ -19,6 +20,8 @@ actions:
         study_dates_json: output/study_dates.json
         vax_jcvi_groups: output/vax_jcvi_groups.csv
         vax_eligible_dates: output/vax_eligible_dates.csv
+
+  ## Generate prelim study_definition 
 
   generate_study_population_prelim:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_prelim
@@ -29,6 +32,8 @@ actions:
       highly_sensitive:
         cohort: output/input_prelim.feather
 
+  ## Generate dates for all study cohorts 
+
   generate_index_dates:
     run: r:latest analysis/prelim.R
     needs:
@@ -37,6 +42,8 @@ actions:
     outputs:
       highly_sensitive:
         index_dates: output/index_dates.csv
+
+  ## Implement study_definition for prevax 
 
   generate_study_population_prevax:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_prevax
@@ -48,6 +55,8 @@ actions:
       highly_sensitive:
         cohort: output/input_prevax.csv.gz
 
+  ## Implement study_definition for vax 
+
   generate_study_population_vax:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_vax
       --output-format csv.gz
@@ -58,6 +67,8 @@ actions:
       highly_sensitive:
         cohort: output/input_vax.csv.gz
 
+  ## Implement study_definition for unvax 
+
   generate_study_population_unvax:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_unvax
       --output-format csv.gz
@@ -67,6 +78,8 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/input_unvax.csv.gz
+
+  ## Preprocess data - prevax 
 
   preprocess_data_prevax:
     run: r:latest analysis/preprocess/preprocess_data.R prevax
@@ -81,6 +94,8 @@ actions:
         cohort: output/input_prevax.rds
         venn: output/venn_prevax.rds
 
+  ## Preprocess data - vax 
+
   preprocess_data_vax:
     run: r:latest analysis/preprocess/preprocess_data.R vax
     needs:
@@ -94,6 +109,8 @@ actions:
         cohort: output/input_vax.rds
         venn: output/venn_vax.rds
 
+  ## Preprocess data - unvax 
+
   preprocess_data_unvax:
     run: r:latest analysis/preprocess/preprocess_data.R unvax
     needs:
@@ -106,6 +123,8 @@ actions:
       highly_sensitive:
         cohort: output/input_unvax.rds
         venn: output/venn_unvax.rds
+
+  ## Stage 1 - Data cleaning - all cohorts 
 
   stage1_data_cleaning_all:
     run: r:latest analysis/preprocess/Stage1_data_cleaning.R all
@@ -122,6 +141,8 @@ actions:
         histograms: output/not-for-review/numeric_histograms_*.svg
       highly_sensitive:
         cohort: output/input_*.rds
+
+  ## Stage 2 - Missing - Table 1 - all cohorts 
 
   stage2_missing_table1_all:
     run: r:latest analysis/descriptives/Stage2_missing_table1.R all
@@ -162,6 +183,8 @@ actions:
     outputs:
       moderately_sensitive:
         input_table_2: output/review/descriptives/table2_prevax.csv
+
+  ## Stage 4 - Venn diagrams 
 
   stage4_venn_diagram_all:
     run: r:latest analysis/descriptives/venn_diagram.R all
