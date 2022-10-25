@@ -92,7 +92,7 @@ for (i in 1:nrow(active_analyses)) {
                          "exp_date" = active_analyses$exposure[i])
   
   input <- input %>% 
-    dplyr::mutate(out_date = replace(out_date, which(out_date>end_date | end_date<index_date), NA),
+    dplyr::mutate(out_date = replace(out_date, which(out_date>end_date | out_date<index_date), NA),
                   exp_date =  replace(exp_date, which(exp_date>end_date | exp_date<index_date), NA),
                   sub_cat_covid19_hospital = replace(sub_cat_covid19_hospital, which(is.na(exp_date)),"no_infection"))
   
