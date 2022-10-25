@@ -273,15 +273,15 @@ actions_list <- splice(
     unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
   ),
           
- comment("Stage 4 - Venn diagrams"),
- 
-  action(
-    name = "stage4_venn_diagram_all",
-    run = "r:latest analysis/descriptives/venn_diagram.R all",
-    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
-    moderately_sensitive = list(
-      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
-  ),
+ # comment("Stage 4 - Venn diagrams"),
+ # 
+ #  action(
+ #    name = "stage4_venn_diagram_all",
+ #    run = "r:latest analysis/descriptives/venn_diagram.R all",
+ #    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
+ #    moderately_sensitive = list(
+ #      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
+ #  ),
            
   comment("Stage 5a - Make model input"),
   # Note: this can be split in various ways, cohort seems to be a fair compromise on number of actions vs runtime
