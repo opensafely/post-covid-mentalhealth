@@ -85,26 +85,22 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
                                  total_event_threshold, episode_event_threshold,
                                  covariate_threshold, age_spline){
   splice(
+    action(
+      name = glue("make_model_input-{name}"),
+      run = glue("r:latest analysis/model/make_model_input.R {name}"),
+      needs = list("stage1_data_cleaning_all"),
+      highly_sensitive = list(
+        model_input = glue("output/model_input-{name}.rds")
+      )
+    ),
+    
     #comment(glue("Cox model for {outcome} - {cohort}")),
     action(
       name = glue("cox_ipw-{name}"),
-      run = glue("cox-ipw:v0.0.9 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=results_{name}"),
-      needs = list(glue("make_model_input-cohort_{cohort}-{analysis}")),
+      run = glue("cox-ipw:v0.0.9 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
+      needs = list(glue("make_model_input-{name}")),
       moderately_sensitive = list(
         model_output = glue("output/model_output-{name}.csv"))
-    )
-  )
-}
-
-make_model_input <- function(cohort, analysis){
-  splice(
-    action(
-      name = glue("make_model_input-cohort_{cohort}-{analysis}"),
-      run = glue("r:latest analysis/model/make_model_input.R cohort_{cohort}-{analysis}"),
-      needs = list("stage1_data_cleaning_all"),
-      highly_sensitive = list(
-        model_input = glue("output/model_input-cohort_{cohort}-{analysis}*.rds")
-      )
     )
   )
 }
@@ -295,16 +291,8 @@ actions_list <- splice(
  #    moderately_sensitive = list(
  #      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
  #  ),
-           
-  comment("Stage 5a - Make model input"),
-  # Note: this can be split in various ways, cohort seems to be a fair compromise on number of actions vs runtime
 
- splice(
-   # over outcomes
-   unlist(lapply(unique(active_analyses$cohort), function(x) splice(unlist(lapply(unique(active_analyses$analysis), function(y) make_model_input(cohort = x, analysis = y)), recursive = FALSE))
-   ),recursive = FALSE)),
- 
-  comment("Stage 5b - Run models"),
+  comment("Stage 5 - Run models"),
   
   splice(
     # over outcomes
