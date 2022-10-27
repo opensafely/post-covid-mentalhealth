@@ -45,6 +45,7 @@ covariate_threshold <- 5L
 # Specify cohorts --------------------------------------------------------------
 
 cohorts <- c("vax","unvax","prevax")
+cohort_sub_covid_history <- c("vax", "unvax")
 
 # Specify outcomes -------------------------------------------------------------
 
@@ -148,6 +149,10 @@ for (c in cohorts) {
     
     ## analysis: sub_covid_history ---------------------------------------------
     
+  }
+    
+    for (i in cohort_sub_covid_history){
+    
     df[nrow(df)+1,] <- c(cohort = c,
                          exposure = exposure, 
                          outcome = i,
@@ -158,8 +163,8 @@ for (c in cohorts) {
                          covariate_other = "cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm",
                          cox_start = cox_start,
                          cox_stop = cox_stop,
-                         study_start = ifelse(i=="prevax", "2020-01-01", "2021-06-01"),
-                         study_stop = ifelse(i=="prevax", "2021-06-18", "2021-12-14"),
+                         study_start = i,
+                         study_stop = i,
                          cut_points = cut_points,
                          controls_per_case = controls_per_case,
                          total_event_threshold = total_event_threshold,

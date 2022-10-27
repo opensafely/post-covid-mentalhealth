@@ -249,27 +249,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-anxiety_ocd.csv
 
-  make_model_input-cohort_vax-sub_covid_history-anxiety_ocd:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-anxiety_ocd
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_ocd.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-anxiety_ocd:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-anxiety_ocd.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-anxiety_ocd.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-anxiety_ocd.csv
-
   make_model_input-cohort_vax-main-anxiety_ptsd:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_ptsd
     needs:
@@ -332,27 +311,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd.csv
-
-  make_model_input-cohort_vax-sub_covid_history-anxiety_ptsd:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-anxiety_ptsd
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_ptsd.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-anxiety_ptsd:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-anxiety_ptsd.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-anxiety_ptsd.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-anxiety_ptsd.csv
 
   make_model_input-cohort_vax-main-eating_disorders:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-eating_disorders
@@ -417,27 +375,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-eating_disorders.csv
 
-  make_model_input-cohort_vax-sub_covid_history-eating_disorders:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-eating_disorders
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-eating_disorders.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-eating_disorders:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-eating_disorders.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-eating_disorders.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-eating_disorders
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-eating_disorders.csv
-
   make_model_input-cohort_vax-main-suicide:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-suicide
     needs:
@@ -500,27 +437,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-suicide.csv
-
-  make_model_input-cohort_vax-sub_covid_history-suicide:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-suicide
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-suicide.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-suicide:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-suicide.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-suicide.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-suicide
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-suicide.csv
 
   make_model_input-cohort_vax-main-addiction:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-addiction
@@ -585,27 +501,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-addiction.csv
 
-  make_model_input-cohort_vax-sub_covid_history-addiction:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-addiction
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-addiction.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-addiction:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-addiction.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-addiction.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-addiction
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-addiction.csv
-
   make_model_input-cohort_vax-main-depression_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-depression_prescription
     needs:
@@ -668,27 +563,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-depression_prescription.csv
-
-  make_model_input-cohort_vax-sub_covid_history-depression_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-depression_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-depression_prescription.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-depression_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-depression_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-depression_prescription.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-depression_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-depression_prescription.csv
 
   make_model_input-cohort_vax-main-depression_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-depression_primarycare
@@ -753,27 +627,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-depression_primarycare.csv
 
-  make_model_input-cohort_vax-sub_covid_history-depression_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-depression_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-depression_primarycare.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-depression_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-depression_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-depression_primarycare.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-depression_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-depression_primarycare.csv
-
   make_model_input-cohort_vax-main-depression_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-depression_secondarycare
     needs:
@@ -836,27 +689,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-depression_secondarycare.csv
-
-  make_model_input-cohort_vax-sub_covid_history-depression_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-depression_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-depression_secondarycare.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-depression_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-depression_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-depression_secondarycare.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-depression_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-depression_secondarycare.csv
 
   make_model_input-cohort_vax-main-anxiety_general_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_general_prescription
@@ -921,27 +753,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-anxiety_general_prescription.csv
 
-  make_model_input-cohort_vax-sub_covid_history-anxiety_general_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-anxiety_general_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_general_prescription.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-anxiety_general_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-anxiety_general_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-anxiety_general_prescription.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-anxiety_general_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-anxiety_general_prescription.csv
-
   make_model_input-cohort_vax-main-anxiety_general_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_general_primarycare
     needs:
@@ -1004,27 +815,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-anxiety_general_primarycare.csv
-
-  make_model_input-cohort_vax-sub_covid_history-anxiety_general_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-anxiety_general_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_general_primarycare.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-anxiety_general_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-anxiety_general_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-anxiety_general_primarycare.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-anxiety_general_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-anxiety_general_primarycare.csv
 
   make_model_input-cohort_vax-main-anxiety_general_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_general_secondarycare
@@ -1089,27 +879,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-anxiety_general_secondarycare.csv
 
-  make_model_input-cohort_vax-sub_covid_history-anxiety_general_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-anxiety_general_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_general_secondarycare.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-anxiety_general_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-anxiety_general_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-anxiety_general_secondarycare.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-anxiety_general_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-anxiety_general_secondarycare.csv
-
   make_model_input-cohort_vax-main-serious_mental_illness_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-serious_mental_illness_prescription
     needs:
@@ -1172,27 +941,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness_prescription.csv
-
-  make_model_input-cohort_vax-sub_covid_history-serious_mental_illness_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-serious_mental_illness_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-serious_mental_illness_prescription.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-serious_mental_illness_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-serious_mental_illness_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-serious_mental_illness_prescription.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-serious_mental_illness_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-serious_mental_illness_prescription.csv
 
   make_model_input-cohort_vax-main-serious_mental_illness_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-serious_mental_illness_primarycare
@@ -1257,27 +1005,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness_primarycare.csv
 
-  make_model_input-cohort_vax-sub_covid_history-serious_mental_illness_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-serious_mental_illness_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-serious_mental_illness_primarycare.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-serious_mental_illness_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-serious_mental_illness_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-serious_mental_illness_primarycare.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-serious_mental_illness_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-serious_mental_illness_primarycare.csv
-
   make_model_input-cohort_vax-main-serious_mental_illness_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-serious_mental_illness_secondarycare
     needs:
@@ -1340,27 +1067,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness_secondarycare.csv
-
-  make_model_input-cohort_vax-sub_covid_history-serious_mental_illness_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-serious_mental_illness_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-serious_mental_illness_secondarycare.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-serious_mental_illness_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-serious_mental_illness_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-serious_mental_illness_secondarycare.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-serious_mental_illness_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-serious_mental_illness_secondarycare.csv
 
   make_model_input-cohort_vax-main-self_harm_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-self_harm_primarycare
@@ -1425,27 +1131,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-self_harm_primarycare.csv
 
-  make_model_input-cohort_vax-sub_covid_history-self_harm_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-self_harm_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-self_harm_primarycare.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-self_harm_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-self_harm_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-self_harm_primarycare.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-self_harm_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-self_harm_primarycare.csv
-
   make_model_input-cohort_vax-main-self_harm_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-self_harm_secondarycare
     needs:
@@ -1508,27 +1193,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-self_harm_secondarycare.csv
-
-  make_model_input-cohort_vax-sub_covid_history-self_harm_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-self_harm_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-self_harm_secondarycare.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-self_harm_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-self_harm_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-self_harm_secondarycare.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-self_harm_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-self_harm_secondarycare.csv
 
   make_model_input-cohort_vax-main-addiction_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-addiction_prescription
@@ -1593,27 +1257,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-addiction_prescription.csv
 
-  make_model_input-cohort_vax-sub_covid_history-addiction_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-addiction_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-addiction_prescription.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-addiction_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-addiction_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-addiction_prescription.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-addiction_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-addiction_prescription.csv
-
   make_model_input-cohort_vax-main-depression:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-depression
     needs:
@@ -1676,27 +1319,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-depression.csv
-
-  make_model_input-cohort_vax-sub_covid_history-depression:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-depression
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-depression.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-depression:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-depression.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-depression
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-depression.csv
 
   make_model_input-cohort_vax-main-anxiety_general:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_general
@@ -1761,27 +1383,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-anxiety_general.csv
 
-  make_model_input-cohort_vax-sub_covid_history-anxiety_general:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-anxiety_general
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_general.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-anxiety_general:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-anxiety_general.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-anxiety_general
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-anxiety_general.csv
-
   make_model_input-cohort_vax-main-serious_mental_illness:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-serious_mental_illness
     needs:
@@ -1844,27 +1445,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness.csv
-
-  make_model_input-cohort_vax-sub_covid_history-serious_mental_illness:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-serious_mental_illness
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-serious_mental_illness.rds
-
-  cox_ipw-cohort_vax-sub_covid_history-serious_mental_illness:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-serious_mental_illness.csv
-    needs:
-    - make_model_input-cohort_vax-sub_covid_history-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-serious_mental_illness.csv
 
   make_model_input-cohort_vax-main-self_harm:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-self_harm
@@ -1929,26 +1509,47 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_covid_nonhospitalised-self_harm.csv
 
-  make_model_input-cohort_vax-sub_covid_history-self_harm:
-    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-self_harm
+  make_model_input-cohort_vax-sub_covid_history-vax:
+    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-vax
     needs:
     - stage1_data_cleaning_all
     outputs:
       highly_sensitive:
-        model_input: output/model_input-cohort_vax-sub_covid_history-self_harm.rds
+        model_input: output/model_input-cohort_vax-sub_covid_history-vax.rds
 
-  cox_ipw-cohort_vax-sub_covid_history-self_harm:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-self_harm.rds
+  cox_ipw-cohort_vax-sub_covid_history-vax:
+    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-vax.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
+      --cox_start=index_date --cox_stop=end_date --study_start=vax --study_stop=vax
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-self_harm.csv
+      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-vax.csv
     needs:
-    - make_model_input-cohort_vax-sub_covid_history-self_harm
+    - make_model_input-cohort_vax-sub_covid_history-vax
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-sub_covid_history-self_harm.csv
+        model_output: output/model_output-cohort_vax-sub_covid_history-vax.csv
+
+  make_model_input-cohort_vax-sub_covid_history-unvax:
+    run: r:latest analysis/model/make_model_input.R cohort_vax-sub_covid_history-unvax
+    needs:
+    - stage1_data_cleaning_all
+    outputs:
+      highly_sensitive:
+        model_input: output/model_input-cohort_vax-sub_covid_history-unvax.rds
+
+  cox_ipw-cohort_vax-sub_covid_history-unvax:
+    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_covid_history-unvax.rds
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
+      --cox_start=index_date --cox_stop=end_date --study_start=unvax --study_stop=unvax
+      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
+      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-unvax.csv
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-unvax
+    outputs:
+      moderately_sensitive:
+        model_output: output/model_output-cohort_vax-sub_covid_history-unvax.csv
 
   make_model_input-cohort_vax-sub_sex_female-depression:
     run: r:latest analysis/model/make_model_input.R cohort_vax-sub_sex_female-depression
@@ -3273,27 +2874,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-anxiety_ocd.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-anxiety_ocd:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-anxiety_ocd
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_ocd.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-anxiety_ocd:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-anxiety_ocd.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-anxiety_ocd.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-anxiety_ocd.csv
-
   make_model_input-cohort_unvax-main-anxiety_ptsd:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-anxiety_ptsd
     needs:
@@ -3356,27 +2936,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-anxiety_ptsd.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-anxiety_ptsd:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-anxiety_ptsd
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_ptsd.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-anxiety_ptsd:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-anxiety_ptsd.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-anxiety_ptsd.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-anxiety_ptsd.csv
 
   make_model_input-cohort_unvax-main-eating_disorders:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-eating_disorders
@@ -3441,27 +3000,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-eating_disorders.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-eating_disorders:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-eating_disorders
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-eating_disorders.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-eating_disorders:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-eating_disorders.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-eating_disorders.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-eating_disorders
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-eating_disorders.csv
-
   make_model_input-cohort_unvax-main-suicide:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-suicide
     needs:
@@ -3524,27 +3062,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-suicide.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-suicide:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-suicide
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-suicide.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-suicide:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-suicide.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-suicide.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-suicide
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-suicide.csv
 
   make_model_input-cohort_unvax-main-addiction:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-addiction
@@ -3609,27 +3126,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-addiction.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-addiction:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-addiction
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-addiction.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-addiction:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-addiction.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-addiction.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-addiction
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-addiction.csv
-
   make_model_input-cohort_unvax-main-depression_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-depression_prescription
     needs:
@@ -3692,27 +3188,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-depression_prescription.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-depression_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-depression_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-depression_prescription.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-depression_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-depression_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-depression_prescription.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-depression_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-depression_prescription.csv
 
   make_model_input-cohort_unvax-main-depression_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-depression_primarycare
@@ -3777,27 +3252,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-depression_primarycare.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-depression_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-depression_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-depression_primarycare.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-depression_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-depression_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-depression_primarycare.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-depression_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-depression_primarycare.csv
-
   make_model_input-cohort_unvax-main-depression_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-depression_secondarycare
     needs:
@@ -3860,27 +3314,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-depression_secondarycare.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-depression_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-depression_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-depression_secondarycare.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-depression_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-depression_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-depression_secondarycare.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-depression_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-depression_secondarycare.csv
 
   make_model_input-cohort_unvax-main-anxiety_general_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-anxiety_general_prescription
@@ -3945,27 +3378,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-anxiety_general_prescription.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-anxiety_general_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-anxiety_general_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_general_prescription.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-anxiety_general_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-anxiety_general_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-anxiety_general_prescription.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-anxiety_general_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-anxiety_general_prescription.csv
-
   make_model_input-cohort_unvax-main-anxiety_general_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-anxiety_general_primarycare
     needs:
@@ -4028,27 +3440,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-anxiety_general_primarycare.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-anxiety_general_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-anxiety_general_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_general_primarycare.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-anxiety_general_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-anxiety_general_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-anxiety_general_primarycare.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-anxiety_general_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-anxiety_general_primarycare.csv
 
   make_model_input-cohort_unvax-main-anxiety_general_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-anxiety_general_secondarycare
@@ -4113,27 +3504,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-anxiety_general_secondarycare.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-anxiety_general_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-anxiety_general_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_general_secondarycare.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-anxiety_general_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-anxiety_general_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-anxiety_general_secondarycare.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-anxiety_general_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-anxiety_general_secondarycare.csv
-
   make_model_input-cohort_unvax-main-serious_mental_illness_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-serious_mental_illness_prescription
     needs:
@@ -4196,27 +3566,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness_prescription.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-serious_mental_illness_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-serious_mental_illness_prescription.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-serious_mental_illness_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-serious_mental_illness_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-serious_mental_illness_prescription.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-serious_mental_illness_prescription.csv
 
   make_model_input-cohort_unvax-main-serious_mental_illness_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-serious_mental_illness_primarycare
@@ -4281,27 +3630,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness_primarycare.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-serious_mental_illness_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-serious_mental_illness_primarycare.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-serious_mental_illness_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-serious_mental_illness_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-serious_mental_illness_primarycare.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-serious_mental_illness_primarycare.csv
-
   make_model_input-cohort_unvax-main-serious_mental_illness_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-serious_mental_illness_secondarycare
     needs:
@@ -4364,27 +3692,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness_secondarycare.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-serious_mental_illness_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-serious_mental_illness_secondarycare.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-serious_mental_illness_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-serious_mental_illness_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-serious_mental_illness_secondarycare.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-serious_mental_illness_secondarycare.csv
 
   make_model_input-cohort_unvax-main-self_harm_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-self_harm_primarycare
@@ -4449,27 +3756,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-self_harm_primarycare.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-self_harm_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-self_harm_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-self_harm_primarycare.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-self_harm_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-self_harm_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-self_harm_primarycare.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-self_harm_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-self_harm_primarycare.csv
-
   make_model_input-cohort_unvax-main-self_harm_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-self_harm_secondarycare
     needs:
@@ -4532,27 +3818,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-self_harm_secondarycare.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-self_harm_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-self_harm_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-self_harm_secondarycare.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-self_harm_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-self_harm_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-self_harm_secondarycare.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-self_harm_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-self_harm_secondarycare.csv
 
   make_model_input-cohort_unvax-main-addiction_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-addiction_prescription
@@ -4617,27 +3882,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-addiction_prescription.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-addiction_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-addiction_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-addiction_prescription.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-addiction_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-addiction_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-addiction_prescription.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-addiction_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-addiction_prescription.csv
-
   make_model_input-cohort_unvax-main-depression:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-depression
     needs:
@@ -4700,27 +3944,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-depression.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-depression:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-depression
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-depression.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-depression:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-depression.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-depression
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-depression.csv
 
   make_model_input-cohort_unvax-main-anxiety_general:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-anxiety_general
@@ -4785,27 +4008,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-anxiety_general.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-anxiety_general:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-anxiety_general
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_general.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-anxiety_general:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-anxiety_general.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-anxiety_general
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-anxiety_general.csv
-
   make_model_input-cohort_unvax-main-serious_mental_illness:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-serious_mental_illness
     needs:
@@ -4868,27 +4070,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness.csv
-
-  make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-serious_mental_illness
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-serious_mental_illness.rds
-
-  cox_ipw-cohort_unvax-sub_covid_history-serious_mental_illness:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-serious_mental_illness.csv
-    needs:
-    - make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-serious_mental_illness.csv
 
   make_model_input-cohort_unvax-main-self_harm:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-self_harm
@@ -4953,26 +4134,47 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-sub_covid_nonhospitalised-self_harm.csv
 
-  make_model_input-cohort_unvax-sub_covid_history-self_harm:
-    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-self_harm
+  make_model_input-cohort_unvax-sub_covid_history-vax:
+    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-vax
     needs:
     - stage1_data_cleaning_all
     outputs:
       highly_sensitive:
-        model_input: output/model_input-cohort_unvax-sub_covid_history-self_harm.rds
+        model_input: output/model_input-cohort_unvax-sub_covid_history-vax.rds
 
-  cox_ipw-cohort_unvax-sub_covid_history-self_harm:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-self_harm.rds
+  cox_ipw-cohort_unvax-sub_covid_history-vax:
+    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-vax.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
+      --cox_start=index_date --cox_stop=end_date --study_start=vax --study_stop=vax
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-self_harm.csv
+      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-vax.csv
     needs:
-    - make_model_input-cohort_unvax-sub_covid_history-self_harm
+    - make_model_input-cohort_unvax-sub_covid_history-vax
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-sub_covid_history-self_harm.csv
+        model_output: output/model_output-cohort_unvax-sub_covid_history-vax.csv
+
+  make_model_input-cohort_unvax-sub_covid_history-unvax:
+    run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_covid_history-unvax
+    needs:
+    - stage1_data_cleaning_all
+    outputs:
+      highly_sensitive:
+        model_input: output/model_input-cohort_unvax-sub_covid_history-unvax.rds
+
+  cox_ipw-cohort_unvax-sub_covid_history-unvax:
+    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_covid_history-unvax.rds
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
+      --cox_start=index_date --cox_stop=end_date --study_start=unvax --study_stop=unvax
+      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
+      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-sub_covid_history-unvax.csv
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-unvax
+    outputs:
+      moderately_sensitive:
+        model_output: output/model_output-cohort_unvax-sub_covid_history-unvax.csv
 
   make_model_input-cohort_unvax-sub_sex_female-depression:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-sub_sex_female-depression
@@ -6297,27 +5499,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-anxiety_ocd.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-anxiety_ocd:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-anxiety_ocd
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-anxiety_ocd.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-anxiety_ocd:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-anxiety_ocd.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-anxiety_ocd.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-anxiety_ocd.csv
-
   make_model_input-cohort_prevax-main-anxiety_ptsd:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-anxiety_ptsd
     needs:
@@ -6380,27 +5561,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-anxiety_ptsd.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-anxiety_ptsd:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-anxiety_ptsd
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-anxiety_ptsd.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-anxiety_ptsd:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-anxiety_ptsd.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-anxiety_ptsd.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-anxiety_ptsd.csv
 
   make_model_input-cohort_prevax-main-eating_disorders:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-eating_disorders
@@ -6465,27 +5625,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-eating_disorders.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-eating_disorders:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-eating_disorders
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-eating_disorders.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-eating_disorders:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-eating_disorders.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-eating_disorders.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-eating_disorders
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-eating_disorders.csv
-
   make_model_input-cohort_prevax-main-suicide:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-suicide
     needs:
@@ -6548,27 +5687,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-suicide.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-suicide:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-suicide
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-suicide.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-suicide:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-suicide.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-suicide.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-suicide
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-suicide.csv
 
   make_model_input-cohort_prevax-main-addiction:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-addiction
@@ -6633,27 +5751,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-addiction.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-addiction:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-addiction
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-addiction.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-addiction:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-addiction.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-addiction.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-addiction
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-addiction.csv
-
   make_model_input-cohort_prevax-main-depression_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-depression_prescription
     needs:
@@ -6716,27 +5813,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-depression_prescription.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-depression_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-depression_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-depression_prescription.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-depression_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-depression_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-depression_prescription.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-depression_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-depression_prescription.csv
 
   make_model_input-cohort_prevax-main-depression_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-depression_primarycare
@@ -6801,27 +5877,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-depression_primarycare.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-depression_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-depression_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-depression_primarycare.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-depression_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-depression_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-depression_primarycare.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-depression_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-depression_primarycare.csv
-
   make_model_input-cohort_prevax-main-depression_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-depression_secondarycare
     needs:
@@ -6884,27 +5939,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-depression_secondarycare.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-depression_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-depression_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-depression_secondarycare.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-depression_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-depression_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-depression_secondarycare.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-depression_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-depression_secondarycare.csv
 
   make_model_input-cohort_prevax-main-anxiety_general_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-anxiety_general_prescription
@@ -6969,27 +6003,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-anxiety_general_prescription.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-anxiety_general_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-anxiety_general_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-anxiety_general_prescription.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-anxiety_general_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-anxiety_general_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-anxiety_general_prescription.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-anxiety_general_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-anxiety_general_prescription.csv
-
   make_model_input-cohort_prevax-main-anxiety_general_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-anxiety_general_primarycare
     needs:
@@ -7052,27 +6065,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-anxiety_general_primarycare.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-anxiety_general_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-anxiety_general_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-anxiety_general_primarycare.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-anxiety_general_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-anxiety_general_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-anxiety_general_primarycare.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-anxiety_general_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-anxiety_general_primarycare.csv
 
   make_model_input-cohort_prevax-main-anxiety_general_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-anxiety_general_secondarycare
@@ -7137,27 +6129,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-anxiety_general_secondarycare.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-anxiety_general_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-anxiety_general_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-anxiety_general_secondarycare.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-anxiety_general_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-anxiety_general_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-anxiety_general_secondarycare.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-anxiety_general_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-anxiety_general_secondarycare.csv
-
   make_model_input-cohort_prevax-main-serious_mental_illness_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-serious_mental_illness_prescription
     needs:
@@ -7220,27 +6191,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness_prescription.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-serious_mental_illness_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-serious_mental_illness_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-serious_mental_illness_prescription.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-serious_mental_illness_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-serious_mental_illness_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-serious_mental_illness_prescription.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-serious_mental_illness_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-serious_mental_illness_prescription.csv
 
   make_model_input-cohort_prevax-main-serious_mental_illness_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-serious_mental_illness_primarycare
@@ -7305,27 +6255,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness_primarycare.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-serious_mental_illness_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-serious_mental_illness_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-serious_mental_illness_primarycare.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-serious_mental_illness_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-serious_mental_illness_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-serious_mental_illness_primarycare.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-serious_mental_illness_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-serious_mental_illness_primarycare.csv
-
   make_model_input-cohort_prevax-main-serious_mental_illness_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-serious_mental_illness_secondarycare
     needs:
@@ -7388,27 +6317,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness_secondarycare.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-serious_mental_illness_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-serious_mental_illness_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-serious_mental_illness_secondarycare.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-serious_mental_illness_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-serious_mental_illness_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-serious_mental_illness_secondarycare.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-serious_mental_illness_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-serious_mental_illness_secondarycare.csv
 
   make_model_input-cohort_prevax-main-self_harm_primarycare:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-self_harm_primarycare
@@ -7473,27 +6381,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-self_harm_primarycare.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-self_harm_primarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-self_harm_primarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-self_harm_primarycare.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-self_harm_primarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-self_harm_primarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-self_harm_primarycare.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-self_harm_primarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-self_harm_primarycare.csv
-
   make_model_input-cohort_prevax-main-self_harm_secondarycare:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-self_harm_secondarycare
     needs:
@@ -7556,27 +6443,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-self_harm_secondarycare.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-self_harm_secondarycare:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-self_harm_secondarycare
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-self_harm_secondarycare.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-self_harm_secondarycare:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-self_harm_secondarycare.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-self_harm_secondarycare.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-self_harm_secondarycare
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-self_harm_secondarycare.csv
 
   make_model_input-cohort_prevax-main-addiction_prescription:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-addiction_prescription
@@ -7641,27 +6507,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-addiction_prescription.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-addiction_prescription:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-addiction_prescription
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-addiction_prescription.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-addiction_prescription:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-addiction_prescription.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-addiction_prescription.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-addiction_prescription
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-addiction_prescription.csv
-
   make_model_input-cohort_prevax-main-depression:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-depression
     needs:
@@ -7724,27 +6569,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-depression.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-depression:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-depression
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-depression.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-depression:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-depression.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-depression
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-depression.csv
 
   make_model_input-cohort_prevax-main-anxiety_general:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-anxiety_general
@@ -7809,27 +6633,6 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-anxiety_general.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-anxiety_general:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-anxiety_general
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-anxiety_general.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-anxiety_general:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-anxiety_general.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-anxiety_general
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-anxiety_general.csv
-
   make_model_input-cohort_prevax-main-serious_mental_illness:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-serious_mental_illness
     needs:
@@ -7892,27 +6695,6 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness.csv
-
-  make_model_input-cohort_prevax-sub_covid_history-serious_mental_illness:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-serious_mental_illness
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-serious_mental_illness.rds
-
-  cox_ipw-cohort_prevax-sub_covid_history-serious_mental_illness:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
-      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
-      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-serious_mental_illness.csv
-    needs:
-    - make_model_input-cohort_prevax-sub_covid_history-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-serious_mental_illness.csv
 
   make_model_input-cohort_prevax-main-self_harm:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-self_harm
@@ -7977,26 +6759,47 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_covid_nonhospitalised-self_harm.csv
 
-  make_model_input-cohort_prevax-sub_covid_history-self_harm:
-    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-self_harm
+  make_model_input-cohort_prevax-sub_covid_history-vax:
+    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-vax
     needs:
     - stage1_data_cleaning_all
     outputs:
       highly_sensitive:
-        model_input: output/model_input-cohort_prevax-sub_covid_history-self_harm.rds
+        model_input: output/model_input-cohort_prevax-sub_covid_history-vax.rds
 
-  cox_ipw-cohort_prevax-sub_covid_history-self_harm:
-    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-self_harm.rds
+  cox_ipw-cohort_prevax-sub_covid_history-vax:
+    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-vax.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
-      --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
+      --cox_start=index_date --cox_stop=end_date --study_start=vax --study_stop=vax
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
-      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-self_harm.csv
+      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-vax.csv
     needs:
-    - make_model_input-cohort_prevax-sub_covid_history-self_harm
+    - make_model_input-cohort_prevax-sub_covid_history-vax
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-sub_covid_history-self_harm.csv
+        model_output: output/model_output-cohort_prevax-sub_covid_history-vax.csv
+
+  make_model_input-cohort_prevax-sub_covid_history-unvax:
+    run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_covid_history-unvax
+    needs:
+    - stage1_data_cleaning_all
+    outputs:
+      highly_sensitive:
+        model_input: output/model_input-cohort_prevax-sub_covid_history-unvax.rds
+
+  cox_ipw-cohort_prevax-sub_covid_history-unvax:
+    run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_covid_history-unvax.rds
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
+      --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
+      --cox_start=index_date --cox_stop=end_date --study_start=unvax --study_stop=unvax
+      --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
+      --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-sub_covid_history-unvax.csv
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_history-unvax
+    outputs:
+      moderately_sensitive:
+        model_output: output/model_output-cohort_prevax-sub_covid_history-unvax.csv
 
   make_model_input-cohort_prevax-sub_sex_female-depression:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-sub_sex_female-depression
