@@ -9284,14 +9284,6 @@ actions:
   make_model_output:
     run: r:latest analysis/model/make_model_output.R
     needs:
-    - cox_ipw-cohort_prevax-main-addiction
-    - cox_ipw-cohort_prevax-main-anxiety_general
-    - cox_ipw-cohort_prevax-main-anxiety_ptsd
-    - cox_ipw-cohort_prevax-main-depression
-    - cox_ipw-cohort_prevax-main-eating_disorders
-    - cox_ipw-cohort_prevax-main-self_harm
-    - cox_ipw-cohort_prevax-main-serious_mental_illness
-    - cox_ipw-cohort_prevax-main-suicide
     - cox_ipw-cohort_unvax-main-anxiety_general
     - cox_ipw-cohort_unvax-main-anxiety_ptsd
     - cox_ipw-cohort_unvax-main-depression

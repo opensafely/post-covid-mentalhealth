@@ -350,7 +350,15 @@ actions_list <- splice(
                                                         !grepl("prescription",active_analyses$name) &
                                                         !grepl("primarycare",active_analyses$name) &
                                                         !grepl("secondarycare",active_analyses$name),]$name),
-                    c("cox_ipw-cohort_prevax-main-anxiety_ocd",
+                    c("cox_ipw-cohort_prevax-main-addiction",
+                      "cox_ipw-cohort_prevax-main-anxiety_general",
+                      "cox_ipw-cohort_prevax-main-anxiety_ocd",
+                      "cox_ipw-cohort_prevax-main-anxiety_ptsd",
+                      "cox_ipw-cohort_prevax-main-depression",
+                      "cox_ipw-cohort_prevax-main-eating_disorders",
+                      "cox_ipw-cohort_prevax-main-self_harm",
+                      "cox_ipw-cohort_prevax-main-serious_mental_illness",
+                      "cox_ipw-cohort_prevax-main-suicide",
                       "cox_ipw-cohort_vax-main-anxiety_ocd",
                       "cox_ipw-cohort_vax-main-anxiety_ptsd",
                       "cox_ipw-cohort_vax-main-eating_disorders",
