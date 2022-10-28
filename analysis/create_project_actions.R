@@ -327,18 +327,18 @@ actions_list <- splice(
                                     !grepl("prescription",active_analyses$name) &
                                     !grepl("primarycare",active_analyses$name) &
                                     !grepl("secondarycare",active_analyses$name),]$name),
-                   c("cohort_prevax-main-anxiety_ocd",
-                     "cohort_vax-main-anxiety_ocd",
-                     "cohort_vax-main-anxiety_ptsd",
-                     "cohort_vax-main-eating_disorders",
-                     "cohort_vax-main-suicide",
-                     "cohort_vax-main-addiction",
-                     "cohort_vax-main-anxiety_ptsd",
-                     "cohort_unvax-main-anxiety_ocd",
-                     "cohort_unvax-main-eating_disorders",
-                     "cohort_unvax-main-suicide",
-                     "cohort_unvax-main-addiction",
-                     "cohort_unvax-main-self_harm")),
+                   c("cox_ipw-cohort_prevax-main-anxiety_ocd",
+                     "cox_ipw-cohort_vax-main-anxiety_ocd",
+                     "cox_ipw-cohort_vax-main-anxiety_ptsd",
+                     "cox_ipw-cohort_vax-main-eating_disorders",
+                     "cox_ipw-cohort_vax-main-suicide",
+                     "cox_ipw-cohort_vax-main-addiction",
+                     "cox_ipw-cohort_vax-main-anxiety_ptsd",
+                     "cox_ipw-cohort_unvax-main-anxiety_ocd",
+                     "cox_ipw-cohort_unvax-main-eating_disorders",
+                     "cox_ipw-cohort_unvax-main-suicide",
+                     "cox_ipw-cohort_unvax-main-addiction",
+                     "cox_ipw-cohort_unvax-main-self_harm")),
    moderately_sensitive = list(
      model_output = glue("output/model_output.csv")
    )
