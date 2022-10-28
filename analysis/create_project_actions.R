@@ -323,7 +323,7 @@ actions_list <- splice(
  action(
    name = "make_model_output",
    run = "r:latest analysis/model/make_model_output.R",
-   needs = setdiff(paste0(active_analyses[active_analyses$analysis=="main" &
+   needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" &
                                     !grepl("prescription",active_analyses$name) &
                                     !grepl("primarycare",active_analyses$name) &
                                     !grepl("secondarycare",active_analyses$name),]$name),
