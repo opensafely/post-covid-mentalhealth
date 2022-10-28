@@ -184,7 +184,7 @@ actions:
       moderately_sensitive:
         input_table_2: output/review/descriptives/table2_prevax.csv
 
-  ## Stage 5 - Run models 
+  ## Stage 5a - Run models 
 
   make_model_input-cohort_vax-main-anxiety_ocd:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_ocd
@@ -9257,4 +9257,29 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm.csv
+
+  ## Stage 5b - make model output 
+
+  make_model_output:
+    run: r:latest analysis/model/make_model_output.R
+    needs:
+    - cohort_vax-main-depression
+    - cohort_vax-main-anxiety_general
+    - cohort_vax-main-serious_mental_illness
+    - cohort_vax-main-self_harm
+    - cohort_unvax-main-anxiety_ptsd
+    - cohort_unvax-main-depression
+    - cohort_unvax-main-anxiety_general
+    - cohort_unvax-main-serious_mental_illness
+    - cohort_prevax-main-anxiety_ptsd
+    - cohort_prevax-main-eating_disorders
+    - cohort_prevax-main-suicide
+    - cohort_prevax-main-addiction
+    - cohort_prevax-main-depression
+    - cohort_prevax-main-anxiety_general
+    - cohort_prevax-main-serious_mental_illness
+    - cohort_prevax-main-self_harm
+    outputs:
+      moderately_sensitive:
+        model_output: output/model_output.csv
 

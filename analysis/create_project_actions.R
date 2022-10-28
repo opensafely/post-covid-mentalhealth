@@ -292,7 +292,7 @@ actions_list <- splice(
  #      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
  #  ),
 
-  comment("Stage 5 - Run models"),
+  comment("Stage 5a - Run models"),
   
   splice(
     # over outcomes
@@ -316,7 +316,34 @@ actions_list <- splice(
                                                    covariate_threshold = active_analyses$covariate_threshold[x],
                                                    age_spline = active_analyses$age_spline[x])), recursive = FALSE
     )
-  )
+  ),
+ 
+ comment("Stage 5b - make model output"),
+ 
+ action(
+   name = "make_model_output",
+   run = "r:latest analysis/model/make_model_output.R",
+   needs = setdiff(paste0(active_analyses[active_analyses$analysis=="main" &
+                                    !grepl("prescription",active_analyses$name) &
+                                    !grepl("primarycare",active_analyses$name) &
+                                    !grepl("secondarycare",active_analyses$name),]$name),
+                   c("cohort_prevax-main-anxiety_ocd",
+                     "cohort_vax-main-anxiety_ocd",
+                     "cohort_vax-main-anxiety_ptsd",
+                     "cohort_vax-main-eating_disorders",
+                     "cohort_vax-main-suicide",
+                     "cohort_vax-main-addiction",
+                     "cohort_vax-main-anxiety_ptsd",
+                     "cohort_unvax-main-anxiety_ocd",
+                     "cohort_unvax-main-eating_disorders",
+                     "cohort_unvax-main-suicide",
+                     "cohort_unvax-main-addiction",
+                     "cohort_unvax-main-self_harm")),
+   moderately_sensitive = list(
+     model_output = glue("output/model_output.csv")
+   )
+ )
+ 
   
 )
 
