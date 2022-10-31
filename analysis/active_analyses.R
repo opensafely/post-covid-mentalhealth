@@ -544,6 +544,10 @@ df$priorhistory_var <- ifelse(df$priorhistory_var=="cov_bin_recent_anxiety_gener
 
 df <- df[!grepl("cohort_prevax-sub_covid_history-", df$name),]
 
+# Remove Primary care, Secondary care and Prescription -------------------------
+
+df <- df[!grepl("primarycare", df$name) & !grepl("secondarycare", df$name) & !grepl("prescription", df$name),]
+
 # Check names are unique and save active analyses list -------------------------
 
 if (length(unique(df$name))==nrow(df)) {
