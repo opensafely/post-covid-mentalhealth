@@ -154,36 +154,6 @@ actions:
         DateChecks: output/not-for-review/Check_dates_range_*.csv
         Descriptive_Table: output/review/descriptives/Table1_*.csv
 
-  ## Stage 4 - Table 2 - prevax cohort 
-
-  stage4_table_2_prevax:
-    run: r:latest analysis/descriptives/table_2.R prevax
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_prevax.csv
-
-  ## Stage 4 - Table 2 - unvax cohort 
-
-  stage4_table_2_unvax:
-    run: r:latest analysis/descriptives/table_2.R unvax
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_unvax.csv
-
-  ## Stage 4 - Table 2 - vax cohort 
-
-  stage4_table_2_vax:
-    run: r:latest analysis/descriptives/table_2.R vax
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_vax.csv
-
   ## Stage 5a - Run models 
 
   make_model_input-cohort_prevax-main-addiction:
@@ -205,7 +175,7 @@ actions:
     - make_model_input-cohort_prevax-main-addiction
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-addiction.csv.gz
+        model_output: output/model_output-cohort_prevax-main-addiction.csv
 
   make_model_input-cohort_prevax-main-anxiety_general:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-anxiety_general
@@ -226,7 +196,7 @@ actions:
     - make_model_input-cohort_prevax-main-anxiety_general
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-anxiety_general.csv.gz
+        model_output: output/model_output-cohort_prevax-main-anxiety_general.csv
 
   make_model_input-cohort_prevax-main-anxiety_ocd:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-anxiety_ocd
@@ -247,7 +217,7 @@ actions:
     - make_model_input-cohort_prevax-main-anxiety_ocd
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-anxiety_ocd.csv.gz
+        model_output: output/model_output-cohort_prevax-main-anxiety_ocd.csv
 
   make_model_input-cohort_prevax-main-anxiety_ptsd:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-anxiety_ptsd
@@ -268,7 +238,7 @@ actions:
     - make_model_input-cohort_prevax-main-anxiety_ptsd
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-anxiety_ptsd.csv.gz
+        model_output: output/model_output-cohort_prevax-main-anxiety_ptsd.csv
 
   make_model_input-cohort_prevax-main-depression:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-depression
@@ -289,7 +259,7 @@ actions:
     - make_model_input-cohort_prevax-main-depression
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-depression.csv.gz
+        model_output: output/model_output-cohort_prevax-main-depression.csv
 
   make_model_input-cohort_prevax-main-eating_disorders:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-eating_disorders
@@ -310,7 +280,7 @@ actions:
     - make_model_input-cohort_prevax-main-eating_disorders
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-eating_disorders.csv.gz
+        model_output: output/model_output-cohort_prevax-main-eating_disorders.csv
 
   make_model_input-cohort_prevax-main-self_harm:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-self_harm
@@ -331,7 +301,7 @@ actions:
     - make_model_input-cohort_prevax-main-self_harm
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-self_harm.csv.gz
+        model_output: output/model_output-cohort_prevax-main-self_harm.csv
 
   make_model_input-cohort_prevax-main-serious_mental_illness:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-serious_mental_illness
@@ -352,7 +322,7 @@ actions:
     - make_model_input-cohort_prevax-main-serious_mental_illness
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-serious_mental_illness.csv.gz
+        model_output: output/model_output-cohort_prevax-main-serious_mental_illness.csv
 
   make_model_input-cohort_prevax-main-suicide:
     run: r:latest analysis/model/make_model_input.R cohort_prevax-main-suicide
@@ -373,7 +343,7 @@ actions:
     - make_model_input-cohort_prevax-main-suicide
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax-main-suicide.csv.gz
+        model_output: output/model_output-cohort_prevax-main-suicide.csv
 
   make_model_input-cohort_unvax-main-addiction:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-addiction
@@ -394,7 +364,7 @@ actions:
     - make_model_input-cohort_unvax-main-addiction
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-addiction.csv.gz
+        model_output: output/model_output-cohort_unvax-main-addiction.csv
 
   make_model_input-cohort_unvax-main-anxiety_general:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-anxiety_general
@@ -415,7 +385,7 @@ actions:
     - make_model_input-cohort_unvax-main-anxiety_general
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-anxiety_general.csv.gz
+        model_output: output/model_output-cohort_unvax-main-anxiety_general.csv
 
   make_model_input-cohort_unvax-main-anxiety_ocd:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-anxiety_ocd
@@ -436,7 +406,7 @@ actions:
     - make_model_input-cohort_unvax-main-anxiety_ocd
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-anxiety_ocd.csv.gz
+        model_output: output/model_output-cohort_unvax-main-anxiety_ocd.csv
 
   make_model_input-cohort_unvax-main-anxiety_ptsd:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-anxiety_ptsd
@@ -457,7 +427,7 @@ actions:
     - make_model_input-cohort_unvax-main-anxiety_ptsd
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-anxiety_ptsd.csv.gz
+        model_output: output/model_output-cohort_unvax-main-anxiety_ptsd.csv
 
   make_model_input-cohort_unvax-main-depression:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-depression
@@ -478,7 +448,7 @@ actions:
     - make_model_input-cohort_unvax-main-depression
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-depression.csv.gz
+        model_output: output/model_output-cohort_unvax-main-depression.csv
 
   make_model_input-cohort_unvax-main-eating_disorders:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-eating_disorders
@@ -499,7 +469,7 @@ actions:
     - make_model_input-cohort_unvax-main-eating_disorders
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-eating_disorders.csv.gz
+        model_output: output/model_output-cohort_unvax-main-eating_disorders.csv
 
   make_model_input-cohort_unvax-main-self_harm:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-self_harm
@@ -520,7 +490,7 @@ actions:
     - make_model_input-cohort_unvax-main-self_harm
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-self_harm.csv.gz
+        model_output: output/model_output-cohort_unvax-main-self_harm.csv
 
   make_model_input-cohort_unvax-main-serious_mental_illness:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-serious_mental_illness
@@ -541,7 +511,7 @@ actions:
     - make_model_input-cohort_unvax-main-serious_mental_illness
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-serious_mental_illness.csv.gz
+        model_output: output/model_output-cohort_unvax-main-serious_mental_illness.csv
 
   make_model_input-cohort_unvax-main-suicide:
     run: r:latest analysis/model/make_model_input.R cohort_unvax-main-suicide
@@ -562,7 +532,7 @@ actions:
     - make_model_input-cohort_unvax-main-suicide
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_unvax-main-suicide.csv.gz
+        model_output: output/model_output-cohort_unvax-main-suicide.csv
 
   make_model_input-cohort_vax-main-addiction:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-addiction
@@ -583,7 +553,7 @@ actions:
     - make_model_input-cohort_vax-main-addiction
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-addiction.csv.gz
+        model_output: output/model_output-cohort_vax-main-addiction.csv
 
   make_model_input-cohort_vax-main-anxiety_general:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_general
@@ -604,7 +574,7 @@ actions:
     - make_model_input-cohort_vax-main-anxiety_general
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-anxiety_general.csv.gz
+        model_output: output/model_output-cohort_vax-main-anxiety_general.csv
 
   make_model_input-cohort_vax-main-anxiety_ocd:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_ocd
@@ -625,7 +595,7 @@ actions:
     - make_model_input-cohort_vax-main-anxiety_ocd
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-anxiety_ocd.csv.gz
+        model_output: output/model_output-cohort_vax-main-anxiety_ocd.csv
 
   make_model_input-cohort_vax-main-anxiety_ptsd:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-anxiety_ptsd
@@ -646,7 +616,7 @@ actions:
     - make_model_input-cohort_vax-main-anxiety_ptsd
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-anxiety_ptsd.csv.gz
+        model_output: output/model_output-cohort_vax-main-anxiety_ptsd.csv
 
   make_model_input-cohort_vax-main-depression:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-depression
@@ -667,7 +637,7 @@ actions:
     - make_model_input-cohort_vax-main-depression
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-depression.csv.gz
+        model_output: output/model_output-cohort_vax-main-depression.csv
 
   make_model_input-cohort_vax-main-eating_disorders:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-eating_disorders
@@ -688,7 +658,7 @@ actions:
     - make_model_input-cohort_vax-main-eating_disorders
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-eating_disorders.csv.gz
+        model_output: output/model_output-cohort_vax-main-eating_disorders.csv
 
   make_model_input-cohort_vax-main-self_harm:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-self_harm
@@ -709,7 +679,7 @@ actions:
     - make_model_input-cohort_vax-main-self_harm
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-self_harm.csv.gz
+        model_output: output/model_output-cohort_vax-main-self_harm.csv
 
   make_model_input-cohort_vax-main-serious_mental_illness:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-serious_mental_illness
@@ -730,7 +700,7 @@ actions:
     - make_model_input-cohort_vax-main-serious_mental_illness
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-serious_mental_illness.csv.gz
+        model_output: output/model_output-cohort_vax-main-serious_mental_illness.csv
 
   make_model_input-cohort_vax-main-suicide:
     run: r:latest analysis/model/make_model_input.R cohort_vax-main-suicide
@@ -751,437 +721,5 @@ actions:
     - make_model_input-cohort_vax-main-suicide
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-main-suicide.csv.gz
-
-  describe_model_input-cohort_prevax-main-addiction:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-addiction
-    needs:
-    - describe_model_input-cohort_prevax-main-addiction
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-addiction.txt
-
-  describe_model_input-cohort_prevax-main-anxiety_general:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-anxiety_general
-    needs:
-    - describe_model_input-cohort_prevax-main-anxiety_general
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-anxiety_general.txt
-
-  describe_model_input-cohort_prevax-main-anxiety_ocd:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-anxiety_ocd
-    needs:
-    - describe_model_input-cohort_prevax-main-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-anxiety_ocd.txt
-
-  describe_model_input-cohort_prevax-main-anxiety_ptsd:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-anxiety_ptsd
-    needs:
-    - describe_model_input-cohort_prevax-main-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-anxiety_ptsd.txt
-
-  describe_model_input-cohort_prevax-main-depression:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-depression
-    needs:
-    - describe_model_input-cohort_prevax-main-depression
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-depression.txt
-
-  describe_model_input-cohort_prevax-main-eating_disorders:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-eating_disorders
-    needs:
-    - describe_model_input-cohort_prevax-main-eating_disorders
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-eating_disorders.txt
-
-  describe_model_input-cohort_prevax-main-self_harm:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-self_harm
-    needs:
-    - describe_model_input-cohort_prevax-main-self_harm
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-self_harm.txt
-
-  describe_model_input-cohort_prevax-main-serious_mental_illness:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-serious_mental_illness
-    needs:
-    - describe_model_input-cohort_prevax-main-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-serious_mental_illness.txt
-
-  describe_model_input-cohort_prevax-main-suicide:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_prevax-main-suicide
-    needs:
-    - describe_model_input-cohort_prevax-main-suicide
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_prevax-main-suicide.txt
-
-  describe_model_input-cohort_unvax-main-addiction:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-addiction
-    needs:
-    - describe_model_input-cohort_unvax-main-addiction
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-addiction.txt
-
-  describe_model_input-cohort_unvax-main-anxiety_general:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-anxiety_general
-    needs:
-    - describe_model_input-cohort_unvax-main-anxiety_general
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-anxiety_general.txt
-
-  describe_model_input-cohort_unvax-main-anxiety_ocd:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-anxiety_ocd
-    needs:
-    - describe_model_input-cohort_unvax-main-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-anxiety_ocd.txt
-
-  describe_model_input-cohort_unvax-main-anxiety_ptsd:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-anxiety_ptsd
-    needs:
-    - describe_model_input-cohort_unvax-main-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-anxiety_ptsd.txt
-
-  describe_model_input-cohort_unvax-main-depression:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-depression
-    needs:
-    - describe_model_input-cohort_unvax-main-depression
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-depression.txt
-
-  describe_model_input-cohort_unvax-main-eating_disorders:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-eating_disorders
-    needs:
-    - describe_model_input-cohort_unvax-main-eating_disorders
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-eating_disorders.txt
-
-  describe_model_input-cohort_unvax-main-self_harm:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-self_harm
-    needs:
-    - describe_model_input-cohort_unvax-main-self_harm
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-self_harm.txt
-
-  describe_model_input-cohort_unvax-main-serious_mental_illness:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-serious_mental_illness
-    needs:
-    - describe_model_input-cohort_unvax-main-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-serious_mental_illness.txt
-
-  describe_model_input-cohort_unvax-main-suicide:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_unvax-main-suicide
-    needs:
-    - describe_model_input-cohort_unvax-main-suicide
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_unvax-main-suicide.txt
-
-  describe_model_input-cohort_vax-main-addiction:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-addiction
-    needs:
-    - describe_model_input-cohort_vax-main-addiction
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-addiction.txt
-
-  describe_model_input-cohort_vax-main-anxiety_general:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-anxiety_general
-    needs:
-    - describe_model_input-cohort_vax-main-anxiety_general
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-anxiety_general.txt
-
-  describe_model_input-cohort_vax-main-anxiety_ocd:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-anxiety_ocd
-    needs:
-    - describe_model_input-cohort_vax-main-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-anxiety_ocd.txt
-
-  describe_model_input-cohort_vax-main-anxiety_ptsd:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-anxiety_ptsd
-    needs:
-    - describe_model_input-cohort_vax-main-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-anxiety_ptsd.txt
-
-  describe_model_input-cohort_vax-main-depression:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-depression
-    needs:
-    - describe_model_input-cohort_vax-main-depression
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-depression.txt
-
-  describe_model_input-cohort_vax-main-eating_disorders:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-eating_disorders
-    needs:
-    - describe_model_input-cohort_vax-main-eating_disorders
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-eating_disorders.txt
-
-  describe_model_input-cohort_vax-main-self_harm:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-self_harm
-    needs:
-    - describe_model_input-cohort_vax-main-self_harm
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-self_harm.txt
-
-  describe_model_input-cohort_vax-main-serious_mental_illness:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-serious_mental_illness
-    needs:
-    - describe_model_input-cohort_vax-main-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-serious_mental_illness.txt
-
-  describe_model_input-cohort_vax-main-suicide:
-    run: r:latest r:latest analysis/model/describe_model_input.R cohort_vax-main-suicide
-    needs:
-    - describe_model_input-cohort_vax-main-suicide
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-model_input-cohort_vax-main-suicide.txt
-
-  cox_model_output-cohort_prevax-main-addiction:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-addiction
-    needs:
-    - cox_model_output-cohort_prevax-main-addiction
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-addiction.csv
-
-  cox_model_output-cohort_prevax-main-anxiety_general:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-anxiety_general
-    needs:
-    - cox_model_output-cohort_prevax-main-anxiety_general
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-anxiety_general.csv
-
-  cox_model_output-cohort_prevax-main-anxiety_ocd:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-anxiety_ocd
-    needs:
-    - cox_model_output-cohort_prevax-main-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-anxiety_ocd.csv
-
-  cox_model_output-cohort_prevax-main-anxiety_ptsd:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-anxiety_ptsd
-    needs:
-    - cox_model_output-cohort_prevax-main-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-anxiety_ptsd.csv
-
-  cox_model_output-cohort_prevax-main-depression:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-depression
-    needs:
-    - cox_model_output-cohort_prevax-main-depression
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-depression.csv
-
-  cox_model_output-cohort_prevax-main-eating_disorders:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-eating_disorders
-    needs:
-    - cox_model_output-cohort_prevax-main-eating_disorders
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-eating_disorders.csv
-
-  cox_model_output-cohort_prevax-main-self_harm:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-self_harm
-    needs:
-    - cox_model_output-cohort_prevax-main-self_harm
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-self_harm.csv
-
-  cox_model_output-cohort_prevax-main-serious_mental_illness:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-serious_mental_illness
-    needs:
-    - cox_model_output-cohort_prevax-main-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-serious_mental_illness.csv
-
-  cox_model_output-cohort_prevax-main-suicide:
-    run: r:latest analysis/model/cox_model_output.R cohort_prevax-main-suicide
-    needs:
-    - cox_model_output-cohort_prevax-main-suicide
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_prevax-main-suicide.csv
-
-  cox_model_output-cohort_unvax-main-addiction:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-addiction
-    needs:
-    - cox_model_output-cohort_unvax-main-addiction
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-addiction.csv
-
-  cox_model_output-cohort_unvax-main-anxiety_general:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-anxiety_general
-    needs:
-    - cox_model_output-cohort_unvax-main-anxiety_general
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-anxiety_general.csv
-
-  cox_model_output-cohort_unvax-main-anxiety_ocd:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-anxiety_ocd
-    needs:
-    - cox_model_output-cohort_unvax-main-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-anxiety_ocd.csv
-
-  cox_model_output-cohort_unvax-main-anxiety_ptsd:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-anxiety_ptsd
-    needs:
-    - cox_model_output-cohort_unvax-main-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-anxiety_ptsd.csv
-
-  cox_model_output-cohort_unvax-main-depression:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-depression
-    needs:
-    - cox_model_output-cohort_unvax-main-depression
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-depression.csv
-
-  cox_model_output-cohort_unvax-main-eating_disorders:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-eating_disorders
-    needs:
-    - cox_model_output-cohort_unvax-main-eating_disorders
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-eating_disorders.csv
-
-  cox_model_output-cohort_unvax-main-self_harm:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-self_harm
-    needs:
-    - cox_model_output-cohort_unvax-main-self_harm
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-self_harm.csv
-
-  cox_model_output-cohort_unvax-main-serious_mental_illness:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-serious_mental_illness
-    needs:
-    - cox_model_output-cohort_unvax-main-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-serious_mental_illness.csv
-
-  cox_model_output-cohort_unvax-main-suicide:
-    run: r:latest analysis/model/cox_model_output.R cohort_unvax-main-suicide
-    needs:
-    - cox_model_output-cohort_unvax-main-suicide
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_unvax-main-suicide.csv
-
-  cox_model_output-cohort_vax-main-addiction:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-addiction
-    needs:
-    - cox_model_output-cohort_vax-main-addiction
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-addiction.csv
-
-  cox_model_output-cohort_vax-main-anxiety_general:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-anxiety_general
-    needs:
-    - cox_model_output-cohort_vax-main-anxiety_general
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-anxiety_general.csv
-
-  cox_model_output-cohort_vax-main-anxiety_ocd:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-anxiety_ocd
-    needs:
-    - cox_model_output-cohort_vax-main-anxiety_ocd
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-anxiety_ocd.csv
-
-  cox_model_output-cohort_vax-main-anxiety_ptsd:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-anxiety_ptsd
-    needs:
-    - cox_model_output-cohort_vax-main-anxiety_ptsd
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-anxiety_ptsd.csv
-
-  cox_model_output-cohort_vax-main-depression:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-depression
-    needs:
-    - cox_model_output-cohort_vax-main-depression
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-depression.csv
-
-  cox_model_output-cohort_vax-main-eating_disorders:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-eating_disorders
-    needs:
-    - cox_model_output-cohort_vax-main-eating_disorders
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-eating_disorders.csv
-
-  cox_model_output-cohort_vax-main-self_harm:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-self_harm
-    needs:
-    - cox_model_output-cohort_vax-main-self_harm
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-self_harm.csv
-
-  cox_model_output-cohort_vax-main-serious_mental_illness:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-serious_mental_illness
-    needs:
-    - cox_model_output-cohort_vax-main-serious_mental_illness
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-serious_mental_illness.csv
-
-  cox_model_output-cohort_vax-main-suicide:
-    run: r:latest analysis/model/cox_model_output.R cohort_vax-main-suicide
-    needs:
-    - cox_model_output-cohort_vax-main-suicide
-    outputs:
-      moderately_sensitive:
-        model_output: output/cox_model_output-cohort_vax-main-suicide.csv
+        model_output: output/model_output-cohort_vax-main-suicide.csv
 
