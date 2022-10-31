@@ -544,7 +544,12 @@ df$priorhistory_var <- ifelse(df$priorhistory_var=="cov_bin_recent_anxiety_gener
 
 df <- df[!grepl("cohort_prevax-sub_covid_history-", df$name),]
 
-# Remove Primary care, Secondary care and Prescription -------------------------
+# Select analysis of interest --------------------------------------------------
+
+# Main
+df <- df[which(df$analysis == "main"),]
+
+# Remove Primary care, Secondary care and Prescription (MH) --------------------
 
 df <- df[!grepl("primarycare", df$name) & !grepl("secondarycare", df$name) & !grepl("prescription", df$name),]
 
