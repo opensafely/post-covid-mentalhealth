@@ -8764,7 +8764,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_sex_female-anxiety_general:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_sex_female-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8785,7 +8785,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_sex_female-depression:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_sex_female-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8806,7 +8806,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_sex_female-self_harm:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_sex_female-self_harm.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8827,7 +8827,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_sex_female-serious_mental_illness:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_sex_female-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8848,7 +8848,7 @@ actions:
 
   cox_ipw-cohort_unvax-sub_sex_female-anxiety_general:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_sex_female-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8869,7 +8869,7 @@ actions:
 
   cox_ipw-cohort_unvax-sub_sex_female-depression:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_sex_female-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8890,7 +8890,7 @@ actions:
 
   cox_ipw-cohort_unvax-sub_sex_female-self_harm:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_sex_female-self_harm.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8911,7 +8911,7 @@ actions:
 
   cox_ipw-cohort_unvax-sub_sex_female-serious_mental_illness:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_sex_female-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8932,7 +8932,7 @@ actions:
 
   cox_ipw-cohort_vax-sub_sex_female-anxiety_general:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_sex_female-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8953,7 +8953,7 @@ actions:
 
   cox_ipw-cohort_vax-sub_sex_female-depression:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_sex_female-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8974,7 +8974,7 @@ actions:
 
   cox_ipw-cohort_vax-sub_sex_female-self_harm:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_sex_female-self_harm.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -8995,7 +8995,7 @@ actions:
 
   cox_ipw-cohort_vax-sub_sex_female-serious_mental_illness:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_sex_female-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9016,7 +9016,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_sex_male-anxiety_general:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_sex_male-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9037,7 +9037,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_sex_male-depression:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_sex_male-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9058,7 +9058,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_sex_male-self_harm:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_sex_male-self_harm.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9079,7 +9079,7 @@ actions:
 
   cox_ipw-cohort_prevax-sub_sex_male-serious_mental_illness:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-sub_sex_male-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9100,7 +9100,7 @@ actions:
 
   cox_ipw-cohort_unvax-sub_sex_male-anxiety_general:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_sex_male-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9121,7 +9121,7 @@ actions:
 
   cox_ipw-cohort_unvax-sub_sex_male-depression:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_sex_male-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9142,7 +9142,7 @@ actions:
 
   cox_ipw-cohort_unvax-sub_sex_male-self_harm:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_sex_male-self_harm.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9163,7 +9163,7 @@ actions:
 
   cox_ipw-cohort_unvax-sub_sex_male-serious_mental_illness:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-sub_sex_male-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9184,7 +9184,7 @@ actions:
 
   cox_ipw-cohort_vax-sub_sex_male-anxiety_general:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_sex_male-anxiety_general.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9205,7 +9205,7 @@ actions:
 
   cox_ipw-cohort_vax-sub_sex_male-depression:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_sex_male-depression.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9226,7 +9226,7 @@ actions:
 
   cox_ipw-cohort_vax-sub_sex_male-self_harm:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_sex_male-self_harm.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9247,7 +9247,7 @@ actions:
 
   cox_ipw-cohort_vax-sub_sex_male-serious_mental_illness:
     run: cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-sub_sex_male-serious_mental_illness.rds
-      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=
+      --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_bin_recent_depression;cov_bin_history_depression;cov_bin_recent_anxiety;cov_bin_history_anxiety;cov_bin_recent_eating_disorders;cov_bin_history_eating_disorders;cov_bin_recent_serious_mental_illness;cov_bin_history_serious_mental_illness;cov_bin_recent_self_harm;cov_bin_history_self_harm
       --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
@@ -9284,14 +9284,6 @@ actions:
   make_model_output:
     run: r:latest analysis/model/make_model_output.R
     needs:
-    - cox_ipw-cohort_prevax-main-addiction
-    - cox_ipw-cohort_prevax-main-anxiety_general
-    - cox_ipw-cohort_prevax-main-anxiety_ptsd
-    - cox_ipw-cohort_prevax-main-depression
-    - cox_ipw-cohort_prevax-main-eating_disorders
-    - cox_ipw-cohort_prevax-main-self_harm
-    - cox_ipw-cohort_prevax-main-serious_mental_illness
-    - cox_ipw-cohort_prevax-main-suicide
     - cox_ipw-cohort_unvax-main-anxiety_general
     - cox_ipw-cohort_unvax-main-anxiety_ptsd
     - cox_ipw-cohort_unvax-main-depression
