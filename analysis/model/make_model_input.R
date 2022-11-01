@@ -100,7 +100,7 @@ for (i in 1:nrow(active_analyses)) {
   
   input <- input %>% 
     dplyr::rowwise() %>% 
-    dplyr::mutate(end_date = min(end_date, out_date))
+    dplyr::mutate(end_date = min(end_date, out_date, na.rm = TRUE))
   
   # Make model input: main -------------------------------------------------------
   
