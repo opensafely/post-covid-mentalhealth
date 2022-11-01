@@ -324,18 +324,10 @@ actions_list <- splice(
   action(
     name = "describe_model_input",
     run = "r:latest analysis/model/describe_model_input.R",
-    needs = list("make_model_input-cohort_prevax-main-anxiety_ocd",
-                 "make_model_input-cohort_vax-main-anxiety_ocd",
-                 "make_model_input-cohort_vax-main-anxiety_ptsd",
-                 "make_model_input-cohort_vax-main-eating_disorders",
-                 "make_model_input-cohort_vax-main-suicide",
-                 "make_model_input-cohort_vax-main-addiction",
-                 "make_model_input-cohort_vax-main-anxiety_ptsd",
-                 "make_model_input-cohort_unvax-main-anxiety_ocd",
-                 "make_model_input-cohort_unvax-main-eating_disorders",
-                 "make_model_input-cohort_unvax-main-suicide",
-                 "make_model_input-cohort_unvax-main-addiction",
-                 "make_model_input-cohort_unvax-main-self_harm"),
+    needs = paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" &
+                                                !grepl("prescription",active_analyses$name) &
+                                                !grepl("primarycare",active_analyses$name) &
+                                                !grepl("secondarycare",active_analyses$name),]$name),
     moderately_sensitive = list(
       describe_model_input = glue("output/describe-model_input-*.txt")
     )
@@ -350,15 +342,8 @@ actions_list <- splice(
                                                         !grepl("prescription",active_analyses$name) &
                                                         !grepl("primarycare",active_analyses$name) &
                                                         !grepl("secondarycare",active_analyses$name),]$name),
-                    c("cox_ipw-cohort_prevax-main-addiction",
-                      "cox_ipw-cohort_prevax-main-anxiety_general",
-                      "cox_ipw-cohort_prevax-main-anxiety_ocd",
-                      "cox_ipw-cohort_prevax-main-anxiety_ptsd",
-                      "cox_ipw-cohort_prevax-main-depression",
-                      "cox_ipw-cohort_prevax-main-eating_disorders",
+                    c("cox_ipw-cohort_prevax-main-anxiety_ocd",
                       "cox_ipw-cohort_prevax-main-self_harm",
-                      "cox_ipw-cohort_prevax-main-serious_mental_illness",
-                      "cox_ipw-cohort_prevax-main-suicide",
                       "cox_ipw-cohort_vax-main-anxiety_ocd",
                       "cox_ipw-cohort_vax-main-anxiety_ptsd",
                       "cox_ipw-cohort_vax-main-eating_disorders",
