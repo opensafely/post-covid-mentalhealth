@@ -44,7 +44,6 @@ covariate_threshold <- 5L
 # Specify cohorts --------------------------------------------------------------
 
 cohorts <- c("vax","unvax","prevax")
-cohort_sub_covid_history <- c("vax", "unvax")
 
 # Specify outcomes -------------------------------------------------------------
 
@@ -57,19 +56,19 @@ outcomes_runmain <- c("out_date_anxiety_ocd",
                       "out_date_anxiety_ptsd", 
                       "out_date_eating_disorders", 
                       "out_date_suicide", 
-                      "out_date_addiction")
-                      # "out_date_depression_prescription", 
-                      # "out_date_depression_primarycare", 
-                      # "out_date_depression_secondarycare", 
-                      # "out_date_anxiety_general_prescription", 
-                      # "out_date_anxiety_general_primarycare", 
-                      # "out_date_anxiety_general_secondarycare", 
-                      # "out_date_serious_mental_illness_prescription", 
-                      # "out_date_serious_mental_illness_primarycare", 
-                      # "out_date_serious_mental_illness_secondarycare", 
-                      # "out_date_self_harm_primarycare", 
-                      # "out_date_self_harm_secondarycare", 
-                      # "out_date_addiction_prescription")
+                      "out_date_addiction",
+                      "out_date_depression_prescription",
+                      "out_date_depression_primarycare",
+                      "out_date_depression_secondarycare",
+                      "out_date_anxiety_general_prescription",
+                      "out_date_anxiety_general_primarycare",
+                      "out_date_anxiety_general_secondarycare",
+                      "out_date_serious_mental_illness_prescription",
+                      "out_date_serious_mental_illness_primarycare",
+                      "out_date_serious_mental_illness_secondarycare",
+                      "out_date_self_harm_primarycare",
+                      "out_date_self_harm_secondarycare",
+                      "out_date_addiction_prescription")
 
 # Add active analyses ----------------------------------------------------------
 
@@ -146,10 +145,10 @@ for (c in cohorts) {
                          analysis = "sub_covid_nonhospitalised",
                          priorhistory_var = "")
     
-    #    ## analysis: sub_covid_history ---------------------------------------------
+    ## analysis: sub_covid_history ---------------------------------------------
     
     if (c!="prevax") {
-     
+      
       df[nrow(df)+1,] <- c(cohort = c,
                            exposure = exposure, 
                            outcome = i,
@@ -545,7 +544,7 @@ df$priorhistory_var <- ifelse(df$priorhistory_var=="cov_bin_recent_anxiety_gener
 
 # Remove prevax sub_covid_history ----------------------------------------------
 
-df <- df[!grepl("cohort_prevax-sub_covid_history-", df$name),]
+#df <- df[!grepl("cohort_prevax-sub_covid_history-", df$name),]
 
 # Select analysis of interest --------------------------------------------------
 

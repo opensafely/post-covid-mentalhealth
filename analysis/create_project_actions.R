@@ -105,6 +105,15 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
         model_output = glue("output/model_output-{name}.csv"))
     )
   )
+  
+#     action(
+#       name = glue("make_model_output-{name}"),
+#       run = glue("r:latest analysis/model/make_model_output.R {name}"),
+#       needs = list(glue("cox_ipw-{name}")), 
+#       moderately_sensitive = list(
+#         model_output = glue("output/cox_model_output-{name}.csv"))
+#     )
+#   )
 }
 
 # apply_describe_model_function <- function(name) {
@@ -112,9 +121,9 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
 #     #comment(glue("Stage 5b - Describe model input {name}")),
 #     action(
 #       name = glue("describe_model_input-{name}"),
-#       run = glue("r:latest r:latest analysis/model/describe_model_input.R {name}"),
+#       run = glue("r:latest analysis/model/describe_model_input.R {name}"),
 #       #arguments = c(name),
-#       needs = list(glue("describe_model_input-{name}")),
+#       needs = list(glue("make_model_input-{name}")),
 #       moderately_sensitive = list(
 #         describe_model_input = glue("output/describe-model_input-{name}.txt")
 #       )
@@ -129,9 +138,9 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
 #       name = glue("make_model_output-{name}"),
 #       run = glue("r:latest analysis/model/make_model_output.R {name}"),
 #       #arguments = c(name),
-#       needs = list(glue("make_model_output-{name}")),
+#       needs = list(glue("cox_ipw-{name}")), 
 #       moderately_sensitive = list(
-#         model_output = glue("output/model_output-{name}.csv")
+#         model_output = glue("output/cox_model_output-{name}.csv")
 #       )
 #     )
 #   )
@@ -353,7 +362,7 @@ actions_list <- splice(
   # splice(
   #   # over outcomes
   #   unlist(lapply(name, function(x) apply_describe_model_function(name = x)), recursive = FALSE)
-  # ),
+  # )
   
   # splice(
   #   # over outcomes
