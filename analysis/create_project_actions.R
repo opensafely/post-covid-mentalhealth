@@ -131,20 +131,21 @@ apply_describe_model_function <- function(name) {
   )
 }
 
-apply_make_model_output_function <- function(name) {
-  splice(
-    #comment(glue("Stage 5c - Make model output {name}")),
-    action(
-      name = glue("make_model_output-{name}"),
-      run = glue("r:latest analysis/model/make_model_output.R {name}"),
-      #arguments = c(name),
-      needs = list(glue("cox_ipw-{name}")),
-      moderately_sensitive = list(
-        model_output = glue("output/make_model_output-{name}.csv")
-      )
-    )
-  )
-}
+# apply_make_model_output_function <- function(name) {
+#   splice(
+#     #comment(glue("Stage 5c - Make model output {name}")),
+#     action(
+#       name = glue("make_model_output-{name}"),
+#       run = glue("r:latest analysis/model/make_model_output.R {name}"),
+#       #arguments = c(name),
+#       needs = setdiff(paste0("cox_ipw-{name}",)),#list(glue("cox_ipw-{name}")),
+#       moderately_sensitive = list(
+#         model_output = glue("output/model_output.csv")
+#       )
+#     )
+#   )
+# }
+
 
 # table2 <- function(cohort){
 #   splice(
@@ -364,10 +365,10 @@ actions_list <- splice(
     unlist(lapply(name, function(x) apply_describe_model_function(name = x)), recursive = FALSE)
   ),
   
-  splice(
-    # over outcomes
-    unlist(lapply(name, function(x) apply_make_model_output_function(name = x)), recursive = FALSE)
-  )
+  # splice(
+  #   # over outcomes
+  #   unlist(lapply(name, function(x) apply_make_model_output_function(name = x)), recursive = FALSE)
+  # )
 
   
   # comment("Stage 5b - describe model input"),
@@ -384,32 +385,32 @@ actions_list <- splice(
   #   )
   # ),
   
-  # comment("Stage 5c - make model output"),
-  # 
-  # action(
-  #   name = "make_model_output",
-  #   run = "r:latest analysis/model/make_model_output.R",
-  #   needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" &
-  #                                                       !grepl("prescription",active_analyses$name) &
-  #                                                       !grepl("primarycare",active_analyses$name) &
-  #                                                       !grepl("secondarycare",active_analyses$name),]$name),
-  #                   c("cox_ipw-cohort_prevax-main-anxiety_ocd",
-  #                     "cox_ipw-cohort_prevax-main-self_harm",
-  #                     "cox_ipw-cohort_vax-main-anxiety_ocd",
-  #                     "cox_ipw-cohort_vax-main-anxiety_ptsd",
-  #                     "cox_ipw-cohort_vax-main-eating_disorders",
-  #                     "cox_ipw-cohort_vax-main-suicide",
-  #                     "cox_ipw-cohort_vax-main-addiction",
-  #                     "cox_ipw-cohort_vax-main-anxiety_ptsd",
-  #                     "cox_ipw-cohort_unvax-main-anxiety_ocd",
-  #                     "cox_ipw-cohort_unvax-main-eating_disorders",
-  #                     "cox_ipw-cohort_unvax-main-suicide",
-  #                     "cox_ipw-cohort_unvax-main-addiction",
-  #                     "cox_ipw-cohort_unvax-main-self_harm")),
-  #   moderately_sensitive = list(
-  #     model_output = glue("output/model_output.csv")
-  #   )
-  # )
+  comment("Stage 5c - make model output"),
+
+  action(
+    name = "make_model_output",
+    run = "r:latest analysis/model/make_model_output.R",
+    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" &
+                                                        !grepl("prescription",active_analyses$name) &
+                                                        !grepl("primarycare",active_analyses$name) &
+                                                        !grepl("secondarycare",active_analyses$name),]$name),
+                    c("cox_ipw-cohort_prevax-main-anxiety_ocd",
+                      "cox_ipw-cohort_prevax-main-self_harm",
+                      "cox_ipw-cohort_vax-main-anxiety_ocd",
+                      "cox_ipw-cohort_vax-main-anxiety_ptsd",
+                      "cox_ipw-cohort_vax-main-eating_disorders",
+                      "cox_ipw-cohort_vax-main-suicide",
+                      "cox_ipw-cohort_vax-main-addiction",
+                      "cox_ipw-cohort_vax-main-anxiety_ptsd",
+                      "cox_ipw-cohort_unvax-main-anxiety_ocd",
+                      "cox_ipw-cohort_unvax-main-eating_disorders",
+                      "cox_ipw-cohort_unvax-main-suicide",
+                      "cox_ipw-cohort_unvax-main-addiction",
+                      "cox_ipw-cohort_unvax-main-self_harm")),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output.csv")
+    )
+  )
   
   
 )
