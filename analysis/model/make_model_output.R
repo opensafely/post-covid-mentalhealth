@@ -11,7 +11,7 @@ active_analyses <- readr::read_rds("lib/active_analyses.rds")
 # List available model outputs -------------------------------------------------
 print('List available model outputs')
 
-files <- list.files("output", pattern = "cox_model_output-")
+files <- list.files("output", pattern = "model_output-")
 
 # Combine model outputs --------------------------------------------------------
 print('Combine model outputs')
@@ -56,7 +56,7 @@ for (i in files) {
   
   ## Add source file name
   
-  tmp$name <- gsub("cox_model_output-","",gsub(".csv","",i))
+  tmp$name <- gsub("model_output-","",gsub(".csv","",i))
   
   ## Append to master dataframe
   
@@ -108,11 +108,11 @@ df$person_time_total <- ifelse(df$name %in% redact[redact$action==TRUE,]$name,"[
 df$outcome_time_median <- ifelse(df$name %in% redact[redact$action==TRUE,]$name,"[redact]",df$outcome_time_median)
 
 # Save model output ------------------------------------------------------------
-print('Save cox model output')
+print('Save model output')
 
 df <- df[,c("name","cohort","outcome","analysis","error","model","term",
             "lnhr","se_lnhr","hr","conf_low","conf_high",
             "N_total","N_exposed","N_events","person_time_total",
             "outcome_time_median","surv_formula")]
 
-readr::write_csv(df, "output/cox_model_output.csv")
+readr::write_csv(df, "output/model_output.csv")

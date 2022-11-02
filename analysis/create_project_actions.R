@@ -99,53 +99,13 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
     #comment(glue("Cox model for {outcome} - {cohort}")),
     action(
       name = glue("cox_ipw-{name}"),
-      run = glue("cox-ipw:v0.0.9 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=cox_model_output-{name}.csv"),
+      run = glue("cox-ipw:v0.0.9 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
       needs = list(glue("make_model_input-{name}")),
       moderately_sensitive = list(
-        model_output = glue("output/cox_model_output-{name}.csv"))
-    )
-  )
-  
-#     action(
-#       name = glue("make_model_output-{name}"),
-#       run = glue("r:latest analysis/model/make_model_output.R {name}"),
-#       needs = list(glue("cox_ipw-{name}")), 
-#       moderately_sensitive = list(
-#         model_output = glue("output/make_model_output-{name}.csv"))
-#     )
-#   )
-}
-
-apply_describe_model_function <- function(name) {
-  splice(
-    #comment(glue("Stage 5b - Describe model input {name}")),
-    action(
-      name = glue("describe_model_input-{name}"),
-      run = glue("r:latest analysis/model/describe_model_input.R {name}"),
-      #arguments = c(name),
-      needs = list(glue("make_model_input-{name}")),
-      moderately_sensitive = list(
-        describe_model_input = glue("output/describe-model_input-{name}.txt")
-      )
+        model_output = glue("output/model_output-{name}.csv"))#
     )
   )
 }
-
-# apply_make_model_output_function <- function(name) {
-#   splice(
-#     #comment(glue("Stage 5c - Make model output {name}")),
-#     action(
-#       name = glue("make_model_output-{name}"),
-#       run = glue("r:latest analysis/model/make_model_output.R {name}"),
-#       #arguments = c(name),
-#       needs = setdiff(paste0("cox_ipw-{name}",)),#list(glue("cox_ipw-{name}")),
-#       moderately_sensitive = list(
-#         model_output = glue("output/model_output.csv")
-#       )
-#     )
-#   )
-# }
-
 
 # table2 <- function(cohort){
 #   splice(
@@ -360,31 +320,20 @@ actions_list <- splice(
     )
   ),
   
-  splice(
-    # over outcomes
-    unlist(lapply(name, function(x) apply_describe_model_function(name = x)), recursive = FALSE)
-  ),
-  
-  # splice(
-  #   # over outcomes
-  #   unlist(lapply(name, function(x) apply_make_model_output_function(name = x)), recursive = FALSE)
-  # )
+  comment("Stage 5b - describe model input"),
 
-  
-  # comment("Stage 5b - describe model input"),
-  # 
-  # action(
-  #   name = "describe_model_input",
-  #   run = "r:latest analysis/model/describe_model_input.R",
-  #   needs = paste0("make_model_input-",active_analyses[active_analyses$analysis=="main" &
-  #                                                        !grepl("prescription",active_analyses$name) &
-  #                                                        !grepl("primarycare",active_analyses$name) &
-  #                                                        !grepl("secondarycare",active_analyses$name),]$name),
-  #   moderately_sensitive = list(
-  #     describe_model_input = glue("output/describe-model_input-*.txt")
-  #   )
-  # ),
-  
+  action(
+    name = "describe_model_input",
+    run = "r:latest analysis/model/describe_model_input.R",
+    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis=="main" &
+                                                         !grepl("prescription",active_analyses$name) &
+                                                         !grepl("primarycare",active_analyses$name) &
+                                                         !grepl("secondarycare",active_analyses$name),]$name),
+    moderately_sensitive = list(
+      describe_model_input = glue("output/describe-model_input-*.txt")
+    )
+  ),
+
   comment("Stage 5c - make model output"),
 
   action(
