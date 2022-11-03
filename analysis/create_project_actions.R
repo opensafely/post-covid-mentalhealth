@@ -79,47 +79,47 @@ convert_comment_actions <-function(yaml.txt){
 # #################################################
 
 # Updated to a typical action running Cox models for one outcome
-apply_model_function <- function(name, cohort, analysis, ipw, strata, 
-                                 covariate_sex, covariate_age, covariate_other, 
-                                 cox_start, cox_stop, study_start, study_stop,
-                                 cut_points, controls_per_case,
-                                 total_event_threshold, episode_event_threshold,
-                                 covariate_threshold, age_spline){
-  splice(
-    action(
-      name = glue("make_model_input-{name}"),
-      run = glue("r:latest analysis/model/make_model_input.R {name}"),
-      needs = list("stage1_data_cleaning_all"),
-      highly_sensitive = list(
-        model_input = glue("output/model_input-{name}.rds")
-      )
-    ),
-    
-    #comment(glue("Cox model for {outcome} - {cohort}")),
-    action(
-      name = glue("cox_ipw-{name}"),
-      run = glue("cox-ipw:v0.0.9 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
-      needs = list(glue("make_model_input-{name}")),
-      moderately_sensitive = list(
-        model_output = glue("output/model_output-{name}.csv"))
-    )
-  )
-}
-
-table2 <- function(cohort){
-  splice(
-    comment(glue("Stage 4 - Table 2 - {cohort} cohort")),
-    action(
-      name = glue("stage4_table_2_{cohort}"),
-      run = "r:latest analysis/descriptives/table_2.R",
-      arguments = c(cohort),
-      needs = list("stage1_data_cleaning_all"),
-      moderately_sensitive = list(
-        input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
-      )
-    )
-  )
-}
+# apply_model_function <- function(name, cohort, analysis, ipw, strata, 
+#                                  covariate_sex, covariate_age, covariate_other, 
+#                                  cox_start, cox_stop, study_start, study_stop,
+#                                  cut_points, controls_per_case,
+#                                  total_event_threshold, episode_event_threshold,
+#                                  covariate_threshold, age_spline){
+#   splice(
+#     action(
+#       name = glue("make_model_input-{name}"),
+#       run = glue("r:latest analysis/model/make_model_input.R {name}"),
+#       needs = list("stage1_data_cleaning_all"),
+#       highly_sensitive = list(
+#         model_input = glue("output/model_input-{name}.rds")
+#       )
+#     ),
+#     
+#     #comment(glue("Cox model for {outcome} - {cohort}")),
+#     action(
+#       name = glue("cox_ipw-{name}"),
+#       run = glue("cox-ipw:v0.0.9 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
+#       needs = list(glue("make_model_input-{name}")),
+#       moderately_sensitive = list(
+#         model_output = glue("output/model_output-{name}.csv"))
+#     )
+#   )
+# }
+# 
+# table2 <- function(cohort){
+#   splice(
+#     comment(glue("Stage 4 - Table 2 - {cohort} cohort")),
+#     action(
+#       name = glue("stage4_table_2_{cohort}"),
+#       run = "r:latest analysis/descriptives/table_2.R",
+#       arguments = c(cohort),
+#       needs = list("stage1_data_cleaning_all"),
+#       moderately_sensitive = list(
+#         input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
+#       )
+#     )
+#   )
+# }
 
 ##########################################################
 ## Define and combine all actions into a list of actions #
@@ -265,8 +265,38 @@ actions_list <- splice(
     )
   ),
   
-  comment("Stage 2 - Missing - Table 1 - all cohorts"),
+  #comment("Stage 1 - End date table - prevax"),
+  action(
+    name = "stage1_end_date_table_prevax",
+    run = "r:latest analysis/preprocess/create_follow_up_end_date.R prevax",
+    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
+    highly_sensitive = list(
+      end_date_table = glue("output/follow_up_end_dates_prevax.rds")
+    )
+  ),
   
+  #comment("Stage 1 - End date table - vax"),
+  action(
+    name = "stage1_end_date_table_vax",
+    run = "r:latest analysis/preprocess/create_follow_up_end_date.R vax",
+    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
+    highly_sensitive = list(
+      end_date_table = glue("output/follow_up_end_dates_vax.rds")
+    )
+  ),
+  
+  #comment("Stage 1 - End date table - unvax"),
+  action(
+    name = "stage1_end_date_table_unvax",
+    run = "r:latest analysis/preprocess/create_follow_up_end_date.R unvax",
+    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","vax_eligibility_inputs"),
+    highly_sensitive = list(
+      end_date_table = glue("output/follow_up_end_dates_unvax.rds")
+    )
+  ),
+  
+  comment("Stage 2 - Missing - Table 1 - all cohorts"),
+
   action(
     name = "stage2_missing_table1_all",
     run = "r:latest analysis/descriptives/Stage2_missing_table1.R all",
@@ -276,92 +306,93 @@ actions_list <- splice(
       DateChecks = glue("output/not-for-review/Check_dates_range_*.csv"),
       Descriptive_Table = glue("output/review/descriptives/Table1_*.csv")
     )
-  ),
+  )#,
+) 
+  # splice(
+  #   # over outcomes
+  #   unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
+  # ),
   
-  splice(
-    # over outcomes
-    unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
-  ),
-  
-  # comment("Stage 4 - Venn diagrams"),
+#   comment("Stage 4 - Venn diagrams"),
+# 
+#    action(
+#      name = "stage4_venn_diagram_all",
+#      run = "r:latest analysis/descriptives/venn_diagram.R all",
+#      needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all",
+#                   "stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
+#      moderately_sensitive = list(
+#        venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
+#    )
+# )  
+  # comment("Stage 5a - Run models"),
   # 
-  #  action(
-  #    name = "stage4_venn_diagram_all",
-  #    run = "r:latest analysis/descriptives/venn_diagram.R all",
-  #    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
-  #    moderately_sensitive = list(
-  #      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
-  #  ),
-  
-  comment("Stage 5a - Run models"),
-  
-  splice(
-    # over outcomes
-    unlist(lapply(1:nrow(active_analyses), 
-                  function(x) apply_model_function(name = active_analyses$name[x],
-                                                   cohort = active_analyses$cohort[x],
-                                                   analysis = active_analyses$analysis[x],
-                                                   ipw = active_analyses$ipw[x],
-                                                   strata = active_analyses$strata[x],
-                                                   covariate_sex = active_analyses$covariate_sex[x],
-                                                   covariate_age = active_analyses$covariate_age[x],
-                                                   covariate_other = active_analyses$covariate_other[x],
-                                                   cox_start = active_analyses$cox_start[x],
-                                                   cox_stop = active_analyses$cox_stop[x],
-                                                   study_start = active_analyses$study_start[x],
-                                                   study_stop = active_analyses$study_stop[x],
-                                                   cut_points = active_analyses$cut_points[x],
-                                                   controls_per_case = active_analyses$controls_per_case[x],
-                                                   total_event_threshold = active_analyses$total_event_threshold[x],
-                                                   episode_event_threshold = active_analyses$episode_event_threshold[x],
-                                                   covariate_threshold = active_analyses$covariate_threshold[x],
-                                                   age_spline = active_analyses$age_spline[x])), recursive = FALSE
-    )
-  ),
-  
-  comment("Stage 5b - describe model input"),
-  
-  action(
-    name = "describe_model_input",
-    run = "r:latest analysis/model/describe_model_input.R",
-    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis=="main" &
-                                                !grepl("prescription",active_analyses$name) &
-                                                !grepl("primarycare",active_analyses$name) &
-                                                !grepl("secondarycare",active_analyses$name),]$name),
-    moderately_sensitive = list(
-      describe_model_input = glue("output/describe-model_input-*.txt")
-    )
-  ),
-  
-  comment("Stage 5c - make model output"),
-  
-  action(
-    name = "make_model_output",
-    run = "r:latest analysis/model/make_model_output.R",
-    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" &
-                                                        !grepl("prescription",active_analyses$name) &
-                                                        !grepl("primarycare",active_analyses$name) &
-                                                        !grepl("secondarycare",active_analyses$name),]$name),
-                    c("cox_ipw-cohort_prevax-main-anxiety_ocd",
-                      "cox_ipw-cohort_prevax-main-self_harm",
-                      "cox_ipw-cohort_vax-main-anxiety_ocd",
-                      "cox_ipw-cohort_vax-main-anxiety_ptsd",
-                      "cox_ipw-cohort_vax-main-eating_disorders",
-                      "cox_ipw-cohort_vax-main-suicide",
-                      "cox_ipw-cohort_vax-main-addiction",
-                      "cox_ipw-cohort_vax-main-anxiety_ptsd",
-                      "cox_ipw-cohort_unvax-main-anxiety_ocd",
-                      "cox_ipw-cohort_unvax-main-eating_disorders",
-                      "cox_ipw-cohort_unvax-main-suicide",
-                      "cox_ipw-cohort_unvax-main-addiction",
-                      "cox_ipw-cohort_unvax-main-self_harm")),
-    moderately_sensitive = list(
-      model_output = glue("output/model_output.csv")
-    )
-  )
+  # splice(
+  #   # over outcomes
+  #   unlist(lapply(1:nrow(active_analyses), 
+  #                 function(x) apply_model_function(name = active_analyses$name[x],
+  #                                                  cohort = active_analyses$cohort[x],
+  #                                                  analysis = active_analyses$analysis[x],
+  #                                                  ipw = active_analyses$ipw[x],
+  #                                                  strata = active_analyses$strata[x],
+  #                                                  covariate_sex = active_analyses$covariate_sex[x],
+  #                                                  covariate_age = active_analyses$covariate_age[x],
+  #                                                  covariate_other = active_analyses$covariate_other[x],
+  #                                                  cox_start = active_analyses$cox_start[x],
+  #                                                  cox_stop = active_analyses$cox_stop[x],
+  #                                                  study_start = active_analyses$study_start[x],
+  #                                                  study_stop = active_analyses$study_stop[x],
+  #                                                  cut_points = active_analyses$cut_points[x],
+  #                                                  controls_per_case = active_analyses$controls_per_case[x],
+  #                                                  total_event_threshold = active_analyses$total_event_threshold[x],
+  #                                                  episode_event_threshold = active_analyses$episode_event_threshold[x],
+  #                                                  covariate_threshold = active_analyses$covariate_threshold[x],
+  #                                                  age_spline = active_analyses$age_spline[x])), recursive = FALSE
+  #   )
+  # ),
+  # 
+  # comment("Stage 5b - describe model input"),
+  # 
+  # action(
+  #   name = "describe_model_input",
+  #   run = "r:latest analysis/model/describe_model_input.R",
+  #   needs = paste0("make_model_input-",active_analyses[active_analyses$analysis=="main" &
+  #                                                        !grepl("prescription",active_analyses$name) &
+  #                                                        !grepl("primarycare",active_analyses$name) &
+  #                                                        !grepl("secondarycare",active_analyses$name),]$name),
+  #   moderately_sensitive = list(
+  #     describe_model_input = glue("output/describe-model_input-*.txt")
+  #   )
+  # ),
+  # 
+  # comment("Stage 5c - make model output"),
+  # 
+  # action(
+  #   name = "make_model_output",
+  #   run = "r:latest analysis/model/make_model_output.R",
+  #   needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" &
+  #                                                       !grepl("prescription",active_analyses$name) &
+  #                                                       !grepl("primarycare",active_analyses$name) &
+  #                                                       !grepl("secondarycare",active_analyses$name),]$name),
+  #                   c("cox_ipw-cohort_prevax-main-anxiety_ocd",
+  #                     "cox_ipw-cohort_prevax-main-self_harm",
+  #                     "cox_ipw-cohort_vax-main-anxiety_ocd",
+  #                     "cox_ipw-cohort_vax-main-anxiety_ptsd",
+  #                     "cox_ipw-cohort_vax-main-eating_disorders",
+  #                     "cox_ipw-cohort_vax-main-suicide",
+  #                     "cox_ipw-cohort_vax-main-addiction",
+  #                     "cox_ipw-cohort_vax-main-anxiety_ptsd",
+  #                     "cox_ipw-cohort_unvax-main-anxiety_ocd",
+  #                     "cox_ipw-cohort_unvax-main-eating_disorders",
+  #                     "cox_ipw-cohort_unvax-main-suicide",
+  #                     "cox_ipw-cohort_unvax-main-addiction",
+  #                     "cox_ipw-cohort_unvax-main-self_harm")),
+  #   moderately_sensitive = list(
+  #     model_output = glue("output/model_output.csv")
+  #   )
+  # )
   
   
-)
+#)
 
 ## combine everything ----
 project_list <- splice(

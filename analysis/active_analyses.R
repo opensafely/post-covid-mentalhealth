@@ -542,6 +542,15 @@ df$priorhistory_var <- ifelse(df$priorhistory_var=="cov_bin_recent_anxiety_gener
                               "cov_bin_recent_anxiety",
                               df$priorhistory_var)
 
+# Select analysis of interest --------------------------------------------------
+
+# Main
+df <- df[which(df$analysis == "main"),]
+
+# Remove Primary care, Secondary care and Prescription (MH) --------------------
+
+df <- df[!grepl("primarycare", df$name) & !grepl("secondarycare", df$name) & !grepl("prescription", df$name),]
+
 # Check names are unique and save active analyses list -------------------------
 
 if (length(unique(df$name))==nrow(df)) {

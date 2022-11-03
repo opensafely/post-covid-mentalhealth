@@ -37,8 +37,8 @@ library(stringr)
 args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
-  cohort_name <- "all" # interactive testing
-  #group <- "Mental_health"
+  cohort_name <- "vax" # interactive testing
+  group <- "out_date_depression"
 } else {
   cohort_name <- args[[1]]
 }
@@ -48,8 +48,8 @@ fs::dir_create(here::here("output", "review", "descriptives"))
 
 # Determine which outcome groups are active
 active_analyses <- read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses %>% filter(active == TRUE)
-outcome_groups <- unique(active_analyses$outcome_group)
+active_analyses <- active_analyses #%>% filter(active == TRUE)
+outcome_groups <- unique(active_analyses$outcome)
 
 cohort_start_date_prevax <- as.Date("2020-01-01")
 cohort_end_date_prevax <- as.Date("2021-06-18")
@@ -185,8 +185,8 @@ stage2 <- function(cohort_name, covid_history, group) {#, group
   }
   
   # Populate table 1 
-  covar_names <- active_analyses %>% filter(outcome_group==group) #CHECK
-  covar_names<-str_split(active_analyses$covariates, ";")[[1]]
+  covar_names <- active_analyses %>% filter(outcome==group) #CHECK
+  covar_names<-str_split(active_analyses$covariate_other, ";")[[1]]# CHECK
   
   #categorical_cov <- colnames(input)[grep("cov_cat", colnames(input))]
   categorical_cov <- covar_names[grep("cov_cat", covar_names)]
