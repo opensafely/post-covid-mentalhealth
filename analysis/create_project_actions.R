@@ -19,6 +19,7 @@ defaults_list <- list(
 active_analyses <- read_rds("lib/active_analyses.rds")
 active_analyses <- active_analyses[order(active_analyses$analysis,active_analyses$cohort,active_analyses$outcome),]
 cohort_to_run <- unique(active_analyses$cohort)
+names <- unique(active_analyses$names)
 
 # create action functions ----
 
@@ -324,7 +325,8 @@ actions_list <- splice(
   action(
     name = "describe_model_input",
     run = "r:latest analysis/model/describe_model_input.R",
-    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis=="main" &
+    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis == "sub_covid_hospitalised" | 
+                                                         active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
                                                 !grepl("prescription",active_analyses$name) &
                                                 !grepl("primarycare",active_analyses$name) &
                                                 !grepl("secondarycare",active_analyses$name),]$name),
@@ -338,7 +340,7 @@ actions_list <- splice(
   action(
     name = "make_model_output",
     run = "r:latest analysis/model/make_model_output.R",
-    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" &
+    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="sub_covid_hospitalised" | active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
                                                         !grepl("prescription",active_analyses$name) &
                                                         !grepl("primarycare",active_analyses$name) &
                                                         !grepl("secondarycare",active_analyses$name),]$name),
@@ -359,7 +361,6 @@ actions_list <- splice(
       model_output = glue("output/model_output.csv")
     )
   )
-  
   
 )
 
