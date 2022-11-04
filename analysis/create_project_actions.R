@@ -86,6 +86,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
                                  cut_points, controls_per_case,
                                  total_event_threshold, episode_event_threshold,
                                  covariate_threshold, age_spline){
+  
   splice(
     action(
       name = glue("make_model_input-{name}"),
@@ -93,6 +94,15 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
       needs = list("stage1_data_cleaning_all"),
       highly_sensitive = list(
         model_input = glue("output/model_input-{name}.rds")
+      )
+    ),
+    
+    action(
+      name = glue("describe_model_input-{name}"),
+      run = "r:latest analysis/model/describe_model_input.R",
+      needs = glue("make_model_input-{name}"),
+      moderately_sensitive = list(
+        describe_model_input = glue("output/describe-{name}.txt")
       )
     ),
     
@@ -294,7 +304,7 @@ actions_list <- splice(
   #      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
   #  ),
   
-  comment("Stage 5a - Run models"),
+  comment("Stage 5 - Run models"),
   
   splice(
     # over outcomes
@@ -320,28 +330,7 @@ actions_list <- splice(
     )
   ),
   
-  comment("Stage 5b - describe model input"),
-  
-  action(
-    name = "describe_model_input",
-    run = "r:latest analysis/model/describe_model_input.R",
-    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis == "sub_covid_hospitalised" | 
-                                                         active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
-                                                !grepl("prescription",active_analyses$name) &
-                                                !grepl("primarycare",active_analyses$name) &
-                                                !grepl("secondarycare",active_analyses$name) &
-                                                !grepl("anxiety_ocd",active_analyses$name) &  
-                                                !grepl("anxiety_ptsd",active_analyses$name) & 
-                                                !grepl("self_harm",active_analyses$name) & 
-                                                !grepl("eating_disorders",active_analyses$name) & 
-                                                !grepl("suicide",active_analyses$name) &
-                                                !grepl("addiction",active_analyses$name),]$name),
-    moderately_sensitive = list(
-      describe_model_input = glue("output/describe-model_input-*.txt")
-    )
-  ),
-  
-  comment("Stage 5c - make model output"),
+  comment("Stage 6 - make model output"),
   
   action(
     name = "make_model_output",
