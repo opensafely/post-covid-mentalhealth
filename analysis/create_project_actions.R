@@ -88,7 +88,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
   splice(
     action(
       name = glue("make_model_input-{name}"),
-      run = glue("r:latest analysis/model/make_model_input.R {name}"),
+      run = list(glue("r:latest analysis/model/make_model_input.R {name}")),
       needs = list("stage1_data_cleaning_all"),
       highly_sensitive = list(
         model_input = glue("output/model_input-{name}.rds")
