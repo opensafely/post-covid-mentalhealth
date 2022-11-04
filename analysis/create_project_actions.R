@@ -325,11 +325,17 @@ actions_list <- splice(
   action(
     name = "describe_model_input",
     run = "r:latest analysis/model/describe_model_input.R",
-    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis=="main" | active_analyses$analysis == "sub_covid_hospitalised" | 
+    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis == "sub_covid_hospitalised" | 
                                                          active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
                                                 !grepl("prescription",active_analyses$name) &
                                                 !grepl("primarycare",active_analyses$name) &
-                                                !grepl("secondarycare",active_analyses$name),]$name),
+                                                !grepl("secondarycare",active_analyses$name) &
+                                                !grepl("anxiety_ocd",active_analyses$name) &  
+                                                !grepl("anxiety_ptsd",active_analyses$name) & 
+                                                !grepl("self_harm",active_analyses$name) & 
+                                                !grepl("eating_disorders",active_analyses$name) & 
+                                                !grepl("suicide",active_analyses$name) &
+                                                !grepl("addiction",active_analyses$name),]$name),
     moderately_sensitive = list(
       describe_model_input = glue("output/describe-model_input-*.txt")
     )
