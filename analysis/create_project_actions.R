@@ -100,7 +100,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
     action(
       name = glue("describe_model_input-{name}"),
       run = "r:latest analysis/model/describe_model_input.R",
-      needs = glue("make_model_input-{name}"),
+      needs = list(glue("make_model_input-{name}")),
       moderately_sensitive = list(
         describe_model_input = glue("output/describe-{name}.txt")
       )
