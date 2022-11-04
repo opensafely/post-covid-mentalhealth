@@ -195,8 +195,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-addiction.rds
 
   describe_model_input-cohort_prevax-main-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-addiction
+    needs:
+    - make_model_input-cohort_prevax-main-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-addiction.txt
@@ -223,8 +224,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-anxiety_general.rds
 
   describe_model_input-cohort_prevax-main-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-main-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-anxiety_general.txt
@@ -251,8 +253,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-anxiety_ocd.rds
 
   describe_model_input-cohort_prevax-main-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-anxiety_ocd
+    needs:
+    - make_model_input-cohort_prevax-main-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-anxiety_ocd.txt
@@ -279,8 +282,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-anxiety_ptsd.rds
 
   describe_model_input-cohort_prevax-main-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_prevax-main-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-anxiety_ptsd.txt
@@ -307,8 +311,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-depression.rds
 
   describe_model_input-cohort_prevax-main-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-depression
+    needs:
+    - make_model_input-cohort_prevax-main-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-depression.txt
@@ -335,8 +340,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-eating_disorders.rds
 
   describe_model_input-cohort_prevax-main-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-eating_disorders
+    needs:
+    - make_model_input-cohort_prevax-main-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-eating_disorders.txt
@@ -363,8 +369,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-self_harm.rds
 
   describe_model_input-cohort_prevax-main-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-self_harm
+    needs:
+    - make_model_input-cohort_prevax-main-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-self_harm.txt
@@ -391,8 +398,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-main-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-main-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-serious_mental_illness.txt
@@ -419,8 +427,9 @@ actions:
         model_input: output/model_input-cohort_prevax-main-suicide.rds
 
   describe_model_input-cohort_prevax-main-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-main-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-main-suicide
+    needs:
+    - make_model_input-cohort_prevax-main-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-main-suicide.txt
@@ -447,8 +456,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-addiction.rds
 
   describe_model_input-cohort_unvax-main-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-addiction
+    needs:
+    - make_model_input-cohort_unvax-main-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-addiction.txt
@@ -475,8 +485,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-anxiety_general.rds
 
   describe_model_input-cohort_unvax-main-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-main-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-anxiety_general.txt
@@ -503,8 +514,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-anxiety_ocd.rds
 
   describe_model_input-cohort_unvax-main-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-anxiety_ocd
+    needs:
+    - make_model_input-cohort_unvax-main-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-anxiety_ocd.txt
@@ -531,8 +543,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-anxiety_ptsd.rds
 
   describe_model_input-cohort_unvax-main-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_unvax-main-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-anxiety_ptsd.txt
@@ -559,8 +572,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-depression.rds
 
   describe_model_input-cohort_unvax-main-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-depression
+    needs:
+    - make_model_input-cohort_unvax-main-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-depression.txt
@@ -587,8 +601,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-eating_disorders.rds
 
   describe_model_input-cohort_unvax-main-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-eating_disorders
+    needs:
+    - make_model_input-cohort_unvax-main-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-eating_disorders.txt
@@ -615,8 +630,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-self_harm.rds
 
   describe_model_input-cohort_unvax-main-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-self_harm
+    needs:
+    - make_model_input-cohort_unvax-main-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-self_harm.txt
@@ -643,8 +659,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-main-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-main-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-serious_mental_illness.txt
@@ -671,8 +688,9 @@ actions:
         model_input: output/model_input-cohort_unvax-main-suicide.rds
 
   describe_model_input-cohort_unvax-main-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-main-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-main-suicide
+    needs:
+    - make_model_input-cohort_unvax-main-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-main-suicide.txt
@@ -699,8 +717,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-addiction.rds
 
   describe_model_input-cohort_vax-main-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-addiction
+    needs:
+    - make_model_input-cohort_vax-main-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-addiction.txt
@@ -727,8 +746,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-anxiety_general.rds
 
   describe_model_input-cohort_vax-main-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-main-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-anxiety_general.txt
@@ -755,8 +775,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-anxiety_ocd.rds
 
   describe_model_input-cohort_vax-main-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-anxiety_ocd
+    needs:
+    - make_model_input-cohort_vax-main-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-anxiety_ocd.txt
@@ -783,8 +804,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-anxiety_ptsd.rds
 
   describe_model_input-cohort_vax-main-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_vax-main-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-anxiety_ptsd.txt
@@ -811,8 +833,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-depression.rds
 
   describe_model_input-cohort_vax-main-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-depression
+    needs:
+    - make_model_input-cohort_vax-main-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-depression.txt
@@ -839,8 +862,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-eating_disorders.rds
 
   describe_model_input-cohort_vax-main-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-eating_disorders
+    needs:
+    - make_model_input-cohort_vax-main-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-eating_disorders.txt
@@ -867,8 +891,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-self_harm.rds
 
   describe_model_input-cohort_vax-main-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-self_harm
+    needs:
+    - make_model_input-cohort_vax-main-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-self_harm.txt
@@ -895,8 +920,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-main-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-main-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-serious_mental_illness.txt
@@ -923,8 +949,9 @@ actions:
         model_input: output/model_input-cohort_vax-main-suicide.rds
 
   describe_model_input-cohort_vax-main-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-main-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-main-suicide
+    needs:
+    - make_model_input-cohort_vax-main-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-main-suicide.txt
@@ -951,8 +978,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_18_39-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_age_18_39-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_18_39-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_18_39-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_age_18_39-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_18_39-anxiety_general.txt
@@ -979,8 +1007,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_18_39-depression.rds
 
   describe_model_input-cohort_prevax-sub_age_18_39-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_18_39-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_18_39-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_age_18_39-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_18_39-depression.txt
@@ -1007,8 +1036,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_18_39-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_age_18_39-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_18_39-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_18_39-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_age_18_39-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_18_39-self_harm.txt
@@ -1035,8 +1065,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_18_39-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_age_18_39-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_18_39-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_18_39-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_age_18_39-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_18_39-serious_mental_illness.txt
@@ -1063,8 +1094,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_18_39-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_age_18_39-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_18_39-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_18_39-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_age_18_39-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_18_39-anxiety_general.txt
@@ -1091,8 +1123,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_18_39-depression.rds
 
   describe_model_input-cohort_unvax-sub_age_18_39-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_18_39-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_18_39-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_age_18_39-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_18_39-depression.txt
@@ -1119,8 +1152,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_18_39-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_age_18_39-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_18_39-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_18_39-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_age_18_39-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_18_39-self_harm.txt
@@ -1147,8 +1181,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_18_39-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_age_18_39-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_18_39-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_18_39-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_age_18_39-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_18_39-serious_mental_illness.txt
@@ -1175,8 +1210,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_18_39-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_age_18_39-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_18_39-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_18_39-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_age_18_39-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_18_39-anxiety_general.txt
@@ -1203,8 +1239,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_18_39-depression.rds
 
   describe_model_input-cohort_vax-sub_age_18_39-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_18_39-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_18_39-depression
+    needs:
+    - make_model_input-cohort_vax-sub_age_18_39-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_18_39-depression.txt
@@ -1231,8 +1268,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_18_39-self_harm.rds
 
   describe_model_input-cohort_vax-sub_age_18_39-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_18_39-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_18_39-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_age_18_39-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_18_39-self_harm.txt
@@ -1259,8 +1297,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_18_39-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_age_18_39-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_18_39-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_18_39-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_age_18_39-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_18_39-serious_mental_illness.txt
@@ -1287,8 +1326,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_40_59-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_age_40_59-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_40_59-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_40_59-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_age_40_59-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_40_59-anxiety_general.txt
@@ -1315,8 +1355,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_40_59-depression.rds
 
   describe_model_input-cohort_prevax-sub_age_40_59-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_40_59-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_40_59-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_age_40_59-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_40_59-depression.txt
@@ -1343,8 +1384,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_40_59-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_age_40_59-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_40_59-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_40_59-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_age_40_59-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_40_59-self_harm.txt
@@ -1371,8 +1413,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_40_59-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_age_40_59-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_40_59-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_40_59-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_age_40_59-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_40_59-serious_mental_illness.txt
@@ -1399,8 +1442,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_40_59-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_age_40_59-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_40_59-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_40_59-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_age_40_59-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_40_59-anxiety_general.txt
@@ -1427,8 +1471,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_40_59-depression.rds
 
   describe_model_input-cohort_unvax-sub_age_40_59-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_40_59-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_40_59-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_age_40_59-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_40_59-depression.txt
@@ -1455,8 +1500,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_40_59-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_age_40_59-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_40_59-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_40_59-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_age_40_59-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_40_59-self_harm.txt
@@ -1483,8 +1529,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_40_59-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_age_40_59-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_40_59-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_40_59-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_age_40_59-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_40_59-serious_mental_illness.txt
@@ -1511,8 +1558,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_40_59-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_age_40_59-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_40_59-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_40_59-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_age_40_59-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_40_59-anxiety_general.txt
@@ -1539,8 +1587,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_40_59-depression.rds
 
   describe_model_input-cohort_vax-sub_age_40_59-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_40_59-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_40_59-depression
+    needs:
+    - make_model_input-cohort_vax-sub_age_40_59-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_40_59-depression.txt
@@ -1567,8 +1616,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_40_59-self_harm.rds
 
   describe_model_input-cohort_vax-sub_age_40_59-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_40_59-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_40_59-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_age_40_59-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_40_59-self_harm.txt
@@ -1595,8 +1645,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_40_59-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_age_40_59-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_40_59-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_40_59-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_age_40_59-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_40_59-serious_mental_illness.txt
@@ -1623,8 +1674,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_60_79-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_age_60_79-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_60_79-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_60_79-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_age_60_79-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_60_79-anxiety_general.txt
@@ -1651,8 +1703,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_60_79-depression.rds
 
   describe_model_input-cohort_prevax-sub_age_60_79-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_60_79-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_60_79-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_age_60_79-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_60_79-depression.txt
@@ -1679,8 +1732,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_60_79-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_age_60_79-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_60_79-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_60_79-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_age_60_79-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_60_79-self_harm.txt
@@ -1707,8 +1761,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_60_79-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_age_60_79-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_60_79-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_60_79-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_age_60_79-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_60_79-serious_mental_illness.txt
@@ -1735,8 +1790,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_60_79-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_age_60_79-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_60_79-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_60_79-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_age_60_79-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_60_79-anxiety_general.txt
@@ -1763,8 +1819,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_60_79-depression.rds
 
   describe_model_input-cohort_unvax-sub_age_60_79-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_60_79-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_60_79-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_age_60_79-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_60_79-depression.txt
@@ -1791,8 +1848,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_60_79-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_age_60_79-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_60_79-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_60_79-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_age_60_79-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_60_79-self_harm.txt
@@ -1819,8 +1877,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_60_79-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_age_60_79-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_60_79-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_60_79-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_age_60_79-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_60_79-serious_mental_illness.txt
@@ -1847,8 +1906,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_60_79-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_age_60_79-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_60_79-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_60_79-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_age_60_79-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_60_79-anxiety_general.txt
@@ -1875,8 +1935,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_60_79-depression.rds
 
   describe_model_input-cohort_vax-sub_age_60_79-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_60_79-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_60_79-depression
+    needs:
+    - make_model_input-cohort_vax-sub_age_60_79-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_60_79-depression.txt
@@ -1903,8 +1964,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_60_79-self_harm.rds
 
   describe_model_input-cohort_vax-sub_age_60_79-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_60_79-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_60_79-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_age_60_79-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_60_79-self_harm.txt
@@ -1931,8 +1993,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_60_79-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_age_60_79-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_60_79-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_60_79-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_age_60_79-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_60_79-serious_mental_illness.txt
@@ -1959,8 +2022,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_80_110-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_age_80_110-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_80_110-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_80_110-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_age_80_110-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_80_110-anxiety_general.txt
@@ -1987,8 +2051,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_80_110-depression.rds
 
   describe_model_input-cohort_prevax-sub_age_80_110-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_80_110-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_80_110-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_age_80_110-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_80_110-depression.txt
@@ -2015,8 +2080,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_80_110-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_age_80_110-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_80_110-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_80_110-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_age_80_110-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_80_110-self_harm.txt
@@ -2043,8 +2109,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_age_80_110-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_age_80_110-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_age_80_110-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_age_80_110-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_age_80_110-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_age_80_110-serious_mental_illness.txt
@@ -2071,8 +2138,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_80_110-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_age_80_110-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_80_110-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_80_110-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_age_80_110-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_80_110-anxiety_general.txt
@@ -2099,8 +2167,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_80_110-depression.rds
 
   describe_model_input-cohort_unvax-sub_age_80_110-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_80_110-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_80_110-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_age_80_110-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_80_110-depression.txt
@@ -2127,8 +2196,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_80_110-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_age_80_110-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_80_110-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_80_110-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_age_80_110-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_80_110-self_harm.txt
@@ -2155,8 +2225,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_age_80_110-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_age_80_110-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_age_80_110-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_age_80_110-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_age_80_110-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_age_80_110-serious_mental_illness.txt
@@ -2183,8 +2254,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_80_110-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_age_80_110-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_80_110-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_80_110-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_age_80_110-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_80_110-anxiety_general.txt
@@ -2211,8 +2283,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_80_110-depression.rds
 
   describe_model_input-cohort_vax-sub_age_80_110-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_80_110-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_80_110-depression
+    needs:
+    - make_model_input-cohort_vax-sub_age_80_110-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_80_110-depression.txt
@@ -2239,8 +2312,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_80_110-self_harm.rds
 
   describe_model_input-cohort_vax-sub_age_80_110-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_80_110-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_80_110-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_age_80_110-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_80_110-self_harm.txt
@@ -2267,8 +2341,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_age_80_110-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_age_80_110-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_age_80_110-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_age_80_110-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_age_80_110-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_age_80_110-serious_mental_illness.txt
@@ -2295,8 +2370,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-addiction.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-addiction
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-addiction.txt
@@ -2323,8 +2399,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-anxiety_general.txt
@@ -2351,8 +2428,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_ocd.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-anxiety_ocd
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-anxiety_ocd.txt
@@ -2379,8 +2457,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-anxiety_ptsd.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-anxiety_ptsd.txt
@@ -2407,8 +2486,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-depression.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-depression.txt
@@ -2435,8 +2515,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-eating_disorders.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-eating_disorders
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-eating_disorders.txt
@@ -2463,8 +2544,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-self_harm.txt
@@ -2491,8 +2573,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-serious_mental_illness.txt
@@ -2519,8 +2602,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_history-suicide.rds
 
   describe_model_input-cohort_unvax-sub_covid_history-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_history-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_history-suicide
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_history-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_history-suicide.txt
@@ -2547,8 +2631,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-addiction.rds
 
   describe_model_input-cohort_vax-sub_covid_history-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-addiction
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-addiction.txt
@@ -2575,8 +2660,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_covid_history-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-anxiety_general.txt
@@ -2603,8 +2689,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_ocd.rds
 
   describe_model_input-cohort_vax-sub_covid_history-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-anxiety_ocd
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-anxiety_ocd.txt
@@ -2631,8 +2718,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-anxiety_ptsd.rds
 
   describe_model_input-cohort_vax-sub_covid_history-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-anxiety_ptsd.txt
@@ -2659,8 +2747,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-depression.rds
 
   describe_model_input-cohort_vax-sub_covid_history-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-depression
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-depression.txt
@@ -2687,8 +2776,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-eating_disorders.rds
 
   describe_model_input-cohort_vax-sub_covid_history-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-eating_disorders
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-eating_disorders.txt
@@ -2715,8 +2805,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-self_harm.rds
 
   describe_model_input-cohort_vax-sub_covid_history-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-self_harm.txt
@@ -2743,8 +2834,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_covid_history-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-serious_mental_illness.txt
@@ -2771,8 +2863,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_history-suicide.rds
 
   describe_model_input-cohort_vax-sub_covid_history-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_history-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_history-suicide
+    needs:
+    - make_model_input-cohort_vax-sub_covid_history-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_history-suicide.txt
@@ -2799,8 +2892,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-addiction.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-addiction
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-addiction.txt
@@ -2827,8 +2921,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-anxiety_general.txt
@@ -2855,8 +2950,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-anxiety_ocd.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-anxiety_ocd
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-anxiety_ocd.txt
@@ -2883,8 +2979,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-anxiety_ptsd.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-anxiety_ptsd.txt
@@ -2911,8 +3008,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-depression.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-depression.txt
@@ -2939,8 +3037,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-eating_disorders.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-eating_disorders
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-eating_disorders.txt
@@ -2967,8 +3066,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-self_harm.txt
@@ -2995,8 +3095,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-serious_mental_illness.txt
@@ -3023,8 +3124,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_hospitalised-suicide.rds
 
   describe_model_input-cohort_prevax-sub_covid_hospitalised-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_hospitalised-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_hospitalised-suicide
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_hospitalised-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_hospitalised-suicide.txt
@@ -3051,8 +3153,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-addiction.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-addiction
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-addiction.txt
@@ -3079,8 +3182,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-anxiety_general.txt
@@ -3107,8 +3211,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-anxiety_ocd.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-anxiety_ocd
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-anxiety_ocd.txt
@@ -3135,8 +3240,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-anxiety_ptsd.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-anxiety_ptsd.txt
@@ -3163,8 +3269,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-depression.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-depression.txt
@@ -3191,8 +3298,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-eating_disorders.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-eating_disorders
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-eating_disorders.txt
@@ -3219,8 +3327,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-self_harm.txt
@@ -3247,8 +3356,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-serious_mental_illness.txt
@@ -3275,8 +3385,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_hospitalised-suicide.rds
 
   describe_model_input-cohort_unvax-sub_covid_hospitalised-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_hospitalised-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_hospitalised-suicide
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_hospitalised-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_hospitalised-suicide.txt
@@ -3303,8 +3414,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-addiction.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-addiction
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-addiction.txt
@@ -3331,8 +3443,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-anxiety_general.txt
@@ -3359,8 +3472,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-anxiety_ocd.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-anxiety_ocd
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-anxiety_ocd.txt
@@ -3387,8 +3501,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-anxiety_ptsd.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-anxiety_ptsd.txt
@@ -3415,8 +3530,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-depression.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-depression
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-depression.txt
@@ -3443,8 +3559,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-eating_disorders.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-eating_disorders
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-eating_disorders.txt
@@ -3471,8 +3588,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-self_harm.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-self_harm.txt
@@ -3499,8 +3617,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-serious_mental_illness.txt
@@ -3527,8 +3646,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-suicide.rds
 
   describe_model_input-cohort_vax-sub_covid_hospitalised-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_hospitalised-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_hospitalised-suicide
+    needs:
+    - make_model_input-cohort_vax-sub_covid_hospitalised-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_hospitalised-suicide.txt
@@ -3555,8 +3675,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-addiction.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-addiction
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-addiction.txt
@@ -3583,8 +3704,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-anxiety_general.txt
@@ -3611,8 +3733,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_ocd.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-anxiety_ocd
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-anxiety_ocd.txt
@@ -3639,8 +3762,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_ptsd.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-anxiety_ptsd.txt
@@ -3667,8 +3791,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-depression.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-depression.txt
@@ -3695,8 +3820,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-eating_disorders.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-eating_disorders
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-eating_disorders.txt
@@ -3723,8 +3849,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-self_harm.txt
@@ -3751,8 +3878,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness.txt
@@ -3779,8 +3907,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_covid_nonhospitalised-suicide.rds
 
   describe_model_input-cohort_prevax-sub_covid_nonhospitalised-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_covid_nonhospitalised-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_covid_nonhospitalised-suicide
+    needs:
+    - make_model_input-cohort_prevax-sub_covid_nonhospitalised-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_covid_nonhospitalised-suicide.txt
@@ -3807,8 +3936,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-addiction.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-addiction
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-addiction.txt
@@ -3835,8 +3965,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-anxiety_general.txt
@@ -3863,8 +3994,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_ocd.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-anxiety_ocd
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-anxiety_ocd.txt
@@ -3891,8 +4023,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_ptsd.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-anxiety_ptsd.txt
@@ -3919,8 +4052,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-depression.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-depression.txt
@@ -3947,8 +4081,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-eating_disorders.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-eating_disorders
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-eating_disorders.txt
@@ -3975,8 +4110,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-self_harm.txt
@@ -4003,8 +4139,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-serious_mental_illness.txt
@@ -4031,8 +4168,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_covid_nonhospitalised-suicide.rds
 
   describe_model_input-cohort_unvax-sub_covid_nonhospitalised-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_covid_nonhospitalised-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_covid_nonhospitalised-suicide
+    needs:
+    - make_model_input-cohort_unvax-sub_covid_nonhospitalised-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_covid_nonhospitalised-suicide.txt
@@ -4059,8 +4197,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-addiction.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-addiction:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-addiction
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-addiction
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-addiction
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-addiction.txt
@@ -4087,8 +4226,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-anxiety_general.txt
@@ -4115,8 +4255,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ocd.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ocd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ocd
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-anxiety_ocd
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ocd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-anxiety_ocd.txt
@@ -4143,8 +4284,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd.txt
@@ -4171,8 +4313,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-depression.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-depression
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-depression.txt
@@ -4199,8 +4342,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-eating_disorders.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-eating_disorders:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-eating_disorders
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-eating_disorders
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-eating_disorders
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-eating_disorders.txt
@@ -4227,8 +4371,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-self_harm.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-self_harm.txt
@@ -4255,8 +4400,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness.txt
@@ -4283,8 +4429,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-suicide.rds
 
   describe_model_input-cohort_vax-sub_covid_nonhospitalised-suicide:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_covid_nonhospitalised-suicide
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_covid_nonhospitalised-suicide
+    needs:
+    - make_model_input-cohort_vax-sub_covid_nonhospitalised-suicide
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_covid_nonhospitalised-suicide.txt
@@ -4311,8 +4458,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_asian-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_asian-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_asian-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_asian-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_asian-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_asian-anxiety_general.txt
@@ -4339,8 +4487,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_asian-depression.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_asian-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_asian-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_asian-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_asian-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_asian-depression.txt
@@ -4367,8 +4516,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_asian-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_asian-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_asian-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_asian-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_asian-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_asian-self_harm.txt
@@ -4395,8 +4545,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_asian-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_asian-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_asian-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_asian-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_asian-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_asian-serious_mental_illness.txt
@@ -4423,8 +4574,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_asian-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_asian-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_asian-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_asian-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_asian-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_asian-anxiety_general.txt
@@ -4451,8 +4603,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_asian-depression.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_asian-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_asian-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_asian-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_asian-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_asian-depression.txt
@@ -4479,8 +4632,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_asian-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_asian-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_asian-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_asian-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_asian-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_asian-self_harm.txt
@@ -4507,8 +4661,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_asian-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_asian-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_asian-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_asian-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_asian-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_asian-serious_mental_illness.txt
@@ -4535,8 +4690,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_asian-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_asian-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_asian-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_asian-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_asian-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_asian-anxiety_general.txt
@@ -4563,8 +4719,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_asian-depression.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_asian-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_asian-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_asian-depression
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_asian-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_asian-depression.txt
@@ -4591,8 +4748,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_asian-self_harm.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_asian-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_asian-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_asian-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_asian-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_asian-self_harm.txt
@@ -4619,8 +4777,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_asian-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_asian-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_asian-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_asian-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_asian-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_asian-serious_mental_illness.txt
@@ -4647,8 +4806,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_black-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_black-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_black-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_black-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_black-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_black-anxiety_general.txt
@@ -4675,8 +4835,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_black-depression.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_black-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_black-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_black-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_black-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_black-depression.txt
@@ -4703,8 +4864,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_black-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_black-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_black-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_black-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_black-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_black-self_harm.txt
@@ -4731,8 +4893,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_black-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_black-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_black-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_black-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_black-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_black-serious_mental_illness.txt
@@ -4759,8 +4922,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_black-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_black-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_black-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_black-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_black-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_black-anxiety_general.txt
@@ -4787,8 +4951,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_black-depression.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_black-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_black-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_black-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_black-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_black-depression.txt
@@ -4815,8 +4980,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_black-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_black-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_black-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_black-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_black-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_black-self_harm.txt
@@ -4843,8 +5009,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_black-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_black-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_black-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_black-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_black-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_black-serious_mental_illness.txt
@@ -4871,8 +5038,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_black-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_black-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_black-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_black-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_black-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_black-anxiety_general.txt
@@ -4899,8 +5067,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_black-depression.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_black-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_black-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_black-depression
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_black-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_black-depression.txt
@@ -4927,8 +5096,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_black-self_harm.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_black-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_black-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_black-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_black-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_black-self_harm.txt
@@ -4955,8 +5125,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_black-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_black-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_black-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_black-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_black-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_black-serious_mental_illness.txt
@@ -4983,8 +5154,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_mixed-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_mixed-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_mixed-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_mixed-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_mixed-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_mixed-anxiety_general.txt
@@ -5011,8 +5183,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_mixed-depression.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_mixed-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_mixed-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_mixed-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_mixed-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_mixed-depression.txt
@@ -5039,8 +5212,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_mixed-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_mixed-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_mixed-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_mixed-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_mixed-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_mixed-self_harm.txt
@@ -5067,8 +5241,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_mixed-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_mixed-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_mixed-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_mixed-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_mixed-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_mixed-serious_mental_illness.txt
@@ -5095,8 +5270,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_mixed-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_mixed-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_mixed-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_mixed-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_mixed-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_mixed-anxiety_general.txt
@@ -5123,8 +5299,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_mixed-depression.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_mixed-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_mixed-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_mixed-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_mixed-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_mixed-depression.txt
@@ -5151,8 +5328,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_mixed-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_mixed-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_mixed-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_mixed-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_mixed-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_mixed-self_harm.txt
@@ -5179,8 +5357,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_mixed-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_mixed-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_mixed-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_mixed-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_mixed-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_mixed-serious_mental_illness.txt
@@ -5207,8 +5386,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_mixed-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_mixed-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_mixed-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_mixed-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_mixed-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_mixed-anxiety_general.txt
@@ -5235,8 +5415,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_mixed-depression.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_mixed-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_mixed-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_mixed-depression
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_mixed-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_mixed-depression.txt
@@ -5263,8 +5444,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_mixed-self_harm.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_mixed-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_mixed-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_mixed-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_mixed-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_mixed-self_harm.txt
@@ -5291,8 +5473,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_mixed-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_mixed-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_mixed-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_mixed-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_mixed-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_mixed-serious_mental_illness.txt
@@ -5319,8 +5502,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_other-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_other-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_other-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_other-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_other-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_other-anxiety_general.txt
@@ -5347,8 +5531,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_other-depression.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_other-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_other-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_other-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_other-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_other-depression.txt
@@ -5375,8 +5560,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_other-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_other-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_other-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_other-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_other-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_other-self_harm.txt
@@ -5403,8 +5589,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_other-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_other-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_other-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_other-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_other-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_other-serious_mental_illness.txt
@@ -5431,8 +5618,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_other-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_other-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_other-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_other-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_other-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_other-anxiety_general.txt
@@ -5459,8 +5647,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_other-depression.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_other-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_other-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_other-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_other-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_other-depression.txt
@@ -5487,8 +5676,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_other-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_other-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_other-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_other-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_other-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_other-self_harm.txt
@@ -5515,8 +5705,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_other-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_other-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_other-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_other-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_other-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_other-serious_mental_illness.txt
@@ -5543,8 +5734,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_other-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_other-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_other-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_other-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_other-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_other-anxiety_general.txt
@@ -5571,8 +5763,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_other-depression.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_other-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_other-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_other-depression
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_other-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_other-depression.txt
@@ -5599,8 +5792,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_other-self_harm.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_other-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_other-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_other-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_other-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_other-self_harm.txt
@@ -5627,8 +5821,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_other-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_other-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_other-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_other-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_other-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_other-serious_mental_illness.txt
@@ -5655,8 +5850,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_white-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_white-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_white-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_white-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_white-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_white-anxiety_general.txt
@@ -5683,8 +5879,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_white-depression.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_white-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_white-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_white-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_white-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_white-depression.txt
@@ -5711,8 +5908,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_white-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_white-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_white-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_white-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_white-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_white-self_harm.txt
@@ -5739,8 +5937,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_ethnicity_white-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_ethnicity_white-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_ethnicity_white-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_ethnicity_white-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_ethnicity_white-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_ethnicity_white-serious_mental_illness.txt
@@ -5767,8 +5966,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_white-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_white-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_white-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_white-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_white-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_white-anxiety_general.txt
@@ -5795,8 +5995,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_white-depression.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_white-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_white-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_white-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_white-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_white-depression.txt
@@ -5823,8 +6024,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_white-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_white-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_white-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_white-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_white-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_white-self_harm.txt
@@ -5851,8 +6053,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_ethnicity_white-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_ethnicity_white-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_ethnicity_white-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_ethnicity_white-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_ethnicity_white-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_ethnicity_white-serious_mental_illness.txt
@@ -5879,8 +6082,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_white-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_white-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_white-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_white-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_white-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_white-anxiety_general.txt
@@ -5907,8 +6111,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_white-depression.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_white-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_white-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_white-depression
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_white-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_white-depression.txt
@@ -5935,8 +6140,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_white-self_harm.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_white-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_white-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_white-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_white-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_white-self_harm.txt
@@ -5963,8 +6169,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_ethnicity_white-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_ethnicity_white-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_ethnicity_white-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_ethnicity_white-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_ethnicity_white-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_ethnicity_white-serious_mental_illness.txt
@@ -5991,8 +6198,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general.txt
@@ -6019,8 +6227,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general.txt
@@ -6047,8 +6256,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_false-depression-cov_bin_history_depression.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_false-depression-cov_bin_history_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_false-depression-cov_bin_history_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_false-depression-cov_bin_history_depression
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_false-depression-cov_bin_history_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_false-depression-cov_bin_history_depression.txt
@@ -6075,8 +6285,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_false-depression-cov_bin_recent_depression.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_false-depression-cov_bin_recent_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_false-depression-cov_bin_recent_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_false-depression-cov_bin_recent_depression
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_false-depression-cov_bin_recent_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_false-depression-cov_bin_recent_depression.txt
@@ -6103,8 +6314,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm.txt
@@ -6131,8 +6343,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm.txt
@@ -6159,8 +6372,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness.txt
@@ -6187,8 +6401,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness.txt
@@ -6215,8 +6430,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general.txt
@@ -6243,8 +6459,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general.txt
@@ -6271,8 +6488,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_false-depression-cov_bin_history_depression.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_false-depression-cov_bin_history_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_false-depression-cov_bin_history_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_false-depression-cov_bin_history_depression
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_false-depression-cov_bin_history_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_false-depression-cov_bin_history_depression.txt
@@ -6299,8 +6517,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_false-depression-cov_bin_recent_depression.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_false-depression-cov_bin_recent_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_false-depression-cov_bin_recent_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_false-depression-cov_bin_recent_depression
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_false-depression-cov_bin_recent_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_false-depression-cov_bin_recent_depression.txt
@@ -6327,8 +6546,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm.txt
@@ -6355,8 +6575,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm.txt
@@ -6383,8 +6604,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness.txt
@@ -6411,8 +6633,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness.txt
@@ -6439,8 +6662,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_history_anxiety_general.txt
@@ -6467,8 +6691,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_false-anxiety_general-cov_bin_recent_anxiety_general.txt
@@ -6495,8 +6720,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_false-depression-cov_bin_history_depression.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_false-depression-cov_bin_history_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_false-depression-cov_bin_history_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_false-depression-cov_bin_history_depression
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_false-depression-cov_bin_history_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_false-depression-cov_bin_history_depression.txt
@@ -6523,8 +6749,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_false-depression-cov_bin_recent_depression.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_false-depression-cov_bin_recent_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_false-depression-cov_bin_recent_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_false-depression-cov_bin_recent_depression
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_false-depression-cov_bin_recent_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_false-depression-cov_bin_recent_depression.txt
@@ -6551,8 +6778,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_history_self_harm.txt
@@ -6579,8 +6807,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_false-self_harm-cov_bin_recent_self_harm.txt
@@ -6607,8 +6836,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_history_serious_mental_illness.txt
@@ -6635,8 +6865,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_false-serious_mental_illness-cov_bin_recent_serious_mental_illness.txt
@@ -6663,8 +6894,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general.txt
@@ -6691,8 +6923,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general.txt
@@ -6719,8 +6952,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_true-depression-cov_bin_history_depression.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_true-depression-cov_bin_history_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_true-depression-cov_bin_history_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_true-depression-cov_bin_history_depression
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_true-depression-cov_bin_history_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_true-depression-cov_bin_history_depression.txt
@@ -6747,8 +6981,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_true-depression-cov_bin_recent_depression.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_true-depression-cov_bin_recent_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_true-depression-cov_bin_recent_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_true-depression-cov_bin_recent_depression
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_true-depression-cov_bin_recent_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_true-depression-cov_bin_recent_depression.txt
@@ -6775,8 +7010,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm.txt
@@ -6803,8 +7039,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm.txt
@@ -6831,8 +7068,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness.txt
@@ -6859,8 +7097,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness.txt
@@ -6887,8 +7126,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general.txt
@@ -6915,8 +7155,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general.txt
@@ -6943,8 +7184,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_true-depression-cov_bin_history_depression.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_true-depression-cov_bin_history_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_true-depression-cov_bin_history_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_true-depression-cov_bin_history_depression
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_true-depression-cov_bin_history_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_true-depression-cov_bin_history_depression.txt
@@ -6971,8 +7213,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_true-depression-cov_bin_recent_depression.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_true-depression-cov_bin_recent_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_true-depression-cov_bin_recent_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_true-depression-cov_bin_recent_depression
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_true-depression-cov_bin_recent_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_true-depression-cov_bin_recent_depression.txt
@@ -6999,8 +7242,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm.txt
@@ -7027,8 +7271,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm.txt
@@ -7055,8 +7300,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness.txt
@@ -7083,8 +7329,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness.txt
@@ -7111,8 +7358,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_history_anxiety_general.txt
@@ -7139,8 +7387,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_true-anxiety_general-cov_bin_recent_anxiety_general.txt
@@ -7167,8 +7416,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_true-depression-cov_bin_history_depression.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_true-depression-cov_bin_history_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_true-depression-cov_bin_history_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_true-depression-cov_bin_history_depression
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_true-depression-cov_bin_history_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_true-depression-cov_bin_history_depression.txt
@@ -7195,8 +7445,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_true-depression-cov_bin_recent_depression.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_true-depression-cov_bin_recent_depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_true-depression-cov_bin_recent_depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_true-depression-cov_bin_recent_depression
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_true-depression-cov_bin_recent_depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_true-depression-cov_bin_recent_depression.txt
@@ -7223,8 +7474,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_history_self_harm.txt
@@ -7251,8 +7503,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_true-self_harm-cov_bin_recent_self_harm.txt
@@ -7279,8 +7532,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_history_serious_mental_illness.txt
@@ -7307,8 +7561,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_priorhistory_true-serious_mental_illness-cov_bin_recent_serious_mental_illness.txt
@@ -7335,8 +7590,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_sex_female-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_sex_female-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_sex_female-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_sex_female-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_sex_female-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_sex_female-anxiety_general.txt
@@ -7363,8 +7619,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_sex_female-depression.rds
 
   describe_model_input-cohort_prevax-sub_sex_female-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_sex_female-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_sex_female-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_sex_female-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_sex_female-depression.txt
@@ -7391,8 +7648,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_sex_female-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_sex_female-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_sex_female-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_sex_female-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_sex_female-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_sex_female-self_harm.txt
@@ -7419,8 +7677,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_sex_female-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_sex_female-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_sex_female-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_sex_female-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_sex_female-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_sex_female-serious_mental_illness.txt
@@ -7447,8 +7706,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_sex_female-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_sex_female-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_sex_female-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_sex_female-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_sex_female-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_sex_female-anxiety_general.txt
@@ -7475,8 +7735,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_sex_female-depression.rds
 
   describe_model_input-cohort_unvax-sub_sex_female-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_sex_female-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_sex_female-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_sex_female-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_sex_female-depression.txt
@@ -7503,8 +7764,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_sex_female-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_sex_female-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_sex_female-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_sex_female-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_sex_female-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_sex_female-self_harm.txt
@@ -7531,8 +7793,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_sex_female-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_sex_female-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_sex_female-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_sex_female-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_sex_female-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_sex_female-serious_mental_illness.txt
@@ -7559,8 +7822,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_sex_female-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_sex_female-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_sex_female-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_sex_female-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_sex_female-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_sex_female-anxiety_general.txt
@@ -7587,8 +7851,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_sex_female-depression.rds
 
   describe_model_input-cohort_vax-sub_sex_female-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_sex_female-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_sex_female-depression
+    needs:
+    - make_model_input-cohort_vax-sub_sex_female-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_sex_female-depression.txt
@@ -7615,8 +7880,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_sex_female-self_harm.rds
 
   describe_model_input-cohort_vax-sub_sex_female-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_sex_female-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_sex_female-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_sex_female-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_sex_female-self_harm.txt
@@ -7643,8 +7909,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_sex_female-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_sex_female-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_sex_female-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_sex_female-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_sex_female-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_sex_female-serious_mental_illness.txt
@@ -7671,8 +7938,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_sex_male-anxiety_general.rds
 
   describe_model_input-cohort_prevax-sub_sex_male-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_sex_male-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_sex_male-anxiety_general
+    needs:
+    - make_model_input-cohort_prevax-sub_sex_male-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_sex_male-anxiety_general.txt
@@ -7699,8 +7967,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_sex_male-depression.rds
 
   describe_model_input-cohort_prevax-sub_sex_male-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_sex_male-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_sex_male-depression
+    needs:
+    - make_model_input-cohort_prevax-sub_sex_male-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_sex_male-depression.txt
@@ -7727,8 +7996,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_sex_male-self_harm.rds
 
   describe_model_input-cohort_prevax-sub_sex_male-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_sex_male-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_sex_male-self_harm
+    needs:
+    - make_model_input-cohort_prevax-sub_sex_male-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_sex_male-self_harm.txt
@@ -7755,8 +8025,9 @@ actions:
         model_input: output/model_input-cohort_prevax-sub_sex_male-serious_mental_illness.rds
 
   describe_model_input-cohort_prevax-sub_sex_male-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_prevax-sub_sex_male-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_prevax-sub_sex_male-serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax-sub_sex_male-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_prevax-sub_sex_male-serious_mental_illness.txt
@@ -7783,8 +8054,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_sex_male-anxiety_general.rds
 
   describe_model_input-cohort_unvax-sub_sex_male-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_sex_male-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_sex_male-anxiety_general
+    needs:
+    - make_model_input-cohort_unvax-sub_sex_male-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_sex_male-anxiety_general.txt
@@ -7811,8 +8083,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_sex_male-depression.rds
 
   describe_model_input-cohort_unvax-sub_sex_male-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_sex_male-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_sex_male-depression
+    needs:
+    - make_model_input-cohort_unvax-sub_sex_male-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_sex_male-depression.txt
@@ -7839,8 +8112,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_sex_male-self_harm.rds
 
   describe_model_input-cohort_unvax-sub_sex_male-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_sex_male-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_sex_male-self_harm
+    needs:
+    - make_model_input-cohort_unvax-sub_sex_male-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_sex_male-self_harm.txt
@@ -7867,8 +8141,9 @@ actions:
         model_input: output/model_input-cohort_unvax-sub_sex_male-serious_mental_illness.rds
 
   describe_model_input-cohort_unvax-sub_sex_male-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_unvax-sub_sex_male-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_unvax-sub_sex_male-serious_mental_illness
+    needs:
+    - make_model_input-cohort_unvax-sub_sex_male-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_unvax-sub_sex_male-serious_mental_illness.txt
@@ -7895,8 +8170,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_sex_male-anxiety_general.rds
 
   describe_model_input-cohort_vax-sub_sex_male-anxiety_general:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_sex_male-anxiety_general
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_sex_male-anxiety_general
+    needs:
+    - make_model_input-cohort_vax-sub_sex_male-anxiety_general
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_sex_male-anxiety_general.txt
@@ -7923,8 +8199,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_sex_male-depression.rds
 
   describe_model_input-cohort_vax-sub_sex_male-depression:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_sex_male-depression
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_sex_male-depression
+    needs:
+    - make_model_input-cohort_vax-sub_sex_male-depression
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_sex_male-depression.txt
@@ -7951,8 +8228,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_sex_male-self_harm.rds
 
   describe_model_input-cohort_vax-sub_sex_male-self_harm:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_sex_male-self_harm
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_sex_male-self_harm
+    needs:
+    - make_model_input-cohort_vax-sub_sex_male-self_harm
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_sex_male-self_harm.txt
@@ -7979,8 +8257,9 @@ actions:
         model_input: output/model_input-cohort_vax-sub_sex_male-serious_mental_illness.rds
 
   describe_model_input-cohort_vax-sub_sex_male-serious_mental_illness:
-    run: r:latest analysis/model/describe_model_input.R
-    needs: make_model_input-cohort_vax-sub_sex_male-serious_mental_illness
+    run: r:latest analysis/model/describe_model_input.R cohort_vax-sub_sex_male-serious_mental_illness
+    needs:
+    - make_model_input-cohort_vax-sub_sex_male-serious_mental_illness
     outputs:
       moderately_sensitive:
         describe_model_input: output/describe-cohort_vax-sub_sex_male-serious_mental_illness.txt
