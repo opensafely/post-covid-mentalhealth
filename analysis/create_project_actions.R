@@ -325,7 +325,7 @@ actions_list <- splice(
   action(
     name = "describe_model_input",
     run = "r:latest analysis/model/describe_model_input.R",
-    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis == "sub_covid_hospitalised" | 
+    needs = paste0("make_model_input-",active_analyses[active_analyses$analysis=="main" | active_analyses$analysis == "sub_covid_hospitalised" | 
                                                          active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
                                                 !grepl("prescription",active_analyses$name) &
                                                 !grepl("primarycare",active_analyses$name) &
@@ -340,7 +340,7 @@ actions_list <- splice(
   action(
     name = "make_model_output",
     run = "r:latest analysis/model/make_model_output.R",
-    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="sub_covid_hospitalised" | active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
+    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" | active_analyses$analysis=="sub_covid_hospitalised" | active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
                                                         !grepl("prescription",active_analyses$name) &
                                                         !grepl("primarycare",active_analyses$name) &
                                                         !grepl("secondarycare",active_analyses$name),]$name),

@@ -56,19 +56,19 @@ outcomes_runmain <- c("out_date_anxiety_ocd",
                       "out_date_anxiety_ptsd", 
                       "out_date_eating_disorders", 
                       "out_date_suicide", 
-                      "out_date_addiction",
-                      "out_date_depression_prescription",
-                      "out_date_depression_primarycare",
-                      "out_date_depression_secondarycare",
-                      "out_date_anxiety_general_prescription",
-                      "out_date_anxiety_general_primarycare",
-                      "out_date_anxiety_general_secondarycare",
-                      "out_date_serious_mental_illness_prescription",
-                      "out_date_serious_mental_illness_primarycare",
-                      "out_date_serious_mental_illness_secondarycare",
-                      "out_date_self_harm_primarycare",
-                      "out_date_self_harm_secondarycare",
-                      "out_date_addiction_prescription")
+                      "out_date_addiction")#,
+                      # "out_date_depression_prescription",
+                      # "out_date_depression_primarycare",
+                      # "out_date_depression_secondarycare",
+                      # "out_date_anxiety_general_prescription",
+                      # "out_date_anxiety_general_primarycare",
+                      # "out_date_anxiety_general_secondarycare",
+                      # "out_date_serious_mental_illness_prescription",
+                      # "out_date_serious_mental_illness_primarycare",
+                      # "out_date_serious_mental_illness_secondarycare",
+                      # "out_date_self_harm_primarycare",
+                      # "out_date_self_harm_secondarycare",
+                      # "out_date_addiction_prescription")
 
 # Add active analyses ----------------------------------------------------------
 
@@ -541,21 +541,6 @@ df$priorhistory_var <- ifelse(df$priorhistory_var=="cov_bin_history_anxiety_gene
 df$priorhistory_var <- ifelse(df$priorhistory_var=="cov_bin_recent_anxiety_general",
                               "cov_bin_recent_anxiety",
                               df$priorhistory_var)
-
-# Select analysis of interest --------------------------------------------------
-
-#Main
-#df <- df[which(df$analysis == "main"),]
-#Hospitalised - non-hospitalised - COVID history
-df <- df[which(df$analysis == "sub_covid_hospitalised" | df$analysis == "sub_covid_nonhospitalised" | df$analysis == "sub_covid_history"),]
-
-# Remove Primary care, Secondary care and Prescription (MH) --------------------
-
-df <- df[!grepl("primarycare", df$name) & !grepl("secondarycare", df$name) & !grepl("prescription", df$name),]
-
-# Remove outcomes (MH) --------------------
-
-df <- df[!grepl("-addiction", df$name) & !grepl("-anxiety_ocd", df$name) & !grepl("-anxiety_ptsd", df$name) & !grepl("-self_harm", df$name) & !grepl("-eating_disorders", df$name) & !grepl("-suicide", df$name),]
 
 # Check names are unique and save active analyses list -------------------------
 
