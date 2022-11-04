@@ -99,15 +99,13 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
     
     action(
       name = glue("describe_model_input-{name}"),
-      run = glue("r:latest analysis/model/describe_model_input.R {name}"),
+      run = glue("r:latest analysis/describe_file.R model_input-{name}.rds"),
       needs = list(glue("make_model_input-{name}")),
       moderately_sensitive = list(
-        describe_model_input = glue("output/describe-{name}.txt")
+        describe_model_input = glue("output/describe-model_input-{name}.txt")
       )
     ),
-    
-    #comment(glue("Cox model for {outcome} - {cohort}")),
-    action(
+        action(
       name = glue("cox_ipw-{name}"),
       run = glue("cox-ipw:v0.0.9 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
       needs = list(glue("make_model_input-{name}")),
@@ -273,6 +271,33 @@ actions_list <- splice(
     ),
     highly_sensitive = list(
       cohort = glue("output/input_*.rds")
+    )
+  ),
+  
+  action(
+    name = glue("describe_file-input_prevax_stage1"),
+    run = glue("r:latest analysis/describe_file.R input_prevax_stage1.rds"),
+    needs = list("stage1_data_cleaning_all"),
+    moderately_sensitive = list(
+      describe_model_input = glue("output/describe-input_prevax_stage1.txt")
+    )
+  ),
+  
+  action(
+    name = glue("describe_file-input_vax_stage1"),
+    run = glue("r:latest analysis/describe_file.R input_vax_stage1.rds"),
+    needs = list("stage1_data_cleaning_all"),
+    moderately_sensitive = list(
+      describe_model_input = glue("output/describe-input_vax_stage1.txt")
+    )
+  ),
+  
+  action(
+    name = glue("describe_file-input_unvax_stage1"),
+    run = glue("r:latest analysis/describe_file.R input_unvax_stage1.rds"),
+    needs = list("stage1_data_cleaning_all"),
+    moderately_sensitive = list(
+      describe_model_input = glue("output/describe-input_unvax_stage1.txt")
     )
   ),
   
