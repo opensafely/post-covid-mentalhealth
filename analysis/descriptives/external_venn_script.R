@@ -23,7 +23,7 @@ library(gridExtra)
 
 # Read file ---------------------------------------------------------------
 
-df <- read.csv("output/review/venn-diagrams/venn_diagram_number_check_vaccinated.csv")
+df <- read.csv("output/review/venn-diagrams/venn_diagram_number_check_vax.csv")
 
 active_analyses <- readr::read_rds("lib/active_analyses.rds")
 
@@ -34,7 +34,7 @@ outcomes <- df$outcome
 
 for(i in outcomes) {
   
-  df <- read.csv("output/review/venn-diagrams/venn_diagram_number_check_vaccinated.csv")
+  df <- read.csv("output/review/venn-diagrams/venn_diagram_number_check_vax.csv")
   
   # calculate totals columns
   df <- df %>%

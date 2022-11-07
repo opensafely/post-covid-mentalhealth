@@ -22,7 +22,7 @@ args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
   # use for interactive testing
-  cohort_name <- "all"
+  cohort_name <- "unvax"
   #group <- "diabetes"
 } else {
   cohort_name <- args[[1]]
@@ -36,9 +36,14 @@ venn_output <- function(cohort_name){#, group
   # Identify active outcomes ---------------------------------------------------
   
   active_analyses <- readr::read_rds("lib/active_analyses.rds")
+  
+  #filter values of interest (Mental Health main)
+  active_analyses <- active_analyses[!active_analyses$analysis != "main",]
+  
   # added extra statement to include only those with venn == TRUE - because some diabetes outcomes only use one data source and so venn is not applicable
   #outcomes <- active_analyses[active_analyses$active==TRUE & active_analyses$venn==TRUE & active_analyses$outcome_group==group,]$outcome_variable
-  outcomes <- active_analyses[active_analyses$active==TRUE & active_analyses$venn==TRUE,]$outcome_variable
+  #outcomes <- active_analyses[active_analyses$active==TRUE & active_analyses$venn==TRUE,]$outcome_variable
+  outcomes <- unique(active_analyses[active_analyses$analysis == "main",]$outcome) 
   
   #if(length(outcomes) == 0){
   #  print(paste0("No venn diagram generated for outcome group ",group))

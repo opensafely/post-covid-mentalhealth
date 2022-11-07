@@ -306,24 +306,43 @@ actions_list <- splice(
       DateChecks = glue("output/not-for-review/Check_dates_range_*.csv"),
       Descriptive_Table = glue("output/review/descriptives/Table1_*.csv")
     )
-  )#,
-) 
+  ),
+
   # splice(
   #   # over outcomes
   #   unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
   # ),
   
-#   comment("Stage 4 - Venn diagrams"),
-# 
-#    action(
-#      name = "stage4_venn_diagram_all",
-#      run = "r:latest analysis/descriptives/venn_diagram.R all",
-#      needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all",
-#                   "stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
-#      moderately_sensitive = list(
-#        venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
-#    )
-# )  
+  comment("Stage 4 - Venn diagrams"),
+  #comment("Stage 4 - Venn diagrams - unvax"),
+   action(
+     name = "stage4_venn_diagram_all",
+     run = "r:latest analysis/descriptives/venn_diagram.R all",
+     needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all",
+                  "stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
+     moderately_sensitive = list(
+       venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*")#_* / .csv
+    )
+  ))
+  #comment("Stage 4 - Venn diagrams - prevax"),
+  # action(
+  #   name = "stage4_venn_diagram_prevax",
+  #   run = "r:latest analysis/descriptives/venn_diagram.R all",
+  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all",
+  #                "stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
+  #   moderately_sensitive = list(
+  #     venn_diagram = glue("output/review/venn-diagrams/venn_diagram_prevax.csv")
+  #   )
+  # ),
+  # #comment("Stage 4 - Venn diagrams - vax"),
+  # action(
+  #   name = "stage4_venn_diagram_vax",
+  #   run = "r:latest analysis/descriptives/venn_diagram.R all",
+  #   needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all",
+  #                "stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
+  #   moderately_sensitive = list(
+  #     venn_diagram = glue("output/review/venn-diagrams/venn_diagram_vax.csv"))
+  #)
   # comment("Stage 5a - Run models"),
   # 
   # splice(

@@ -550,6 +550,9 @@ df <- df[which(df$analysis == "main"),]
 # Remove Primary care, Secondary care and Prescription (MH) --------------------
 
 df <- df[!grepl("primarycare", df$name) & !grepl("secondarycare", df$name) & !grepl("prescription", df$name),]
+df <- df[!grepl("addiction", df$name) & !grepl("anxiety_ocd", df$name) & !grepl("anxiety_ptsd", df$name) & !grepl("eating_disorders", df$name) & !grepl("self_harm", df$name) & 
+           !grepl("suicide", df$name),]
+
 
 # Check names are unique and save active analyses list -------------------------
 
