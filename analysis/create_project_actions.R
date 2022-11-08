@@ -18,10 +18,33 @@ defaults_list <- list(
 
 active_analyses <- read_rds("lib/active_analyses.rds")
 active_analyses <- active_analyses[order(active_analyses$analysis,active_analyses$cohort,active_analyses$outcome),]
-cohort_to_run <- unique(active_analyses$cohort)
-names <- unique(active_analyses$names)
+cohorts <- unique(active_analyses$cohort)
 
-# create action functions ----
+# Determine which outputs are ready --------------------------------------------
+
+success <- read_excel("~/OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
+                      sheet = "mentalhealth",
+                      col_types = c("text","text", "text", "text", "text", "text",
+                                    "text", "text", "text", "text", "text",
+                                    "text", "text", "text", "text", "text", 
+                                    "text", "text", "text", "text", "text", 
+                                    "skip", "skip"))
+
+success <- tidyr::pivot_longer(success, 
+                               cols = setdiff(colnames(success),c("outcome","cohort")), 
+                               names_to = c("analysis","priorhistory_var"), 
+                               names_sep = "-")
+
+success$priorhistory_var <- ifelse(is.na(success$priorhistory_var),"",success$priorhistory_var)
+
+success$name <- paste0("cohort_",success$cohort, "-", 
+                  success$analysis, "-", 
+                  success$outcome, 
+                  ifelse(success$priorhistory_var=="","", paste0("-",success$priorhistory_var,"_",success$outcome)))
+
+success <- success[success$value %in% c("Success"),]                
+
+# Create action functions ------------------------------------------------------
 
 ############################
 ## generic action function #
@@ -316,7 +339,7 @@ actions_list <- splice(
   
   splice(
     # over outcomes
-    unlist(lapply(cohort_to_run, function(x) table2(cohort = x)), recursive = FALSE)
+    unlist(lapply(cohorts, function(x) table2(cohort = x)), recursive = FALSE)
   ),
   
   # comment("Stage 4 - Venn diagrams"),
@@ -360,23 +383,7 @@ actions_list <- splice(
   action(
     name = "make_model_output",
     run = "r:latest analysis/model/make_model_output.R",
-    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" | active_analyses$analysis=="sub_covid_hospitalised" | active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
-                                                        !grepl("prescription",active_analyses$name) &
-                                                        !grepl("primarycare",active_analyses$name) &
-                                                        !grepl("secondarycare",active_analyses$name),]$name),
-                    c("cox_ipw-cohort_prevax-main-anxiety_ocd",
-                      "cox_ipw-cohort_prevax-main-self_harm",
-                      "cox_ipw-cohort_vax-main-anxiety_ocd",
-                      "cox_ipw-cohort_vax-main-anxiety_ptsd",
-                      "cox_ipw-cohort_vax-main-eating_disorders",
-                      "cox_ipw-cohort_vax-main-suicide",
-                      "cox_ipw-cohort_vax-main-addiction",
-                      "cox_ipw-cohort_vax-main-anxiety_ptsd",
-                      "cox_ipw-cohort_unvax-main-anxiety_ocd",
-                      "cox_ipw-cohort_unvax-main-eating_disorders",
-                      "cox_ipw-cohort_unvax-main-suicide",
-                      "cox_ipw-cohort_unvax-main-addiction",
-                      "cox_ipw-cohort_unvax-main-self_harm")),
+    needs = as.list(paste0("cox_ipw-",success$name)),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv")
     )
