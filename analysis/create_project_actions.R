@@ -42,7 +42,7 @@ success$name <- paste0("cohort_",success$cohort, "-",
                   success$outcome, 
                   ifelse(success$priorhistory_var=="","", paste0("-",success$priorhistory_var,"_",success$outcome)))
 
-success <- success[success$value %in% c("Success"),]                
+success <- success[success$value %in% c("Success","<50 events"),]                
 
 # Create action functions ------------------------------------------------------
 
