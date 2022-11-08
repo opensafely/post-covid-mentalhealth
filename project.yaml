@@ -8596,6 +8596,54 @@ actions:
     - cox_ipw-cohort_vax-main-depression
     - cox_ipw-cohort_vax-main-self_harm
     - cox_ipw-cohort_vax-main-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_age_18_39-anxiety_general
+    - cox_ipw-cohort_prevax-sub_age_18_39-depression
+    - cox_ipw-cohort_prevax-sub_age_18_39-self_harm
+    - cox_ipw-cohort_prevax-sub_age_18_39-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_age_18_39-anxiety_general
+    - cox_ipw-cohort_unvax-sub_age_18_39-depression
+    - cox_ipw-cohort_unvax-sub_age_18_39-self_harm
+    - cox_ipw-cohort_unvax-sub_age_18_39-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_age_18_39-anxiety_general
+    - cox_ipw-cohort_vax-sub_age_18_39-depression
+    - cox_ipw-cohort_vax-sub_age_18_39-self_harm
+    - cox_ipw-cohort_vax-sub_age_18_39-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_age_40_59-anxiety_general
+    - cox_ipw-cohort_prevax-sub_age_40_59-depression
+    - cox_ipw-cohort_prevax-sub_age_40_59-self_harm
+    - cox_ipw-cohort_prevax-sub_age_40_59-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_age_40_59-anxiety_general
+    - cox_ipw-cohort_unvax-sub_age_40_59-depression
+    - cox_ipw-cohort_unvax-sub_age_40_59-self_harm
+    - cox_ipw-cohort_unvax-sub_age_40_59-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_age_40_59-anxiety_general
+    - cox_ipw-cohort_vax-sub_age_40_59-depression
+    - cox_ipw-cohort_vax-sub_age_40_59-self_harm
+    - cox_ipw-cohort_vax-sub_age_40_59-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_age_60_79-anxiety_general
+    - cox_ipw-cohort_prevax-sub_age_60_79-depression
+    - cox_ipw-cohort_prevax-sub_age_60_79-self_harm
+    - cox_ipw-cohort_prevax-sub_age_60_79-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_age_60_79-anxiety_general
+    - cox_ipw-cohort_unvax-sub_age_60_79-depression
+    - cox_ipw-cohort_unvax-sub_age_60_79-self_harm
+    - cox_ipw-cohort_unvax-sub_age_60_79-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_age_60_79-anxiety_general
+    - cox_ipw-cohort_vax-sub_age_60_79-depression
+    - cox_ipw-cohort_vax-sub_age_60_79-self_harm
+    - cox_ipw-cohort_vax-sub_age_60_79-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_age_80_110-anxiety_general
+    - cox_ipw-cohort_prevax-sub_age_80_110-depression
+    - cox_ipw-cohort_prevax-sub_age_80_110-self_harm
+    - cox_ipw-cohort_prevax-sub_age_80_110-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_age_80_110-anxiety_general
+    - cox_ipw-cohort_unvax-sub_age_80_110-depression
+    - cox_ipw-cohort_unvax-sub_age_80_110-self_harm
+    - cox_ipw-cohort_unvax-sub_age_80_110-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_age_80_110-anxiety_general
+    - cox_ipw-cohort_vax-sub_age_80_110-depression
+    - cox_ipw-cohort_vax-sub_age_80_110-self_harm
+    - cox_ipw-cohort_vax-sub_age_80_110-serious_mental_illness
     - cox_ipw-cohort_unvax-sub_covid_history-addiction
     - cox_ipw-cohort_unvax-sub_covid_history-anxiety_general
     - cox_ipw-cohort_unvax-sub_covid_history-anxiety_ocd
@@ -8668,6 +8716,90 @@ actions:
     - cox_ipw-cohort_vax-sub_covid_nonhospitalised-self_harm
     - cox_ipw-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness
     - cox_ipw-cohort_vax-sub_covid_nonhospitalised-suicide
+    - cox_ipw-cohort_prevax-sub_ethnicity_asian-anxiety_general
+    - cox_ipw-cohort_prevax-sub_ethnicity_asian-depression
+    - cox_ipw-cohort_prevax-sub_ethnicity_asian-self_harm
+    - cox_ipw-cohort_prevax-sub_ethnicity_asian-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_ethnicity_asian-anxiety_general
+    - cox_ipw-cohort_unvax-sub_ethnicity_asian-depression
+    - cox_ipw-cohort_unvax-sub_ethnicity_asian-self_harm
+    - cox_ipw-cohort_unvax-sub_ethnicity_asian-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_ethnicity_asian-anxiety_general
+    - cox_ipw-cohort_vax-sub_ethnicity_asian-depression
+    - cox_ipw-cohort_vax-sub_ethnicity_asian-self_harm
+    - cox_ipw-cohort_vax-sub_ethnicity_asian-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_ethnicity_black-anxiety_general
+    - cox_ipw-cohort_prevax-sub_ethnicity_black-depression
+    - cox_ipw-cohort_prevax-sub_ethnicity_black-self_harm
+    - cox_ipw-cohort_prevax-sub_ethnicity_black-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_ethnicity_black-anxiety_general
+    - cox_ipw-cohort_unvax-sub_ethnicity_black-depression
+    - cox_ipw-cohort_unvax-sub_ethnicity_black-self_harm
+    - cox_ipw-cohort_unvax-sub_ethnicity_black-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_ethnicity_black-anxiety_general
+    - cox_ipw-cohort_vax-sub_ethnicity_black-depression
+    - cox_ipw-cohort_vax-sub_ethnicity_black-self_harm
+    - cox_ipw-cohort_vax-sub_ethnicity_black-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_ethnicity_mixed-anxiety_general
+    - cox_ipw-cohort_prevax-sub_ethnicity_mixed-depression
+    - cox_ipw-cohort_prevax-sub_ethnicity_mixed-self_harm
+    - cox_ipw-cohort_prevax-sub_ethnicity_mixed-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_ethnicity_mixed-anxiety_general
+    - cox_ipw-cohort_unvax-sub_ethnicity_mixed-depression
+    - cox_ipw-cohort_unvax-sub_ethnicity_mixed-self_harm
+    - cox_ipw-cohort_unvax-sub_ethnicity_mixed-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_ethnicity_mixed-anxiety_general
+    - cox_ipw-cohort_vax-sub_ethnicity_mixed-depression
+    - cox_ipw-cohort_vax-sub_ethnicity_mixed-self_harm
+    - cox_ipw-cohort_vax-sub_ethnicity_mixed-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_ethnicity_other-anxiety_general
+    - cox_ipw-cohort_prevax-sub_ethnicity_other-depression
+    - cox_ipw-cohort_prevax-sub_ethnicity_other-self_harm
+    - cox_ipw-cohort_prevax-sub_ethnicity_other-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_ethnicity_other-anxiety_general
+    - cox_ipw-cohort_unvax-sub_ethnicity_other-depression
+    - cox_ipw-cohort_unvax-sub_ethnicity_other-self_harm
+    - cox_ipw-cohort_unvax-sub_ethnicity_other-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_ethnicity_other-anxiety_general
+    - cox_ipw-cohort_vax-sub_ethnicity_other-depression
+    - cox_ipw-cohort_vax-sub_ethnicity_other-self_harm
+    - cox_ipw-cohort_vax-sub_ethnicity_other-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_ethnicity_white-anxiety_general
+    - cox_ipw-cohort_prevax-sub_ethnicity_white-depression
+    - cox_ipw-cohort_prevax-sub_ethnicity_white-self_harm
+    - cox_ipw-cohort_prevax-sub_ethnicity_white-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_ethnicity_white-anxiety_general
+    - cox_ipw-cohort_unvax-sub_ethnicity_white-depression
+    - cox_ipw-cohort_unvax-sub_ethnicity_white-self_harm
+    - cox_ipw-cohort_unvax-sub_ethnicity_white-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_ethnicity_white-anxiety_general
+    - cox_ipw-cohort_vax-sub_ethnicity_white-depression
+    - cox_ipw-cohort_vax-sub_ethnicity_white-self_harm
+    - cox_ipw-cohort_vax-sub_ethnicity_white-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_sex_female-anxiety_general
+    - cox_ipw-cohort_prevax-sub_sex_female-depression
+    - cox_ipw-cohort_prevax-sub_sex_female-self_harm
+    - cox_ipw-cohort_prevax-sub_sex_female-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_sex_female-anxiety_general
+    - cox_ipw-cohort_unvax-sub_sex_female-depression
+    - cox_ipw-cohort_unvax-sub_sex_female-self_harm
+    - cox_ipw-cohort_unvax-sub_sex_female-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_sex_female-anxiety_general
+    - cox_ipw-cohort_vax-sub_sex_female-depression
+    - cox_ipw-cohort_vax-sub_sex_female-self_harm
+    - cox_ipw-cohort_vax-sub_sex_female-serious_mental_illness
+    - cox_ipw-cohort_prevax-sub_sex_male-anxiety_general
+    - cox_ipw-cohort_prevax-sub_sex_male-depression
+    - cox_ipw-cohort_prevax-sub_sex_male-self_harm
+    - cox_ipw-cohort_prevax-sub_sex_male-serious_mental_illness
+    - cox_ipw-cohort_unvax-sub_sex_male-anxiety_general
+    - cox_ipw-cohort_unvax-sub_sex_male-depression
+    - cox_ipw-cohort_unvax-sub_sex_male-self_harm
+    - cox_ipw-cohort_unvax-sub_sex_male-serious_mental_illness
+    - cox_ipw-cohort_vax-sub_sex_male-anxiety_general
+    - cox_ipw-cohort_vax-sub_sex_male-depression
+    - cox_ipw-cohort_vax-sub_sex_male-self_harm
+    - cox_ipw-cohort_vax-sub_sex_male-serious_mental_illness
     outputs:
       moderately_sensitive:
         model_output: output/model_output.csv

@@ -360,7 +360,11 @@ actions_list <- splice(
   action(
     name = "make_model_output",
     run = "r:latest analysis/model/make_model_output.R",
-    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" | active_analyses$analysis=="sub_covid_hospitalised" | active_analyses$analysis == "sub_covid_nonhospitalised" | active_analyses$analysis == "sub_covid_history" &
+    needs = setdiff(paste0("cox_ipw-",active_analyses[active_analyses$analysis=="main" | active_analyses$analysis=="sub_covid_hospitalised" | active_analyses$analysis == "sub_covid_nonhospitalised" | 
+                                                        active_analyses$analysis == "sub_covid_history" | 
+                                                        active_analyses$analysis=="sub_sex_female" | active_analyses$analysis=="sub_sex_male" | 
+                                                        active_analyses$analysis=="sub_age_18_39" | active_analyses$analysis=="sub_age_40_59" | active_analyses$analysis=="sub_age_60_79" | active_analyses$analysis=="sub_age_80_110" |   
+                                                        active_analyses$analysis=="sub_ethnicity_white" | active_analyses$analysis=="sub_ethnicity_black" | active_analyses$analysis=="sub_ethnicity_mixed" | active_analyses$analysis=="sub_ethnicity_asian" | active_analyses$analysis=="sub_ethnicity_other" & 
                                                         !grepl("prescription",active_analyses$name) &
                                                         !grepl("primarycare",active_analyses$name) &
                                                         !grepl("secondarycare",active_analyses$name),]$name),
