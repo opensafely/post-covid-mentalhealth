@@ -4,7 +4,7 @@ library(here)
 library(glue)
 library(readr)
 library(dplyr)
-
+library(readxl)
 
 ###########################
 # Load information to use #
@@ -22,7 +22,7 @@ cohorts <- unique(active_analyses$cohort)
 
 # Determine which outputs are ready --------------------------------------------
 
-success <- read_excel("~/OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
+success <- read_excel("C:/Users/rs22981/OneDrive - University of Bristol/group-EHR/Projects/post-covid-outcome-tracker.xlsx",
                       sheet = "mentalhealth",
                       col_types = c("text","text", "text", "text", "text", "text",
                                     "text", "text", "text", "text", "text",
