@@ -138,20 +138,20 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
   )
 }
 
-table2 <- function(cohort){
-  splice(
-    comment(glue("Stage 4 - Table 2 - {cohort} cohort")),
-    action(
-      name = glue("stage4_table_2_{cohort}"),
-      run = "r:latest analysis/descriptives/table_2.R",
-      arguments = c(cohort),
-      needs = list("stage1_data_cleaning_all"),
-      moderately_sensitive = list(
-        input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
-      )
-    )
-  )
-}
+# table2 <- function(cohort){
+#   splice(
+#     comment(glue("Stage 4 - Table 2 - {cohort} cohort")),
+#     action(
+#       name = glue("stage4_table_2_{cohort}"),
+#       run = "r:latest analysis/descriptives/table_2.R",
+#       arguments = c(cohort),
+#       needs = list("stage1_data_cleaning_all"),
+#       moderately_sensitive = list(
+#         input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
+#       )
+#     )
+#   )
+# }
 
 ##########################################################
 ## Define and combine all actions into a list of actions #
@@ -324,23 +324,23 @@ actions_list <- splice(
     )
   ),
   
-  comment("Stage 2 - Missing - Table 1 - all cohorts"),
+  # comment("Stage 2 - Missing - Table 1 - all cohorts"),
+  # 
+  # action(
+  #   name = "stage2_missing_table1_all",
+  #   run = "r:latest analysis/descriptives/Stage2_missing_table1.R all",
+  #   needs = list("stage1_data_cleaning_all"),
+  #   moderately_sensitive = list(
+  #     Missing_RangeChecks = glue("output/not-for-review/Check_missing_range_*.csv"),
+  #     DateChecks = glue("output/not-for-review/Check_dates_range_*.csv"),
+  #     Descriptive_Table = glue("output/review/descriptives/Table1_*.csv")
+  #   )
+  # ),
   
-  action(
-    name = "stage2_missing_table1_all",
-    run = "r:latest analysis/descriptives/Stage2_missing_table1.R all",
-    needs = list("stage1_data_cleaning_all"),
-    moderately_sensitive = list(
-      Missing_RangeChecks = glue("output/not-for-review/Check_missing_range_*.csv"),
-      DateChecks = glue("output/not-for-review/Check_dates_range_*.csv"),
-      Descriptive_Table = glue("output/review/descriptives/Table1_*.csv")
-    )
-  ),
-  
-  splice(
-    # over outcomes
-    unlist(lapply(cohorts, function(x) table2(cohort = x)), recursive = FALSE)
-  ),
+  # splice(
+  #   # over outcomes
+  #   unlist(lapply(cohorts, function(x) table2(cohort = x)), recursive = FALSE)
+  # ),
   
   # comment("Stage 4 - Venn diagrams"),
   # 

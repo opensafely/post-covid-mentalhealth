@@ -166,48 +166,6 @@ actions:
       moderately_sensitive:
         describe_model_input: output/describe-input_unvax_stage1.txt
 
-  ## Stage 2 - Missing - Table 1 - all cohorts 
-
-  stage2_missing_table1_all:
-    run: r:latest analysis/descriptives/Stage2_missing_table1.R all
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        Missing_RangeChecks: output/not-for-review/Check_missing_range_*.csv
-        DateChecks: output/not-for-review/Check_dates_range_*.csv
-        Descriptive_Table: output/review/descriptives/Table1_*.csv
-
-  ## Stage 4 - Table 2 - prevax cohort 
-
-  stage4_table_2_prevax:
-    run: r:latest analysis/descriptives/table_2.R prevax
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_prevax.csv
-
-  ## Stage 4 - Table 2 - unvax cohort 
-
-  stage4_table_2_unvax:
-    run: r:latest analysis/descriptives/table_2.R unvax
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_unvax.csv
-
-  ## Stage 4 - Table 2 - vax cohort 
-
-  stage4_table_2_vax:
-    run: r:latest analysis/descriptives/table_2.R vax
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        input_table_2: output/review/descriptives/table2_vax.csv
-
   ## Stage 5 - Run models 
 
   make_model_input-cohort_prevax-main-addiction:
