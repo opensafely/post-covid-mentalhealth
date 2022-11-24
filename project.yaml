@@ -166,6 +166,63 @@ actions:
       moderately_sensitive:
         describe_model_input: output/describe-input_unvax_stage1.txt
 
+  ## Stage 4a - Venn diagrams prevax 
+
+  stage4_venn_diagram_prevax:
+    run: r:latest analysis/descriptives/venn_diagram.R prevax
+    needs:
+    - preprocess_data_prevax
+    - make_model_input-cohort_prevax-main-addiction
+    - make_model_input-cohort_prevax-main-anxiety_general
+    - make_model_input-cohort_prevax-main-anxiety_ocd
+    - make_model_input-cohort_prevax-main-anxiety_ptsd
+    - make_model_input-cohort_prevax-main-depression
+    - make_model_input-cohort_prevax-main-eating_disorders
+    - make_model_input-cohort_prevax-main-self_harm
+    - make_model_input-cohort_prevax-main-serious_mental_illness
+    - make_model_input-cohort_prevax-main-suicide
+    outputs:
+      moderately_sensitive:
+        venn_diagram: output/review/venn-diagrams/venn_diagram_number_check_prevax.csv
+
+  ## Stage 4b - Venn diagrams vax 
+
+  stage4_venn_diagram_vax:
+    run: r:latest analysis/descriptives/venn_diagram.R vax
+    needs:
+    - preprocess_data_vax
+    - make_model_input-cohort_vax-main-addiction
+    - make_model_input-cohort_vax-main-anxiety_general
+    - make_model_input-cohort_vax-main-anxiety_ocd
+    - make_model_input-cohort_vax-main-anxiety_ptsd
+    - make_model_input-cohort_vax-main-depression
+    - make_model_input-cohort_vax-main-eating_disorders
+    - make_model_input-cohort_vax-main-self_harm
+    - make_model_input-cohort_vax-main-serious_mental_illness
+    - make_model_input-cohort_vax-main-suicide
+    outputs:
+      moderately_sensitive:
+        venn_diagram: output/review/venn-diagrams/venn_diagram_number_check_vax.csv
+
+  ## Stage 4c - Venn diagrams unvax 
+
+  stage4_venn_diagram_unvax:
+    run: r:latest analysis/descriptives/venn_diagram.R unvax
+    needs:
+    - preprocess_data_unvax
+    - make_model_input-cohort_unvax-main-addiction
+    - make_model_input-cohort_unvax-main-anxiety_general
+    - make_model_input-cohort_unvax-main-anxiety_ocd
+    - make_model_input-cohort_unvax-main-anxiety_ptsd
+    - make_model_input-cohort_unvax-main-depression
+    - make_model_input-cohort_unvax-main-eating_disorders
+    - make_model_input-cohort_unvax-main-self_harm
+    - make_model_input-cohort_unvax-main-serious_mental_illness
+    - make_model_input-cohort_unvax-main-suicide
+    outputs:
+      moderately_sensitive:
+        venn_diagram: output/review/venn-diagrams/venn_diagram_number_check_unvax.csv
+
   ## Stage 5 - Run models 
 
   make_model_input-cohort_prevax-main-addiction:
@@ -8173,69 +8230,4 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_sex_male-serious_mental_illness.csv
-
-  ## Stage 6 - make model output 
-
-  make_model_output:
-    run: r:latest analysis/model/make_model_output.R
-    needs:
-    - cox_ipw-cohort_prevax-main-anxiety_general
-    - cox_ipw-cohort_prevax-sub_covid_hospitalised-anxiety_general
-    - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-anxiety_general
-    - cox_ipw-cohort_prevax-sub_sex_female-anxiety_general
-    - cox_ipw-cohort_prevax-sub_sex_male-anxiety_general
-    - cox_ipw-cohort_prevax-sub_age_18_39-anxiety_general
-    - cox_ipw-cohort_prevax-sub_age_40_59-anxiety_general
-    - cox_ipw-cohort_prevax-sub_age_60_79-anxiety_general
-    - cox_ipw-cohort_prevax-sub_age_80_110-anxiety_general
-    - cox_ipw-cohort_prevax-sub_ethnicity_white-anxiety_general
-    - cox_ipw-cohort_prevax-sub_ethnicity_asian-anxiety_general
-    - cox_ipw-cohort_prevax-sub_ethnicity_other-anxiety_general
-    - cox_ipw-cohort_vax-main-anxiety_general
-    - cox_ipw-cohort_unvax-main-anxiety_general
-    - cox_ipw-cohort_prevax-main-anxiety_ptsd
-    - cox_ipw-cohort_unvax-main-anxiety_ptsd
-    - cox_ipw-cohort_unvax-sub_covid_history-anxiety_ptsd
-    - cox_ipw-cohort_prevax-main-depression
-    - cox_ipw-cohort_prevax-sub_covid_hospitalised-depression
-    - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-depression
-    - cox_ipw-cohort_prevax-sub_sex_female-depression
-    - cox_ipw-cohort_prevax-sub_sex_male-depression
-    - cox_ipw-cohort_prevax-sub_age_18_39-depression
-    - cox_ipw-cohort_prevax-sub_age_40_59-depression
-    - cox_ipw-cohort_prevax-sub_age_60_79-depression
-    - cox_ipw-cohort_prevax-sub_age_80_110-depression
-    - cox_ipw-cohort_prevax-sub_ethnicity_white-depression
-    - cox_ipw-cohort_prevax-sub_ethnicity_black-depression
-    - cox_ipw-cohort_prevax-sub_ethnicity_mixed-depression
-    - cox_ipw-cohort_prevax-sub_ethnicity_asian-depression
-    - cox_ipw-cohort_prevax-sub_ethnicity_other-depression
-    - cox_ipw-cohort_vax-main-depression
-    - cox_ipw-cohort_vax-sub_covid_history-depression
-    - cox_ipw-cohort_unvax-main-depression
-    - cox_ipw-cohort_prevax-main-eating_disorders
-    - cox_ipw-cohort_prevax-sub_covid_hospitalised-eating_disorders
-    - cox_ipw-cohort_prevax-main-addiction
-    - cox_ipw-cohort_prevax-main-self_harm
-    - cox_ipw-cohort_vax-main-self_harm
-    - cox_ipw-cohort_vax-sub_covid_hospitalised-self_harm
-    - cox_ipw-cohort_vax-sub_covid_history-self_harm
-    - cox_ipw-cohort_prevax-main-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_covid_hospitalised-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_sex_female-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_sex_male-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_age_18_39-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_age_40_59-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_age_60_79-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_age_80_110-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_ethnicity_white-serious_mental_illness
-    - cox_ipw-cohort_prevax-sub_ethnicity_asian-serious_mental_illness
-    - cox_ipw-cohort_vax-main-serious_mental_illness
-    - cox_ipw-cohort_unvax-main-serious_mental_illness
-    - cox_ipw-cohort_unvax-sub_covid_history-serious_mental_illness
-    - cox_ipw-cohort_prevax-main-suicide
-    outputs:
-      moderately_sensitive:
-        model_output: output/model_output.csv
 
