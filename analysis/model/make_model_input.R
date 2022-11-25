@@ -98,36 +98,40 @@ for (i in 1:nrow(active_analyses)) {
     input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==TRUE ~ "recent",
     input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==FALSE ~ "none")
   input[,c("cov_bin_history_depression","cov_bin_recent_depression")] <- NULL
-  
+  input$cov_bin_priorhistory_depression <- as.factor(input$cov_bin_priorhistory_depression)
+
   input$cov_bin_priorhistory_anxiety_general <- dplyr::case_when(
         input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
         input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==FALSE ~ "notrecent",
         input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
         input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==FALSE ~ "none")
   input[,c("cov_bin_history_anxiety","cov_bin_recent_anxiety")] <- NULL
-  
+  input$cov_bin_priorhistory_anxiety_general <- as.factor(input$cov_bin_priorhistory_anxiety_general)
+
   input$cov_bin_priorhistory_eating_disorders <- dplyr::case_when(
         input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
         input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==FALSE ~ "notrecent",
         input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
         input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==FALSE ~ "none")
   input[,c("cov_bin_history_eating_disorders","cov_bin_recent_eating_disorders")] <- NULL
-  
+  input$cov_bin_priorhistory_eating_disorders <- as.factor(input$cov_bin_priorhistory_eating_disorders)
+
   input$cov_bin_priorhistory_serious_mental_illness <- dplyr::case_when(
         input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
         input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "notrecent",
         input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
         input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "none")
   input[,c("cov_bin_history_serious_mental_illness","cov_bin_recent_serious_mental_illness")] <- NULL
-  
+  input$cov_bin_priorhistory_serious_mental_illness <- as.factor(input$cov_bin_priorhistory_serious_mental_illness)
+
   input$cov_bin_priorhistory_self_harm <- dplyr::case_when(
         input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
         input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==FALSE ~ "notrecent",
         input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
         input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==FALSE ~ "none")
   input[,c("cov_bin_history_self_harm","cov_bin_recent_self_harm")] <- NULL
-  
-  
+  input$cov_bin_priorhistory_self_harm <- as.factor(input$cov_bin_priorhistory_self_harm)
+
   # Make model input: main -------------------------------------------------------
   
   if (active_analyses$analysis[i]=="main") {
@@ -417,56 +421,56 @@ for (i in 1:nrow(active_analyses)) {
   # Make model input: sub_priorhistory_none --------------------------------------
 
   if (active_analyses$analysis[i]=="sub_priorhistory_none") {
-    
+
     print('Make model input: sub_priorhistory_none')
-    
+
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_bin_priorhistory",active_analyses$outcome[i]))
     df <- df[df$priorhistory=="none",]
-    
+
     df[,c(colnames(df)[grepl("sub_",colnames(df))],"priorhistory")] <- NULL
-    
+
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
     print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
-    
+
   }
   
   # Make model input: sub_priorhistory_recent --------------------------------------
   
   if (active_analyses$analysis[i]=="sub_priorhistory_recent") {
-    
+
     print('Make model input: sub_priorhistory_recent')
-    
+
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_bin_priorhistory",active_analyses$outcome[i]))
     df <- df[df$priorhistory=="recent",]
-    
+
     df[,c(colnames(df)[grepl("sub_",colnames(df))],"priorhistory")] <- NULL
-    
+
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
     print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
-    
+
   }
     
   # Make model input: sub_priorhistory_notrecent --------------------------------------
   
   if (active_analyses$analysis[i]=="sub_priorhistory_notrecent") {
-    
+
     print('Make model input: sub_priorhistory_notrecent')
-    
+
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_bin_priorhistory",active_analyses$outcome[i]))
     df <- df[df$priorhistory=="notrecent",]
-    
+
     df[,c("sub_bin_covid19_confirmed_history","priorhistory")] <- NULL
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")))
     print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
     rm(df)
-    
+
   }
   
 }
