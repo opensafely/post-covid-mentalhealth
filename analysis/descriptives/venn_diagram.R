@@ -200,16 +200,34 @@ venn_output <- function(cohort, group){
 # Run function using specified commandArgs and active analyses for group
 
 # active_analyses <- readr::read_rds("lib/active_analyses.rds")
-# active_analyses <- active_analyses %>% subset(analysis == "main")
-#group <- unique(active_analyses$outcome)
-#group <- unique(str_remove(active_analyses$outcome, "out_date_"))
+# active_analyses <- active_analyses %>% filter(analysis == "main")
+# group <- unique(active_analyses$outcome)
+# group <- unique(str_remove(active_analyses$outcome, "out_date_"))
 
-#group <- c("addiction", "anxiety_general", "anxiety_ocd", "anxiety_ptsd", "depression", "eating_disorders", "self_harm", "serious_mental_illness", "suicide") 
+#outcomes <- c("addiction", "anxiety_general", "anxiety_ocd", "anxiety_ptsd", "depression", "eating_disorders", "self_harm", "serious_mental_illness", "suicide") 
 
-  if (cohort == "all") {
-    venn_output("prevax", i)
-    venn_output("vax", i)
-    venn_output("unvax", i)
-  } else{
-    venn_output(cohort, i)
-  }
+# if (cohort_name == "all") {
+#   venn_output("prevax")
+#   venn_output("vax")
+#   venn_output("unvax")
+# } else{
+#   venn_output(cohort_name)
+# }
+
+# for(i in group){
+#   if (cohort_name == "all") {
+#     venn_output("prevax", i)
+#     venn_output("vax", i)
+#     venn_output("unvax", i)
+#   } else{
+#     venn_output(cohort_name, i)
+#   }
+# }
+
+if (cohort == "all") {
+  venn_output("prevax", i)
+  venn_output("vax", i)
+  venn_output("unvax", i)
+} else{
+  venn_output(cohort, i)
+}
