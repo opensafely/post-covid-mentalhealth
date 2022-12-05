@@ -26,16 +26,16 @@ check_vitals <- function(df) {
   
   # Confirm cov_bin_* variables are two level factors
   
-  # for (i in colnames(df)[grepl("cov_bin_",colnames(df))]) {
-  #   if (sapply(df[,i], is.factor)==FALSE) {
-  #     stop(paste0(i," is not a factor"))
-  #   } else {
-  #     if (length(sapply(df[,i], levels))!=2) {
-  #       stop(paste0(i," does not have two levels (levels = ",length(sapply(df[,i], levels)),")"))
-  #     }
-  #   }
-  # }
-  
+  for (i in colnames(df)[grepl("cov_bin_",colnames(df))]) {
+    if (sapply(df[,i], is.factor)==FALSE) {
+      stop(paste0(i," is not a factor"))
+    } else {
+      if (length(sapply(df[,i], levels))!=2) {
+        stop(paste0(i," does not have two levels (levels = ",length(sapply(df[,i], levels)),")"))
+      }
+    }
+  }
+
   # Confirm cov_cat_* variables are factors
   
   for (i in colnames(df)[grepl("cov_cat_",colnames(df))]) {
