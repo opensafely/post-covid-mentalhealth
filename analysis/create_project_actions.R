@@ -22,27 +22,27 @@ cohorts <- unique(active_analyses$cohort)
 
 # Determine which outputs are ready --------------------------------------------
 
-# success <- readxl::read_excel("C:/Users/rs22981/OneDrive - University of Bristol/Projects/post-covid-outcome-tracker.xlsx", 
-#                               sheet = "mentalhealth",
-#                       col_types = c("text","text", "text", "text", "text", "text",
-#                                     "text", "text", "text", "text", "text",
-#                                     "text", "text", "text", "text", "text", 
-#                                     "text", "text", "text", "text",
-#                                     "skip", "skip"))
-# 
-# success <- tidyr::pivot_longer(success, 
-#                                cols = setdiff(colnames(success),c("outcome","cohort")), 
-#                                names_to = c("analysis","priorhistory_var"), 
-#                                names_sep = "-")
-# 
-# success$priorhistory_var <- ifelse(is.na(success$priorhistory_var),"",success$priorhistory_var)
-# 
-# success$name <- paste0("cohort_",success$cohort, "-", 
-#                   success$analysis, "-", 
-#                   success$outcome, 
-#                   ifelse(success$priorhistory_var=="","", paste0("-",success$priorhistory_var,"_",success$outcome)))
-# 
-# success <- success[success$value %in% c("Success","<50 events"),]                
+success <- readxl::read_excel("~/OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
+                              sheet = "mentalhealth",
+                      col_types = c("text","text", "text", "text", "text", "text",
+                                    "text", "text", "text", "text", "text",
+                                    "text", "text", "text", "text", "text",
+                                    "text", "text", "text", "text",
+                                    "skip", "skip"))
+
+success <- tidyr::pivot_longer(success,
+                               cols = setdiff(colnames(success),c("outcome","cohort")),
+                               names_to = c("analysis","priorhistory_var"),
+                               names_sep = "-")
+
+success$priorhistory_var <- ifelse(is.na(success$priorhistory_var),"",success$priorhistory_var)
+
+success$name <- paste0("cohort_",success$cohort, "-",
+                  success$analysis, "-",
+                  success$outcome,
+                  ifelse(success$priorhistory_var=="","", paste0("-",success$priorhistory_var,"_",success$outcome)))
+
+success <- success[success$value %in% c("Success","<50 events"),]
 
 # Create action functions ------------------------------------------------------
 

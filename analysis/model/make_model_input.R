@@ -92,45 +92,45 @@ for (i in 1:nrow(active_analyses)) {
   # Make three level history covariates ----------------------------------------
   print('Make three level history covariates')
   
-  input$cov_bin_priorhistory_depression <- dplyr::case_when(
+  input$cov_cat_priorhistory_depression <- dplyr::case_when(
     input$cov_bin_history_depression==TRUE & input$cov_bin_recent_depression==TRUE ~ "recent",
     input$cov_bin_history_depression==TRUE & input$cov_bin_recent_depression==FALSE ~ "notrecent",
     input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==TRUE ~ "recent",
     input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==FALSE ~ "none")
   input[,c("cov_bin_history_depression","cov_bin_recent_depression")] <- NULL
-  input$cov_bin_priorhistory_depression <- as.factor(input$cov_bin_priorhistory_depression)
+  input$cov_cat_priorhistory_depression <- as.factor(input$cov_cat_priorhistory_depression)
 
-  input$cov_bin_priorhistory_anxiety_general <- dplyr::case_when(
+  input$cov_cat_priorhistory_anxiety_general <- dplyr::case_when(
         input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
         input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==FALSE ~ "notrecent",
         input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
         input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==FALSE ~ "none")
   input[,c("cov_bin_history_anxiety","cov_bin_recent_anxiety")] <- NULL
-  input$cov_bin_priorhistory_anxiety_general <- as.factor(input$cov_bin_priorhistory_anxiety_general)
+  input$cov_cat_priorhistory_anxiety_general <- as.factor(input$cov_cat_priorhistory_anxiety_general)
 
-  input$cov_bin_priorhistory_eating_disorders <- dplyr::case_when(
+  input$cov_cat_priorhistory_eating_disorders <- dplyr::case_when(
         input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
         input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==FALSE ~ "notrecent",
         input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
         input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==FALSE ~ "none")
   input[,c("cov_bin_history_eating_disorders","cov_bin_recent_eating_disorders")] <- NULL
-  input$cov_bin_priorhistory_eating_disorders <- as.factor(input$cov_bin_priorhistory_eating_disorders)
+  input$cov_cat_priorhistory_eating_disorders <- as.factor(input$cov_cat_priorhistory_eating_disorders)
 
-  input$cov_bin_priorhistory_serious_mental_illness <- dplyr::case_when(
+  input$cov_cat_priorhistory_serious_mental_illness <- dplyr::case_when(
         input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
         input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "notrecent",
         input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
         input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "none")
   input[,c("cov_bin_history_serious_mental_illness","cov_bin_recent_serious_mental_illness")] <- NULL
-  input$cov_bin_priorhistory_serious_mental_illness <- as.factor(input$cov_bin_priorhistory_serious_mental_illness)
+  input$cov_cat_priorhistory_serious_mental_illness <- as.factor(input$cov_cat_priorhistory_serious_mental_illness)
 
-  input$cov_bin_priorhistory_self_harm <- dplyr::case_when(
+  input$cov_cat_priorhistory_self_harm <- dplyr::case_when(
         input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
         input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==FALSE ~ "notrecent",
         input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
         input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==FALSE ~ "none")
   input[,c("cov_bin_history_self_harm","cov_bin_recent_self_harm")] <- NULL
-  input$cov_bin_priorhistory_self_harm <- as.factor(input$cov_bin_priorhistory_self_harm)
+  input$cov_cat_priorhistory_self_harm <- as.factor(input$cov_cat_priorhistory_self_harm)
 
   # Make model input: main -------------------------------------------------------
   
