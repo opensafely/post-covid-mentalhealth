@@ -425,7 +425,7 @@ for (i in 1:nrow(active_analyses)) {
     print('Make model input: sub_priorhistory_none')
 
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
-    df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_bin_priorhistory",active_analyses$outcome[i]))
+    df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_cat_priorhistory",active_analyses$outcome[i]))
     df <- df[df$priorhistory=="none",]
 
     df[,c(colnames(df)[grepl("sub_",colnames(df))],"priorhistory")] <- NULL
@@ -444,7 +444,7 @@ for (i in 1:nrow(active_analyses)) {
     print('Make model input: sub_priorhistory_recent')
 
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
-    df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_bin_priorhistory",active_analyses$outcome[i]))
+    df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_cat_priorhistory",active_analyses$outcome[i]))
     df <- df[df$priorhistory=="recent",]
 
     df[,c(colnames(df)[grepl("sub_",colnames(df))],"priorhistory")] <- NULL
@@ -463,7 +463,7 @@ for (i in 1:nrow(active_analyses)) {
     print('Make model input: sub_priorhistory_notrecent')
 
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
-    df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_bin_priorhistory",active_analyses$outcome[i]))
+    df <- dplyr::rename(df, "priorhistory" = gsub("out_date","cov_cat_priorhistory",active_analyses$outcome[i]))
     df <- df[df$priorhistory=="notrecent",]
 
     df[,c("sub_bin_covid19_confirmed_history","priorhistory")] <- NULL
