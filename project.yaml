@@ -8179,7 +8179,6 @@ actions:
   make_model_output:
     run: r:latest analysis/model/make_model_output.R
     needs:
-    - cox_ipw-cohort_prevax-main-addiction
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-addiction
     - cox_ipw-cohort_vax-main-addiction
     - cox_ipw-cohort_vax-sub_covid_hospitalised-addiction
@@ -8189,7 +8188,6 @@ actions:
     - cox_ipw-cohort_unvax-sub_covid_hospitalised-addiction
     - cox_ipw-cohort_unvax-sub_covid_nonhospitalised-addiction
     - cox_ipw-cohort_unvax-sub_covid_history-addiction
-    - cox_ipw-cohort_prevax-main-anxiety_general
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-anxiety_general
     - cox_ipw-cohort_prevax-sub_sex_female-anxiety_general
     - cox_ipw-cohort_prevax-sub_sex_male-anxiety_general
@@ -8202,7 +8200,6 @@ actions:
     - cox_ipw-cohort_prevax-sub_ethnicity_mixed-anxiety_general
     - cox_ipw-cohort_prevax-sub_ethnicity_asian-anxiety_general
     - cox_ipw-cohort_prevax-sub_ethnicity_other-anxiety_general
-    - cox_ipw-cohort_vax-main-anxiety_general
     - cox_ipw-cohort_vax-sub_covid_hospitalised-anxiety_general
     - cox_ipw-cohort_vax-sub_covid_nonhospitalised-anxiety_general
     - cox_ipw-cohort_vax-sub_covid_history-anxiety_general
@@ -8232,7 +8229,6 @@ actions:
     - cox_ipw-cohort_unvax-sub_ethnicity_mixed-anxiety_general
     - cox_ipw-cohort_unvax-sub_ethnicity_asian-anxiety_general
     - cox_ipw-cohort_unvax-sub_ethnicity_other-anxiety_general
-    - cox_ipw-cohort_prevax-main-anxiety_ptsd
     - cox_ipw-cohort_prevax-sub_covid_hospitalised-anxiety_ptsd
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-anxiety_ptsd
     - cox_ipw-cohort_vax-main-anxiety_ptsd
@@ -8242,7 +8238,6 @@ actions:
     - cox_ipw-cohort_unvax-sub_covid_hospitalised-anxiety_ptsd
     - cox_ipw-cohort_unvax-sub_covid_nonhospitalised-anxiety_ptsd
     - cox_ipw-cohort_unvax-sub_covid_history-anxiety_ptsd
-    - cox_ipw-cohort_prevax-main-depression
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-depression
     - cox_ipw-cohort_prevax-sub_sex_female-depression
     - cox_ipw-cohort_prevax-sub_sex_male-depression
@@ -8255,7 +8250,6 @@ actions:
     - cox_ipw-cohort_prevax-sub_ethnicity_mixed-depression
     - cox_ipw-cohort_prevax-sub_ethnicity_asian-depression
     - cox_ipw-cohort_prevax-sub_ethnicity_other-depression
-    - cox_ipw-cohort_vax-main-depression
     - cox_ipw-cohort_vax-sub_covid_hospitalised-depression
     - cox_ipw-cohort_vax-sub_covid_nonhospitalised-depression
     - cox_ipw-cohort_vax-sub_covid_history-depression
@@ -8288,7 +8282,6 @@ actions:
     - cox_ipw-cohort_prevax-main-eating_disorders
     - cox_ipw-cohort_prevax-sub_covid_hospitalised-eating_disorders
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-eating_disorders
-    - cox_ipw-cohort_prevax-main-self_harm
     - cox_ipw-cohort_prevax-sub_covid_hospitalised-self_harm
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-self_harm
     - cox_ipw-cohort_prevax-sub_sex_female-self_harm
@@ -8302,7 +8295,6 @@ actions:
     - cox_ipw-cohort_prevax-sub_ethnicity_mixed-self_harm
     - cox_ipw-cohort_prevax-sub_ethnicity_asian-self_harm
     - cox_ipw-cohort_prevax-sub_ethnicity_other-self_harm
-    - cox_ipw-cohort_vax-main-self_harm
     - cox_ipw-cohort_vax-sub_covid_hospitalised-self_harm
     - cox_ipw-cohort_vax-sub_covid_nonhospitalised-self_harm
     - cox_ipw-cohort_vax-sub_covid_history-self_harm
@@ -8332,7 +8324,6 @@ actions:
     - cox_ipw-cohort_unvax-sub_ethnicity_mixed-self_harm
     - cox_ipw-cohort_unvax-sub_ethnicity_asian-self_harm
     - cox_ipw-cohort_unvax-sub_ethnicity_other-self_harm
-    - cox_ipw-cohort_prevax-main-serious_mental_illness
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-serious_mental_illness
     - cox_ipw-cohort_prevax-sub_sex_female-serious_mental_illness
     - cox_ipw-cohort_prevax-sub_sex_male-serious_mental_illness
@@ -8345,7 +8336,6 @@ actions:
     - cox_ipw-cohort_prevax-sub_ethnicity_mixed-serious_mental_illness
     - cox_ipw-cohort_prevax-sub_ethnicity_asian-serious_mental_illness
     - cox_ipw-cohort_prevax-sub_ethnicity_other-serious_mental_illness
-    - cox_ipw-cohort_vax-main-serious_mental_illness
     - cox_ipw-cohort_vax-sub_covid_hospitalised-serious_mental_illness
     - cox_ipw-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness
     - cox_ipw-cohort_vax-sub_covid_history-serious_mental_illness
@@ -8375,7 +8365,6 @@ actions:
     - cox_ipw-cohort_unvax-sub_ethnicity_mixed-serious_mental_illness
     - cox_ipw-cohort_unvax-sub_ethnicity_asian-serious_mental_illness
     - cox_ipw-cohort_unvax-sub_ethnicity_other-serious_mental_illness
-    - cox_ipw-cohort_prevax-main-suicide
     - cox_ipw-cohort_prevax-sub_covid_hospitalised-suicide
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-suicide
     outputs:
