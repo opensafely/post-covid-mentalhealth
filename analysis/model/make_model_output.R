@@ -100,6 +100,7 @@ redact$action <- (redact$min_total <= disclosure_threshold) |
 
 df$lnhr <- ifelse(df$name %in% redact[redact$action==TRUE,]$name,"[redact]",df$lnhr)
 df$se_lnhr <- ifelse(df$name %in% redact[redact$action==TRUE,]$name,"[redact]",df$se_lnhr)
+df$hr <- ifelse(df$name %in% redact[redact$action==TRUE,]$name,"[redact]",df$hr)
 df$conf_low <- ifelse(df$name %in% redact[redact$action==TRUE,]$name,"[redact]",df$conf_low)
 df$conf_high <- ifelse(df$name %in% redact[redact$action==TRUE,]$name,"[redact]",df$conf_high)
 df$N_total <- ifelse(df$name %in% redact[redact$action==TRUE,]$name,"[redact]",df$N_total)
