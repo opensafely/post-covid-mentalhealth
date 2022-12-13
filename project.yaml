@@ -8340,6 +8340,7 @@ actions:
     - cox_ipw-cohort_unvax-sub_covid_hospitalised-self_harm
     - cox_ipw-cohort_unvax-sub_covid_nonhospitalised-self_harm
     - cox_ipw-cohort_unvax-sub_covid_history-self_harm
+    - cox_ipw-cohort_unvax-sub_priorhistory_recent-self_harm
     - cox_ipw-cohort_unvax-sub_sex_female-self_harm
     - cox_ipw-cohort_unvax-sub_sex_male-self_harm
     - cox_ipw-cohort_unvax-sub_age_18_39-self_harm
