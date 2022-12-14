@@ -24,11 +24,11 @@ cohorts <- unique(active_analyses$cohort)
 
 success <- readxl::read_excel("~/OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
                               sheet = "mentalhealth",
-                      col_types = c("text","text", "text", "text", "text", "text",
-                                    "text", "text", "text", "text", "text",
-                                    "text", "text", "text", "text", "text",
-                                    "text", "text", "text", "text",
-                                    "skip", "skip"))
+                              col_types = c("text","text", "text", "text", "text", "text",
+                                            "text", "text", "text", "text", "text",
+                                            "text", "text", "text", "text", "text",
+                                            "text", "text", "text", "text",
+                                            "skip", "skip"))
 
 success <- tidyr::pivot_longer(success,
                                cols = setdiff(colnames(success),c("outcome","cohort")),
@@ -114,15 +114,16 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
       )
     ),
     
+    # action(
+    #   name = glue("describe_model_input-{name}"),
+    #   run = glue("r:latest analysis/describe_file.R model_input-{name} rds"),
+    #   needs = list(glue("make_model_input-{name}")),
+    #   moderately_sensitive = list(
+    #     describe_model_input = glue("output/describe-model_input-{name}.txt")
+    #   )
+    # ),
+    
     action(
-      name = glue("describe_model_input-{name}"),
-      run = glue("r:latest analysis/describe_file.R model_input-{name} rds"),
-      needs = list(glue("make_model_input-{name}")),
-      moderately_sensitive = list(
-        describe_model_input = glue("output/describe-model_input-{name}.txt")
-      )
-    ),
-        action(
       name = glue("cox_ipw-{name}"),
       run = glue("cox-ipw:v0.0.15 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
       needs = list(glue("make_model_input-{name}")),
@@ -373,13 +374,42 @@ actions_list <- splice(
   ),
   
   comment("Stage 6 - make model output"),
-
+  
   action(
     name = "make_model_output",
     run = "r:latest analysis/model/make_model_output.R",
     needs = as.list(paste0("cox_ipw-",success$name)),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv")
+    )
+  ),
+  
+  comment("Temp"),
+  
+  action(
+    name = "cox_ipw-cohort_prevax-main-depression-v0.0.9",
+    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-main-depression.rds --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2020-01-01 --study_stop=2021-06-18 --cut_points=28;197;535 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-main-depression-v0.0.9.csv",
+    needs = as.list("make_model_input-cohort_prevax-main-depression"),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output-cohort_prevax-main-depression-v0.0.9.csv")
+    )
+  ),
+  
+  action(
+    name = "cox_ipw-cohort_vax-main-depression-v0.0.9",
+    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-main-depression.rds --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-depression-v0.0.9",
+    needs = as.list("make_model_input-cohort_prevax-main-depression"),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output-cohort_vax-main-depression-v0.0.9.csv")
+    )
+  ),
+  
+  action(
+    name = "cox_ipw-cohort_unvax-main-depression-v0.0.9",
+    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-main-depression.rds --ipw=FALSE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-main-depression-v0.0.9",
+    needs = as.list("make_model_input-cohort_prevax-main-depression"),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output-cohort_unvax-main-depression-v0.0.9.csv")
     )
   )
   
