@@ -6035,7 +6035,7 @@ actions:
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
       --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-depression-v0.0.9
     needs:
-    - make_model_input-cohort_prevax-main-depression
+    - make_model_input-cohort_vax-main-depression
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-main-depression-v0.0.9.csv
@@ -6048,7 +6048,7 @@ actions:
       --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5
       --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-main-depression-v0.0.9
     needs:
-    - make_model_input-cohort_prevax-main-depression
+    - make_model_input-cohort_unvax-main-depression
     outputs:
       moderately_sensitive:
         model_output: output/model_output-cohort_unvax-main-depression-v0.0.9.csv

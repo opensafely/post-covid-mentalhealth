@@ -398,7 +398,7 @@ actions_list <- splice(
   action(
     name = "cox_ipw-cohort_vax-main-depression-v0.0.9",
     run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-main-depression.rds --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-depression-v0.0.9",
-    needs = as.list("make_model_input-cohort_prevax-main-depression"),
+    needs = as.list("make_model_input-cohort_vax-main-depression"),
     moderately_sensitive = list(
       model_output = glue("output/model_output-cohort_vax-main-depression-v0.0.9.csv")
     )
@@ -407,7 +407,7 @@ actions_list <- splice(
   action(
     name = "cox_ipw-cohort_unvax-main-depression-v0.0.9",
     run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-main-depression.rds --ipw=FALSE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-main-depression-v0.0.9",
-    needs = as.list("make_model_input-cohort_prevax-main-depression"),
+    needs = as.list("make_model_input-cohort_unvax-main-depression"),
     moderately_sensitive = list(
       model_output = glue("output/model_output-cohort_unvax-main-depression-v0.0.9.csv")
     )
