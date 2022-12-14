@@ -34,7 +34,6 @@ covariate_sex <- "cov_cat_sex"
 covariate_age <- "cov_num_age"
 cox_start <- "index_date"
 cox_stop <- "end_date"
-controls_per_case <- 20L
 total_event_threshold <- 50L
 episode_event_threshold <- 5L
 covariate_threshold <- 5L
@@ -75,6 +74,9 @@ for (c in cohorts) {
   ipw <- ifelse(c=="unvax", FALSE, TRUE)
   
   for (i in c(outcomes_runmain, outcomes_runall)) {
+    
+    controls_per_case <- ifelse(grepl("serious_mental_illness",i) | grepl("anxiety_general",i) | grepl("depression",i),
+                                10L, 20L)
     
     ## analysis: main ----------------------------------------------------------
     
@@ -171,6 +173,9 @@ for (c in cohorts) {
   }
   
   for (i in outcomes_runall) {
+    
+    controls_per_case <- ifelse(grepl("serious_mental_illness",i) | grepl("anxiety_general",i) | grepl("depression",i),
+                                10L, 20L)
     
     ## analysis: sub_sex_female ------------------------------------------------
     
