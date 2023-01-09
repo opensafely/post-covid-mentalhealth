@@ -5,7 +5,6 @@ library(glue)
 library(readr)
 library(dplyr)
 
-
 ###########################
 # Load information to use #
 ###########################
