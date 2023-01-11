@@ -204,7 +204,7 @@ venn_output <- function(cohort, group){
 # group <- unique(active_analyses$outcome)
 # group <- unique(str_remove(active_analyses$outcome, "out_date_"))
 
-#outcomes <- c("addiction", "anxiety_general", "anxiety_ocd", "anxiety_ptsd", "depression", "eating_disorders", "self_harm", "serious_mental_illness", "suicide") 
+group <- c("addiction", "anxiety_general", "anxiety_ocd", "anxiety_ptsd", "depression", "eating_disorders", "self_harm", "serious_mental_illness", "suicide")
 
 # if (cohort_name == "all") {
 #   venn_output("prevax")
@@ -213,6 +213,16 @@ venn_output <- function(cohort, group){
 # } else{
 #   venn_output(cohort_name)
 # }
+
+for(i in group){
+  if (cohort == "all") {
+    venn_output("prevax", i)
+    venn_output("vax", i)
+    venn_output("unvax", i)
+  } else{
+    venn_output(cohort, i)
+  }
+}
 
 # for(i in group){
 #   if (cohort_name == "all") {
@@ -223,11 +233,11 @@ venn_output <- function(cohort, group){
 #     venn_output(cohort_name, i)
 #   }
 # }
-
-if (cohort == "all") {
-  venn_output("prevax", i)
-  venn_output("vax", i)
-  venn_output("unvax", i)
-} else{
-  venn_output(cohort, i)
-}
+# 
+# if (cohort == "all") {
+#   venn_output("prevax", i)
+#   venn_output("vax", i)
+#   venn_output("unvax", i)
+# } else{
+#   venn_output(cohort, i)
+# }
