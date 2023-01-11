@@ -5,7 +5,6 @@ library(glue)
 library(readr)
 library(dplyr)
 
-
 ###########################
 # Load information to use #
 ###########################
@@ -19,33 +18,24 @@ defaults_list <- list(
 active_analyses <- read_rds("lib/active_analyses.rds")
 active_analyses <- active_analyses[order(active_analyses$analysis,active_analyses$cohort,active_analyses$outcome),]
 cohorts <- unique(active_analyses$cohort)
-names_prevax <- active_analyses[active_analyses$analysis == "main" & grepl("_prevax-main-", active_analyses$name),]$name
-names_vax <- active_analyses[active_analyses$analysis == "main" & grepl("_vax-main-", active_analyses$name),]$name
-names_unvax <- active_analyses[active_analyses$analysis == "main" & grepl("_unvax-main-", active_analyses$name),]$name
 
 # Determine which outputs are ready --------------------------------------------
 
-# success <- readxl::read_excel("C:/Users/rs22981/OneDrive - University of Bristol/Projects/post-covid-outcome-tracker.xlsx", 
-#                               sheet = "mentalhealth",
-#                       col_types = c("text","text", "text", "text", "text", "text",
-#                                     "text", "text", "text", "text", "text",
-#                                     "text", "text", "text", "text", "text", 
-#                                     "text", "text", "text", "text",
-#                                     "skip", "skip"))
-# 
-# success <- tidyr::pivot_longer(success, 
-#                                cols = setdiff(colnames(success),c("outcome","cohort")), 
-#                                names_to = c("analysis","priorhistory_var"), 
-#                                names_sep = "-")
-# 
-# success$priorhistory_var <- ifelse(is.na(success$priorhistory_var),"",success$priorhistory_var)
-# 
-# success$name <- paste0("cohort_",success$cohort, "-", 
-#                   success$analysis, "-", 
-#                   success$outcome, 
-#                   ifelse(success$priorhistory_var=="","", paste0("-",success$priorhistory_var,"_",success$outcome)))
-# 
-# success <- success[success$value %in% c("Success","<50 events"),]                
+success <- readxl::read_excel("~/OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
+                              sheet = "mentalhealth",
+                              col_types = c("text","text", "text", "text", "text", "text",
+                                            "text", "text", "text", "text", "text",
+                                            "text", "text", "text", "text", "text",
+                                            "text", "text", "text", "text",
+                                            "skip", "skip"))
+
+success <- tidyr::pivot_longer(success,
+                               cols = setdiff(colnames(success),c("outcome","cohort")),
+                               names_to = "analysis")
+
+success$name <- paste0("cohort_",success$cohort, "-",success$analysis, "-",success$outcome)
+
+success <- success[grepl("success",success$value, ignore.case = TRUE),]
 
 # Create action functions ------------------------------------------------------
 
@@ -123,17 +113,18 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
       )
     ),
     
+    # action(
+    #   name = glue("describe_model_input-{name}"),
+    #   run = glue("r:latest analysis/describe_file.R model_input-{name} rds"),
+    #   needs = list(glue("make_model_input-{name}")),
+    #   moderately_sensitive = list(
+    #     describe_model_input = glue("output/describe-model_input-{name}.txt")
+    #   )
+    # ),
+    
     action(
-      name = glue("describe_model_input-{name}"),
-      run = glue("r:latest analysis/describe_file.R model_input-{name} rds"),
-      needs = list(glue("make_model_input-{name}")),
-      moderately_sensitive = list(
-        describe_model_input = glue("output/describe-model_input-{name}.txt")
-      )
-    ),
-        action(
       name = glue("cox_ipw-{name}"),
-      run = glue("cox-ipw:v0.0.13 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
+      run = glue("cox-ipw:v0.0.17 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
       needs = list(glue("make_model_input-{name}")),
       moderately_sensitive = list(
         model_output = glue("output/model_output-{name}.csv"))
@@ -345,38 +336,15 @@ actions_list <- splice(
   #   unlist(lapply(cohorts, function(x) table2(cohort = x)), recursive = FALSE)
   # ),
   
-  comment("Stage 4a - Venn diagrams prevax"),
-
-  action(
-    name = "stage4_venn_diagram_prevax",
-    run = "r:latest analysis/descriptives/venn_diagram.R prevax",
-    needs = as.list(c("preprocess_data_prevax", glue("make_model_input-{names_prevax}"))),
-    moderately_sensitive = list(
-      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_number_check_prevax.csv")
-    )
-  ),
-  
-  comment("Stage 4b - Venn diagrams vax"),
-
-  action(
-    name = "stage4_venn_diagram_vax",
-    run = "r:latest analysis/descriptives/venn_diagram.R vax",
-    needs = as.list(c("preprocess_data_vax", glue("make_model_input-{names_vax}"))),
-    moderately_sensitive = list(
-      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_number_check_vax.csv")
-    )
-  ),
-
-  comment("Stage 4c - Venn diagrams unvax"),
-
-  action(
-    name = "stage4_venn_diagram_unvax",
-    run = glue("r:latest analysis/descriptives/venn_diagram.R unvax"),
-    needs = as.list(c("preprocess_data_unvax", glue("make_model_input-{names_unvax}"))),
-    moderately_sensitive = list(
-      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_number_check_unvax.csv")
-    )
-  ),
+  # comment("Stage 4 - Venn diagrams"),
+  # 
+  #  action(
+  #    name = "stage4_venn_diagram_all",
+  #    run = "r:latest analysis/descriptives/venn_diagram.R all",
+  #    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
+  #    moderately_sensitive = list(
+  #      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
+  #  ),
   
   comment("Stage 5 - Run models"),
   
@@ -402,18 +370,47 @@ actions_list <- splice(
                                                    covariate_threshold = active_analyses$covariate_threshold[x],
                                                    age_spline = active_analyses$age_spline[x])), recursive = FALSE
     )
-  )#,
+  ),
   
-  # comment("Stage 6 - make model output"),
-  # 
-  # action(
-  #   name = "make_model_output",
-  #   run = "r:latest analysis/model/make_model_output.R",
-  #   needs = as.list(paste0("cox_ipw-",success$name)),
-  #   moderately_sensitive = list(
-  #     model_output = glue("output/model_output.csv")
-  #   )
-  # )
+  comment("Stage 6 - make model output"),
+  
+  action(
+    name = "make_model_output",
+    run = "r:latest analysis/model/make_model_output.R",
+    needs = as.list(paste0("cox_ipw-",success$name)),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output.csv")
+    )
+  ),
+  
+  comment("Temp"),
+  
+  action(
+    name = "cox_ipw-cohort_prevax-main-depression-v0.0.9",
+    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-main-depression.rds --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2020-01-01 --study_stop=2021-06-18 --cut_points=28;197;535 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-main-depression-v0.0.9.csv",
+    needs = as.list("make_model_input-cohort_prevax-main-depression"),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output-cohort_prevax-main-depression-v0.0.9.csv")
+    )
+  ),
+  
+  action(
+    name = "cox_ipw-cohort_vax-main-depression-v0.0.9",
+    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-main-depression.rds --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-depression-v0.0.9",
+    needs = as.list("make_model_input-cohort_vax-main-depression"),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output-cohort_vax-main-depression-v0.0.9.csv")
+    )
+  ),
+  
+  action(
+    name = "cox_ipw-cohort_unvax-main-depression-v0.0.9",
+    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-main-depression.rds --ipw=FALSE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-main-depression-v0.0.9",
+    needs = as.list("make_model_input-cohort_unvax-main-depression"),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output-cohort_unvax-main-depression-v0.0.9.csv")
+    )
+  )
   
 )
 
