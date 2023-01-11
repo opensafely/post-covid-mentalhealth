@@ -166,6 +166,63 @@ actions:
       moderately_sensitive:
         describe_model_input: output/describe-input_unvax_stage1.txt
 
+  ## Stage 4a - Venn diagrams prevax 
+
+  stage4_venn_diagram_prevax:
+    run: r:latest analysis/descriptives/venn_diagram.R prevax
+    needs:
+    - preprocess_data_prevax
+    - make_model_input-cohort_prevax-main-addiction
+    - make_model_input-cohort_prevax-main-anxiety_general
+    - make_model_input-cohort_prevax-main-anxiety_ocd
+    - make_model_input-cohort_prevax-main-anxiety_ptsd
+    - make_model_input-cohort_prevax-main-depression
+    - make_model_input-cohort_prevax-main-eating_disorders
+    - make_model_input-cohort_prevax-main-self_harm
+    - make_model_input-cohort_prevax-main-serious_mental_illness
+    - make_model_input-cohort_prevax-main-suicide
+    outputs:
+      moderately_sensitive:
+        venn_diagram: output/review/venn-diagrams/venn_diagram_number_check_prevax.csv
+
+  ## Stage 4b - Venn diagrams vax 
+
+  stage4_venn_diagram_vax:
+    run: r:latest analysis/descriptives/venn_diagram.R vax
+    needs:
+    - preprocess_data_vax
+    - make_model_input-cohort_vax-main-addiction
+    - make_model_input-cohort_vax-main-anxiety_general
+    - make_model_input-cohort_vax-main-anxiety_ocd
+    - make_model_input-cohort_vax-main-anxiety_ptsd
+    - make_model_input-cohort_vax-main-depression
+    - make_model_input-cohort_vax-main-eating_disorders
+    - make_model_input-cohort_vax-main-self_harm
+    - make_model_input-cohort_vax-main-serious_mental_illness
+    - make_model_input-cohort_vax-main-suicide
+    outputs:
+      moderately_sensitive:
+        venn_diagram: output/review/venn-diagrams/venn_diagram_number_check_vax.csv
+
+  ## Stage 4c - Venn diagrams unvax 
+
+  stage4_venn_diagram_unvax:
+    run: r:latest analysis/descriptives/venn_diagram.R unvax
+    needs:
+    - preprocess_data_unvax
+    - make_model_input-cohort_unvax-main-addiction
+    - make_model_input-cohort_unvax-main-anxiety_general
+    - make_model_input-cohort_unvax-main-anxiety_ocd
+    - make_model_input-cohort_unvax-main-anxiety_ptsd
+    - make_model_input-cohort_unvax-main-depression
+    - make_model_input-cohort_unvax-main-eating_disorders
+    - make_model_input-cohort_unvax-main-self_harm
+    - make_model_input-cohort_unvax-main-serious_mental_illness
+    - make_model_input-cohort_unvax-main-suicide
+    outputs:
+      moderately_sensitive:
+        venn_diagram: output/review/venn-diagrams/venn_diagram_number_check_unvax.csv
+
   ## Stage 5 - Run models 
 
   make_model_input-cohort_prevax-main-addiction:
