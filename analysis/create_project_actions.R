@@ -21,7 +21,7 @@ cohorts <- unique(active_analyses$cohort)
 
 # Determine which outputs are ready --------------------------------------------
 
-success <- readxl::read_excel("~/OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
+success <- readxl::read_excel("C:/Users/aw15952/OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
                               sheet = "mentalhealth",
                               col_types = c("text","text", "text", "text", "text", "text",
                                             "text", "text", "text", "text", "text",

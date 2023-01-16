@@ -5914,6 +5914,7 @@ actions:
     - cox_ipw-cohort_prevax-main-self_harm
     - cox_ipw-cohort_prevax-sub_covid_hospitalised-self_harm
     - cox_ipw-cohort_prevax-sub_covid_nonhospitalised-self_harm
+    - cox_ipw-cohort_prevax-sub_priorhistory_recent-self_harm
     - cox_ipw-cohort_prevax-sub_sex_female-self_harm
     - cox_ipw-cohort_prevax-sub_sex_male-self_harm
     - cox_ipw-cohort_prevax-sub_age_18_39-self_harm
