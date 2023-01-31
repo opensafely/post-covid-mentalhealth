@@ -21,7 +21,7 @@ cohorts <- unique(active_analyses$cohort)
 
 # Determine which outputs are ready --------------------------------------------
 
-success <- readxl::read_excel("C:/Users/aw15952/OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
+success <- readxl::read_excel("../../OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
                               sheet = "mentalhealth",
                               col_types = c("text","text", "text", "text", "text", "text",
                                             "text", "text", "text", "text", "text",
@@ -141,7 +141,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
 #       arguments = c(cohort),
 #       needs = list("stage1_data_cleaning_all"),
 #       moderately_sensitive = list(
-#         input_table_2 = glue("output/review/descriptives/table2_{cohort}.csv")
+#         input_table_2 = glue("output/descriptives/table2_{cohort}.csv")
 #       )
 #     )
 #   )
@@ -166,8 +166,8 @@ actions_list <- splice(
     run = "r:latest analysis/metadates.R",
     highly_sensitive = list(
       study_dates_json = glue("output/study_dates.json"),
-      vax_jcvi_groups= glue("output/vax_jcvi_groups.csv"),
-      vax_eligible_dates= ("output/vax_eligible_dates.csv")
+      vax_jcvi_groups= glue("output/vax_jcvi_groups.csv.gz"),
+      vax_eligible_dates= ("output/vax_eligible_dates.csv.gz")
     )
   ),
   
@@ -175,10 +175,10 @@ actions_list <- splice(
   
   action(
     name = "generate_study_population_prelim",
-    run = "cohortextractor:latest generate_cohort --study-definition study_definition_prelim --output-format feather",
+    run = "cohortextractor:latest generate_cohort --study-definition study_definition_prelim --output-format csv.gz",
     needs = list("vax_eligibility_inputs"),
     highly_sensitive = list(
-      cohort = glue("output/input_prelim.feather")
+      cohort = glue("output/input_prelim.csv.gz")
     )
   ),
   
@@ -189,7 +189,7 @@ actions_list <- splice(
     run = "r:latest analysis/prelim.R",
     needs = list("vax_eligibility_inputs","generate_study_population_prelim"),
     highly_sensitive = list(
-      index_dates = glue("output/index_dates.csv")
+      index_dates = glue("output/index_dates.csv.gz")
     )
   ),
   
@@ -233,8 +233,8 @@ actions_list <- splice(
     run = "r:latest analysis/preprocess/preprocess_data.R prevax",
     needs = list( "generate_index_dates","generate_study_population_prevax"),
     moderately_sensitive = list(
-      describe = glue("output/not-for-review/describe_input_prevax_stage0.txt"),
-      describe_venn = glue("output/not-for-review/describe_venn_prevax.txt")
+      describe = glue("output/describe_input_prevax_stage0.txt"),
+      describe_venn = glue("output/describe_venn_prevax.txt")
     ),
     highly_sensitive = list(
       cohort = glue("output/input_prevax.rds"),
@@ -249,8 +249,8 @@ actions_list <- splice(
     run = "r:latest analysis/preprocess/preprocess_data.R vax",
     needs = list("generate_index_dates","generate_study_population_vax"),
     moderately_sensitive = list(
-      describe = glue("output/not-for-review/describe_input_vax_stage0.txt"),
-      descrive_venn = glue("output/not-for-review/describe_venn_vax.txt")
+      describe = glue("output/describe_input_vax_stage0.txt"),
+      descrive_venn = glue("output/describe_venn_vax.txt")
     ),
     highly_sensitive = list(
       cohort = glue("output/input_vax.rds"),
@@ -265,8 +265,8 @@ actions_list <- splice(
     run = "r:latest analysis/preprocess/preprocess_data.R unvax",
     needs = list("generate_index_dates", "generate_study_population_unvax"),
     moderately_sensitive = list(
-      describe = glue("output/not-for-review/describe_input_unvax_stage0.txt"),
-      describe_venn = glue("output/not-for-review/describe_venn_unvax.txt")
+      describe = glue("output/describe_input_unvax_stage0.txt"),
+      describe_venn = glue("output/describe_venn_unvax.txt")
     ),
     highly_sensitive = list(
       cohort = glue("output/input_unvax.rds"),
@@ -281,10 +281,10 @@ actions_list <- splice(
     run = "r:latest analysis/preprocess/Stage1_data_cleaning.R all",
     needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax","vax_eligibility_inputs"),
     moderately_sensitive = list(
-      refactoring = glue("output/not-for-review/meta_data_factors_*.csv"),
-      QA_rules = glue("output/review/descriptives/QA_summary_*.csv"),
-      IE_criteria = glue("output/review/descriptives/Cohort_flow_*.csv"),
-      histograms = glue("output/not-for-review/numeric_histograms_*.svg")
+      refactoring = glue("output/meta_data_factors_*.csv"),
+      QA_rules = glue("output/descriptives/QA_summary_*.csv"),
+      IE_criteria = glue("output/descriptives/Cohort_flow_*.csv"),
+      histograms = glue("output/numeric_histograms_*.svg")
     ),
     highly_sensitive = list(
       cohort = glue("output/input_*.rds")
@@ -325,9 +325,9 @@ actions_list <- splice(
   #   run = "r:latest analysis/descriptives/Stage2_missing_table1.R all",
   #   needs = list("stage1_data_cleaning_all"),
   #   moderately_sensitive = list(
-  #     Missing_RangeChecks = glue("output/not-for-review/Check_missing_range_*.csv"),
-  #     DateChecks = glue("output/not-for-review/Check_dates_range_*.csv"),
-  #     Descriptive_Table = glue("output/review/descriptives/Table1_*.csv")
+  #     Missing_RangeChecks = glue("output/Check_missing_range_*.csv"),
+  #     DateChecks = glue("output/Check_dates_range_*.csv"),
+  #     Descriptive_Table = glue("output/descriptives/Table1_*.csv")
   #   )
   # ),
   
@@ -343,7 +343,7 @@ actions_list <- splice(
   #    run = "r:latest analysis/descriptives/venn_diagram.R all",
   #    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax", "stage1_data_cleaning_all","stage1_end_date_table_prevax", "stage1_end_date_table_vax", "stage1_end_date_table_unvax"),
   #    moderately_sensitive = list(
-  #      venn_diagram = glue("output/review/venn-diagrams/venn_diagram_*"))
+  #      venn_diagram = glue("output/venn-diagrams/venn_diagram_*"))
   #  ),
   
   comment("Stage 5 - Run models"),

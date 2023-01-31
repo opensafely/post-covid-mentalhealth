@@ -28,25 +28,25 @@ from grouping_variables import (
     end_date,
     pandemic_start
 )
+
 import json
+
 study = StudyDefinition(
 
     # Specify index date for study
     index_date = pandemic_start,
 
     # Configure the expectations framework
-    default_expectations={
-        "date": {"earliest": study_dates["earliest_expec"], "latest": "today"},
-        "rate": "uniform",
-        "incidence": 0.5,
-    },
+        default_expectations={
+            "date": {"earliest": study_dates["earliest_expec"], "latest": "today"},
+            "rate": "uniform",
+            "incidence": 0.5,
+        },
 
-    # Define the study population 
-    # NB: all inclusions and exclusions are performed in stage 1
-    population = patients.all(
-    ), 
+    # Define the study population (NB: all inclusions and exclusions are performed in stage 1)
+        population = patients.all(), 
 
-# Define death date
+    # Define death date
 
         ## Primary care
         primary_care_death_date=patients.with_death_recorded_in_primary_care(
@@ -58,6 +58,7 @@ study = StudyDefinition(
                 "rate": "exponential_increase",
             },
         ),
+
         ## ONS
         ons_died_from_any_cause_date=patients.died_from_any_cause(
             on_or_after="index_date",
@@ -68,6 +69,7 @@ study = StudyDefinition(
                 "rate": "exponential_increase",
             },
         ),
+
         ## Combined
         death_date=patients.minimum_of(
             "primary_care_death_date", "ons_died_from_any_cause_date"
@@ -76,42 +78,42 @@ study = StudyDefinition(
     # COVID-19 Vaccinations
 
         ## Any covid vaccination, identified by target disease
-        vax_date_covid_1=patients.with_tpp_vaccination_record(
-            target_disease_matches="SARS-2 CORONAVIRUS",
-            on_or_after=study_dates["vax1_earliest"],
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["pandemic_start"], "latest": "today"},
-                "incidence": 0.7
-            },
-        ),
-        vax_date_covid_2=patients.with_tpp_vaccination_record(
-            target_disease_matches="SARS-2 CORONAVIRUS",
-            on_or_after="vax_date_covid_1 + 1 day",
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["pandemic_start"], "latest" : "today"}, # dates can only be 'index_date','today', or specified date
-                "incidence": 0.6
-            },
-        ),
 
-        vax_date_covid_3=patients.with_tpp_vaccination_record(
-            target_disease_matches="SARS-2 CORONAVIRUS",
-            on_or_after="vax_date_covid_2 + 1 day",
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["pandemic_start"], "latest" : "today"}, # dates can only be 'index_date','today', or specified date
-                "incidence": 0.5
-            },
-        ),
+            vax_date_covid_1=patients.with_tpp_vaccination_record(
+                target_disease_matches="SARS-2 CORONAVIRUS",
+                on_or_after=study_dates["vax1_earliest"],
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["pandemic_start"], "latest": "today"},
+                    "incidence": 0.7
+                },
+            ),
+            vax_date_covid_2=patients.with_tpp_vaccination_record(
+                target_disease_matches="SARS-2 CORONAVIRUS",
+                on_or_after="vax_date_covid_1 + 1 day",
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["pandemic_start"], "latest" : "today"}, # dates can only be 'index_date','today', or specified date
+                    "incidence": 0.6
+                },
+            ),
+            vax_date_covid_3=patients.with_tpp_vaccination_record(
+                target_disease_matches="SARS-2 CORONAVIRUS",
+                on_or_after="vax_date_covid_2 + 1 day",
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["pandemic_start"], "latest" : "today"}, # dates can only be 'index_date','today', or specified date
+                    "incidence": 0.5
+                },
+            ),
 
-        ## Pfizer BioNTech
+        ## Pfizer BioNTech vaccination
         ## NB: may be patient's first COVID vaccine dose or their second if mixed types are given
         
         vax_date_Pfizer_1=patients.with_tpp_vaccination_record(
@@ -148,85 +150,89 @@ study = StudyDefinition(
             },
         ),
         
-        ## Oxford AZ 
+        ## Oxford AZ vaccination
         ## NB: may be patient's first COVID vaccine dose or their second if mixed types are given
-        vax_date_AstraZeneca_1=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 Vaccine Vaxzevria 0.5ml inj multidose vials (AstraZeneca)",
-            on_or_after=study_dates["vax1_earliest"],
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["vax1_earliest"], "latest" : "today"},
-                "incidence": 0.5
-            },
-        ),
-        vax_date_AstraZeneca_2=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 Vaccine Vaxzevria 0.5ml inj multidose vials (AstraZeneca)",
-            on_or_after="vax_date_AstraZeneca_1 + 1 day",  
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["vax2_earliest"], "latest" : "today"},
-                "incidence": 0.5
-            },
-        ),
-        vax_date_AstraZeneca_3=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 Vaccine Vaxzevria 0.5ml inj multidose vials (AstraZeneca)",
-            on_or_after="vax_date_AstraZeneca_2 + 1 day",  
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["vax3_earliest"], "latest" : "today"},
-                "incidence": 0.5
-            },
-        ),
+
+            vax_date_AstraZeneca_1=patients.with_tpp_vaccination_record(
+                product_name_matches="COVID-19 Vaccine Vaxzevria 0.5ml inj multidose vials (AstraZeneca)",
+                on_or_after=study_dates["vax1_earliest"],
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["vax1_earliest"], "latest" : "today"},
+                    "incidence": 0.5
+                },
+            ),
+            vax_date_AstraZeneca_2=patients.with_tpp_vaccination_record(
+                product_name_matches="COVID-19 Vaccine Vaxzevria 0.5ml inj multidose vials (AstraZeneca)",
+                on_or_after="vax_date_AstraZeneca_1 + 1 day",  
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["vax2_earliest"], "latest" : "today"},
+                    "incidence": 0.5
+                },
+            ),
+            vax_date_AstraZeneca_3=patients.with_tpp_vaccination_record(
+                product_name_matches="COVID-19 Vaccine Vaxzevria 0.5ml inj multidose vials (AstraZeneca)",
+                on_or_after="vax_date_AstraZeneca_2 + 1 day",  
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["vax3_earliest"], "latest" : "today"},
+                    "incidence": 0.5
+                },
+            ),
         
         ## Moderna
         ## NB: may be patient's first COVID vaccine dose or their second if mixed types are given
-        vax_date_Moderna_1=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 mRNA Vaccine Spikevax (nucleoside modified) 0.1mg/0.5mL dose disp for inj MDV (Moderna)",
-            on_or_after=study_dates["vax1_earliest"],
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["vax1_earliest"], "latest" : "today"},
-                "incidence": 0.5
-            },
-        ),            
-        vax_date_Moderna_2=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 mRNA Vaccine Spikevax (nucleoside modified) 0.1mg/0.5mL dose disp for inj MDV (Moderna)",
-            on_or_after="vax_date_Moderna_1 + 1 day",  
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["vax2_earliest"], "latest" : "today"},
-                "incidence": 0.5
-            },
-        ),
-        vax_date_Moderna_3=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 mRNA Vaccine Spikevax (nucleoside modified) 0.1mg/0.5mL dose disp for inj MDV (Moderna)",
-            on_or_after="vax_date_Moderna_2 + 1 day",  
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={
-                "date": {"earliest": study_dates["vax3_earliest"], "latest" : "today"},
-                "incidence": 0.5
-            },
-        ),
-# Define sex 
-    # NB: this is required for JCVI variables hence is defined here
+
+            vax_date_Moderna_1=patients.with_tpp_vaccination_record(
+                product_name_matches="COVID-19 mRNA Vaccine Spikevax (nucleoside modified) 0.1mg/0.5mL dose disp for inj MDV (Moderna)",
+                on_or_after=study_dates["vax1_earliest"],
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["vax1_earliest"], "latest" : "today"},
+                    "incidence": 0.5
+                },
+            ),            
+            vax_date_Moderna_2=patients.with_tpp_vaccination_record(
+                product_name_matches="COVID-19 mRNA Vaccine Spikevax (nucleoside modified) 0.1mg/0.5mL dose disp for inj MDV (Moderna)",
+                on_or_after="vax_date_Moderna_1 + 1 day",  
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["vax2_earliest"], "latest" : "today"},
+                    "incidence": 0.5
+                },
+            ),
+            vax_date_Moderna_3=patients.with_tpp_vaccination_record(
+                product_name_matches="COVID-19 mRNA Vaccine Spikevax (nucleoside modified) 0.1mg/0.5mL dose disp for inj MDV (Moderna)",
+                on_or_after="vax_date_Moderna_2 + 1 day",  
+                find_first_match_in_period=True,
+                returning="date",
+                date_format="YYYY-MM-DD",
+                return_expectations={
+                    "date": {"earliest": study_dates["vax3_earliest"], "latest" : "today"},
+                    "incidence": 0.5
+                },
+            ),
+
+    # Define sex (NB: this is required for JCVI variables hence is defined here)
+
         cov_cat_sex = patients.sex(
             return_expectations = {
             "rate": "universal",
             "category": {"ratios": {"M": 0.49, "F": 0.51}},
             }
         ),
+    
     # Define vaccine eligibility variables
 
         **jcvi_variables,

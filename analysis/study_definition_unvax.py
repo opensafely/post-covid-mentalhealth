@@ -27,7 +27,7 @@ import study_definition_helper_functions as helpers
 from common_variables import generate_common_variables
 (
     dynamic_variables
-) = generate_common_variables(index_date_variable="index_date_unvax", end_date_variable="end_date_unvax", index_date_MH="2021-06-01")
+) = generate_common_variables(index_date_variable="index_date_unvax", end_date_variable="end_date_unvax")
 
 ## Variables for deriving JCVI groups
 from grouping_variables import (
@@ -39,52 +39,48 @@ from grouping_variables import (
 
 study = StudyDefinition(
 
-    # Specify index date for study
-     # Read in index date for study from the output of prelim.R file 
-    index_date_unvax = patients.with_value_from_file(
-        f_path = 'output/index_dates.csv', 
-        returning = 'index_unvax', 
-        returning_type = 'date', 
-        date_format = 'YYYY-MM-DD',     
-    ),
-    end_date_unvax = patients.with_value_from_file(
-        f_path = 'output/index_dates.csv',
-        returning = 'end_unvax',
-        returning_type = 'date', 
-        date_format = 'YYYY-MM-DD',
-    ),
+    # Specify study dates
+        index_date_unvax = patients.with_value_from_file(
+            f_path = 'output/index_dates.csv.gz', 
+            returning = 'index_unvax', 
+            returning_type = 'date', 
+            date_format = 'YYYY-MM-DD',     
+        ),
+        end_date_unvax = patients.with_value_from_file(
+            f_path = 'output/index_dates.csv.gz',
+            returning = 'end_unvax',
+            returning_type = 'date', 
+            date_format = 'YYYY-MM-DD',
+        ),
   
     # Configure the expectations framework
-    default_expectations={
-        "date": {"earliest": study_dates["earliest_expec"], "latest": "today"},
-        "rate": "uniform",
-        "incidence": 0.5,
-    },
+        default_expectations={
+            "date": {"earliest": study_dates["earliest_expec"], "latest": "today"},
+            "rate": "uniform",
+            "incidence": 0.5,
+        },
 
-    # Define the study population 
-    # NB: all inclusions and exclusions are performed in stage 1
-    population = patients.all(),
+    # Define the study population (NB: all inclusions and exclusions are performed in stage 1)
+        population = patients.all(),
 
-  # Define sex 
-    # NB: this is required for JCVI variables hence is defined here
-    cov_cat_sex = patients.with_value_from_file(
-        f_path = 'output/index_dates.csv',
-        returning = 'cov_cat_sex',
-        returning_type = 'str',  
-    ),
+    # Define sex (NB: this is required for JCVI variables hence is defined here)
+        cov_cat_sex = patients.with_value_from_file(
+            f_path = 'output/index_dates.csv.gz',
+            returning = 'cov_cat_sex',
+            returning_type = 'str',  
+        ),
 
-    ## Any covid vaccination, identified by target disease
-    vax_date_covid_1 = patients.with_value_from_file(
-        f_path = 'output/index_dates.csv',
-        returning = 'vax_date_covid_1',
-        returning_type = 'date'          
-    ),
+    # Any covid vaccination, identified by target disease
+        vax_date_covid_1 = patients.with_value_from_file(
+            f_path = 'output/index_dates.csv.gz',
+            returning = 'vax_date_covid_1',
+            returning_type = 'date'          
+        ),
 
     # Define vaccine eligibility variables
-
         **jcvi_variables, 
 
     # Define common variables (e.g., exposures, outcomes, covariates) that require dynamic dates
-
         **dynamic_variables
+
 )
