@@ -489,7 +489,7 @@ tmp <- df[df$cohort=="prevax" &
                                "sub_covid_nonhospitalised") |
             df$outcome %in% outcomes_runall),]
 
-tmp$outcome <- paste0(tmp$outcome,"_extf")
+tmp$cohort <- paste0(tmp$cohort,"_extf")
 tmp$study_stop <- "2021-12-14"
 tmp$cut_points <- "28;197;365;714"
 

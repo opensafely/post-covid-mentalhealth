@@ -16,7 +16,7 @@ args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
   # name <- "all" # prepare datasets for all active analyses 
-  name <- "cohort_prevax-sub_priorhistory" # prepare datasets for all active analyses whose name contains X
+  name <- "cohort_prevax-main-addiction" # prepare datasets for all active analyses whose name contains X
   # name <- "vax-depression-main;vax-depression-sub_covid_hospitalised;vax-depression-sub_covid_nonhospitalised" # prepare datasets for specific active analyses
 } else {
   name <- args[[1]]
@@ -53,8 +53,6 @@ for (i in 1:nrow(active_analyses)) {
   # Restrict to required variables -----------------------------------------------
   print('Restrict to required variables')
   
-  history_components <- colnames(input)[grepl("cov_bin_recent",colnames(input)) | grepl("cov_bin_history",colnames(input))]
-  
   input <- input[,unique(c("patient_id",
                            "index_date",
                            "end_date",
@@ -66,11 +64,10 @@ for (i in 1:nrow(active_analyses)) {
                            "sub_bin_covid19_confirmed_history",
                            "cov_cat_sex",
                            "cov_num_age",
-                           "cov_cat_ethnicity",
-                           history_components))]
+                           "cov_cat_ethnicity"))]
   
   
-  # Remove outcomes outside of follow-up time ------------------------------------
+  # Remove outcomes outside of follow-up time ----------------------------------
   print('Remove outcomes outside of follow-up time')
   
   input <- dplyr::rename(input, 
@@ -89,48 +86,48 @@ for (i in 1:nrow(active_analyses)) {
     dplyr::rowwise() %>% 
     dplyr::mutate(end_date = min(end_date, out_date, na.rm = TRUE))
   
-  # Make three level history covariates ----------------------------------------
-  print('Make three level history covariates')
-  
-  input$cov_cat_priorhistory_depression <- dplyr::case_when(
-    input$cov_bin_history_depression==TRUE & input$cov_bin_recent_depression==TRUE ~ "recent",
-    input$cov_bin_history_depression==TRUE & input$cov_bin_recent_depression==FALSE ~ "notrecent",
-    input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==TRUE ~ "recent",
-    input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==FALSE ~ "none")
-  input[,c("cov_bin_history_depression","cov_bin_recent_depression")] <- NULL
-  input$cov_cat_priorhistory_depression <- as.factor(input$cov_cat_priorhistory_depression)
-
-  input$cov_cat_priorhistory_anxiety_general <- dplyr::case_when(
-        input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
-        input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==FALSE ~ "notrecent",
-        input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
-        input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==FALSE ~ "none")
-  input[,c("cov_bin_history_anxiety","cov_bin_recent_anxiety")] <- NULL
-  input$cov_cat_priorhistory_anxiety_general <- as.factor(input$cov_cat_priorhistory_anxiety_general)
-
-  input$cov_cat_priorhistory_eating_disorders <- dplyr::case_when(
-        input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
-        input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==FALSE ~ "notrecent",
-        input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
-        input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==FALSE ~ "none")
-  input[,c("cov_bin_history_eating_disorders","cov_bin_recent_eating_disorders")] <- NULL
-  input$cov_cat_priorhistory_eating_disorders <- as.factor(input$cov_cat_priorhistory_eating_disorders)
-
-  input$cov_cat_priorhistory_serious_mental_illness <- dplyr::case_when(
-        input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
-        input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "notrecent",
-        input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
-        input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "none")
-  input[,c("cov_bin_history_serious_mental_illness","cov_bin_recent_serious_mental_illness")] <- NULL
-  input$cov_cat_priorhistory_serious_mental_illness <- as.factor(input$cov_cat_priorhistory_serious_mental_illness)
-
-  input$cov_cat_priorhistory_self_harm <- dplyr::case_when(
-        input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
-        input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==FALSE ~ "notrecent",
-        input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
-        input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==FALSE ~ "none")
-  input[,c("cov_bin_history_self_harm","cov_bin_recent_self_harm")] <- NULL
-  input$cov_cat_priorhistory_self_harm <- as.factor(input$cov_cat_priorhistory_self_harm)
+  # # Make three level history covariates ----------------------------------------
+  # print('Make three level history covariates')
+  # 
+  # input$cov_cat_priorhistory_depression <- dplyr::case_when(
+  #   input$cov_bin_history_depression==TRUE & input$cov_bin_recent_depression==TRUE ~ "recent",
+  #   input$cov_bin_history_depression==TRUE & input$cov_bin_recent_depression==FALSE ~ "notrecent",
+  #   input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==TRUE ~ "recent",
+  #   input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==FALSE ~ "none")
+  # input[,c("cov_bin_history_depression","cov_bin_recent_depression")] <- NULL
+  # input$cov_cat_priorhistory_depression <- as.factor(input$cov_cat_priorhistory_depression)
+  # 
+  # input$cov_cat_priorhistory_anxiety_general <- dplyr::case_when(
+  #       input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
+  #       input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==FALSE ~ "notrecent",
+  #       input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
+  #       input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==FALSE ~ "none")
+  # input[,c("cov_bin_history_anxiety","cov_bin_recent_anxiety")] <- NULL
+  # input$cov_cat_priorhistory_anxiety_general <- as.factor(input$cov_cat_priorhistory_anxiety_general)
+  # 
+  # input$cov_cat_priorhistory_eating_disorders <- dplyr::case_when(
+  #       input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
+  #       input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==FALSE ~ "notrecent",
+  #       input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
+  #       input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==FALSE ~ "none")
+  # input[,c("cov_bin_history_eating_disorders","cov_bin_recent_eating_disorders")] <- NULL
+  # input$cov_cat_priorhistory_eating_disorders <- as.factor(input$cov_cat_priorhistory_eating_disorders)
+  # 
+  # input$cov_cat_priorhistory_serious_mental_illness <- dplyr::case_when(
+  #       input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
+  #       input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "notrecent",
+  #       input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
+  #       input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "none")
+  # input[,c("cov_bin_history_serious_mental_illness","cov_bin_recent_serious_mental_illness")] <- NULL
+  # input$cov_cat_priorhistory_serious_mental_illness <- as.factor(input$cov_cat_priorhistory_serious_mental_illness)
+  # 
+  # input$cov_cat_priorhistory_self_harm <- dplyr::case_when(
+  #       input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
+  #       input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==FALSE ~ "notrecent",
+  #       input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
+  #       input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==FALSE ~ "none")
+  # input[,c("cov_bin_history_self_harm","cov_bin_recent_self_harm")] <- NULL
+  # input$cov_cat_priorhistory_self_harm <- as.factor(input$cov_cat_priorhistory_self_harm)
 
   # Make model input: main -------------------------------------------------------
   

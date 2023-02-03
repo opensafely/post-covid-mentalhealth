@@ -598,6 +598,13 @@ self_harm_15_10_combined_snomed = combine_codelists(
     self_harm_15plus_snomed_clinical
 )
 
+# OCD ICD10
+ocd_icd10 = codelist_from_csv(
+    "codelists/user-kurttaylor-ocd_icd10.csv",
+    system="icd10",
+    column="code",
+)
+
 # Suicide
 suicide_icd10 = codelist_from_csv(
     "codelists/user-hjforbes-suicide-icd-10.csv",

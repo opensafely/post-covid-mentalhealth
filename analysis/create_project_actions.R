@@ -106,7 +106,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
   splice(
     action(
       name = glue("make_model_input-{name}"),
-      run = glue("r:latest analysis/model/make_model_input.R {name}"),
+      run = glue("r:latest analysis/make_model_input.R {name}"),
       needs = list("stage1_data_cleaning_all"),
       highly_sensitive = list(
         model_input = glue("output/model_input-{name}.rds")
@@ -204,6 +204,17 @@ actions_list <- splice(
     )
   ),
   
+  comment("Implement study_definition for prevax_extf"),
+  
+  action(
+    name = "generate_study_population_prevax_extf",
+    run = "cohortextractor:latest generate_cohort --study-definition study_definition_prevax_extf --output-format csv.gz",
+    needs = list("vax_eligibility_inputs","generate_index_dates"),
+    highly_sensitive = list(
+      cohort = glue("output/input_prevax_extf.csv.gz")
+    )
+  ),
+  
   comment("Implement study_definition for vax"),
   
   action(
@@ -230,7 +241,7 @@ actions_list <- splice(
   
   action(
     name = "preprocess_data_prevax",
-    run = "r:latest analysis/preprocess/preprocess_data.R prevax",
+    run = "r:latest analysis/preprocess_data.R prevax",
     needs = list( "generate_index_dates","generate_study_population_prevax"),
     moderately_sensitive = list(
       describe = glue("output/describe_input_prevax_stage0.txt"),
@@ -242,11 +253,27 @@ actions_list <- splice(
     )
   ),
   
+  comment("Preprocess data - prevax_extf"),
+  
+  action(
+    name = "preprocess_data_prevax_extf",
+    run = "r:latest analysis/preprocess_data.R prevax_extf",
+    needs = list( "generate_index_dates","generate_study_population_prevax_extf"),
+    moderately_sensitive = list(
+      describe = glue("output/describe_input_prevax_extf_stage0.txt"),
+      describe_venn = glue("output/describe_venn_prevax_extf.txt")
+    ),
+    highly_sensitive = list(
+      cohort = glue("output/input_prevax_extf.rds"),
+      venn = glue("output/venn_prevax_extf.rds")
+    )
+  ),
+  
   comment("Preprocess data - vax"),
   
   action(
     name = "preprocess_data_vax",
-    run = "r:latest analysis/preprocess/preprocess_data.R vax",
+    run = "r:latest analysis/preprocess_data.R vax",
     needs = list("generate_index_dates","generate_study_population_vax"),
     moderately_sensitive = list(
       describe = glue("output/describe_input_vax_stage0.txt"),
@@ -262,7 +289,7 @@ actions_list <- splice(
   
   action(
     name = "preprocess_data_unvax",
-    run = "r:latest analysis/preprocess/preprocess_data.R unvax",
+    run = "r:latest analysis/preprocess_data.R unvax",
     needs = list("generate_index_dates", "generate_study_population_unvax"),
     moderately_sensitive = list(
       describe = glue("output/describe_input_unvax_stage0.txt"),
@@ -274,16 +301,16 @@ actions_list <- splice(
     )
   ),
   
-  comment("Stage 1 - Data cleaning - all cohorts"),
+  comment("Data cleaning - all cohorts"),
   
   action(
     name = "stage1_data_cleaning_all",
-    run = "r:latest analysis/preprocess/Stage1_data_cleaning.R all",
-    needs = list("preprocess_data_prevax","preprocess_data_vax", "preprocess_data_unvax","vax_eligibility_inputs"),
+    run = "r:latest analysis/stage1_data_cleaning.R all",
+    needs = list("preprocess_data_prevax","preprocess_data_prevax_extf","preprocess_data_vax", "preprocess_data_unvax","vax_eligibility_inputs"),
     moderately_sensitive = list(
       refactoring = glue("output/meta_data_factors_*.csv"),
-      QA_rules = glue("output/descriptives/QA_summary_*.csv"),
-      IE_criteria = glue("output/descriptives/Cohort_flow_*.csv"),
+      QA_rules = glue("output/QA_summary_*.csv"),
+      IE_criteria = glue("output/Cohort_flow_*.csv"),
       histograms = glue("output/numeric_histograms_*.svg")
     ),
     highly_sensitive = list(
@@ -297,6 +324,15 @@ actions_list <- splice(
     needs = list("stage1_data_cleaning_all"),
     moderately_sensitive = list(
       describe_model_input = glue("output/describe-input_prevax_stage1.txt")
+    )
+  ),
+  
+  action(
+    name = glue("describe_file-input_prevax_extf_stage1"),
+    run = glue("r:latest analysis/describe_file.R input_prevax_extf_stage1 rds"),
+    needs = list("stage1_data_cleaning_all"),
+    moderately_sensitive = list(
+      describe_model_input = glue("output/describe-input_prevax_extf_stage1.txt")
     )
   ),
   
@@ -370,47 +406,18 @@ actions_list <- splice(
                                                    covariate_threshold = active_analyses$covariate_threshold[x],
                                                    age_spline = active_analyses$age_spline[x])), recursive = FALSE
     )
-  ),
+  )#,
   
-  comment("Stage 6 - make model output"),
-  
-  action(
-    name = "make_model_output",
-    run = "r:latest analysis/model/make_model_output.R",
-    needs = as.list(paste0("cox_ipw-",success$name)),
-    moderately_sensitive = list(
-      model_output = glue("output/model_output.csv")
-    )
-  ),
-  
-  comment("Temp"),
-  
-  action(
-    name = "cox_ipw-cohort_prevax-main-depression-v0.0.9",
-    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_prevax-main-depression.rds --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2020-01-01 --study_stop=2021-06-18 --cut_points=28;197;535 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax-main-depression-v0.0.9.csv",
-    needs = as.list("make_model_input-cohort_prevax-main-depression"),
-    moderately_sensitive = list(
-      model_output = glue("output/model_output-cohort_prevax-main-depression-v0.0.9.csv")
-    )
-  ),
-  
-  action(
-    name = "cox_ipw-cohort_vax-main-depression-v0.0.9",
-    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_vax-main-depression.rds --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-depression-v0.0.9",
-    needs = as.list("make_model_input-cohort_vax-main-depression"),
-    moderately_sensitive = list(
-      model_output = glue("output/model_output-cohort_vax-main-depression-v0.0.9.csv")
-    )
-  ),
-  
-  action(
-    name = "cox_ipw-cohort_unvax-main-depression-v0.0.9",
-    run = "cox-ipw:v0.0.9 --df_input=model_input-cohort_unvax-main-depression.rds --ipw=FALSE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_priorhistory_depression;cov_cat_priorhistory_anxiety_general;cov_cat_priorhistory_eating_disorders;cov_cat_priorhistory_serious_mental_illness;cov_cat_priorhistory_self_harm --cox_start=index_date --cox_stop=end_date --study_start=2021-06-01 --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax-main-depression-v0.0.9",
-    needs = as.list("make_model_input-cohort_unvax-main-depression"),
-    moderately_sensitive = list(
-      model_output = glue("output/model_output-cohort_unvax-main-depression-v0.0.9.csv")
-    )
-  )
+  # comment("Stage 6 - make model output"),
+  # 
+  # action(
+  #   name = "make_model_output",
+  #   run = "r:latest analysis/make_model_output.R",
+  #   needs = as.list(paste0("cox_ipw-",success$name)),
+  #   moderately_sensitive = list(
+  #     model_output = glue("output/model_output.csv")
+  #   )
+  # )
   
 )
 
