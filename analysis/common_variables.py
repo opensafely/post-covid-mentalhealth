@@ -28,7 +28,7 @@ import study_definition_helper_functions as helpers
 pandemic_start = study_dates["pandemic_start"]
 
 # Define common variables function
-def generate_common_variables(index_date_variable,end_date_variable):
+def generate_common_variables(index_date_variable,exposure_end_date_variable,outcome_end_date_variable):
 
     dynamic_variables = dict(
     
@@ -43,7 +43,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                     returning="date",
                     find_first_match_in_period=True,
                     date_format="YYYY-MM-DD",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{exposure_end_date_variable}"],
                     return_expectations={
                         "date": {"earliest": study_dates["pandemic_start"], "latest" : "today"},
                         "rate": "uniform",
@@ -59,7 +59,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                         covid_primary_care_sequalae,
                     ),
                     returning="date",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{exposure_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -73,7 +73,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_exp_date_covid19_confirmed_hes=patients.admitted_to_hospital(
                     with_these_diagnoses=covid_codes,
                     returning="date_admitted",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{exposure_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -87,7 +87,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_exp_date_covid19_confirmed_death=patients.with_these_codes_on_death_certificate(
                     covid_codes,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{exposure_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -125,7 +125,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
 
             ## Deregistraton date
                 dereg_date=patients.date_deregistered_from_all_supported_practices( 
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format = 'YYYY-MM-DD',
                     return_expectations={
                     "date": {"earliest": study_dates["pandemic_start"], "latest": "today"},
@@ -194,7 +194,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_depression_snomed=patients.with_these_clinical_events(
                     depression_snomed_clinical,
                     returning="date",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -208,7 +208,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_depression_hes=patients.admitted_to_hospital(
                     returning="date_admitted",
                     with_these_diagnoses=depression_icd10,
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -222,7 +222,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_depression_death=patients.with_these_codes_on_death_certificate(
                     depression_icd10,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -243,7 +243,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_anxiety_general_snomed=patients.with_these_clinical_events(
                     anxiety_general_snomed_clinical,
                     returning="date",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -257,7 +257,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_anxiety_general_hes=patients.admitted_to_hospital(
                     returning="date_admitted",
                     with_these_diagnoses=anxiety_icd10,
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -271,7 +271,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_anxiety_general_death=patients.with_these_codes_on_death_certificate(
                     anxiety_icd10,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -292,7 +292,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_anxiety_ptsd_snomed=patients.with_these_clinical_events(
                     anxiety_ptsd_snomed_clinical,
                     returning="date",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -306,7 +306,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_anxiety_ptsd_hes=patients.admitted_to_hospital(
                     returning="date_admitted",
                     with_these_diagnoses=ptsd_icd10,
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -320,7 +320,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_anxiety_ptsd_death=patients.with_these_codes_on_death_certificate(
                     ptsd_icd10,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -341,7 +341,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_eating_disorders_snomed=patients.with_these_clinical_events(
                     eating_disorders_snomed_clinical,
                     returning="date",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -355,7 +355,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_eating_disorders_hes=patients.admitted_to_hospital(
                     returning="date_admitted",
                     with_these_diagnoses=eating_disorder_icd10,
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -369,7 +369,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_eating_disorders_death=patients.with_these_codes_on_death_certificate(
                     eating_disorder_icd10,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -390,7 +390,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_serious_mental_illness_snomed=patients.with_these_clinical_events(
                     serious_mental_illness_snomed_clinical,
                     returning="date",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -404,7 +404,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_serious_mental_illness_hes=patients.admitted_to_hospital(
                     returning="date_admitted",
                     with_these_diagnoses=serious_mental_illness_icd10,
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -418,7 +418,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_serious_mental_illness_death=patients.with_these_codes_on_death_certificate(
                     serious_mental_illness_icd10,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -439,7 +439,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_self_harm_snomed=patients.with_these_clinical_events(
                     self_harm_15_10_combined_snomed,
                     returning="date",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -453,7 +453,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_self_harm_hes=patients.admitted_to_hospital(
                     returning="date_admitted",
                     with_these_diagnoses=self_harm_15_10_combined_icd,
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -467,7 +467,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_self_harm_death=patients.with_these_codes_on_death_certificate(
                     self_harm_15_10_combined_icd,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -488,7 +488,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_suicide_hes=patients.admitted_to_hospital(
                     returning="date_admitted",
                     with_these_diagnoses=suicide_icd10,
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -502,7 +502,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_suicide_death=patients.with_these_codes_on_death_certificate(
                     suicide_icd10,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -523,7 +523,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_addiction_snomed=patients.with_these_clinical_events(
                     addiction_snomed_clinical,
                     returning="date",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -537,7 +537,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_addiction_hes=patients.admitted_to_hospital(
                     returning="date_admitted",
                     with_these_diagnoses=opioid_misuse_icd10,
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     date_format="YYYY-MM-DD",
                     find_first_match_in_period=True,
                     return_expectations={
@@ -551,7 +551,7 @@ def generate_common_variables(index_date_variable,end_date_variable):
                 tmp_out_date_addiction_death=patients.with_these_codes_on_death_certificate(
                     opioid_misuse_icd10,
                     returning="date_of_death",
-                    between=[f"{index_date_variable}",f"{end_date_variable}"],
+                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
                     match_only_underlying_cause=True,
                     date_format="YYYY-MM-DD",
                     return_expectations={
@@ -1305,6 +1305,26 @@ def generate_common_variables(index_date_variable,end_date_variable):
                         "date": {"earliest": study_dates["earliest_expec"], "latest": "today"},
                         "rate": "uniform",
                     },
+                ),
+
+            ## HRT or COCP 
+
+                tmp_cocp=patients.with_these_medications(
+                        cocp_dmd, 
+                        returning='binary_flag',
+                        on_or_before=f"{index_date_variable}",
+                        return_expectations={"incidence": 0.1},
+                    ),
+
+                tmp_hrt=patients.with_these_medications(
+                        hrt_dmd, 
+                        returning='binary_flag',
+                        on_or_before=f"{index_date_variable}",
+                        return_expectations={"incidence": 0.1},
+                    ),
+                
+                qa_bin_hrtcocp=patients.maximum_of(
+                    "tmp_cocp", "tmp_hrt"
                 ),
 
         )

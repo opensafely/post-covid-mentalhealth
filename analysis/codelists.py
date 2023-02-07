@@ -747,3 +747,17 @@ anxiety_combined_hes_cov = combine_codelists(
     ocd_icd10,
     ptsd_icd10
 )
+
+# COCP
+cocp_dmd = codelist_from_csv(
+    "codelists/user-elsie_horne-cocp_dmd.csv",
+    system="snomed",
+    column="dmd_id",
+)
+
+# HRT
+hrt_dmd = codelist_from_csv(
+    "codelists/user-elsie_horne-hrt_dmd.csv",
+    system="snomed",
+    column="dmd_id",
+)

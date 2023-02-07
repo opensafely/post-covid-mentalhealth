@@ -54,7 +54,7 @@ study = StudyDefinition(
         ),
         end_date_outcome = patients.with_value_from_file(
             f_path = 'output/index_dates.csv.gz',
-            returning = 'end_unvax',
+            returning = 'end_unvax_extf',
             returning_type = 'date', 
             date_format = 'YYYY-MM-DD',
         ),

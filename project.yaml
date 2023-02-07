@@ -91,6 +91,18 @@ actions:
       highly_sensitive:
         cohort: output/input_unvax.csv.gz
 
+  ## Implement study_definition for unvax_extf 
+
+  generate_study_population_unvax_extf:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_unvax_extf
+      --output-format csv.gz
+    needs:
+    - vax_eligibility_inputs
+    - generate_index_dates
+    outputs:
+      highly_sensitive:
+        cohort: output/input_unvax_extf.csv.gz
+
   ## Preprocess data - prevax 
 
   preprocess_data_prevax:
@@ -151,6 +163,21 @@ actions:
         cohort: output/input_unvax.rds
         venn: output/venn_unvax.rds
 
+  ## Preprocess data - unvax_extf 
+
+  preprocess_data_unvax_extf:
+    run: r:latest analysis/preprocess_data.R unvax_extf
+    needs:
+    - generate_index_dates
+    - generate_study_population_unvax_extf
+    outputs:
+      moderately_sensitive:
+        describe: output/describe_input_unvax_extf_stage0.txt
+        describe_venn: output/describe_venn_unvax_extf.txt
+      highly_sensitive:
+        cohort: output/input_unvax_extf.rds
+        venn: output/venn_unvax_extf.rds
+
   ## Data cleaning - all cohorts 
 
   stage1_data_cleaning_all:
@@ -160,7 +187,7 @@ actions:
     - preprocess_data_prevax_extf
     - preprocess_data_vax
     - preprocess_data_unvax
-    - vax_eligibility_inputs
+    - preprocess_data_unvax_extf
     outputs:
       moderately_sensitive:
         refactoring: output/meta_data_factors_*.csv
@@ -169,38 +196,6 @@ actions:
         histograms: output/numeric_histograms_*.svg
       highly_sensitive:
         cohort: output/input_*.rds
-
-  describe_file-input_prevax_stage1:
-    run: r:latest analysis/describe_file.R input_prevax_stage1 rds
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-input_prevax_stage1.txt
-
-  describe_file-input_prevax_extf_stage1:
-    run: r:latest analysis/describe_file.R input_prevax_extf_stage1 rds
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-input_prevax_extf_stage1.txt
-
-  describe_file-input_vax_stage1:
-    run: r:latest analysis/describe_file.R input_vax_stage1 rds
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-input_vax_stage1.txt
-
-  describe_file-input_unvax_stage1:
-    run: r:latest analysis/describe_file.R input_unvax_stage1 rds
-    needs:
-    - stage1_data_cleaning_all
-    outputs:
-      moderately_sensitive:
-        describe_model_input: output/describe-input_unvax_stage1.txt
 
   ## Stage 5 - Run models 
 

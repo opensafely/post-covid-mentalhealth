@@ -15,25 +15,25 @@ library(arrow)
 args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
-  cohort_name <- "prevax"
+  cohort_name <- "unvax"
 } else {
   cohort_name <- args[[1]]
 }
 
-# Load json file containing vax study dates ------------------------------------
-
-study_dates <- fromJSON("output/study_dates.json")
-
-# Specify relevant dates -------------------------------------------------------
-
-vax_start_date <- as.Date(study_dates$vax1_earliest, format="%Y-%m-%d")
-mixed_vax_threshold <- as.Date("2021-05-07")
-start_date_delta <- as.Date(study_dates$delta_date, format="%Y-%m-%d")
-end_date_delta <- as.Date(study_dates$omicron_date, format="%Y-%m-%d") 
-
 # Define stage 1 function ------------------------------------------------------
 
 stage1 <- function(cohort_name) {
+  
+  # Load json file containing vax study dates ------------------------------------
+  
+  study_dates <- fromJSON("output/study_dates.json")
+  
+  # Specify relevant dates -----------------------------------------------------
+  
+  vax_start_date <- as.Date(study_dates$vax1_earliest, format="%Y-%m-%d")
+  mixed_vax_threshold <- as.Date("2021-05-07")
+  start_date_delta <- as.Date(study_dates$delta_date, format="%Y-%m-%d")
+  end_date_delta <- as.Date(study_dates$omicron_date, format="%Y-%m-%d") 
   
   ## Load cohort data ----------------------------------------------------------
   
@@ -42,9 +42,7 @@ stage1 <- function(cohort_name) {
   
   ## Rename date variables -----------------------------------------------------
   
-  input <- input %>%
-    rename(index_date =!!sym(paste0("index_date_",cohort_name))) %>%
-    rename(end_date = !!sym(paste0("end_date_",cohort_name)))
+  input <- dplyr::rename(input, "index_date" = "index_date_cohort")
   
   ## Handle missing values -----------------------------------------------------
   
@@ -157,10 +155,8 @@ stage1 <- function(cohort_name) {
   
   ### Rule 5: HRT or COCP meds for men
   
-  input$rule5 <- FALSE
-  # input$rule5 <- NA
-  # input$rule5 <- ((input$cov_cat_sex=="Male" & input$qa_bin_hrt==TRUE) | 
-  #                   (input$cov_cat_sex=="Male" & input$qa_bin_cocp==TRUE))
+  input$rule5 <- NA
+ input$rule5 <- (input$cov_cat_sex=="Male" & input$qa_bin_hrtcocp==TRUE)
   
   ### Rule 6: Prostate cancer codes for women
   
@@ -325,7 +321,7 @@ stage1 <- function(cohort_name) {
     input <- input %>% filter (!is.na(index_date) & index_date <= end_date & index_date >= start_date_delta)
     cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 13 (Inclusion): Patient index date is within the study start and end dates i.e patient is fully vaccinated before the study end date")
     
-  } else if (cohort_name == "unvax"){
+  } else if (cohort_name %in% c("unvax","unvax_extf")){
     
     ### Exclusion criteria 8: Have a record of one or more vaccination prior index date
     # i.e. Have a record of a first vaccination prior to index date
@@ -344,7 +340,7 @@ stage1 <- function(cohort_name) {
     cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 9 (Exclusion): Missing or unknown JCVI group")
     
     ### Inclusion criteria 10: Index date is before cohort end date - will remove anyone whose eligibility date + 84 days is after study end date (only those with unknown JCVI group)
-    input <- input %>% filter (!is.na(index_date) & index_date <= end_date & index_date >= start_date_delta)
+    input <- input %>% filter (!is.na(index_date) & index_date <= end_date_exposure & index_date >= start_date_delta)
     cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 10 (Inclusion): Patient index date is within the study start and end dates i.e patients eligibility date + 84 days is before the study end date")
     
   }
@@ -399,6 +395,7 @@ if (cohort_name == "all") {
   stage1("prevax_extf")
   stage1("vax")
   stage1("unvax")
+  stage1("unvax_extf")
 } else{
   stage1(cohort_name)
 }

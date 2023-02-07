@@ -779,6 +779,18 @@
       "url": "https://codelists.opensafely.org/codelist/bristol/anxiolytics_040102/38c710f3/",
       "downloaded_at": "2022-08-09 16:25:34.347033Z",
       "sha": "8a5cbbc840b72cd7391affd0e39ada5fe6b6029d"
+    },
+    "user-elsie_horne-cocp_dmd.csv": {
+      "id": "user/elsie_horne/cocp_dmd/1666a7a3",
+      "url": "https://codelists.opensafely.org/codelist/user/elsie_horne/cocp_dmd/1666a7a3/",
+      "downloaded_at": "2023-02-07 15:43:17.491774Z",
+      "sha": "8327c8ec4d2a3f1fcec7ffaa76a3e79cc1e5974a"
+    },
+    "user-elsie_horne-hrt_dmd.csv": {
+      "id": "user/elsie_horne/hrt_dmd/19196799",
+      "url": "https://codelists.opensafely.org/codelist/user/elsie_horne/hrt_dmd/19196799/",
+      "downloaded_at": "2023-02-07 15:43:17.735201Z",
+      "sha": "14aff592668a703f02cc68aa54c7ebab0774c62f"
     }
   }
 }

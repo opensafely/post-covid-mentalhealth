@@ -55,7 +55,8 @@ for (i in 1:nrow(active_analyses)) {
   
   input <- input[,unique(c("patient_id",
                            "index_date",
-                           "end_date",
+                           "end_date_exposure",
+                           "end_date_outcome",
                            active_analyses$exposure[i], 
                            active_analyses$outcome[i],
                            unlist(strsplit(active_analyses$strata[i], split = ";")),
@@ -75,8 +76,8 @@ for (i in 1:nrow(active_analyses)) {
                          "exp_date" = active_analyses$exposure[i])
   
   input <- input %>% 
-    dplyr::mutate(out_date = replace(out_date, which(out_date>end_date | out_date<index_date), NA),
-                  exp_date =  replace(exp_date, which(exp_date>end_date | exp_date<index_date), NA),
+    dplyr::mutate(out_date = replace(out_date, which(out_date>end_date_outcome | out_date<index_date), NA),
+                  exp_date =  replace(exp_date, which(exp_date>end_date_exposure | exp_date<index_date), NA),
                   sub_cat_covid19_hospital = replace(sub_cat_covid19_hospital, which(is.na(exp_date)),"no_infection"))
   
   # Update end date to be outcome date where applicable ------------------------
@@ -84,51 +85,8 @@ for (i in 1:nrow(active_analyses)) {
   
   input <- input %>% 
     dplyr::rowwise() %>% 
-    dplyr::mutate(end_date = min(end_date, out_date, na.rm = TRUE))
+    dplyr::mutate(end_date_outcome = min(end_date_outcome, out_date, na.rm = TRUE))
   
-  # # Make three level history covariates ----------------------------------------
-  # print('Make three level history covariates')
-  # 
-  # input$cov_cat_priorhistory_depression <- dplyr::case_when(
-  #   input$cov_bin_history_depression==TRUE & input$cov_bin_recent_depression==TRUE ~ "recent",
-  #   input$cov_bin_history_depression==TRUE & input$cov_bin_recent_depression==FALSE ~ "notrecent",
-  #   input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==TRUE ~ "recent",
-  #   input$cov_bin_history_depression==FALSE & input$cov_bin_recent_depression==FALSE ~ "none")
-  # input[,c("cov_bin_history_depression","cov_bin_recent_depression")] <- NULL
-  # input$cov_cat_priorhistory_depression <- as.factor(input$cov_cat_priorhistory_depression)
-  # 
-  # input$cov_cat_priorhistory_anxiety_general <- dplyr::case_when(
-  #       input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
-  #       input$cov_bin_history_anxiety==TRUE & input$cov_bin_recent_anxiety==FALSE ~ "notrecent",
-  #       input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==TRUE ~ "recent",
-  #       input$cov_bin_history_anxiety==FALSE & input$cov_bin_recent_anxiety==FALSE ~ "none")
-  # input[,c("cov_bin_history_anxiety","cov_bin_recent_anxiety")] <- NULL
-  # input$cov_cat_priorhistory_anxiety_general <- as.factor(input$cov_cat_priorhistory_anxiety_general)
-  # 
-  # input$cov_cat_priorhistory_eating_disorders <- dplyr::case_when(
-  #       input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
-  #       input$cov_bin_history_eating_disorders==TRUE & input$cov_bin_recent_eating_disorders==FALSE ~ "notrecent",
-  #       input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==TRUE ~ "recent",
-  #       input$cov_bin_history_eating_disorders==FALSE & input$cov_bin_recent_eating_disorders==FALSE ~ "none")
-  # input[,c("cov_bin_history_eating_disorders","cov_bin_recent_eating_disorders")] <- NULL
-  # input$cov_cat_priorhistory_eating_disorders <- as.factor(input$cov_cat_priorhistory_eating_disorders)
-  # 
-  # input$cov_cat_priorhistory_serious_mental_illness <- dplyr::case_when(
-  #       input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
-  #       input$cov_bin_history_serious_mental_illness==TRUE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "notrecent",
-  #       input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==TRUE ~ "recent",
-  #       input$cov_bin_history_serious_mental_illness==FALSE & input$cov_bin_recent_serious_mental_illness==FALSE ~ "none")
-  # input[,c("cov_bin_history_serious_mental_illness","cov_bin_recent_serious_mental_illness")] <- NULL
-  # input$cov_cat_priorhistory_serious_mental_illness <- as.factor(input$cov_cat_priorhistory_serious_mental_illness)
-  # 
-  # input$cov_cat_priorhistory_self_harm <- dplyr::case_when(
-  #       input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
-  #       input$cov_bin_history_self_harm==TRUE & input$cov_bin_recent_self_harm==FALSE ~ "notrecent",
-  #       input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==TRUE ~ "recent",
-  #       input$cov_bin_history_self_harm==FALSE & input$cov_bin_recent_self_harm==FALSE ~ "none")
-  # input[,c("cov_bin_history_self_harm","cov_bin_recent_self_harm")] <- NULL
-  # input$cov_cat_priorhistory_self_harm <- as.factor(input$cov_cat_priorhistory_self_harm)
-
   # Make model input: main -------------------------------------------------------
   
   if (active_analyses$analysis[i]=="main") {
@@ -155,11 +113,11 @@ for (i in 1:nrow(active_analyses)) {
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     
     df <- df %>% 
-      dplyr::mutate(end_date = replace(end_date, which(sub_cat_covid19_hospital=="non_hospitalised"), exp_date-1),
+      dplyr::mutate(end_date_outcome = replace(end_date_outcome, which(sub_cat_covid19_hospital=="non_hospitalised"), exp_date-1),
                     exp_date = replace(exp_date, which(sub_cat_covid19_hospital=="non_hospitalised"), NA),
-                    out_date = replace(out_date, which(out_date>end_date), NA))
+                    out_date = replace(out_date, which(out_date>end_date_outcome), NA))
     
-    df <- df[df$end_date>=df$index_date,]
+    df <- df[df$end_date_outcome>=df$index_date,]
     
     df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
     
@@ -179,11 +137,11 @@ for (i in 1:nrow(active_analyses)) {
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     
     df <- df %>% 
-      dplyr::mutate(end_date = replace(end_date, which(sub_cat_covid19_hospital=="hospitalised"), exp_date-1),
+      dplyr::mutate(end_date_outcome = replace(end_date_outcome, which(sub_cat_covid19_hospital=="hospitalised"), exp_date-1),
                     exp_date = replace(exp_date, which(sub_cat_covid19_hospital=="hospitalised"), NA),
-                    out_date = replace(out_date, which(out_date>end_date), NA))
+                    out_date = replace(out_date, which(out_date>end_date_outcome), NA))
     
-    df <- df[df$end_date>=df$index_date,]
+    df <- df[df$end_date_outcome>=df$index_date,]
     df$index_date <- as.Date(df$index_date)
     
     df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
