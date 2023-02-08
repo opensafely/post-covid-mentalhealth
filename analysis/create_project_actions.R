@@ -433,6 +433,18 @@ actions_list <- splice(
                                                    covariate_threshold = active_analyses$covariate_threshold[x],
                                                    age_spline = active_analyses$age_spline[x])), recursive = FALSE
     )
+  ),
+  
+  comment("Make Table 2"),
+
+  action(
+    name = "table2",
+    run = "r:latest analysis/table2.R",
+    needs = as.list(paste0("make_model_input-",active_analyses$name)),
+    moderately_sensitive = list(
+      table2 = glue("output/table2.csv"),
+      table2_rounded = glue("output/table2_rounded.csv")
+    )
   )#,
   
   # comment("Stage 6 - make model output"),

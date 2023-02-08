@@ -2,7 +2,7 @@ library(readr)
 library(dplyr)
 library(magrittr)
 
-# Source redaction threshold ---------------------------------------------------
+# Specify redaction threshold --------------------------------------------------
 
 theshold <- 6
 
