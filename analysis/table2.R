@@ -4,7 +4,7 @@ library(magrittr)
 
 # Specify redaction threshold --------------------------------------------------
 
-theshold <- 6
+threshold <- 6
 
 # Source common functions ------------------------------------------------------
 print('Source common functions')
@@ -74,17 +74,11 @@ for (i in 1:nrow(active_analyses)) {
 
 }
 
+
 # Perform redaction ------------------------------------------------------------
 
-table2$unexposed_person_days_rounded <- roundmid_any(as.numeric(table2$unexposed_person_days), to=threshold)
-table2$unexposed_events_rounded <- roundmid_any(as.numeric(table2$unexposed_events), to=threshold)
-table2$exposed_person_days_rounded <- roundmid_any(as.numeric(table2$exposed_person_days), to=threshold)
-table2$exposed_events_rounded <- roundmid_any(as.numeric(table2$exposed_events), to=threshold)
-table2$total_person_days_rounded <- roundmid_any(as.numeric(table2$total_person_days), to=threshold)
-table2$total_events_rounded <- roundmid_any(as.numeric(table2$total_events), to=threshold)
-table2$day0_events_rounded <- roundmid_any(as.numeric(table2$day0_events), to=threshold)
-table2$total_exposed_rounded <- roundmid_any(as.numeric(table2$total_exposed), to=threshold)
-table2$sample_size_rounded <- roundmid_any(as.numeric(table2$sample_size), to=threshold)
+table2[,setdiff(colnames(table2),c("name","cohort","exposure","outcome","analysis"))] <- lapply(table2[,setdiff(colnames(table2),c("name","cohort","exposure","outcome","analysis"))],
+                                            FUN=function(y){roundmid_any(as.numeric(y), to=threshold)})
 
 # Save Table 2 -----------------------------------------------------------------
 print('Save Table 2')
