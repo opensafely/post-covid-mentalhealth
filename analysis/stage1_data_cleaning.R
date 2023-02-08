@@ -318,7 +318,7 @@ stage1 <- function(cohort_name) {
     cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 12 (Exclusion): Received mixed vaccine products before 07-05-2021")
     
     ### Inclusions criteria 13: Index date is before cohort end date - will remove anyone who is not fully vaccinated by the cohort end date
-    input <- input %>% filter (!is.na(index_date) & index_date <= end_date & index_date >= start_date_delta)
+    input <- input %>% filter (!is.na(index_date) & index_date <= end_date_exposure & index_date >= start_date_delta)
     cohort_flow[nrow(cohort_flow)+1,] <- c(nrow(input),as.numeric(cohort_flow[nrow(cohort_flow),"N"]) - nrow(input), "Criteria 13 (Inclusion): Patient index date is within the study start and end dates i.e patient is fully vaccinated before the study end date")
     
   } else if (cohort_name %in% c("unvax","unvax_extf")){

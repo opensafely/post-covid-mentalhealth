@@ -333,7 +333,7 @@ actions_list <- splice(
   action(
     name = "stage1_data_cleaning_all",
     run = "r:latest analysis/stage1_data_cleaning.R all",
-    needs = list("preprocess_data_prevax","preprocess_data_prevax_extf","preprocess_data_vax", "preprocess_data_unvax", "preprocess_data_unvax_extf"),
+    needs = list("vax_eligibility_inputs","preprocess_data_prevax","preprocess_data_prevax_extf","preprocess_data_vax", "preprocess_data_unvax", "preprocess_data_unvax_extf"),
     moderately_sensitive = list(
       refactoring = glue("output/meta_data_factors_*.csv"),
       QA_rules = glue("output/QA_summary_*.csv"),
