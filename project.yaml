@@ -6415,9 +6415,6 @@ actions:
     run: r:latest analysis/venn.R prevax
     needs:
     - preprocess_data_prevax
-    - preprocess_data_prevax_extf
-    - preprocess_data_unvax
-    - preprocess_data_vax
     - make_model_input-cohort_prevax-main-addiction
     - make_model_input-cohort_prevax-main-anxiety_general
     - make_model_input-cohort_prevax-main-anxiety_ptsd
@@ -6436,10 +6433,7 @@ actions:
   venn_prevax_extf:
     run: r:latest analysis/venn.R prevax_extf
     needs:
-    - preprocess_data_prevax
     - preprocess_data_prevax_extf
-    - preprocess_data_unvax
-    - preprocess_data_vax
     - make_model_input-cohort_prevax_extf-main-addiction
     - make_model_input-cohort_prevax_extf-main-anxiety_general
     - make_model_input-cohort_prevax_extf-main-anxiety_ptsd
@@ -6458,10 +6452,7 @@ actions:
   venn_unvax:
     run: r:latest analysis/venn.R unvax
     needs:
-    - preprocess_data_prevax
-    - preprocess_data_prevax_extf
     - preprocess_data_unvax
-    - preprocess_data_vax
     - make_model_input-cohort_unvax-main-addiction
     - make_model_input-cohort_unvax-main-anxiety_general
     - make_model_input-cohort_unvax-main-anxiety_ptsd
@@ -6480,9 +6471,6 @@ actions:
   venn_vax:
     run: r:latest analysis/venn.R vax
     needs:
-    - preprocess_data_prevax
-    - preprocess_data_prevax_extf
-    - preprocess_data_unvax
     - preprocess_data_vax
     - make_model_input-cohort_vax-main-addiction
     - make_model_input-cohort_vax-main-anxiety_general

@@ -217,7 +217,7 @@ venn <- function(cohort){
       name = glue("venn_{cohort}"),
       run = "r:latest analysis/venn.R",
       arguments = c(cohort),
-      needs = c(as.list(paste0("preprocess_data_",unique(active_analyses$cohort))),
+      needs = c(as.list(glue("preprocess_data_{cohort}")),
                 as.list(paste0(glue("make_model_input-cohort_{cohort}-main-"),venn_outcomes))),
       moderately_sensitive = list(
         table2 = glue("output/venn_{cohort}.csv"),
