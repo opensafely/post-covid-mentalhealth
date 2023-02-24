@@ -12,7 +12,7 @@ efficacy_offset <- 14
 eligibility_offset <- 84
 
 #Read in the output of study_definition_prelim and add dates variables
-prelim_data <- arrow::read_feather("output/input_prelim.feather") 
+prelim_data <- readr::read_csv("output/input_prelim.csv.gz")
 prelim_data <- prelim_data %>%
   mutate(across(c(contains("_date")), 
                 ~ floor_date(
@@ -20,14 +20,17 @@ prelim_data <- prelim_data %>%
                   unit = "days"))) %>%
   mutate(vax_date_covid_2_offset = vax_date_covid_2 + days(efficacy_offset),
          vax_date_eligible_offset = vax_date_eligible + days(eligibility_offset),
-         index_prevax = as.Date(study_dates$pandemic_start)) %>% 
+         index_prevax = as.Date(study_dates$pandemic_start),
+         index_prevax_extf = as.Date(study_dates$pandemic_start)) %>% 
   rowwise() %>%             
   mutate(index_vax = max(c(vax_date_covid_2_offset, delta_date), na.rm=T),
          index_unvax =  max(c(vax_date_eligible_offset, delta_date), na.rm=T),
+         index_unvax_extf =  max(c(vax_date_eligible_offset, delta_date), na.rm=T),
          end_vax = min(c(death_date, delta_end_date), na.rm=T),
-         end_unvax = min(c(death_date, delta_end_date), na.rm=T),
-         end_prevax = min(c(vax_date_eligible,death_date, vax_date_covid_1, all_eligible_date), na.rm=T)) 
-
+         end_unvax = min(c(death_date, delta_end_date, vax_date_covid_1), na.rm=T),
+         end_unvax_extf = min(c(death_date, delta_end_date), na.rm=T),
+         end_prevax = min(c(vax_date_eligible, death_date, vax_date_covid_1, all_eligible_date), na.rm=T),
+         end_prevax_extf = min(c(death_date, delta_end_date), na.rm=T)) 
 
 #Write data to csv file 
-write_csv(prelim_data, "output/index_dates.csv")
+write_csv(prelim_data, "output/index_dates.csv.gz")
