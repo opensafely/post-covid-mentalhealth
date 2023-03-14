@@ -34,7 +34,7 @@ success <- tidyr::pivot_longer(success,
 
 success$name <- paste0("cohort_",success$cohort, "-",success$analysis, "-",success$outcome)
 
-success <- success[grepl("success",success$value, ignore.case = TRUE),]
+success <- success[grepl("succeeded",success$value, ignore.case = TRUE),]
 
 # Create generic action function -----------------------------------------------
 
@@ -346,18 +346,18 @@ actions_list <- splice(
                   function(x) venn(cohort = x)), 
            recursive = FALSE
     )
-  )
+  ),
   
-  # comment("Stage 6 - make model output"),
-  # 
-  # action(
-  #   name = "make_model_output",
-  #   run = "r:latest analysis/make_model_output.R",
-  #   needs = as.list(paste0("cox_ipw-",success$name)),
-  #   moderately_sensitive = list(
-  #     model_output = glue("output/model_output.csv")
-  #   )
-  # )
+  comment("Stage 6 - make model output"),
+
+  action(
+    name = "make_model_output",
+    run = "r:latest analysis/make_model_output.R",
+    needs = as.list(paste0("cox_ipw-",success$name)),
+    moderately_sensitive = list(
+      model_output = glue("output/model_output.csv")
+    )
+  )
   
 )
 
