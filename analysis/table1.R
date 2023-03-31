@@ -194,7 +194,7 @@ df <- df[order(df$characteristic, df$subcharacteristic),]
 # Save Table 1 -----------------------------------------------------------------
 print('Save Table 1')
 
-write.csv(df, paste0("output/table1_",cohort,".csv"))
+write.csv(df, paste0("output/table1_",cohort,".csv"), row.names = FALSE)
 
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
@@ -213,4 +213,4 @@ colnames(df) <- c("Characteristic","Subcharacteristic","N (%)","COVID-19 diagnos
 # Save Table 1 -----------------------------------------------------------------
 print('Save rounded Table 1')
 
-write.csv(df, paste0("output/table1_",cohort,"_rounded.csv"))
+write.csv(df, paste0("output/table1_",cohort,"_rounded.csv"), row.names = FALSE)
