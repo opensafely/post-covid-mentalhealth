@@ -167,7 +167,7 @@ for (outcome in outcomes) {
   } else {
     
     # Record empty outcome -----------------------------------------------------
-    print('Record the number contributing to each source combination')
+    print('Record empty outcome')
     
     df[nrow(df)+1,] <- c(outcome,
                          only_snomed = NA,
