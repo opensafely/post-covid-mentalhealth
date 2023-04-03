@@ -170,7 +170,7 @@ df$cohort <- cohort
 # Save Venn data -----------------------------------------------------------------
 print('Save Venn data')
 
-write.csv(df, paste0("output/venn_",cohort,".csv"))
+write.csv(df, paste0("output/venn_",cohort,".csv"), row.names = FALSE)
 
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
@@ -181,4 +181,4 @@ df[,setdiff(colnames(df),c("outcome"))] <- lapply(df[,setdiff(colnames(df),c("ou
 # Save rounded Venn data -------------------------------------------------------
 print('Save rounded Venn data')
 
-write.csv(df, paste0("output/venn_",cohort,"_rounded.csv"))
+write.csv(df, paste0("output/venn_",cohort,"_rounded.csv"), row.names = FALSE)

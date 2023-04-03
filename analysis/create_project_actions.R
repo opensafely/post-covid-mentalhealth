@@ -146,6 +146,24 @@ stage1_data_cleaning <- function(cohort){
   )
 }
 
+# Create function for table1 --------------------------------------------
+
+table1 <- function(cohort){
+  splice(
+    comment(glue("Table 1 - {cohort}")),
+    action(
+      name = glue("table1_{cohort}"),
+      run = "r:latest analysis/table1.R",
+      arguments = c(cohort),
+      needs = list(glue("stage1_data_cleaning_{cohort}")),
+      moderately_sensitive = list(
+        table1 = glue("output/table1_{cohort}.csv"),
+        table1_rounded = glue("output/table1_{cohort}_rounded.csv")
+      )
+    )
+  )
+}
+
 # Create function to make model input and run a model --------------------------
 
 apply_model_function <- function(name, cohort, analysis, ipw, strata, 
@@ -220,8 +238,8 @@ venn <- function(cohort){
       needs = c(as.list(glue("preprocess_data_{cohort}")),
                 as.list(paste0(glue("make_model_input-cohort_{cohort}-main-"),venn_outcomes))),
       moderately_sensitive = list(
-        table2 = glue("output/venn_{cohort}.csv"),
-        table2_rounded = glue("output/venn_{cohort}_rounded.csv")
+        venn = glue("output/venn_{cohort}.csv"),
+        venn_rounded = glue("output/venn_{cohort}_rounded.csv")
       )
     )
   )
@@ -304,6 +322,15 @@ actions_list <- splice(
     )
   ),
 
+  ## Table 1 -------------------------------------------------------------------
+  
+  splice(
+    unlist(lapply(unique(active_analyses$cohort), 
+                  function(x) table1(cohort = x)), 
+           recursive = FALSE
+    )
+  ),
+  
   ## Run models ----------------------------------------------------------------
   comment("Run models"),
   

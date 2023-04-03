@@ -93,7 +93,7 @@ for (i in 1:nrow(active_analyses)) {
 # Save Table 2 -----------------------------------------------------------------
 print('Save Table 2')
 
-write.csv(table2, paste0("output/table2_",cohort,".csv"))
+write.csv(table2, paste0("output/table2_",cohort,".csv"), row.names = FALSE)
 
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
@@ -104,4 +104,4 @@ table2[,setdiff(colnames(table2),c("name","cohort","exposure","outcome","analysi
 # Save Table 2 -----------------------------------------------------------------
 print('Save rounded Table 2')
 
-write.csv(table2, paste0("output/table2_",cohort,"_rounded.csv"))
+write.csv(table2, paste0("output/table2_",cohort,"_rounded.csv"), row.names = FALSE)

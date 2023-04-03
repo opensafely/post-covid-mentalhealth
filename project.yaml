@@ -248,6 +248,61 @@ actions:
       highly_sensitive:
         cohort: output/input_vax_stage1.rds
 
+  ## Table 1 - prevax 
+
+  table1_prevax:
+    run: r:latest analysis/table1.R prevax
+    needs:
+    - stage1_data_cleaning_prevax
+    outputs:
+      moderately_sensitive:
+        table1: output/table1_prevax.csv
+        table1_rounded: output/table1_prevax_rounded.csv
+
+  ## Table 1 - prevax_extf 
+
+  table1_prevax_extf:
+    run: r:latest analysis/table1.R prevax_extf
+    needs:
+    - stage1_data_cleaning_prevax_extf
+    outputs:
+      moderately_sensitive:
+        table1: output/table1_prevax_extf.csv
+        table1_rounded: output/table1_prevax_extf_rounded.csv
+
+  ## Table 1 - unvax 
+
+  table1_unvax:
+    run: r:latest analysis/table1.R unvax
+    needs:
+    - stage1_data_cleaning_unvax
+    outputs:
+      moderately_sensitive:
+        table1: output/table1_unvax.csv
+        table1_rounded: output/table1_unvax_rounded.csv
+
+  ## Table 1 - unvax_extf 
+
+  table1_unvax_extf:
+    run: r:latest analysis/table1.R unvax_extf
+    needs:
+    - stage1_data_cleaning_unvax_extf
+    outputs:
+      moderately_sensitive:
+        table1: output/table1_unvax_extf.csv
+        table1_rounded: output/table1_unvax_extf_rounded.csv
+
+  ## Table 1 - vax 
+
+  table1_vax:
+    run: r:latest analysis/table1.R vax
+    needs:
+    - stage1_data_cleaning_vax
+    outputs:
+      moderately_sensitive:
+        table1: output/table1_vax.csv
+        table1_rounded: output/table1_vax_rounded.csv
+
   ## Run models 
 
   make_model_input-cohort_prevax-main-addiction:
@@ -7994,8 +8049,8 @@ actions:
     - make_model_input-cohort_prevax-main-suicide
     outputs:
       moderately_sensitive:
-        table2: output/venn_prevax.csv
-        table2_rounded: output/venn_prevax_rounded.csv
+        venn: output/venn_prevax.csv
+        venn_rounded: output/venn_prevax_rounded.csv
 
   ## Venn - prevax_extf 
 
@@ -8013,8 +8068,8 @@ actions:
     - make_model_input-cohort_prevax_extf-main-suicide
     outputs:
       moderately_sensitive:
-        table2: output/venn_prevax_extf.csv
-        table2_rounded: output/venn_prevax_extf_rounded.csv
+        venn: output/venn_prevax_extf.csv
+        venn_rounded: output/venn_prevax_extf_rounded.csv
 
   ## Venn - unvax 
 
@@ -8032,8 +8087,8 @@ actions:
     - make_model_input-cohort_unvax-main-suicide
     outputs:
       moderately_sensitive:
-        table2: output/venn_unvax.csv
-        table2_rounded: output/venn_unvax_rounded.csv
+        venn: output/venn_unvax.csv
+        venn_rounded: output/venn_unvax_rounded.csv
 
   ## Venn - unvax_extf 
 
@@ -8051,8 +8106,8 @@ actions:
     - make_model_input-cohort_unvax_extf-main-suicide
     outputs:
       moderately_sensitive:
-        table2: output/venn_unvax_extf.csv
-        table2_rounded: output/venn_unvax_extf_rounded.csv
+        venn: output/venn_unvax_extf.csv
+        venn_rounded: output/venn_unvax_extf_rounded.csv
 
   ## Venn - vax 
 
@@ -8070,8 +8125,8 @@ actions:
     - make_model_input-cohort_vax-main-suicide
     outputs:
       moderately_sensitive:
-        table2: output/venn_vax.csv
-        table2_rounded: output/venn_vax_rounded.csv
+        venn: output/venn_vax.csv
+        venn_rounded: output/venn_vax_rounded.csv
 
   ## Stage 6 - make model output 
 
