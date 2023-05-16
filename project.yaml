@@ -8325,3 +8325,15 @@ actions:
       moderately_sensitive:
         model_output: output/model_output.csv
 
+  ## Calculate median (IQR) for age 
+
+  median_iqr_age:
+    run: r:latest analysis/median_iqr_age.R
+    needs:
+    - stage1_data_cleaning_prevax_extf
+    - stage1_data_cleaning_vax
+    - stage1_data_cleaning_unvax_extf
+    outputs:
+      moderately_sensitive:
+        model_output: output/median_iqr_age.csv
+
