@@ -31,8 +31,9 @@ Below is a description of each action in the [`project.yaml`](./project.yaml) wi
 
 ### consort_\*.csv
 
-|     Description    |      Criterion applied to cohort                               |
+| Variable           | Description                                                    |
 |--------------------|----------------------------------------------------------------|
+|     Description    | criterion applied to cohort                               |
 |     N              | number of people in the cohort after criterion applied time    |
 |     removed        | number of people removed due to criterion being applied        |
 
