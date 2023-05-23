@@ -85,27 +85,27 @@ Below is a description of each action in the [`project.yaml`](./project.yaml) wi
 
 ### model_output.csv
 
-|     Description            |      Criterion applied to cohort                                                   |
-|----------------------------|------------------------------------------------------------------------------------|
-|     name                   |      unique identifier for analysis                                                |
-|     cohort                 |      cohort used for the analysis                                                  |
-|     outcome                |      outcome used for the analysis                                                 |
-|     analysis               |      string to identify whether this is the ‘main’ analysis or a subgroup          |
-|     error                  |      captured error   message if analysis did not run                              |
-|     model                  |      string to identify whether the model adjustment                               |
-|     term                   |      string to identify the term in the analysis                                   |
-|     lnhr                   |      log hazard ratio for the analysis                                             |
-|     se_lnhr                |      standard error for the log hazard ratio for the analysis                      |
-|     hr                     |      hazard ratio for the analysis                                                 |
-|     conf_low               |      lower confidence limit for the analysis                                       |
-|     conf_high              |      higher confidence limit for the analysis                                      |
-|     N_total                |      total number of people in the analysis                                        |
-|     N_exposed              |      total number of people with the exposure in the analysis                      |
-|     N_events               |      total number of people with the outcome following exposure in the analysis    |
-|     person_time_total      |      total person time included in the analysis                                    |
-|     outcome_time_median    |      median time to outcome following exposure                                     |
-|     strata_warning         |      string to identify strata variables that may cause model faults               |
-|     surv_formula           |      survival formula for the analysis                                             |
+| Variable                   | Description                                                                   |
+|----------------------------|-------------------------------------------------------------------------------|
+|     name                   | unique identifier for analysis                                                |
+|     cohort                 | cohort used for the analysis                                                  |
+|     outcome                | outcome used for the analysis                                                 |
+|     analysis               | string to identify whether this is the ‘main’ analysis or a subgroup          |
+|     error                  | captured error message if analysis did not run                                |
+|     model                  | string to identify whether the model adjustment                               |
+|     term                   | string to identify the term in the analysis                                   |
+|     lnhr                   | log hazard ratio for the analysis                                             |
+|     se_lnhr                | standard error for the log hazard ratio for the analysis                      |
+|     hr                     | hazard ratio for the analysis                                                 |
+|     conf_low               | lower confidence limit for the analysis                                       |
+|     conf_high              | higher confidence limit for the analysis                                      |
+|     N_total                | total number of people in the analysis                                        |
+|     N_exposed              | total number of people with the exposure in the analysis                      |
+|     N_events               | total number of people with the outcome following exposure in the analysis    |
+|     person_time_total      | total person time included in the analysis                                    |
+|     outcome_time_median    | median time to outcome following exposure                                     |
+|     strata_warning         | string to identify strata variables that may cause model faults               |
+|     surv_formula           | survival formula for the analysis                                             |
 
 ## About the OpenSAFELY framework
 
