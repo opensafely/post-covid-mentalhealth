@@ -30,6 +30,11 @@ print("Load data")
 
 df <- readr::read_rds(paste0("output/input_",cohort,"_stage1.rds"))
 
+# Remove people with history of COVID-19 ---------------------------------------
+print("Remove people with history of COVID-19")
+
+df <- df[df$sub_bin_covid19_confirmed_history==FALSE,]
+
 # Create exposure indicator ----------------------------------------------------
 print("Create exposure indicator")
 
