@@ -31,20 +31,20 @@ Below is a description of each action in the [`project.yaml`](./project.yaml) wi
 
 ### consort_\*.csv
 
-|     Description    |      Criterion applied to cohort                                      |
-|--------------------|-----------------------------------------------------------------------|
-|     N              |      Number of people in the cohort after   criterion applied time    |
-|     removed        |      Number of people removed due to criterion   being applied        |
+|     Description    |      Criterion applied to cohort                               |
+|--------------------|----------------------------------------------------------------|
+|     N              | number of people in the cohort after criterion applied time    |
+|     removed        | number of people removed due to criterion being applied        |
 
 
 ### table1_\*.csv
 
-| Variable                  | Description                                                           |
-|---------------------------|-----------------------------------------------------------------------|
-|     Characteristic        |     Patient characteristic under consideration                        |
-|     Subcharacteristic     |      Patient sub characteristic under   consideration                 |
-|     N (%)                 |      Number of people with characteristic,   alongside % of total     |
-|     COVID-19 diagnoses    |      Number of people with characteristic and   COVID-19              |
+| Variable                  | Description                                                      |
+|---------------------------|------------------------------------------------------------------|
+|     Characteristic        | patient characteristic under consideration                       |
+|     Subcharacteristic     | patient sub characteristic under   consideration                 |
+|     N (%)                 | number of people with characteristic,   alongside % of total     |
+|     COVID-19 diagnoses    | number of people with characteristic and   COVID-19              |
 
 ### table2_\*.csv
 
@@ -66,21 +66,21 @@ Below is a description of each action in the [`project.yaml`](./project.yaml) wi
 |     sample_size              | number of people in the analysis                                        |
 ### venn_\*.csv
 
-| Variable                | Description                                                                      |
-|-------------------------|----------------------------------------------------------------------------------|
-|     outcome             |      outcome under consideration                                                 |
-|     only_snomed         |      outcome identified in primary care only                                     |
-|     only_hes            |      outcome identified in secondary care only                                   |
-|     only_death          |      outcome identified in death registry only                                   |
-|     snomed_hes          |      outcome identified in primary and secondary care                            |
-|     snomed_death        |      outcome identified in primary care and death registry                       |
-|     hes_death           |      outcome identified in secondary care and death registry                     |
-|     snomed_hes_death    |      outcome identified in primary care, secondary care, and death registry      |
-|     total_snomed        |      total outcomes identified in primary care                                   |
-|     total_hes           |      total outcomes identified in secondary care                                 |
-|     total_death         |      total outcomes identified in death registry                                 |
-|     total               |      total outcomes identified                                                   |
-|     cohort              |      cohort under consideration                                                  |
+| Variable                | Description                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|
+|     outcome             | outcome under consideration                                                 |
+|     only_snomed         | outcome identified in primary care only                                     |
+|     only_hes            | outcome identified in secondary care only                                   |
+|     only_death          | outcome identified in death registry only                                   |
+|     snomed_hes          | outcome identified in primary and secondary care                            |
+|     snomed_death        | outcome identified in primary care and death registry                       |
+|     hes_death           | outcome identified in secondary care and death registry                     |
+|     snomed_hes_death    | outcome identified in primary care, secondary care, and death registry      |
+|     total_snomed        | total outcomes identified in primary care                                   |
+|     total_hes           | total outcomes identified in secondary care                                 |
+|     total_death         | total outcomes identified in death registry                                 |
+|     total               | total outcomes identified                                                   |
+|     cohort              | cohort under consideration                                                  |
 
 ### model_output.csv
 
