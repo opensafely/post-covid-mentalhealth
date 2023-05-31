@@ -384,6 +384,19 @@ actions_list <- splice(
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv")
     )
+  ),
+  
+  comment("Calculate median (IQR) for age"),
+  
+  action(
+    name = "median_iqr_age",
+    run = "r:latest analysis/median_iqr_age.R",
+    needs = list("stage1_data_cleaning_prevax_extf",
+                 "stage1_data_cleaning_vax",
+                 "stage1_data_cleaning_unvax_extf"),
+    moderately_sensitive = list(
+      model_output = glue("output/median_iqr_age.csv")
+    )
   )
   
 )
