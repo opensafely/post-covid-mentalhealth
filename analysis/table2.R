@@ -73,24 +73,47 @@ for (i in 1:nrow(active_analyses)) {
   
   exposed <- df[!is.na(df$exp_date),c("patient_id","exp_date","out_date","end_date_outcome")]
   
-  exposed <- exposed %>% dplyr::mutate(fup_start = exp_date,
-                                       fup_end = min(end_date_outcome, out_date, na.rm = TRUE))
+  exposed <- exposed %>% 
+    dplyr::mutate(fup_start = exp_date,
+                  fup_end = min(end_date_outcome, out_date, na.rm = TRUE))
   
   exposed <- exposed[exposed$fup_start<=exposed$fup_end,]
   
-  exposed <- exposed %>% dplyr::mutate(person_days = as.numeric((fup_end - fup_start))+1)
+  exposed <- exposed %>% 
+    dplyr::mutate(person_days = as.numeric((fup_end - fup_start))+1)
   
   ## Make unexposed subset -----------------------------------------------------
   print('Make unexposed subset')
   
-  unexposed <- df[,c("patient_id","index_date","exp_date","out_date","end_date_outcome")]
+  # Unexposed time without exposure
   
-  unexposed <- unexposed %>% dplyr::mutate(fup_start = index_date,
-                                           fup_end = min(exp_date, end_date_outcome, out_date, na.rm = TRUE))
+  unexposed_withoutexp <- df[is.na(df$exp_date), c("patient_id","index_date","exp_date","out_date","end_date_outcome")]
   
-  unexposed <- unexposed[unexposed$fup_start<=unexposed$fup_end,]
+  unexposed_withoutexp <- unexposed_withoutexp %>% 
+    dplyr::mutate(fup_start = index_date,
+                  fup_end = min(end_date_outcome, out_date, na.rm = TRUE))
   
-  unexposed <- unexposed %>% dplyr::mutate(person_days = as.numeric((fup_end - fup_start))+1)
+  unexposed_withoutexp <- unexposed_withoutexp[unexposed_withoutexp$fup_start<=unexposed_withoutexp$fup_end,]
+  
+  unexposed_withoutexp <- unexposed_withoutexp %>% 
+    dplyr::mutate(person_days = as.numeric((fup_end - fup_start))+1)
+  
+  # Unexposed time from before exposure
+  
+  unexposed_beforeexp <- df[!is.na(df$exp_date), c("patient_id","index_date","exp_date","out_date","end_date_outcome")]
+  
+  unexposed_beforeexp <- unexposed_beforeexp %>% 
+    dplyr::mutate(fup_start = index_date,
+                  fup_end = exp_date)
+  
+  unexposed_beforeexp <- unexposed_beforeexp[unexposed_beforeexp$fup_start<=unexposed_beforeexp$fup_end,]
+  
+  unexposed_beforeexp <- unexposed_beforeexp %>% 
+    dplyr::mutate(person_days = as.numeric((fup_end - fup_start))+1)
+  
+  # All unexposed time
+  
+  unexposed <- rbind(unexposed_withoutexp,unexposed_beforeexp)
   
   ## Append to table 2 ---------------------------------------------------------
   print('Append to table 2')
