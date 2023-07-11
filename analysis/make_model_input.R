@@ -18,7 +18,6 @@ if(length(args)==0){
   name <- "all" # prepare datasets for all active analyses 
   # name <- "cohort_vax-sub_history_none-depression" # prepare datasets for all active analyses whose name contains X
   # name <- "vax-depression-main;vax-depression-sub_covid_hospitalised;vax-depression-sub_covid_nonhospitalised" # prepare datasets for specific active analyses
-  name <- "cohort_unvax-main-anxiety_ptsd"
 } else {
   name <- args[[1]]
 }
