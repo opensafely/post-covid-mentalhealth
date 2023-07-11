@@ -16,6 +16,7 @@ defaults_list <- list(
 
 active_analyses <- read_rds("lib/active_analyses.rds")
 active_analyses <- active_analyses[order(active_analyses$analysis,active_analyses$cohort,active_analyses$outcome),]
+active_analyses <- active_analyses[active_analyses$cohort %in% c("prevax_extf","unvax_extf","vax"),]
 cohorts <- unique(active_analyses$cohort)
 
 # Determine which outputs are ready --------------------------------------------
