@@ -18,6 +18,7 @@ if(length(args)==0){
   name <- "all" # prepare datasets for all active analyses 
   # name <- "cohort_vax-sub_history_none-depression" # prepare datasets for all active analyses whose name contains X
   # name <- "vax-depression-main;vax-depression-sub_covid_hospitalised;vax-depression-sub_covid_nonhospitalised" # prepare datasets for specific active analyses
+  name <- "cohort_unvax-main-anxiety_ptsd"
 } else {
   name <- args[[1]]
 }
@@ -48,7 +49,7 @@ for (i in 1:nrow(active_analyses)) {
   # Load data --------------------------------------------------------------------
   print(paste0("Load data for ",active_analyses$name[i]))
   
-  input <- readr::read_rds(paste0("output/input_",active_analyses$cohort[i],"_stage1.rds"))
+  input <- dplyr::as_tibble(readr::read_rds(paste0("output/input_",active_analyses$cohort[i],"_stage1.rds")))
   
   # Restrict to required variables -----------------------------------------------
   print('Restrict to required variables')
