@@ -254,13 +254,13 @@ for (i in 1:nrow(active_analyses)) {
     
   }
   
-  # Make model input: aer_* ----------------------------------------------------
+  # Make model input: main_aer_* ----------------------------------------------------
   
-  if (grepl("aer_",active_analyses$analysis[i])==TRUE) {
+  if (grepl("main_aer_",active_analyses$analysis[i])==TRUE) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
-    sex <- stringr::str_to_title(gsub("_.*","",gsub("aer_","",active_analyses$analysis[i])))
+    sex <- stringr::str_to_title(gsub("_.*","",gsub("main_aer_","",active_analyses$analysis[i])))
     min_age <- as.numeric(substr(active_analyses$analysis[i],nchar(active_analyses$analysis[i])-4,nchar(active_analyses$analysis[i])-3))
     max_age <- as.numeric(substr(active_analyses$analysis[i],nchar(active_analyses$analysis[i])-1,nchar(active_analyses$analysis[i])))
     

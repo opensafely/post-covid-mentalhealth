@@ -93,7 +93,7 @@ for (c in cohorts) {
                          age_spline = TRUE,
                          analysis = "main")
     
-    ## analysis: absolute excess risk ------------------------------------------
+    ## analysis: main_aer_* ----------------------------------------------------
     
     for (aer_analysis in c("aer_female_18_39",
                            "aer_female_40_59",
@@ -122,7 +122,7 @@ for (c in cohorts) {
                            episode_event_threshold = episode_event_threshold,
                            covariate_threshold = covariate_threshold,
                            age_spline = FALSE,
-                           analysis = aer_analysis)
+                           analysis = paste0("main_",aer_analysis))
        
     }
     
