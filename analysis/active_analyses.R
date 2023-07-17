@@ -533,7 +533,8 @@ df <- rbind(df,tmp)
 tmp <- df[df$cohort=="unvax" & 
             (df$analysis %in% c("main",
                                 "sub_covid_hospitalised",
-                                "sub_covid_nonhospitalised") |
+                                "sub_covid_nonhospitalised",
+                                "sub_covid_history") |
                df$outcome %in% outcomes_runall),]
 
 tmp$cohort <- paste0(tmp$cohort,"_extf")
