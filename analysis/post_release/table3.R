@@ -6,7 +6,7 @@ library(magrittr)
 # Specify paths ----------------------------------------------------------------
 print('Specify paths')
 
-source("analysis/specify_paths.R")
+source("analysis/post_release/specify_paths.R")
 
 # Source utility functions -----------------------------------------------------
 print('Source utility functions')
@@ -93,6 +93,19 @@ df$analysis_label <- factor(df$analysis_label,
                                        "Ethnicity: Other",                       
                                        "Ethnicity: Mixed"))
 
+# Order outcomes ---------------------------------------------------------------
+print("Order outcomes")
+
+df$outcome_label <- factor(df$outcome_label,
+                           levels = c("General anxiety",
+                                      "Post-traumatic stress disorder",
+                                      "Depression",
+                                      "Eating disorders",
+                                      "Serious mental illness",
+                                      "Addiction",
+                                      "Self harm",
+                                      "Suicide"))
+
 # Tidy table -------------------------------------------------------------------
 print("Tidy table")
 
@@ -110,4 +123,4 @@ df <- dplyr::rename(df,
 # Save table -------------------------------------------------------------------
 print("Save table")
 
-readr::write_csv(df, "output/table3.csv", na = "-")
+readr::write_csv(df, "output/post_release/table3.csv", na = "-")

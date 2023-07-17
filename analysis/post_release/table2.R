@@ -6,7 +6,7 @@ library(magrittr)
 # Specify paths ---------------------------------------------------------------
 print('Specify paths')
 
-source("analysis/specify_paths.R")
+source("analysis/post_release/specify_paths.R")
 
 # Source utility functions -----------------------------------------------------
 print('Source utility functions')
@@ -72,6 +72,19 @@ df <- tidyr::pivot_wider(df,
                          names_from = "cohort",
                          values_from = c("event_personyears","incidencerate"))
 
+# Order outcomes ---------------------------------------------------------------
+print("Order outcomes")
+
+df$outcome_label <- factor(df$outcome_label,
+                           levels = c("General anxiety",
+                                      "Post-traumatic stress disorder",
+                                      "Depression",
+                                      "Eating disorders",
+                                      "Serious mental illness",
+                                      "Addiction",
+                                      "Self harm",
+                                      "Suicide"))
+
 # Tidy table -------------------------------------------------------------------
 print("Tidy table")
 
@@ -88,5 +101,4 @@ df <- dplyr::rename(df,
 # Save table -------------------------------------------------------------------
 print("Save table")
 
-readr::write_csv(df, "output/table2.csv", na = "-")
-
+readr::write_csv(df, "output/post_release/table2.csv", na = "-")

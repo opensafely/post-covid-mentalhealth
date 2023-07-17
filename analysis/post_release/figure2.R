@@ -6,7 +6,7 @@ library(magrittr)
 # Specify paths ---------------------------------------------------------------
 print('Specify paths')
 
-source("analysis/specify_paths.R")
+source("analysis/post_release/specify_paths.R")
 
 # Load data --------------------------------------------------------------------
 print("Load data")
@@ -95,7 +95,7 @@ for (i in c("sub_hospitalised","sub_history","sub_age","sub_sex","sub_ethnicity"
   # Save plot ------------------------------------------------------------------
   print("Save plot")
   
-  ggplot2::ggsave(paste0("output/figure_",gsub("sub_","",i),".png"), 
+  ggplot2::ggsave(paste0("output/post_release/figure_",gsub("sub_","",i),".png"), 
                   height = 210, width = 297, 
                   unit = "mm", dpi = 600, scale = 0.8)
 }
@@ -161,7 +161,7 @@ for (i in c("sub_covid_history")){
   # Save plot ------------------------------------------------------------------
   print("Save plot")
   
-  ggplot2::ggsave(paste0("output/figure_",gsub("sub_","",i),".png"), 
+  ggplot2::ggsave(paste0("output/post_release/figure_",gsub("sub_","",i),".png"), 
                   height = 210, width = 210, 
                   unit = "mm", dpi = 600, scale = 0.8)
 }

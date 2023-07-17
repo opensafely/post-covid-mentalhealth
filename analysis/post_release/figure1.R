@@ -6,7 +6,7 @@ library(magrittr)
 # Specify paths ---------------------------------------------------------------
 print('Specify paths')
 
-source("analysis/specify_paths.R")
+source("analysis/post_release/specify_paths.R")
 
 # Load data --------------------------------------------------------------------
 print("Load data")
@@ -29,13 +29,26 @@ print("Make columns numeric")
 df <- df %>% 
   dplyr::mutate_at(c("outcome_time_median","hr","conf_low","conf_high"), as.numeric)
 
-# Add plot labels ---------------------------------------------------------
+# Add plot labels --------------------------------------------------------------
 print("Add plot labels")
 
 plot_labels <- readr::read_csv("lib/plot_labels.csv")
 
 df <- merge(df, plot_labels, by.x = "outcome", by.y = "term", all.x = TRUE)
 df <- dplyr::rename(df, "outcome_label" = "label")
+
+# Order outcomes ---------------------------------------------------------------
+print("Order outcomes")
+
+df$outcome_label <- factor(df$outcome_label,
+                           levels = c("General anxiety",
+                                      "Post-traumatic stress disorder",
+                                      "Depression",
+                                      "Eating disorders",
+                                      "Serious mental illness",
+                                      "Addiction",
+                                      "Self harm",
+                                      "Suicide"))
 
 # Plot data --------------------------------------------------------------------
 print("Plot data")
@@ -72,6 +85,6 @@ ggplot2::ggplot(data = df,
 # Save plot --------------------------------------------------------------------
 print("Save plot")
 
-ggplot2::ggsave("output/figure1.png", 
+ggplot2::ggsave("output/post_release/figure1.png", 
                 height = 297, width = 210, 
                 unit = "mm", dpi = 600, scale = 0.8)
