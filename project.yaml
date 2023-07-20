@@ -5211,6 +5211,40 @@ actions:
       moderately_sensitive:
         model_output: output/model_output.csv
 
+  ## Make absolute excess risk (AER) input 
+
+  make_aer_input:
+    run: r:latest analysis/make_aer_input.R
+    needs:
+    - cohort_prevax_extf-main-addiction
+    - cohort_prevax_extf-main-anxiety_general
+    - cohort_prevax_extf-main-anxiety_ptsd
+    - cohort_prevax_extf-main-depression
+    - cohort_prevax_extf-main-eating_disorders
+    - cohort_prevax_extf-main-self_harm
+    - cohort_prevax_extf-main-serious_mental_illness
+    - cohort_prevax_extf-main-suicide
+    - cohort_unvax_extf-main-addiction
+    - cohort_unvax_extf-main-anxiety_general
+    - cohort_unvax_extf-main-anxiety_ptsd
+    - cohort_unvax_extf-main-depression
+    - cohort_unvax_extf-main-eating_disorders
+    - cohort_unvax_extf-main-self_harm
+    - cohort_unvax_extf-main-serious_mental_illness
+    - cohort_unvax_extf-main-suicide
+    - cohort_vax-main-addiction
+    - cohort_vax-main-anxiety_general
+    - cohort_vax-main-anxiety_ptsd
+    - cohort_vax-main-depression
+    - cohort_vax-main-eating_disorders
+    - cohort_vax-main-self_harm
+    - cohort_vax-main-serious_mental_illness
+    - cohort_vax-main-suicide
+    outputs:
+      moderately_sensitive:
+        aer_input: output/aer_input-main.csv
+        aer_input_rounded: output/aer_input-main-rounded.csv
+
   ## Calculate median (IQR) for age 
 
   median_iqr_age:
