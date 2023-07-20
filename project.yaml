@@ -5216,30 +5216,30 @@ actions:
   make_aer_input:
     run: r:latest analysis/make_aer_input.R
     needs:
-    - cox_ipw-cohort_prevax_extf-main-addiction
-    - cox_ipw-cohort_prevax_extf-main-anxiety_general
-    - cox_ipw-cohort_prevax_extf-main-anxiety_ptsd
-    - cox_ipw-cohort_prevax_extf-main-depression
-    - cox_ipw-cohort_prevax_extf-main-eating_disorders
-    - cox_ipw-cohort_prevax_extf-main-self_harm
-    - cox_ipw-cohort_prevax_extf-main-serious_mental_illness
-    - cox_ipw-cohort_prevax_extf-main-suicide
-    - cox_ipw-cohort_unvax_extf-main-addiction
-    - cox_ipw-cohort_unvax_extf-main-anxiety_general
-    - cox_ipw-cohort_unvax_extf-main-anxiety_ptsd
-    - cox_ipw-cohort_unvax_extf-main-depression
-    - cox_ipw-cohort_unvax_extf-main-eating_disorders
-    - cox_ipw-cohort_unvax_extf-main-self_harm
-    - cox_ipw-cohort_unvax_extf-main-serious_mental_illness
-    - cox_ipw-cohort_unvax_extf-main-suicide
-    - cox_ipw-cohort_vax-main-addiction
-    - cox_ipw-cohort_vax-main-anxiety_general
-    - cox_ipw-cohort_vax-main-anxiety_ptsd
-    - cox_ipw-cohort_vax-main-depression
-    - cox_ipw-cohort_vax-main-eating_disorders
-    - cox_ipw-cohort_vax-main-self_harm
-    - cox_ipw-cohort_vax-main-serious_mental_illness
-    - cox_ipw-cohort_vax-main-suicide
+    - make_model_input-cohort_prevax_extf-main-addiction
+    - make_model_input-cohort_prevax_extf-main-anxiety_general
+    - make_model_input-cohort_prevax_extf-main-anxiety_ptsd
+    - make_model_input-cohort_prevax_extf-main-depression
+    - make_model_input-cohort_prevax_extf-main-eating_disorders
+    - make_model_input-cohort_prevax_extf-main-self_harm
+    - make_model_input-cohort_prevax_extf-main-serious_mental_illness
+    - make_model_input-cohort_prevax_extf-main-suicide
+    - make_model_input-cohort_unvax_extf-main-addiction
+    - make_model_input-cohort_unvax_extf-main-anxiety_general
+    - make_model_input-cohort_unvax_extf-main-anxiety_ptsd
+    - make_model_input-cohort_unvax_extf-main-depression
+    - make_model_input-cohort_unvax_extf-main-eating_disorders
+    - make_model_input-cohort_unvax_extf-main-self_harm
+    - make_model_input-cohort_unvax_extf-main-serious_mental_illness
+    - make_model_input-cohort_unvax_extf-main-suicide
+    - make_model_input-cohort_vax-main-addiction
+    - make_model_input-cohort_vax-main-anxiety_general
+    - make_model_input-cohort_vax-main-anxiety_ptsd
+    - make_model_input-cohort_vax-main-depression
+    - make_model_input-cohort_vax-main-eating_disorders
+    - make_model_input-cohort_vax-main-self_harm
+    - make_model_input-cohort_vax-main-serious_mental_illness
+    - make_model_input-cohort_vax-main-suicide
     outputs:
       moderately_sensitive:
         aer_input: output/aer_input-main.csv
