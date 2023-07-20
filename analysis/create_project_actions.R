@@ -400,7 +400,7 @@ actions_list <- splice(
   action(
     name = "make_aer_input",
     run = "r:latest analysis/make_aer_input.R",
-    needs = as.list(active_analyses[grepl("-main-",active_analyses$name),]$name),
+    needs = as.list(paste0("cox_ipw-",active_analyses[grepl("-main-",active_analyses$name),]$name)),
     moderately_sensitive = list(
       aer_input = glue("output/aer_input-main.csv"),
       aer_input_rounded = glue("output/aer_input-main-rounded.csv")
