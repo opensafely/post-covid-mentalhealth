@@ -93,39 +93,6 @@ for (c in cohorts) {
                          age_spline = TRUE,
                          analysis = "main")
     
-    ## analysis: main_aer_* ----------------------------------------------------
-    
-    for (aer_analysis in c("aer_female_18_39",
-                           "aer_female_40_59",
-                           "aer_female_60_79",
-                           "aer_female_80_110",
-                           "aer_male_18_39",
-                           "aer_male_40_59",
-                           "aer_male_60_79",
-                           "aer_male_80_110")) {
-     
-      df[nrow(df)+1,] <- c(cohort = c,
-                           exposure = exposure, 
-                           outcome = i,
-                           ipw = ipw, 
-                           strata = strata,
-                           covariate_sex = "NULL",
-                           covariate_age = covariate_age,
-                           covariate_other = "cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm",
-                           cox_start = cox_start,
-                           cox_stop = cox_stop,
-                           study_start = ifelse(c=="prevax", "2020-01-01", "2021-06-01"),
-                           study_stop = ifelse(c=="prevax", "2021-06-18", "2021-12-14"),
-                           cut_points = ifelse(c=="prevax", "28;197;535", "28;197"),
-                           controls_per_case = controls_per_case,
-                           total_event_threshold = total_event_threshold,
-                           episode_event_threshold = episode_event_threshold,
-                           covariate_threshold = covariate_threshold,
-                           age_spline = FALSE,
-                           analysis = paste0("main_",aer_analysis))
-       
-    }
-    
     ## analysis: sub_covid_hospitalised ----------------------------------------
     
     df[nrow(df)+1,] <- c(cohort = c,
