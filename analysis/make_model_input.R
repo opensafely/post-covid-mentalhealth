@@ -254,28 +254,4 @@ for (i in 1:nrow(active_analyses)) {
     
   }
   
-  # Make model input: main_aer_* ----------------------------------------------------
-  
-  if (grepl("main_aer_",active_analyses$analysis[i])==TRUE) {
-    
-    print(paste0('Make model input: ',active_analyses$analysis[i]))
-    
-    sex <- stringr::str_to_title(gsub("_.*","",gsub("main_aer_","",active_analyses$analysis[i])))
-    min_age <- as.numeric(substr(active_analyses$analysis[i],nchar(active_analyses$analysis[i])-4,nchar(active_analyses$analysis[i])-3))
-    max_age <- as.numeric(substr(active_analyses$analysis[i],nchar(active_analyses$analysis[i])-1,nchar(active_analyses$analysis[i])))
-    
-    df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
-                  input$cov_cat_sex==sex &
-                  input$cov_num_age>=min_age &
-                  input$cov_num_age<ifelse(max_age==110,max_age+1,max_age),]
-    
-    df[,c(colnames(df)[grepl("sub_",colnames(df))],"cov_cat_sex")] <- NULL
-    
-    check_vitals(df)
-    readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")
-    print(paste0("Saved: output/model_input-",active_analyses$name[i],".rds"))
-    rm(df)
-    
-  }
-  
 }
