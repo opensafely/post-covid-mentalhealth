@@ -5211,6 +5211,40 @@ actions:
       moderately_sensitive:
         model_output: output/model_output.csv
 
+  ## Make absolute excess risk (AER) input 
+
+  make_aer_input:
+    run: r:latest analysis/make_aer_input.R
+    needs:
+    - make_model_input-cohort_prevax_extf-main-addiction
+    - make_model_input-cohort_prevax_extf-main-anxiety_general
+    - make_model_input-cohort_prevax_extf-main-anxiety_ptsd
+    - make_model_input-cohort_prevax_extf-main-depression
+    - make_model_input-cohort_prevax_extf-main-eating_disorders
+    - make_model_input-cohort_prevax_extf-main-self_harm
+    - make_model_input-cohort_prevax_extf-main-serious_mental_illness
+    - make_model_input-cohort_prevax_extf-main-suicide
+    - make_model_input-cohort_unvax_extf-main-addiction
+    - make_model_input-cohort_unvax_extf-main-anxiety_general
+    - make_model_input-cohort_unvax_extf-main-anxiety_ptsd
+    - make_model_input-cohort_unvax_extf-main-depression
+    - make_model_input-cohort_unvax_extf-main-eating_disorders
+    - make_model_input-cohort_unvax_extf-main-self_harm
+    - make_model_input-cohort_unvax_extf-main-serious_mental_illness
+    - make_model_input-cohort_unvax_extf-main-suicide
+    - make_model_input-cohort_vax-main-addiction
+    - make_model_input-cohort_vax-main-anxiety_general
+    - make_model_input-cohort_vax-main-anxiety_ptsd
+    - make_model_input-cohort_vax-main-depression
+    - make_model_input-cohort_vax-main-eating_disorders
+    - make_model_input-cohort_vax-main-self_harm
+    - make_model_input-cohort_vax-main-serious_mental_illness
+    - make_model_input-cohort_vax-main-suicide
+    outputs:
+      moderately_sensitive:
+        aer_input: output/aer_input-main.csv
+        aer_input_rounded: output/aer_input-main-rounded.csv
+
   ## Calculate median (IQR) for age 
 
   median_iqr_age:

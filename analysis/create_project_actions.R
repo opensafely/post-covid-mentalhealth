@@ -17,7 +17,6 @@ defaults_list <- list(
 active_analyses <- read_rds("lib/active_analyses.rds")
 active_analyses <- active_analyses[order(active_analyses$analysis,active_analyses$cohort,active_analyses$outcome),]
 active_analyses <- active_analyses[active_analyses$cohort %in% c("prevax_extf","unvax_extf","vax"),]
-active_analyses <- active_analyses[!grepl("_aer_",active_analyses$name),]
 cohorts <- unique(active_analyses$cohort)
 
 # Determine which outputs are ready --------------------------------------------
@@ -393,6 +392,18 @@ actions_list <- splice(
                               "cox_ipw-cohort_vax-sub_covid_nonhospitalised-eating_disorders"))),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv")
+    )
+  ),
+  
+  comment("Make absolute excess risk (AER) input"),
+  
+  action(
+    name = "make_aer_input",
+    run = "r:latest analysis/make_aer_input.R",
+    needs = as.list(paste0("make_model_input-",active_analyses[grepl("-main-",active_analyses$name),]$name)),
+    moderately_sensitive = list(
+      aer_input = glue("output/aer_input-main.csv"),
+      aer_input_rounded = glue("output/aer_input-main-rounded.csv")
     )
   ),
   
