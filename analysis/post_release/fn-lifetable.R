@@ -1,6 +1,6 @@
-# Function for making life tables
-# Inputs are df, which is a data frame containing: hazard ratio, unexposed_person_days, unexposed_events, total_exposed, time_period_start, time_period_end
-# Plus the relevant subgroup, outcome, cohort, analysis and model to use
+# Function for making life tables that requires two inputs:
+# (1) model_output
+# (2) aer_input [adapted Table 2 with age and sex groupings]
 
 lifetable <- function(model_output, aer_input) {
 
