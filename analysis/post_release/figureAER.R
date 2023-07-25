@@ -29,42 +29,22 @@ df$aer_sex <- factor(df$aer_sex,
                                 "Sex: Male",
                                 "Combined"))
 
-# Specify line colours ---------------------------------------------------------
-print("Specify line colours")
-
-df$colour <- ""
-df$colour <- ifelse(df$aer_age=="Age group: 18-39","#006d2c",df$colour)
-df$colour <- ifelse(df$aer_age=="Age group: 40-59","#31a354",df$colour)
-df$colour <- ifelse(df$aer_age=="Age group: 60-79","#74c476",df$colour)
-df$colour <- ifelse(df$aer_age=="Age group: 80-110","#bae4b3",df$colour)
-df$colour <- ifelse(df$aer_age=="Combined","#000000",df$colour)
-
-# Specify line types -----------------------------------------------------------
-print("Specify line types")
-
-df$linetype <- NA
-df$linetype <- ifelse(df$aer_sex=="Sex: Female","dotted",df$linetype)
-df$linetype <- ifelse(df$aer_sex=="Sex: Male","dashed",df$linetype)
-df$linetype <- ifelse(df$aer_sex=="Combined","solid",df$linetype)
-
-# Add cohort names -------------------------------------------------------------
-print("Add cohort names")
+# Format cohort ----------------------------------------------------------------
+print("Format cohort")
 
 df$cohort <- ifelse(df$cohort == "prevax", "Pre-vaccination (1 Jan 2020 - 14 Dec 2021)", df$cohort)
 df$cohort <- ifelse(df$cohort == "vax", "Vaccinated (1 Jun 2021 - 14 Dec 2021)", df$cohort)
 df$cohort <- ifelse(df$cohort == "unvax", "Unvaccinated (1 Jun 2021 - 14 Dec 2021)", df$cohort)
 
-# Restrict to day 196 ----------------------------------------------------------
-print("Restrict to day 196")
-
-df <- df[df$days<197,]
+# Plot and save each outcome ---------------------------------------------------
+print("Plot and save each outcome")
 
 for (outcome in unique(df$outcome)) {
   
-  # Plot -------------------------------------------------------------------------
+  # Plot -----------------------------------------------------------------------
   print(paste0("Plot outcome: ",outcome))
   
-  ggplot2::ggplot(data = df[df$outcome==outcome,], 
+  ggplot2::ggplot(data = df[df$days<197 & df$outcome==outcome,], 
                   mapping = ggplot2::aes(x = days/7, 
                                          y = cumulative_difference_absolute_excess_risk*100, 
                                          color = aer_age, linetype = aer_sex)) +
@@ -95,7 +75,7 @@ for (outcome in unique(df$outcome)) {
                    text = ggplot2::element_text(size=13)) +
     ggplot2::facet_grid(. ~ cohort, scales = "free_x")
   
-  # Save figure ------------------------------------------------------------------
+  # Save figure ----------------------------------------------------------------
   print('Save figure')
   
   ggplot2::ggsave(paste0("output/post_release/figureAER_",outcome,".png"), 
