@@ -12,43 +12,62 @@ library(readr)
 args <- commandArgs(trailingOnly=TRUE)
 print(length(args))
 if(length(args)==0){
-  cohort_name <- "prevax"
+  cohort_name <- "prevax_extf"
 } else {
   cohort_name <- args[[1]]
 }
 
 # Get column names -------------------------------------------------------------
 
-cols <- fread(paste0("output/input_",cohort_name,".csv.gz"), 
-                   header = TRUE, 
-                   sep = ",", 
-                   nrows = 1, 
-                   stringsAsFactors = FALSE)
+all_cols <- fread(paste0("output/input_",cohort_name,".csv.gz"), 
+                  header = TRUE, sep = ",", nrows = 0, 
+                  stringsAsFactors = FALSE) %>%
+  names()
 
 message("Column names found")
 
-# Identify columns containg "_date" --------------------------------------------
+# Identify column classes ------------------------------------------------------
 
-date_cols <- grep("_date", colnames(cols), value = TRUE)
+cat_cols <- c("patient_id", grep("_cat", all_cols, value = TRUE))
 
-message("Date columns identified")
+bin_cols <- c(grep("_bin", all_cols, value = TRUE), 
+              grep("prostate_cancer_", all_cols, value = TRUE),
+              "has_follow_up_previous_6months", "has_died", "registered_at_start",
+              "tmp_cocp","tmp_hrt")
 
-# Set class to date ------------------------------------------------------------
+num_cols <- c(grep("_num", all_cols, value = TRUE),
+              grep("vax_jcvi_age_", all_cols, value = TRUE))
 
-col_classes <- setNames(rep("Date", length(date_cols)), date_cols)
+date_cols <- grep("_date", all_cols, value = TRUE)
+
+message("Column classes identified")
+
+# Define column classes --------------------------------------------------------
+
+col_classes <- setNames(
+  c(rep("c", length(cat_cols)),
+    rep("l", length(bin_cols)),
+    rep("d", length(num_cols)),
+    rep("D", length(date_cols))
+  ), 
+  all_cols[match(c(cat_cols, bin_cols, num_cols, date_cols), all_cols)]
+)
 
 message("Column classes defined")
 
 # Read cohort dataset ---------------------------------------------------------- 
 
-df <- fread(paste0("output/input_",cohort_name,".csv.gz"), colClasses = col_classes)
+df <- read_csv(paste0("output/input_",cohort_name,".csv.gz"), 
+               col_types = col_classes)
 
 message(paste0("Dataset has been read successfully with N = ", nrow(df), " rows"))
 
 # Add death_date from prelim data ----------------------------------------------
 
-prelim_data <- read_csv("output/index_dates.csv.gz") %>%
-  select(c(patient_id,death_date))
+prelim_data <- read_csv("output/index_dates.csv.gz",
+                        col_select = c("patient_id", "death_date"),
+                        col_types=cols(patient_id = "c", death_date="D"))
+
 df <- df %>% inner_join(prelim_data,by="patient_id")
 
 message("Death date added!")
