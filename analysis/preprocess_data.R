@@ -65,7 +65,6 @@ message(paste0("Dataset has been read successfully with N = ", nrow(df), " rows"
 # Add death_date from prelim data ----------------------------------------------
 
 prelim_data <- read_csv("output/index_dates.csv.gz",
-                        col_select = c("patient_id", "death_date"),
                         col_types=cols(patient_id = "c", death_date="D"))
 
 df <- df %>% inner_join(prelim_data,by="patient_id")
