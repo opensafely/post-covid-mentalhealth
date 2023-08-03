@@ -26,6 +26,7 @@ if(length(args)==0){
 print('Load active analyses')
 
 active_analyses <- readr::read_rds("lib/active_analyses.rds")
+active_analyses <- active_analyses[grepl("sub_age_",active_analyses$analysis),]
 
 # Identify model inputs to be prepared -----------------------------------------
 print('Identify model inputs to be prepared')
@@ -196,8 +197,8 @@ for (i in 1:nrow(active_analyses)) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
-    min_age <- as.numeric(substr(active_analyses$analysis[i],nchar(active_analyses$analysis[i])-4,nchar(active_analyses$analysis[i])-3))
-    max_age <- as.numeric(substr(active_analyses$analysis[i],nchar(active_analyses$analysis[i])-1,nchar(active_analyses$analysis[i])))
+    min_age <- as.numeric(strsplit(gsub("sub_age_","",active_analyses$analysis[i]), split = "_")[[1]][1])
+    max_age <- as.numeric(strsplit(gsub("sub_age_","",active_analyses$analysis[i]), split = "_")[[1]][2])
     
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_num_age>=min_age &
