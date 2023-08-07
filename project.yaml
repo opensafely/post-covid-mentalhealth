@@ -5045,12 +5045,18 @@ actions:
     - cox_ipw-cohort_prevax_extf-sub_age_60_79-anxiety_general
     - cox_ipw-cohort_prevax_extf-sub_age_60_79-depression
     - cox_ipw-cohort_prevax_extf-sub_age_60_79-serious_mental_illness
+    - cox_ipw-cohort_unvax_extf-sub_age_60_79-anxiety_general
+    - cox_ipw-cohort_unvax_extf-sub_age_60_79-depression
+    - cox_ipw-cohort_unvax_extf-sub_age_60_79-serious_mental_illness
     - cox_ipw-cohort_vax-sub_age_60_79-anxiety_general
     - cox_ipw-cohort_vax-sub_age_60_79-depression
     - cox_ipw-cohort_vax-sub_age_60_79-serious_mental_illness
     - cox_ipw-cohort_prevax_extf-sub_age_80_110-anxiety_general
     - cox_ipw-cohort_prevax_extf-sub_age_80_110-depression
     - cox_ipw-cohort_prevax_extf-sub_age_80_110-serious_mental_illness
+    - cox_ipw-cohort_unvax_extf-sub_age_80_110-anxiety_general
+    - cox_ipw-cohort_unvax_extf-sub_age_80_110-depression
+    - cox_ipw-cohort_unvax_extf-sub_age_80_110-serious_mental_illness
     - cox_ipw-cohort_vax-sub_age_80_110-anxiety_general
     - cox_ipw-cohort_vax-sub_age_80_110-depression
     - cox_ipw-cohort_vax-sub_age_80_110-serious_mental_illness
