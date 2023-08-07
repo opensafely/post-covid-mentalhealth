@@ -383,12 +383,6 @@ actions_list <- splice(
     run = "r:latest analysis/make_model_output.R",
     needs = as.list(setdiff(paste0("cox_ipw-",active_analyses$name),
                             c("cox_ipw-cohort_vax-main-eating_disorders",
-                              "cox_ipw-cohort_unvax_extf-sub_age_60_79-anxiety_general",
-                              "cox_ipw-cohort_unvax_extf-sub_age_60_79-depression",
-                              "cox_ipw-cohort_unvax_extf-sub_age_60_79-serious_mental_illness",
-                              "cox_ipw-cohort_unvax_extf-sub_age_80_110-anxiety_general",
-                              "cox_ipw-cohort_unvax_extf-sub_age_80_110-depression",
-                              "cox_ipw-cohort_unvax_extf-sub_age_80_110-serious_mental_illness",
                               "cox_ipw-cohort_vax-sub_covid_nonhospitalised-eating_disorders"))),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv"),
