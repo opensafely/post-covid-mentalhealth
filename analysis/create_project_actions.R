@@ -393,9 +393,9 @@ actions_list <- splice(
   action(
     name = "make_consort_output",
     run = "r:latest analysis/make_other_output.R consort prevax_extf;vax;unvax_extf",
-    needs = as.list("stage1_data_cleaning_prevax_extf",
-                    "stage1_data_cleaning_vax",
-                    "stage1_data_cleaning_unvax_extf"),
+    needs = list("stage1_data_cleaning_prevax_extf",
+                 "stage1_data_cleaning_vax",
+                 "stage1_data_cleaning_unvax_extf"),
     moderately_sensitive = list(
       consort_output_rounded = glue("output/consort_output_rounded.csv")
     )
@@ -404,9 +404,9 @@ actions_list <- splice(
   action(
     name = "make_table1_output",
     run = "r:latest analysis/make_other_output.R table1 prevax_extf;vax;unvax_extf",
-    needs = as.list("table1_prevax_extf",
-                    "table1_vax",
-                    "table1_unvax_extf"),
+    needs = list("table1_prevax_extf",
+                 "table1_vax",
+                 "table1_unvax_extf"),
     moderately_sensitive = list(
       table1_output_rounded = glue("output/table1_output_rounded.csv")
     )
@@ -415,9 +415,9 @@ actions_list <- splice(
   action(
     name = "make_table2_output",
     run = "r:latest analysis/make_other_output.R table2 prevax_extf;vax;unvax_extf",
-    needs = as.list("table2_prevax_extf",
-                    "table2_vax",
-                    "table2_unvax_extf"),
+    needs = list("table2_prevax_extf",
+                 "table2_vax",
+                 "table2_unvax_extf"),
     moderately_sensitive = list(
       table2_output_rounded = glue("output/table2_output_rounded.csv")
     )
@@ -426,9 +426,9 @@ actions_list <- splice(
   action(
     name = "make_venn_output",
     run = "r:latest analysis/make_other_output.R venn prevax_extf;vax;unvax_extf",
-    needs = as.list("venn_prevax_extf",
-                    "venn_vax",
-                    "venn_unvax_extf"),
+    needs = list("venn_prevax_extf",
+                 "venn_vax",
+                 "venn_unvax_extf"),
     moderately_sensitive = list(
       venn_output_rounded = glue("output/venn_output_rounded.csv")
     )
