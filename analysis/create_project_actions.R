@@ -397,7 +397,7 @@ actions_list <- splice(
                     "stage1_data_cleaning_vax",
                     "stage1_data_cleaning_unvax_extf"),
     moderately_sensitive = list(
-      table1_rounded = glue("output/consort_rounded.csv")
+      output_consort_rounded = glue("output/consort_rounded.csv")
     )
   ),
   
@@ -408,7 +408,7 @@ actions_list <- splice(
                     "table1_vax",
                     "table1_unvax_extf"),
     moderately_sensitive = list(
-      table1_rounded = glue("output/table1_rounded.csv")
+      output_table1_rounded = glue("output/table1_rounded.csv")
     )
   ),
   
@@ -419,7 +419,7 @@ actions_list <- splice(
                     "table2_vax",
                     "table2_unvax_extf"),
     moderately_sensitive = list(
-      table1_rounded = glue("output/table1_rounded.csv")
+      output_table2_rounded = glue("output/table2_rounded.csv")
     )
   ),
   
@@ -430,7 +430,7 @@ actions_list <- splice(
                     "venn_vax",
                     "venn_unvax_extf"),
     moderately_sensitive = list(
-      table1_rounded = glue("output/venn_rounded.csv")
+      output_venn_rounded = glue("output/venn_rounded.csv")
     )
   ),
   
