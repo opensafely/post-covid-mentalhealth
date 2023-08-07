@@ -4996,7 +4996,7 @@ actions:
         venn: output/venn_vax.csv
         venn_rounded: output/venn_vax_rounded.csv
 
-  ## Stage 6 - make model output 
+  ## Stage 6 - make output 
 
   make_model_output:
     run: r:latest analysis/make_model_output.R
@@ -5217,6 +5217,38 @@ actions:
       moderately_sensitive:
         model_output: output/model_output.csv
         model_output_rounded: output/model_output_rounded.csv
+
+  make_consort_output:
+    run: r:latest analysis/make_other_output.R consort prevax_extf;vax;unvax_extf
+    needs:
+    - stage1_data_cleaning_prevax_extf
+    outputs:
+      moderately_sensitive:
+        table1_rounded: output/consort_rounded.csv
+
+  make_table1_output:
+    run: r:latest analysis/make_other_output.R table1 prevax_extf;vax;unvax_extf
+    needs:
+    - table1_prevax_extf
+    outputs:
+      moderately_sensitive:
+        table1_rounded: output/table1_rounded.csv
+
+  make_table2_output:
+    run: r:latest analysis/make_other_output.R table2 prevax_extf;vax;unvax_extf
+    needs:
+    - table2_prevax_extf
+    outputs:
+      moderately_sensitive:
+        table1_rounded: output/table1_rounded.csv
+
+  make_venn_output:
+    run: r:latest analysis/make_other_output.R venn prevax_extf;vax;unvax_extf
+    needs:
+    - venn_prevax_extf
+    outputs:
+      moderately_sensitive:
+        table1_rounded: output/venn_rounded.csv
 
   ## Make absolute excess risk (AER) input 
 
