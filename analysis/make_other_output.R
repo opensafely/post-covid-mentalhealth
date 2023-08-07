@@ -46,4 +46,4 @@ for (i in cohorts) {
 # Save output ------------------------------------------------------------------
 print('Save output')
 
-readr::write_csv(df, paste0("output/",i,"_output_rounded.csv"))
+readr::write_csv(df, paste0("output/",output,"_output_rounded.csv"))
