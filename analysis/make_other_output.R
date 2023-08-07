@@ -37,7 +37,7 @@ print('Add output from each cohort')
 
 for (i in cohorts) {
 
-  tmp <- readr::read_csv(paste0("output/",i,"_output_rounded.csv"))
+  tmp <- readr::read_csv(paste0("output/",output,"_",i,"_rounded.csv"))
   tmp$cohort <- i
   df <- rbind(df, tmp)
   
@@ -46,4 +46,4 @@ for (i in cohorts) {
 # Save output ------------------------------------------------------------------
 print('Save output')
 
-readr::write_csv(df, "output/",output,"_rounded.csv")
+readr::write_csv(df, paste0("output/",i,"_output_rounded.csv"))
