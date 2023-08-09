@@ -10,6 +10,11 @@ library(tidyverse)
 # Specify paths ----------------------------------------------------------------
 print('Specify paths')
 
+# NOTE: 
+# This file is used to specify paths and is in the .gitignore to keep your information secret.
+# A file called specify_paths_example.R is provided for you to fill in.
+# Please remove "_example" from the file name and add your specific file paths before running this script.
+
 source("analysis/post_release/specify_paths.R")
 
 # Source functions -------------------------------------------------------------
