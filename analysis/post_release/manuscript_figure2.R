@@ -36,12 +36,12 @@ df <- dplyr::rename(df, "analysis_label" = "label")
 # Iterate over plots -----------------------------------------------------------
 print("Iterate over plots")
 
-for (i in c("sub_hospitalised","sub_history","sub_age","sub_sex","sub_ethnicity")){
+for (i in c("hospitalised","sub_history","sub_age","sub_sex","sub_ethnicity")){
   
   # Restrict to plot data ------------------------------------------------------
   print("Restrict to plot data")
   
-  if (i %in% c("sub_hospitalised")) {
+  if (i %in% c("hospitalised")) {
     df_plot <- df[(df$analysis=="main" | grepl(i,df$analysis)),]
   } else {
     df_plot <- df[grepl(i,df$analysis),]
