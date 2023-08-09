@@ -2,6 +2,10 @@
 print('Load libraries')
 
 library(magrittr)
+library(tidyverse)
+library(purrr)
+library(data.table)
+library(tidyverse)
 
 # Specify paths ----------------------------------------------------------------
 print('Specify paths')
@@ -17,6 +21,12 @@ source("analysis/utility.R")
 print('Make post-release directory')
 
 dir.create("output/post_release/", recursive = TRUE, showWarnings = FALSE)
+
+# Run absolute excess risk -------------------------------------------------------
+print('Run absolute excess risk')
+
+source("analysis/post_release/fn-lifetable.R")
+source("analysis/post_release/lifetables_compiled.R")
 
 # Identify tables and figures to run -------------------------------------------
 print('Identify tables and figures to run')

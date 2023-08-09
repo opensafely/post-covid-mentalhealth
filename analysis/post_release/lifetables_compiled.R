@@ -1,26 +1,12 @@
-# Load libraries ---------------------------------------------------------------
-print('Load libraries')
-
-library(tidyverse)
-library(purrr)
-library(data.table)
-library(tidyverse)
-
 # Specify parameters -----------------------------------------------------------
 print('Specify parameters')
 
 analysis <- "main"
 
-# Source scripts ---------------------------------------------------------------
-print('Source scripts')
-
-source("analysis/post_release/specify_paths.R")
-source("analysis/post_release/fn-lifetable.R")
-
 # Load model output ------------------------------------------------------------
 print('Load model output')
 
-model_output <- read_csv(paste0(release,"model_output.csv"))
+model_output <- read_csv(paste0(release,"model_output_rounded.csv"))
 
 # Format and restrict to relevant models ---------------------------------------
 print('Restrict to relevant models')
@@ -43,7 +29,7 @@ model_output$time_period_end <- as.numeric(gsub(".*_", "",model_output$term))
 # Load AER input ---------------------------------------------------------------
 print('Load AER input')
 
-aer_input <- read.csv(paste0("output/aer_input-",analysis,"-rounded.csv"))
+aer_input <- read.csv(paste0(release,"aer_input-main-rounded.csv"))
 
 # Run AER function -------------------------------------------------------------
 print('Run AER function')
