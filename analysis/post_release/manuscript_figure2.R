@@ -1,17 +1,8 @@
-# Load libraries ---------------------------------------------------------------
-print('Load libraries')
-
-library(magrittr)
-
-# Specify paths ---------------------------------------------------------------
-print('Specify paths')
-
-source("analysis/post_release/specify_paths.R")
-
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(paste0(release,"model_output.csv"))
+df <- readr::read_csv(paste0(release,"model_output_rounded.csv"),
+                      show_col_types = FALSE)
 
 # Filter data ------------------------------------------------------------------
 print("Filter data")
@@ -33,7 +24,8 @@ df <- df %>%
 # Add plot labels ---------------------------------------------------------
 print("Add plot labels")
 
-plot_labels <- readr::read_csv("lib/plot_labels.csv")
+plot_labels <- readr::read_csv("lib/plot_labels.csv",
+                               show_col_types = FALSE)
 
 df <- merge(df, plot_labels, by.x = "outcome", by.y = "term", all.x = TRUE)
 df <- dplyr::rename(df, "outcome_label" = "label")
