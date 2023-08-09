@@ -1,13 +1,3 @@
-# Load libraries ---------------------------------------------------------------
-print('Load libraries')
-
-library(magrittr)
-
-# Specify paths ---------------------------------------------------------------
-print('Specify paths')
-
-source("analysis/post_release/specify_paths.R")
-
 # Load data --------------------------------------------------------------------
 print("Load data")
 

@@ -1,18 +1,3 @@
-# Load libraries ---------------------------------------------------------------
-print('Load libraries')
-
-library(magrittr)
-
-# Specify paths ----------------------------------------------------------------
-print('Specify paths')
-
-source("analysis/post_release/specify_paths.R")
-
-# Source utility functions -----------------------------------------------------
-print('Source utility functions')
-
-source("analysis/utility.R")
-
 # Load data --------------------------------------------------------------------
 print("Load data")
 
