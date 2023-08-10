@@ -131,7 +131,7 @@ stage1_data_cleaning <- function(cohort){
       run = glue("r:latest analysis/describe_file.R input_{cohort}_stage1 rds"),
       needs = list(glue("stage1_data_cleaning_{cohort}")),
       moderately_sensitive = list(
-        describe_model_input = glue("output/describe-stage1_data_cleaning_{cohort}.txt")
+        describe_model_input = glue("output/describe-input_{cohort}_stage1.txt")
       )
     )
   )

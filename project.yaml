@@ -144,7 +144,7 @@ actions:
     - stage1_data_cleaning_prevax_extf
     outputs:
       moderately_sensitive:
-        describe_model_input: output/describe-stage1_data_cleaning_prevax_extf.txt
+        describe_model_input: output/describe-input_prevax_extf_stage1.txt
 
   ## Stage 1 - data cleaning - unvax_extf 
 
@@ -166,7 +166,7 @@ actions:
     - stage1_data_cleaning_unvax_extf
     outputs:
       moderately_sensitive:
-        describe_model_input: output/describe-stage1_data_cleaning_unvax_extf.txt
+        describe_model_input: output/describe-input_unvax_extf_stage1.txt
 
   ## Stage 1 - data cleaning - vax 
 
@@ -188,7 +188,7 @@ actions:
     - stage1_data_cleaning_vax
     outputs:
       moderately_sensitive:
-        describe_model_input: output/describe-stage1_data_cleaning_vax.txt
+        describe_model_input: output/describe-input_vax_stage1.txt
 
   ## Table 1 - prevax_extf 
 
