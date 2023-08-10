@@ -177,6 +177,15 @@ actions:
         table1: output/table1_prevax_extf.csv
         table1_rounded: output/table1_prevax_extf_rounded.csv
 
+  extendedtable1_prevax_extf:
+    run: r:latest analysis/extendedtable1.R prevax_extf
+    needs:
+    - stage1_data_cleaning_prevax_extf
+    outputs:
+      moderately_sensitive:
+        extendedtable1: output/extendedtable1_prevax_extf.csv
+        extendedtable1_rounded: output/extendedtable1_prevax_extf_rounded.csv
+
   ## Table 1 - unvax_extf 
 
   table1_unvax_extf:
@@ -188,6 +197,15 @@ actions:
         table1: output/table1_unvax_extf.csv
         table1_rounded: output/table1_unvax_extf_rounded.csv
 
+  extendedtable1_unvax_extf:
+    run: r:latest analysis/extendedtable1.R unvax_extf
+    needs:
+    - stage1_data_cleaning_unvax_extf
+    outputs:
+      moderately_sensitive:
+        extendedtable1: output/extendedtable1_unvax_extf.csv
+        extendedtable1_rounded: output/extendedtable1_unvax_extf_rounded.csv
+
   ## Table 1 - vax 
 
   table1_vax:
@@ -198,6 +216,15 @@ actions:
       moderately_sensitive:
         table1: output/table1_vax.csv
         table1_rounded: output/table1_vax_rounded.csv
+
+  extendedtable1_vax:
+    run: r:latest analysis/extendedtable1.R vax
+    needs:
+    - stage1_data_cleaning_vax
+    outputs:
+      moderately_sensitive:
+        extendedtable1: output/extendedtable1_vax.csv
+        extendedtable1_rounded: output/extendedtable1_vax_rounded.csv
 
   ## Run models 
 
@@ -5237,6 +5264,16 @@ actions:
     outputs:
       moderately_sensitive:
         table1_output_rounded: output/table1_output_rounded.csv
+
+  make_extendedtable1_output:
+    run: r:latest analysis/make_other_output.R extendedtable1 prevax_extf;vax;unvax_extf
+    needs:
+    - extendedtable1_prevax_extf
+    - extendedtable1_vax
+    - extendedtable1_unvax_extf
+    outputs:
+      moderately_sensitive:
+        table1_output_rounded: output/extendedtable1_output_rounded.csv
 
   make_table2_output:
     run: r:latest analysis/make_other_output.R table2 prevax_extf;vax;unvax_extf

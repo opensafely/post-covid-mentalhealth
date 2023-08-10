@@ -161,6 +161,16 @@ table1 <- function(cohort){
         table1 = glue("output/table1_{cohort}.csv"),
         table1_rounded = glue("output/table1_{cohort}_rounded.csv")
       )
+    ),
+    action(
+      name = glue("extendedtable1_{cohort}"),
+      run = "r:latest analysis/extendedtable1.R",
+      arguments = c(cohort),
+      needs = list(glue("stage1_data_cleaning_{cohort}")),
+      moderately_sensitive = list(
+        extendedtable1 = glue("output/extendedtable1_{cohort}.csv"),
+        extendedtable1_rounded = glue("output/extendedtable1_{cohort}_rounded.csv")
+      )
     )
   )
 }
@@ -409,6 +419,17 @@ actions_list <- splice(
                  "table1_unvax_extf"),
     moderately_sensitive = list(
       table1_output_rounded = glue("output/table1_output_rounded.csv")
+    )
+  ),
+  
+  action(
+    name = "make_extendedtable1_output",
+    run = "r:latest analysis/make_other_output.R extendedtable1 prevax_extf;vax;unvax_extf",
+    needs = list("extendedtable1_prevax_extf",
+                 "extendedtable1_vax",
+                 "extendedtable1_unvax_extf"),
+    moderately_sensitive = list(
+      table1_output_rounded = glue("output/extendedtable1_output_rounded.csv")
     )
   ),
   
