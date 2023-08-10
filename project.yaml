@@ -138,6 +138,14 @@ actions:
       highly_sensitive:
         cohort: output/input_prevax_extf_stage1.rds
 
+  describe_stage1_data_cleaning_prevax_extf:
+    run: r:latest analysis/describe_file.R input_prevax_extf_stage1 rds
+    needs:
+    - stage1_data_cleaning_prevax_extf
+    outputs:
+      moderately_sensitive:
+        describe_model_input: output/describe-stage1_data_cleaning_prevax_extf.txt
+
   ## Stage 1 - data cleaning - unvax_extf 
 
   stage1_data_cleaning_unvax_extf:
@@ -152,6 +160,14 @@ actions:
       highly_sensitive:
         cohort: output/input_unvax_extf_stage1.rds
 
+  describe_stage1_data_cleaning_unvax_extf:
+    run: r:latest analysis/describe_file.R input_unvax_extf_stage1 rds
+    needs:
+    - stage1_data_cleaning_unvax_extf
+    outputs:
+      moderately_sensitive:
+        describe_model_input: output/describe-stage1_data_cleaning_unvax_extf.txt
+
   ## Stage 1 - data cleaning - vax 
 
   stage1_data_cleaning_vax:
@@ -165,6 +181,14 @@ actions:
         consort_rounded: output/consort_vax_rounded.csv
       highly_sensitive:
         cohort: output/input_vax_stage1.rds
+
+  describe_stage1_data_cleaning_vax:
+    run: r:latest analysis/describe_file.R input_vax_stage1 rds
+    needs:
+    - stage1_data_cleaning_vax
+    outputs:
+      moderately_sensitive:
+        describe_model_input: output/describe-stage1_data_cleaning_vax.txt
 
   ## Table 1 - prevax_extf 
 

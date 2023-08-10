@@ -19,24 +19,6 @@ active_analyses <- active_analyses[order(active_analyses$analysis,active_analyse
 active_analyses <- active_analyses[active_analyses$cohort %in% c("prevax_extf","unvax_extf","vax"),]
 cohorts <- unique(active_analyses$cohort)
 
-# Determine which outputs are ready --------------------------------------------
-
-# success <- readxl::read_excel("../../OneDrive - University of Bristol/grp-EHR/Projects/post-covid-outcome-tracker.xlsx",
-#                               sheet = "mentalhealth",
-#                               col_types = c("text","text", "text", "text", "text", "text",
-#                                             "text", "text", "text", "text", "text",
-#                                             "text", "text", "text", "text", "text",
-#                                             "text", "text", "text", "text",
-#                                             "skip", "skip"))
-# 
-# success <- tidyr::pivot_longer(success,
-#                                cols = setdiff(colnames(success),c("outcome","cohort")),
-#                                names_to = "analysis")
-# 
-# success$name <- paste0("cohort_",success$cohort, "-",success$analysis, "-",success$outcome)
-# 
-# success <- success[grepl("succeeded",success$value, ignore.case = TRUE),]
-
 # Create generic action function -----------------------------------------------
 
 action <- function(
@@ -142,6 +124,14 @@ stage1_data_cleaning <- function(cohort){
       ),
       highly_sensitive = list(
         cohort = glue("output/input_{cohort}_stage1.rds")
+      )
+    ),
+    action(
+      name = glue("describe_stage1_data_cleaning_{cohort}"),
+      run = glue("r:latest analysis/describe_file.R input_{cohort}_stage1 rds"),
+      needs = list(glue("stage1_data_cleaning_{cohort}")),
+      moderately_sensitive = list(
+        describe_model_input = glue("output/describe-stage1_data_cleaning_{cohort}.txt")
       )
     )
   )
