@@ -30,3 +30,24 @@ sub_sex_male,Sex: Male
 prevax_extf,Pre-vaccination (Jan 1 2020 - Dec 14 2021)
 unvax_extf,Unvaccinated (Jun 1 2021 - Dec 14 2021)
 sub_covid_history,History of COVID-19
+cov_bin_ami,Acute myocardial infarction 
+cov_bin_cancer,Cancer 
+cov_bin_chronic_kidney_disease,Chronic kidney disease 
+cov_bin_chronic_obstructive_pulmonary_disease,Chronic obstructive pulmonary disease 
+cov_bin_dementia,Dementia 
+cov_bin_diabetes,Diabetes
+cov_bin_healthcare_worker,Healthcare worker 
+cov_bin_hypertension,Hypertension 
+cov_bin_liver_disease,Liver disease 
+cov_bin_obesity,Obesity 
+cov_bin_stroke_isch,Ischaemic strike
+cov_cat_consulation_rate,GP consultations in 2019
+cov_cat_history_anxiety_general,History of general anxiety
+cov_cat_history_depression,History of depression
+cov_cat_history_eating_disorders,History of eating disorders
+cov_cat_history_self_harm,History of self harm
+cov_cat_history_serious_mental_illness,History of serious mental illness
+recent,"Prior history of event, within six moths"
+notrecent,"Prior history of event, more than six moths ago"
+none,No prior history of event
+All,All
