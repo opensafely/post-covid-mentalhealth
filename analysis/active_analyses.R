@@ -169,6 +169,28 @@ for (c in cohorts) {
     
     controls_per_case <- 10L
     
+    ## analysis: day0 ----------------------------------------------------------
+    
+    df[nrow(df)+1,] <- c(cohort = c,
+                         exposure = exposure,
+                         outcome = i,
+                         ipw = ipw,
+                         strata = strata,
+                         covariate_sex = "NULL",
+                         covariate_age = covariate_age,
+                         covariate_other = "cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm",
+                         cox_start = cox_start,
+                         cox_stop = cox_stop,
+                         study_start = ifelse(c=="prevax", "2020-01-01", "2021-06-01"),
+                         study_stop = ifelse(c=="prevax", "2021-06-18", "2021-12-14"),
+                         cut_points = ifelse(c=="prevax", "1;28;197;535", "1;28;197"),
+                         controls_per_case = controls_per_case,
+                         total_event_threshold = total_event_threshold,
+                         episode_event_threshold = episode_event_threshold,
+                         covariate_threshold = covariate_threshold,
+                         age_spline = TRUE,
+                         analysis = "day0")
+    
     ## analysis: sub_sex_female ------------------------------------------------
     
     df[nrow(df)+1,] <- c(cohort = c,
@@ -491,7 +513,7 @@ tmp <- df[df$cohort=="prevax" &
 
 tmp$cohort <- paste0(tmp$cohort,"_extf")
 tmp$study_stop <- "2021-12-14"
-tmp$cut_points <- "28;197;365;714"
+tmp$cut_points <- gsub("535", "365;714", tmp$cut_points)
 
 df <- rbind(df,tmp)
 
@@ -514,6 +536,11 @@ df$name <- paste0("cohort_",df$cohort, "-",
                   df$analysis, "-", 
                   gsub("out_date_","",df$outcome))
 
+
+# Remove non-extf analyses -----------------------------------------------------
+
+df <- df[df$cohort %in% c("prevax_extf","vax","unvax_extf"),]
+  
 # Check names are unique and save active analyses list -------------------------
 
 if (length(unique(df$name))==nrow(df)) {

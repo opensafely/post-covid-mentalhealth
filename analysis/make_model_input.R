@@ -88,9 +88,9 @@ for (i in 1:nrow(active_analyses)) {
     dplyr::rowwise() %>% 
     dplyr::mutate(end_date_outcome = min(end_date_outcome, out_date, na.rm = TRUE))
   
-  # Make model input: main -------------------------------------------------------
+  # Make model input: main and day0 --------------------------------------------
   
-  if (active_analyses$analysis[i]=="main") {
+  if (active_analyses$analysis[i] %in% c("main","day0")) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
