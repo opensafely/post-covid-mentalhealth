@@ -9,7 +9,8 @@ print("Filter data")
 
 df <- df[df$analysis=="main" & 
            grepl("day",df$term) & 
-           df$model=="mdl_max_adj",
+           df$model=="mdl_max_adj" &
+           !(df$outcome %in% c("depression","serious_mental_illness")) ,
          c("cohort","outcome","outcome_time_median","term","hr","conf_low","conf_high")]
 
 df <- df[df$term!="days_pre",]
@@ -34,9 +35,7 @@ print("Order outcomes")
 df$outcome_label <- factor(df$outcome_label,
                            levels = c("General anxiety",
                                       "Post-traumatic stress disorder",
-                                      "Depression",
                                       "Eating disorders",
-                                      "Serious mental illness",
                                       "Addiction",
                                       "Self harm",
                                       "Suicide"))
@@ -61,7 +60,7 @@ ggplot2::ggplot(data = df,
                                         "Unvaccinated (Jun 1 2021 - Dec 14 2021)"),
                               values = c("#d2ac47", "#58764c", "#0018a8")) +
   ggplot2::labs(x = "\nWeeks since COVID-19 diagnosis", y = "Hazard ratio and 95% confidence interval\n") +
-  ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE)) +
+  ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE)) +
   ggplot2::theme_minimal() +
   ggplot2::theme(panel.grid.major.x = ggplot2::element_blank(),
                  panel.grid.minor = ggplot2::element_blank(),
@@ -71,11 +70,11 @@ ggplot2::ggplot(data = df,
                  legend.title = ggplot2::element_blank(),
                  legend.position="bottom",
                  plot.background = ggplot2::element_rect(fill = "white", colour = "white")) +
-  ggplot2::facet_wrap(outcome_label~., ncol = 2)
+  ggplot2::facet_wrap(outcome_label~., nrow = 2)
 
 # Save plot --------------------------------------------------------------------
 print("Save plot")
 
-ggplot2::ggsave("output/post_release/figure1.png", 
-                height = 297, width = 210, 
+ggplot2::ggsave("output/post_release/figureOtherOutcomes.png", 
+                width = 297, height = 210, 
                 unit = "mm", dpi = 600, scale = 0.8)
