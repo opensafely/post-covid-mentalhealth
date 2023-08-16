@@ -15,7 +15,7 @@ print('Specify arguments')
 args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
-  name <- "all" # prepare datasets for all active analyses 
+  name <- "cohort_prevax_extf-day0-addiction" # prepare datasets for all active analyses 
   # name <- "cohort_vax-sub_history_none-depression" # prepare datasets for all active analyses whose name contains X
   # name <- "vax-depression-main;vax-depression-sub_covid_hospitalised;vax-depression-sub_covid_nonhospitalised" # prepare datasets for specific active analyses
 } else {
@@ -26,7 +26,6 @@ if(length(args)==0){
 print('Load active analyses')
 
 active_analyses <- readr::read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses[grepl("sub_age_",active_analyses$analysis),]
 
 # Identify model inputs to be prepared -----------------------------------------
 print('Identify model inputs to be prepared')
@@ -88,9 +87,9 @@ for (i in 1:nrow(active_analyses)) {
     dplyr::rowwise() %>% 
     dplyr::mutate(end_date_outcome = min(end_date_outcome, out_date, na.rm = TRUE))
   
-  # Make model input: main -------------------------------------------------------
+  # Make model input: main and day0 --------------------------------------------
   
-  if (active_analyses$analysis[i]=="main") {
+  if (active_analyses$analysis[i] %in% c("main","day0")) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
