@@ -6,7 +6,7 @@ analysis <- "main"
 # Load model output ------------------------------------------------------------
 print('Load model output')
 
-model_output <- read_csv(paste0(release,"model_output_rounded.csv"))
+model_output <- read_csv(path_model_output)
 
 # Format and restrict to relevant models ---------------------------------------
 print('Restrict to relevant models')
@@ -29,7 +29,7 @@ model_output$time_period_end <- as.numeric(gsub(".*_", "",model_output$term))
 # Load AER input ---------------------------------------------------------------
 print('Load AER input')
 
-aer_input <- read.csv(paste0(release,"aer_input-main-rounded.csv"))
+aer_input <- read_csv(path_aer_input)
 
 # Run AER function -------------------------------------------------------------
 print('Run AER function')

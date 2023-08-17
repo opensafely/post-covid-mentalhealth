@@ -1,7 +1,7 @@
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(paste0(release,"consort_output_rounded.csv"),
+df <- readr::read_csv(path_consort,
                       show_col_types = FALSE)
 
 # Filter data ------------------------------------------------------------------

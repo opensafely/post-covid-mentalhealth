@@ -1,7 +1,7 @@
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(paste0(release,"table2_output_rounded.csv"),
+df <- readr::read_csv(path_table2,
                       show_col_types = FALSE)
 
 # Keep totals ------------------------------------------------------------------

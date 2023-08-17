@@ -1,7 +1,7 @@
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(paste0(release2,"extendedtable1_output_rounded.csv"),
+df <- readr::read_csv(path_extendedtable1,
                       show_col_types = FALSE)
 
 # Pivot table ------------------------------------------------------------------

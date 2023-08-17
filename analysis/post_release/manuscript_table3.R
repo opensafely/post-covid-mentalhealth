@@ -1,7 +1,7 @@
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(paste0(release,"model_output_rounded.csv"),
+df <- readr::read_csv(path_model_output,
                       show_col_types = FALSE)
 
 # Filter data ------------------------------------------------------------------
