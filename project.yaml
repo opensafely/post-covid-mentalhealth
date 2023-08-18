@@ -5608,7 +5608,6 @@ actions:
     - cox_ipw-cohort_vax-day0-anxiety_general
     - cox_ipw-cohort_vax-day0-anxiety_ptsd
     - cox_ipw-cohort_vax-day0-depression
-    - cox_ipw-cohort_vax-day0-eating_disorders
     - cox_ipw-cohort_vax-day0-self_harm
     - cox_ipw-cohort_vax-day0-serious_mental_illness
     - cox_ipw-cohort_vax-day0-suicide
