@@ -14,4 +14,4 @@ venv/
 .Rproj.user*
 .Rproj.user
 tmp/*
-analysis/post_release/specify_paths.R
+analysis/specify_paths.R
