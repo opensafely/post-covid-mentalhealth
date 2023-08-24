@@ -15,7 +15,7 @@ print('Specify paths')
 # A file called specify_paths_example.R is provided for you to fill in.
 # Please remove "_example" from the file name and add your specific file paths before running this script.
 
-source("analysis/post_release/specify_paths.R")
+source("analysis/specify_paths.R")
 
 # Source functions -------------------------------------------------------------
 print('Source functions')
