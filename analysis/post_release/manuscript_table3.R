@@ -41,12 +41,14 @@ df$estimate <- paste0(display(df$hr)," (",display(df$conf_low),"-",display(df$co
 print("Tidy term")
 
 df$weeks <- ""
+df$weeks <- ifelse(df$term=="days0_1", "Day 0", df$weeks)
+df$weeks <- ifelse(df$term=="days1_28", "1-4, without day 0", df$weeks)
 df$weeks <- ifelse(df$term=="days0_28", "1-4", df$weeks)
 df$weeks <- ifelse(df$term=="days28_197", "5-28", df$weeks)
 df$weeks <- ifelse(df$term=="days197_365", "29-52", df$weeks)
 df$weeks <- ifelse(df$term=="days365_714", "53-102", df$weeks)
 
-df$weeks <- factor(df$weeks, levels = c("1-4","5-28","29-52","53-102"))
+df$weeks <- factor(df$weeks, levels = c("Day 0","1-4, without day 0","1-4","5-28","29-52","53-102"))
 
 # Pivot table ------------------------------------------------------------------
 print("Pivot table")
@@ -65,6 +67,7 @@ df$analysis_label <- factor(df$analysis_label,
                                        "Hospitalised COVID-19",
                                        "Non-hospitalised COVID-19",
                                        "No prior history of event",
+                                       "Day 0",
                                        "Prior history of event, more than six moths ago",
                                        "Prior history of event, within six moths",
                                        "History of COVID-19",
