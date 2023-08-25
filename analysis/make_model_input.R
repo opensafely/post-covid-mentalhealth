@@ -15,7 +15,7 @@ print('Specify arguments')
 args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
-  name <- "cohort_prevax_extf-day0-addiction" # prepare datasets for all active analyses 
+  name <- "all" # prepare datasets for all active analyses 
   # name <- "cohort_vax-sub_history_none-depression" # prepare datasets for all active analyses whose name contains X
   # name <- "vax-depression-main;vax-depression-sub_covid_hospitalised;vax-depression-sub_covid_nonhospitalised" # prepare datasets for specific active analyses
 } else {
@@ -89,7 +89,7 @@ for (i in 1:nrow(active_analyses)) {
   
   # Make model input: main and day0 --------------------------------------------
   
-  if (active_analyses$analysis[i] %in% c("main","day0")) {
+  if (grepl("main",active_analyses$analysis[i])) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
@@ -106,7 +106,7 @@ for (i in 1:nrow(active_analyses)) {
   
   # Make model input: sub_covid_hospitalised -----------------------------------
   
-  if (active_analyses$analysis[i]=="sub_covid_hospitalised") {
+  if (grepl("sub_covid_hospitalised",active_analyses$analysis[i])) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
@@ -130,7 +130,7 @@ for (i in 1:nrow(active_analyses)) {
   
   # Make model input: sub_covid_nonhospitalised --------------------------------
   
-  if (active_analyses$analysis[i]=="sub_covid_nonhospitalised") {
+  if (grepl("sub_covid_nonhospitalised",active_analyses$analysis[i])) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
@@ -155,7 +155,7 @@ for (i in 1:nrow(active_analyses)) {
   
   # Make model input: sub_covid_history ----------------------------------------
   
-  if (active_analyses$analysis[i]=="sub_covid_history") {
+  if (grepl("sub_covid_history",active_analyses$analysis[i])) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
@@ -172,7 +172,7 @@ for (i in 1:nrow(active_analyses)) {
   
   # Make model input: sub_sex_* ------------------------------------------------
   
-  if (grepl("sub_sex_",active_analyses$analysis[i])==TRUE) {
+  if (grepl("sub_sex_",active_analyses$analysis[i])) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     

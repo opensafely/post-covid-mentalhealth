@@ -47,12 +47,12 @@ cohorts <- c("vax","unvax","prevax")
 ## Outcomes for which we will RUN ALL analyses
 
 outcomes_runall <- c("out_date_depression", 
-                     "out_date_anxiety_general", 
                      "out_date_serious_mental_illness")
 
 ## Outcomes for which we will RUN MAIN analyses only
 
 outcomes_runmain <- c(outcomes_runall, 
+                      "out_date_anxiety_general", 
                       "out_date_self_harm",
                       "out_date_anxiety_ptsd", 
                       "out_date_eating_disorders", 
@@ -92,28 +92,6 @@ for (c in cohorts) {
                          covariate_threshold = covariate_threshold,
                          age_spline = TRUE,
                          analysis = "main")
-    
-    ## analysis: day0 ----------------------------------------------------------
-    
-    df[nrow(df)+1,] <- c(cohort = c,
-                         exposure = exposure,
-                         outcome = i,
-                         ipw = ipw,
-                         strata = strata,
-                         covariate_sex = "NULL",
-                         covariate_age = covariate_age,
-                         covariate_other = "cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm",
-                         cox_start = cox_start,
-                         cox_stop = cox_stop,
-                         study_start = ifelse(c=="prevax", "2020-01-01", "2021-06-01"),
-                         study_stop = ifelse(c=="prevax", "2021-06-18", "2021-12-14"),
-                         cut_points = ifelse(c=="prevax", "1;28;197;535", "1;28;197"),
-                         controls_per_case = controls_per_case,
-                         total_event_threshold = total_event_threshold,
-                         episode_event_threshold = episode_event_threshold,
-                         covariate_threshold = covariate_threshold,
-                         age_spline = TRUE,
-                         analysis = "day0")
     
     ## analysis: sub_covid_hospitalised ----------------------------------------
     
@@ -532,12 +510,23 @@ tmp$cohort <- paste0(tmp$cohort,"_extf")
 
 df <- rbind(df,tmp)
 
+# Add day 0 analyses -----------------------------------------------------------
+
+tmp <- df[df$outcome %in% outcomes_runall &
+            df$analysis %in% c("main",
+                               "sub_covid_hospitalised","sub_covid_nonhospitalised",
+                               "sub_history_none","sub_history_notrecent","sub_history_recent"),]
+
+tmp$analysis <- paste0("day0_",tmp$analysis)
+tmp$cut_points <- gsub("28","1;28",tmp$cut_points)
+
+df <- rbind(df,tmp)
+
 # Assign unique name -----------------------------------------------------------
 
 df$name <- paste0("cohort_",df$cohort, "-", 
                   df$analysis, "-", 
                   gsub("out_date_","",df$outcome))
-
 
 # Remove non-extf analyses -----------------------------------------------------
 
