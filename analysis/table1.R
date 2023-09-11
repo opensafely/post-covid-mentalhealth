@@ -28,7 +28,7 @@ if(length(args)==0){
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_rds(paste0("output/input_",cohort,"_stage1.rds"))
+df <- readr::read_rds(paste0("output/input_",cohort,"_stage1.rds")) # v1 is not required here as this script does not consider outcomes
 
 # Remove people with history of COVID-19 ---------------------------------------
 print("Remove people with history of COVID-19")
