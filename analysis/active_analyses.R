@@ -512,7 +512,7 @@ df <- rbind(df,tmp)
 
 # Add day 0 analyses -----------------------------------------------------------
 
-tmp <- df[df$outcome %in% outcomes_runall &
+tmp <- df[df$outcome %in% c("out_date_suicide",outcomes_runall) &
             df$analysis %in% c("main",
                                "sub_covid_hospitalised","sub_covid_nonhospitalised",
                                "sub_history_none","sub_history_notrecent","sub_history_recent"),]
