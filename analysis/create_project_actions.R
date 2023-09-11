@@ -178,7 +178,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
     action(
       name = glue("make_model_input-{name}"),
       run = glue("r:latest analysis/make_model_input.R {name}"),
-      needs = list(glue("stage1_data_cleaning_{cohort}")),
+      needs = list("replace_suicide"),
       highly_sensitive = list(
         model_input = glue("output/model_input-{name}.rds")
       )
@@ -329,6 +329,21 @@ actions_list <- splice(
     unlist(lapply(unique(active_analyses$cohort), 
                   function(x) table1(cohort = x)), 
            recursive = FALSE
+    )
+  ),
+  
+  ## Replace suicide variable with data from death registry only ---------------
+  comment("Replace suicide variable with data from death registry only"),
+  
+  action(
+    name = glue("replace_suicide"),
+    run = "r:latest analysis/replace_suicide.R",
+    needs = as.list(c(paste0("preprocess_data_",c("prevax_extf","vax","unvax_extf")),
+                    paste0("stage1_data_cleaning_",c("prevax_extf","vax","unvax_extf")))),
+    highly_sensitive = list(
+      prevax_cohort = glue("output/input_prevax_extf_stage1_v1.rds"),
+      vax_cohort = glue("output/input_vax_stage1_v1.rds"),
+      unvax_cohort = glue("output/input_unvax_extf_stage1_v1.rds")
     )
   ),
   
