@@ -522,6 +522,16 @@ tmp$cut_points <- gsub("28","1;28",tmp$cut_points)
 
 df <- rbind(df,tmp)
 
+# Add detailed breakdown of first 28 days analyses -----------------------------
+
+tmp <- df[df$outcome %in% c(outcomes_runmain) &
+            df$analysis %in% c("main"),]
+
+tmp$analysis <- paste0("detailed_",tmp$analysis)
+tmp$cut_points <- gsub("28","1;7;14;21;28",tmp$cut_points)
+
+df <- rbind(df,tmp)
+
 # Assign unique name -----------------------------------------------------------
 
 df$name <- paste0("cohort_",df$cohort, "-", 
