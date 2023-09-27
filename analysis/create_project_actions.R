@@ -417,7 +417,8 @@ actions_list <- splice(
                               "cox_ipw-cohort_unvax_extf-day0_sub_history_recent-serious_mental_illness",
                               "cox_ipw-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness",
                               "cox_ipw-cohort_vax-day0_sub_history_recent-depression",
-                              "cox_ipw-cohort_vax-day0_sub_history_recent-serious_mental_illness"))),
+                              "cox_ipw-cohort_vax-day0_sub_history_recent-serious_mental_illness",
+                              "cox_ipw-cohort_vax-detailed_main-eating_disorders"))),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv"),
       model_output_rounded = glue("output/model_output_rounded.csv")
