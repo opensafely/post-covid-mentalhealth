@@ -1,54 +1,57 @@
-﻿term,label
-addiction,Addiction
-anxiety_general,General anxiety
-anxiety_ptsd,Post-traumatic stress disorder
-depression,Depression
-eating_disorders,Eating disorders
-self_harm,Self harm
-serious_mental_illness,Serious mental illness
-suicide,Suicide
-prevax,Pre-vaccination (Jan 1 2020 - Jun 18 2021)
-vax,Vaccinated (Jun 1 2021 - Dec 14 2021)
-unvax,Unvaccinated (Jun 1 2021 - Dec 14 2021)
-main,All COVID-19
-day0,Day 0
-sub_age_18_39,Age group: 18-39
-sub_age_40_59,Age group: 40-59
-sub_age_60_79,Age group: 60-79
-sub_age_80_110,Age group: 80-110
-sub_covid_hospitalised,Hospitalised COVID-19
-sub_covid_nonhospitalised,Non-hospitalised COVID-19
-sub_ethnicity_asian,Ethnicity: South Asian
-sub_ethnicity_black,Ethnicity: Black
-sub_ethnicity_mixed,Ethnicity: Mixed
-sub_ethnicity_other,Ethnicity: Other
-sub_ethnicity_white,Ethnicity: White
-sub_history_none,No prior history of event
-sub_history_notrecent,"Prior history of event, more than six months ago"
-sub_history_recent,"Prior history of event, within six months"
-sub_sex_female,Sex: Female
-sub_sex_male,Sex: Male
-prevax_extf,Pre-vaccination (Jan 1 2020 - Dec 14 2021)
-unvax_extf,Unvaccinated (Jun 1 2021 - Dec 14 2021)
-sub_covid_history,History of COVID-19
-cov_bin_ami,Acute myocardial infarction 
-cov_bin_cancer,Cancer 
-cov_bin_chronic_kidney_disease,Chronic kidney disease 
-cov_bin_chronic_obstructive_pulmonary_disease,Chronic obstructive pulmonary disease 
-cov_bin_dementia,Dementia 
-cov_bin_diabetes,Diabetes
-cov_bin_healthcare_worker,Healthcare worker 
-cov_bin_hypertension,Hypertension 
-cov_bin_liver_disease,Liver disease 
-cov_bin_obesity,Obesity 
-cov_bin_stroke_isch,Ischaemic strike
-cov_cat_consulation_rate,GP consultations in 2019
-cov_cat_history_anxiety_general,History of general anxiety
-cov_cat_history_depression,History of depression
-cov_cat_history_eating_disorders,History of eating disorders
-cov_cat_history_self_harm,History of self harm
-cov_cat_history_serious_mental_illness,History of serious mental illness
-recent,"Prior history of event, within six months"
-notrecent,"Prior history of event, more than six months ago"
-none,No prior history of event
-All,All
+﻿term,label,analysis_group,ref
+addiction,Addiction,,
+anxiety_general,General anxiety,,
+anxiety_ptsd,Post-traumatic stress disorder,,
+depression,Depression,,
+eating_disorders,Eating disorders,,
+self_harm,Self-harm,,
+serious_mental_illness,Serious mental illness,,
+suicide,Suicide,,
+prevax,Pre-vaccination (Jan 1 2020 - Jun 18 2021),,
+vax,Vaccinated (Jun 1 2021 - Dec 14 2021),,
+unvax,Unvaccinated (Jun 1 2021 - Dec 14 2021),,
+main,All COVID-19,main,TRUE
+detailed_main,All COVID-19,detailed,
+sub_age_18_39,Age group: 18-39,age,TRUE
+sub_age_40_59,Age group: 40-59,age,
+sub_age_60_79,Age group: 60-79,age,
+sub_age_80_110,Age group: 80-110,age,
+sub_covid_hospitalised,Hospitalised COVID-19,main,
+sub_covid_nonhospitalised,Non-hospitalised COVID-19,main,
+day0_main,All COVID-19,day0,TRUE
+day0_sub_covid_hospitalised,Hospitalised COVID-19,day0,
+day0_sub_covid_nonhospitalised,Non-hospitalised COVID-19,day0,
+sub_ethnicity_asian,Ethnicity: South Asian,ethnicity,
+sub_ethnicity_black,Ethnicity: Black,ethnicity,
+sub_ethnicity_mixed,Ethnicity: Mixed,ethnicity,
+sub_ethnicity_other,Ethnicity: Other,ethnicity,
+sub_ethnicity_white,Ethnicity: White,ethnicity,TRUE
+sub_history_none,No prior history of event,history_outcome,TRUE
+sub_history_notrecent,"Prior history of event, more than six months ago",history_outcome,
+sub_history_recent,"Prior history of event, within six months",history_outcome,
+sub_sex_female,Sex: Female,sex,TRUE
+sub_sex_male,Sex: Male,sex,
+prevax_extf,Pre-vaccination (Jan 1 2020 - Dec 14 2021),,
+unvax_extf,Unvaccinated (Jun 1 2021 - Dec 14 2021),,
+sub_covid_history,History of COVID-19,history_exposure,
+cov_bin_ami,Acute myocardial infarction ,,
+cov_bin_cancer,Cancer ,,
+cov_bin_chronic_kidney_disease,Chronic kidney disease ,,
+cov_bin_chronic_obstructive_pulmonary_disease,Chronic obstructive pulmonary disease ,,
+cov_bin_dementia,Dementia ,,
+cov_bin_diabetes,Diabetes,,
+cov_bin_healthcare_worker,Healthcare worker ,,
+cov_bin_hypertension,Hypertension ,,
+cov_bin_liver_disease,Liver disease ,,
+cov_bin_obesity,Obesity ,,
+cov_bin_stroke_isch,Ischaemic strike,,
+cov_cat_consulation_rate,GP consultations in 2019,,
+cov_cat_history_anxiety_general,History of general anxiety,,
+cov_cat_history_depression,History of depression,,
+cov_cat_history_eating_disorders,History of eating disorders,,
+cov_cat_history_self_harm,History of self-harm,,
+cov_cat_history_serious_mental_illness,History of serious mental illness,,
+recent,"Prior history of event, within six months",,
+notrecent,"Prior history of event, more than six months ago",,
+none,No prior history of event,,
+All,All,,

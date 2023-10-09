@@ -34,10 +34,10 @@ plot_labels <- readr::read_csv("lib/plot_labels.csv",
                                show_col_types = FALSE)
 
 df$outcome <- gsub("out_date_","",df$outcome)
-df <- merge(df, plot_labels, by.x = "outcome", by.y = "term", all.x = TRUE)
+df <- merge(df, plot_labels[,c("term","label")], by.x = "outcome", by.y = "term", all.x = TRUE)
 df <- dplyr::rename(df, "outcome_label" = "label")
 
-df <- merge(df, plot_labels, by.x = "analysis", by.y = "term", all.x = TRUE)
+df <- merge(df, plot_labels[,c("term","label")], by.x = "analysis", by.y = "term", all.x = TRUE)
 df <- dplyr::rename(df, "covid19_severity" = "label")
 df$covid19_severity <- ifelse(df$covid19_severity=="All COVID-19","No COVID-19",df$covid19_severity)
 df$covid19_severity <- factor(df$covid19_severity, levels = c("No COVID-19","Hospitalised COVID-19","Non-hospitalised COVID-19"))
@@ -73,7 +73,7 @@ df$outcome_label <- factor(df$outcome_label,
                                       "Eating disorders",
                                       "Serious mental illness",
                                       "Addiction",
-                                      "Self harm",
+                                      "Self-harm",
                                       "Suicide"))
 
 # Tidy table -------------------------------------------------------------------

@@ -27,27 +27,30 @@ print("Add plot labels")
 plot_labels <- readr::read_csv("lib/plot_labels.csv",
                                show_col_types = FALSE)
 
-df <- merge(df, plot_labels, by.x = "outcome", by.y = "term", all.x = TRUE)
+df <- merge(df, plot_labels[,c("term","label")], by.x = "outcome", by.y = "term", all.x = TRUE)
 df <- dplyr::rename(df, "outcome_label" = "label")
 
 df <- merge(df, plot_labels, by.x = "analysis", by.y = "term", all.x = TRUE)
 df <- dplyr::rename(df, "analysis_label" = "label")
 
+# Add facet labels -------------------------------------------------------------
+print("Add facet labels")
+
+df$facet_label <- ifelse(df$ref==TRUE & !is.na(df$ref), 
+                         paste0(df$outcome_label,"\n\n",df$analysis_label),
+                         df$analysis_label)
+
 # Iterate over plots -----------------------------------------------------------
 print("Iterate over plots")
 
-for (i in c("hospitalised","sub_history","sub_age","sub_sex","sub_ethnicity","sub_covid_history","day0")){
+for (i in unique(df$analysis_group)){
   
   message(paste0(i))
   
   # Restrict to plot data ------------------------------------------------------
   print("Restrict to plot data")
   
-  if (i %in% c("hospitalised","sub_covid_history")) {
-    df_plot <- df[(df$analysis=="main" | grepl(i,df$analysis)),]
-  } else {
-    df_plot <- df[grepl(i,df$analysis),]
-  }
+  df_plot <- df[df$analysis_group==i,]
 
   # Update labels --------------------------------------------------------------
   
@@ -63,10 +66,18 @@ for (i in c("hospitalised","sub_history","sub_age","sub_sex","sub_ethnicity","su
   
   facet_cols <- length(unique(df_plot$analysis))
   
-  # Plot data --------------------------------------------------------------------
+  # Remove extreme estimates from plot -----------------------------------------
+  print("Remove extreme estimates from plot")
+  
+  df_plot$hr <- ifelse(df_plot$hr>64 | df_plot$hr < 0.5, NA, df_plot$hr)
+  df_plot$conf_low <- ifelse(is.na(df_plot$hr), NA, df_plot$conf_low)
+  df_plot$conf_high <- ifelse(is.na(df_plot$hr), NA, df_plot$conf_high)
+
+  #df_plot <- df_plot[order(df_plot$outcome_label, df_plot$analysis_label, df_plot$term),]  
+
+  # Plot data ------------------------------------------------------------------
   print("Plot data")
   
- 
   p <- ggplot2::ggplot(data = df_plot,
                   mapping = ggplot2::aes(x = outcome_time_median, y = hr, color = cohort)) +
     ggplot2::geom_hline(mapping = ggplot2::aes(yintercept = 1), colour = "#A9A9A9") +
@@ -84,7 +95,6 @@ for (i in c("hospitalised","sub_history","sub_age","sub_sex","sub_ethnicity","su
                                            "Unvaccinated (Jun 1 2021 - Dec 14 2021)"),
                                 values = c("#d2ac47", "#58764c", "#0018a8")) +
     ggplot2::labs(x = "\nWeeks since COVID-19 diagnosis", y = "Hazard ratio and 95% confidence interval\n") +
-    
     ggplot2::theme_minimal() +
     ggplot2::theme(panel.grid.major.x = ggplot2::element_blank(),
                    panel.grid.minor = ggplot2::element_blank(),
@@ -96,15 +106,18 @@ for (i in c("hospitalised","sub_history","sub_age","sub_sex","sub_ethnicity","su
                    plot.background = ggplot2::element_rect(fill = "white", colour = "white"))
   
   if (facet_cols==1) {
-    p + ggplot2::facet_wrap(outcome_label~., ncol = facet_cols) +
+    #p + ggplot2::facet_wrap(outcome_label~., ncol = facet_cols) +
+    p + ggplot2::facet_grid(outcome_label~.) + 
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE)) 
-    plot_width = 297*0.5
+    plot_width = ifelse(grepl("detailed",i),297*0.7,297*0.5)
   } else if (i %in% c("sub_covid_history","sub_sex")) {
-    p + ggplot2::facet_wrap(outcome_label~forcats::fct_rev(analysis_label), ncol = facet_cols)+ 
+    #p + ggplot2::facet_wrap(outcome_label~forcats::fct_rev(analysis_label), ncol = facet_cols) + 
+    p + ggplot2::facet_grid(outcome_label~forcats::fct_rev(analysis_label)) + 
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE))
     plot_width = 297*0.7
   } else {
-    p + ggplot2::facet_wrap(outcome_label~analysis_label, ncol = facet_cols) +
+    #p + ggplot2::facet_wrap(outcome_label~analysis_label, ncol = facet_cols) +
+    p + ggplot2::facet_grid(outcome_label~analysis_label, switch = "y") +
       ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))
     plot_width = 297
   }
@@ -112,7 +125,7 @@ for (i in c("hospitalised","sub_history","sub_age","sub_sex","sub_ethnicity","su
   # Save plot ------------------------------------------------------------------
   print("Save plot")
   
-  ggplot2::ggsave(paste0("output/post_release/figure_",gsub("sub_","",i),".png"), 
+  ggplot2::ggsave(paste0("output/post_release/figure_",i,".png"), 
                   height = 210, width = plot_width, 
                   unit = "mm", dpi = 600, scale = 0.8)
 }
