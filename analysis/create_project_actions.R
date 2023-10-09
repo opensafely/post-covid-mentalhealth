@@ -19,6 +19,13 @@ active_analyses <- active_analyses[order(active_analyses$analysis,active_analyse
 active_analyses <- active_analyses[active_analyses$cohort %in% c("prevax_extf","unvax_extf","vax"),]
 cohorts <- unique(active_analyses$cohort)
 
+# Specify active analyses requiring Stata --------------------------------------
+
+save_analysis_ready <- c("cohort_prevax_extf-day0_sub_covid_hospitalised-depression",
+               "cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness")
+
+active_analyses$save_analysis_ready <- active_analyses$name %in% save_analysis_ready
+
 # Create generic action function -----------------------------------------------
 
 action <- function(
@@ -172,7 +179,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
                                  cox_start, cox_stop, study_start, study_stop,
                                  cut_points, controls_per_case,
                                  total_event_threshold, episode_event_threshold,
-                                 covariate_threshold, age_spline){
+                                 covariate_threshold, age_spline, save_analysis_ready){
   
   splice(
     action(
@@ -195,7 +202,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
     
     action(
       name = glue("cox_ipw-{name}"),
-      run = glue("cox-ipw:v0.0.25 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv"),
+      run = glue("cox-ipw:v0.0.25 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --df_output=model_output-{name}.csv --save_analysis_ready={save_analysis_ready}"),
       needs = list(glue("make_model_input-{name}")),
       moderately_sensitive = list(
         model_output = glue("output/model_output-{name}.csv"))
@@ -369,7 +376,8 @@ actions_list <- splice(
                                                    total_event_threshold = active_analyses$total_event_threshold[x],
                                                    episode_event_threshold = active_analyses$episode_event_threshold[x],
                                                    covariate_threshold = active_analyses$covariate_threshold[x],
-                                                   age_spline = active_analyses$age_spline[x])), recursive = FALSE
+                                                   age_spline = active_analyses$age_spline[x],
+                                                   save_analysis_ready = active_analyses$save_analysis_ready[x])), recursive = FALSE
     )
   ),
   

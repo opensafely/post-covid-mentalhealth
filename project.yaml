@@ -285,6 +285,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-depression
     outputs:
@@ -307,6 +308,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-serious_mental_illness
     outputs:
@@ -329,6 +331,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-suicide
     outputs:
@@ -350,6 +353,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_main-depression
     outputs:
@@ -371,6 +375,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_main-serious_mental_illness
     outputs:
@@ -392,6 +397,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_main-suicide
     outputs:
@@ -413,6 +419,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_main-depression
     outputs:
@@ -434,6 +441,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_main-serious_mental_illness
     outputs:
@@ -455,6 +463,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_main-suicide
     outputs:
@@ -477,6 +486,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.csv
+      --save_analysis_ready=TRUE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
     outputs:
@@ -499,6 +509,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv
+      --save_analysis_ready=TRUE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     outputs:
@@ -521,6 +532,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide
     outputs:
@@ -542,6 +554,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_covid_hospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-depression
     outputs:
@@ -563,6 +576,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     outputs:
@@ -584,6 +598,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_covid_hospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-suicide
     outputs:
@@ -605,6 +620,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_covid_hospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_covid_hospitalised-depression
     outputs:
@@ -626,6 +642,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_covid_hospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_covid_hospitalised-serious_mental_illness
     outputs:
@@ -647,6 +664,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_covid_hospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_covid_hospitalised-suicide
     outputs:
@@ -669,6 +687,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression
     outputs:
@@ -691,6 +710,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness
     outputs:
@@ -713,6 +733,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide
     outputs:
@@ -734,6 +755,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_covid_nonhospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-depression
     outputs:
@@ -755,6 +777,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness
     outputs:
@@ -776,6 +799,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_covid_nonhospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-suicide
     outputs:
@@ -797,6 +821,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_covid_nonhospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-depression
     outputs:
@@ -818,6 +843,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_covid_nonhospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-serious_mental_illness
     outputs:
@@ -839,6 +865,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_covid_nonhospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-suicide
     outputs:
@@ -861,6 +888,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_none-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_none-depression
     outputs:
@@ -883,6 +911,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness
     outputs:
@@ -904,6 +933,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_history_none-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_history_none-depression
     outputs:
@@ -925,6 +955,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_history_none-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_history_none-serious_mental_illness
     outputs:
@@ -946,6 +977,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_history_none-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_history_none-depression
     outputs:
@@ -967,6 +999,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_history_none-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_history_none-serious_mental_illness
     outputs:
@@ -989,6 +1022,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_notrecent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_notrecent-depression
     outputs:
@@ -1011,6 +1045,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness
     outputs:
@@ -1032,6 +1067,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_history_notrecent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_history_notrecent-depression
     outputs:
@@ -1053,6 +1089,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_history_notrecent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_history_notrecent-serious_mental_illness
     outputs:
@@ -1074,6 +1111,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_history_notrecent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_history_notrecent-depression
     outputs:
@@ -1095,6 +1133,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_history_notrecent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_history_notrecent-serious_mental_illness
     outputs:
@@ -1117,6 +1156,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_recent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_recent-depression
     outputs:
@@ -1139,6 +1179,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness
     outputs:
@@ -1160,6 +1201,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_history_recent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_history_recent-depression
     outputs:
@@ -1181,6 +1223,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-day0_sub_history_recent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-day0_sub_history_recent-serious_mental_illness
     outputs:
@@ -1202,6 +1245,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_history_recent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_history_recent-depression
     outputs:
@@ -1223,6 +1267,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-day0_sub_history_recent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-day0_sub_history_recent-serious_mental_illness
     outputs:
@@ -1245,6 +1290,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-detailed_main-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-detailed_main-addiction
     outputs:
@@ -1267,6 +1313,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-detailed_main-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-detailed_main-anxiety_general
     outputs:
@@ -1289,6 +1336,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-detailed_main-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-detailed_main-anxiety_ptsd
     outputs:
@@ -1311,6 +1359,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-detailed_main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-detailed_main-depression
     outputs:
@@ -1333,6 +1382,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-detailed_main-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-detailed_main-eating_disorders
     outputs:
@@ -1355,6 +1405,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-detailed_main-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-detailed_main-self_harm
     outputs:
@@ -1377,6 +1428,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197;365;714 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-detailed_main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-detailed_main-serious_mental_illness
     outputs:
@@ -1399,6 +1451,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-detailed_main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-detailed_main-suicide
     outputs:
@@ -1421,6 +1474,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-detailed_main-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-detailed_main-addiction
     outputs:
@@ -1443,6 +1497,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-detailed_main-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-detailed_main-anxiety_general
     outputs:
@@ -1465,6 +1520,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-detailed_main-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-detailed_main-anxiety_ptsd
     outputs:
@@ -1487,6 +1543,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-detailed_main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-detailed_main-depression
     outputs:
@@ -1509,6 +1566,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-detailed_main-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-detailed_main-eating_disorders
     outputs:
@@ -1531,6 +1589,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-detailed_main-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-detailed_main-self_harm
     outputs:
@@ -1553,6 +1612,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-detailed_main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-detailed_main-serious_mental_illness
     outputs:
@@ -1575,6 +1635,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-detailed_main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-detailed_main-suicide
     outputs:
@@ -1597,6 +1658,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_vax-detailed_main-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-detailed_main-addiction
     outputs:
@@ -1619,6 +1681,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_vax-detailed_main-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-detailed_main-anxiety_general
     outputs:
@@ -1641,6 +1704,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_vax-detailed_main-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-detailed_main-anxiety_ptsd
     outputs:
@@ -1663,6 +1727,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_vax-detailed_main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-detailed_main-depression
     outputs:
@@ -1685,6 +1750,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_vax-detailed_main-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-detailed_main-eating_disorders
     outputs:
@@ -1707,6 +1773,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_vax-detailed_main-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-detailed_main-self_harm
     outputs:
@@ -1729,6 +1796,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=10
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_vax-detailed_main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-detailed_main-serious_mental_illness
     outputs:
@@ -1751,6 +1819,7 @@ actions:
       --study_stop=2021-12-14 --cut_points=1;7;14;21;28;197 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
       --age_spline=TRUE --df_output=model_output-cohort_vax-detailed_main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-detailed_main-suicide
     outputs:
@@ -1772,6 +1841,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-main-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-main-addiction
     outputs:
@@ -1793,6 +1863,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-main-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-main-anxiety_general
     outputs:
@@ -1814,6 +1885,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-main-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-main-anxiety_ptsd
     outputs:
@@ -1835,6 +1907,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-main-depression
     outputs:
@@ -1856,6 +1929,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-main-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-main-eating_disorders
     outputs:
@@ -1877,6 +1951,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-main-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-main-self_harm
     outputs:
@@ -1898,6 +1973,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-main-serious_mental_illness
     outputs:
@@ -1919,6 +1995,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-main-suicide
     outputs:
@@ -1940,6 +2017,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-main-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-main-addiction
     outputs:
@@ -1961,6 +2039,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-main-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-main-anxiety_general
     outputs:
@@ -1982,6 +2061,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-main-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-main-anxiety_ptsd
     outputs:
@@ -2003,6 +2083,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-main-depression
     outputs:
@@ -2024,6 +2105,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-main-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-main-eating_disorders
     outputs:
@@ -2045,6 +2127,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-main-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-main-self_harm
     outputs:
@@ -2066,6 +2149,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-main-serious_mental_illness
     outputs:
@@ -2087,6 +2171,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-main-suicide
     outputs:
@@ -2108,6 +2193,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-main-addiction
     outputs:
@@ -2129,6 +2215,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-main-anxiety_general
     outputs:
@@ -2150,6 +2237,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-main-anxiety_ptsd
     outputs:
@@ -2171,6 +2259,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-main-depression
     outputs:
@@ -2192,6 +2281,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-main-eating_disorders
     outputs:
@@ -2213,6 +2303,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-main-self_harm
     outputs:
@@ -2234,6 +2325,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-main-serious_mental_illness
     outputs:
@@ -2255,6 +2347,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-main-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-main-suicide
     outputs:
@@ -2276,6 +2369,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_prevax_extf-sub_age_18_39-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_age_18_39-depression
     outputs:
@@ -2297,6 +2391,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_prevax_extf-sub_age_18_39-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_age_18_39-serious_mental_illness
     outputs:
@@ -2318,6 +2413,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_unvax_extf-sub_age_18_39-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_age_18_39-depression
     outputs:
@@ -2339,6 +2435,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_unvax_extf-sub_age_18_39-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_age_18_39-serious_mental_illness
     outputs:
@@ -2360,6 +2457,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_vax-sub_age_18_39-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_age_18_39-depression
     outputs:
@@ -2381,6 +2479,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_vax-sub_age_18_39-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_age_18_39-serious_mental_illness
     outputs:
@@ -2402,6 +2501,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_prevax_extf-sub_age_40_59-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_age_40_59-depression
     outputs:
@@ -2423,6 +2523,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_prevax_extf-sub_age_40_59-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_age_40_59-serious_mental_illness
     outputs:
@@ -2444,6 +2545,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_unvax_extf-sub_age_40_59-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_age_40_59-depression
     outputs:
@@ -2465,6 +2567,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_unvax_extf-sub_age_40_59-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_age_40_59-serious_mental_illness
     outputs:
@@ -2486,6 +2589,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_vax-sub_age_40_59-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_age_40_59-depression
     outputs:
@@ -2507,6 +2611,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_vax-sub_age_40_59-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_age_40_59-serious_mental_illness
     outputs:
@@ -2528,6 +2633,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_prevax_extf-sub_age_60_79-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_age_60_79-depression
     outputs:
@@ -2549,6 +2655,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_prevax_extf-sub_age_60_79-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_age_60_79-serious_mental_illness
     outputs:
@@ -2570,6 +2677,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_unvax_extf-sub_age_60_79-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_age_60_79-depression
     outputs:
@@ -2591,6 +2699,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_unvax_extf-sub_age_60_79-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_age_60_79-serious_mental_illness
     outputs:
@@ -2612,6 +2721,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_vax-sub_age_60_79-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_age_60_79-depression
     outputs:
@@ -2633,6 +2743,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_vax-sub_age_60_79-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_age_60_79-serious_mental_illness
     outputs:
@@ -2654,6 +2765,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_prevax_extf-sub_age_80_110-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_age_80_110-depression
     outputs:
@@ -2675,6 +2787,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_prevax_extf-sub_age_80_110-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_age_80_110-serious_mental_illness
     outputs:
@@ -2696,6 +2809,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_unvax_extf-sub_age_80_110-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_age_80_110-depression
     outputs:
@@ -2717,6 +2831,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_unvax_extf-sub_age_80_110-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_age_80_110-serious_mental_illness
     outputs:
@@ -2738,6 +2853,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_vax-sub_age_80_110-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_age_80_110-depression
     outputs:
@@ -2759,6 +2875,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --df_output=model_output-cohort_vax-sub_age_80_110-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_age_80_110-serious_mental_illness
     outputs:
@@ -2780,6 +2897,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_history-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_history-addiction
     outputs:
@@ -2801,6 +2919,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_history-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_history-anxiety_general
     outputs:
@@ -2822,6 +2941,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_history-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_history-anxiety_ptsd
     outputs:
@@ -2843,6 +2963,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_history-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_history-depression
     outputs:
@@ -2864,6 +2985,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_history-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_history-eating_disorders
     outputs:
@@ -2885,6 +3007,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_history-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_history-self_harm
     outputs:
@@ -2906,6 +3029,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_history-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_history-serious_mental_illness
     outputs:
@@ -2927,6 +3051,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_history-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_history-suicide
     outputs:
@@ -2948,6 +3073,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_history-addiction
     outputs:
@@ -2969,6 +3095,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_history-anxiety_general
     outputs:
@@ -2990,6 +3117,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_history-anxiety_ptsd
     outputs:
@@ -3011,6 +3139,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_history-depression
     outputs:
@@ -3032,6 +3161,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_history-eating_disorders
     outputs:
@@ -3053,6 +3183,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_history-self_harm
     outputs:
@@ -3074,6 +3205,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_history-serious_mental_illness
     outputs:
@@ -3095,6 +3227,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_history-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_history-suicide
     outputs:
@@ -3116,6 +3249,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_hospitalised-addiction
     outputs:
@@ -3137,6 +3271,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_hospitalised-anxiety_general
     outputs:
@@ -3158,6 +3293,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_hospitalised-anxiety_ptsd
     outputs:
@@ -3179,6 +3315,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_hospitalised-depression
     outputs:
@@ -3200,6 +3337,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_hospitalised-eating_disorders
     outputs:
@@ -3221,6 +3359,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_hospitalised-self_harm
     outputs:
@@ -3242,6 +3381,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_hospitalised-serious_mental_illness
     outputs:
@@ -3263,6 +3403,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_hospitalised-suicide
     outputs:
@@ -3284,6 +3425,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_hospitalised-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-addiction
     outputs:
@@ -3305,6 +3447,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_hospitalised-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-anxiety_general
     outputs:
@@ -3326,6 +3469,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_hospitalised-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-anxiety_ptsd
     outputs:
@@ -3347,6 +3491,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_hospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-depression
     outputs:
@@ -3368,6 +3513,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_hospitalised-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-eating_disorders
     outputs:
@@ -3389,6 +3535,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_hospitalised-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-self_harm
     outputs:
@@ -3410,6 +3557,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_hospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-serious_mental_illness
     outputs:
@@ -3431,6 +3579,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_hospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-suicide
     outputs:
@@ -3452,6 +3601,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_hospitalised-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_hospitalised-addiction
     outputs:
@@ -3473,6 +3623,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_hospitalised-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_general
     outputs:
@@ -3494,6 +3645,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_hospitalised-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ptsd
     outputs:
@@ -3515,6 +3667,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_hospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_hospitalised-depression
     outputs:
@@ -3536,6 +3689,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_hospitalised-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_hospitalised-eating_disorders
     outputs:
@@ -3557,6 +3711,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_hospitalised-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_hospitalised-self_harm
     outputs:
@@ -3578,6 +3733,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_hospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_hospitalised-serious_mental_illness
     outputs:
@@ -3599,6 +3755,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_hospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_hospitalised-suicide
     outputs:
@@ -3620,6 +3777,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-addiction
     outputs:
@@ -3641,6 +3799,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_general
     outputs:
@@ -3662,6 +3821,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_ptsd
     outputs:
@@ -3683,6 +3843,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-depression
     outputs:
@@ -3704,6 +3865,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-eating_disorders
     outputs:
@@ -3725,6 +3887,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-self_harm
     outputs:
@@ -3746,6 +3909,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-serious_mental_illness
     outputs:
@@ -3767,6 +3931,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-suicide
     outputs:
@@ -3788,6 +3953,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_nonhospitalised-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-addiction
     outputs:
@@ -3809,6 +3975,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_general
     outputs:
@@ -3830,6 +3997,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_ptsd
     outputs:
@@ -3851,6 +4019,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_nonhospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-depression
     outputs:
@@ -3872,6 +4041,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_nonhospitalised-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-eating_disorders
     outputs:
@@ -3893,6 +4063,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_nonhospitalised-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-self_harm
     outputs:
@@ -3914,6 +4085,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_nonhospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-serious_mental_illness
     outputs:
@@ -3935,6 +4107,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_covid_nonhospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-suicide
     outputs:
@@ -3956,6 +4129,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_nonhospitalised-addiction.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-addiction
     outputs:
@@ -3977,6 +4151,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_nonhospitalised-anxiety_general.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_general
     outputs:
@@ -3998,6 +4173,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd
     outputs:
@@ -4019,6 +4195,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_nonhospitalised-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-depression
     outputs:
@@ -4040,6 +4217,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_nonhospitalised-eating_disorders.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-eating_disorders
     outputs:
@@ -4061,6 +4239,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_nonhospitalised-self_harm.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-self_harm
     outputs:
@@ -4082,6 +4261,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness
     outputs:
@@ -4103,6 +4283,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_covid_nonhospitalised-suicide.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-suicide
     outputs:
@@ -4124,6 +4305,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_asian-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_asian-depression
     outputs:
@@ -4145,6 +4327,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_asian-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_asian-serious_mental_illness
     outputs:
@@ -4166,6 +4349,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_asian-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_asian-depression
     outputs:
@@ -4187,6 +4371,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_asian-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_asian-serious_mental_illness
     outputs:
@@ -4208,6 +4393,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_asian-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_asian-depression
     outputs:
@@ -4229,6 +4415,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_asian-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_asian-serious_mental_illness
     outputs:
@@ -4250,6 +4437,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_black-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_black-depression
     outputs:
@@ -4271,6 +4459,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_black-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_black-serious_mental_illness
     outputs:
@@ -4292,6 +4481,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_black-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_black-depression
     outputs:
@@ -4313,6 +4503,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_black-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_black-serious_mental_illness
     outputs:
@@ -4334,6 +4525,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_black-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_black-depression
     outputs:
@@ -4355,6 +4547,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_black-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_black-serious_mental_illness
     outputs:
@@ -4376,6 +4569,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_mixed-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_mixed-depression
     outputs:
@@ -4397,6 +4591,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_mixed-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_mixed-serious_mental_illness
     outputs:
@@ -4418,6 +4613,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_mixed-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_mixed-depression
     outputs:
@@ -4439,6 +4635,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_mixed-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_mixed-serious_mental_illness
     outputs:
@@ -4460,6 +4657,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_mixed-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_mixed-depression
     outputs:
@@ -4481,6 +4679,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_mixed-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_mixed-serious_mental_illness
     outputs:
@@ -4502,6 +4701,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_other-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_other-depression
     outputs:
@@ -4523,6 +4723,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_other-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_other-serious_mental_illness
     outputs:
@@ -4544,6 +4745,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_other-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_other-depression
     outputs:
@@ -4565,6 +4767,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_other-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_other-serious_mental_illness
     outputs:
@@ -4586,6 +4789,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_other-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_other-depression
     outputs:
@@ -4607,6 +4811,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_other-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_other-serious_mental_illness
     outputs:
@@ -4628,6 +4833,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_white-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_white-depression
     outputs:
@@ -4649,6 +4855,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_white-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_ethnicity_white-serious_mental_illness
     outputs:
@@ -4670,6 +4877,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_white-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_white-depression
     outputs:
@@ -4691,6 +4899,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_ethnicity_white-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_ethnicity_white-serious_mental_illness
     outputs:
@@ -4712,6 +4921,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_white-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_white-depression
     outputs:
@@ -4733,6 +4943,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_ethnicity_white-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_ethnicity_white-serious_mental_illness
     outputs:
@@ -4754,6 +4965,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_none-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_history_none-depression
     outputs:
@@ -4775,6 +4987,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_none-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_history_none-serious_mental_illness
     outputs:
@@ -4796,6 +5009,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_history_none-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_history_none-depression
     outputs:
@@ -4817,6 +5031,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_history_none-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_history_none-serious_mental_illness
     outputs:
@@ -4838,6 +5053,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_history_none-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_history_none-depression
     outputs:
@@ -4859,6 +5075,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_history_none-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_history_none-serious_mental_illness
     outputs:
@@ -4880,6 +5097,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_notrecent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_history_notrecent-depression
     outputs:
@@ -4901,6 +5119,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_notrecent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_history_notrecent-serious_mental_illness
     outputs:
@@ -4922,6 +5141,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_history_notrecent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_history_notrecent-depression
     outputs:
@@ -4943,6 +5163,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_history_notrecent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_history_notrecent-serious_mental_illness
     outputs:
@@ -4964,6 +5185,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_history_notrecent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_history_notrecent-depression
     outputs:
@@ -4985,6 +5207,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_history_notrecent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_history_notrecent-serious_mental_illness
     outputs:
@@ -5006,6 +5229,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_recent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_history_recent-depression
     outputs:
@@ -5027,6 +5251,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_recent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_history_recent-serious_mental_illness
     outputs:
@@ -5048,6 +5273,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_history_recent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_history_recent-depression
     outputs:
@@ -5069,6 +5295,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_history_recent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_history_recent-serious_mental_illness
     outputs:
@@ -5090,6 +5317,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_history_recent-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_history_recent-depression
     outputs:
@@ -5111,6 +5339,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_history_recent-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_history_recent-serious_mental_illness
     outputs:
@@ -5132,6 +5361,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_sex_female-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_sex_female-depression
     outputs:
@@ -5153,6 +5383,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_sex_female-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_sex_female-serious_mental_illness
     outputs:
@@ -5174,6 +5405,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_sex_female-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_sex_female-depression
     outputs:
@@ -5195,6 +5427,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_sex_female-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_sex_female-serious_mental_illness
     outputs:
@@ -5216,6 +5449,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_sex_female-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_sex_female-depression
     outputs:
@@ -5237,6 +5471,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_sex_female-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_sex_female-serious_mental_illness
     outputs:
@@ -5258,6 +5493,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_sex_male-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_sex_male-depression
     outputs:
@@ -5279,6 +5515,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_prevax_extf-sub_sex_male-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_prevax_extf-sub_sex_male-serious_mental_illness
     outputs:
@@ -5300,6 +5537,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_sex_male-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_sex_male-depression
     outputs:
@@ -5321,6 +5559,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_unvax_extf-sub_sex_male-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_unvax_extf-sub_sex_male-serious_mental_illness
     outputs:
@@ -5342,6 +5581,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_sex_male-depression.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_sex_male-depression
     outputs:
@@ -5363,6 +5603,7 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --df_output=model_output-cohort_vax-sub_sex_male-serious_mental_illness.csv
+      --save_analysis_ready=FALSE
     needs:
     - make_model_input-cohort_vax-sub_sex_male-serious_mental_illness
     outputs:
