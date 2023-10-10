@@ -5578,7 +5578,7 @@ actions:
     - cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
     outputs:
       moderately_sensitive:
-        stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_covid_hospitalised-depression_median_fup.csv
+        stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.csv
         stata_model_output: output/stata_model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.txt
 
   stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness:
@@ -5588,7 +5588,7 @@ actions:
     - cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
-        stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness_median_fup.csv
+        stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv
         stata_model_output: output/stata_model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.txt
 
   ## Table 2 - prevax_extf 

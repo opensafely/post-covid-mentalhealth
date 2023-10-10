@@ -271,7 +271,7 @@ apply_stata_model_function <- function(name, day0){
       arguments = c(name, day0),
       needs = c(as.list(glue("cox_ipw-{name}"))),
       moderately_sensitive = list(
-        stata_fup = glue("output/stata_fup-{name}_median_fup.csv"),
+        stata_fup = glue("output/stata_fup-{name}.csv"),
         stata_model_output = glue("output/stata_model_output-{name}.txt")
       )
     )
