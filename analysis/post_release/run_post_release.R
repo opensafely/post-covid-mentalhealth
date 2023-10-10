@@ -6,6 +6,10 @@ library(tidyverse)
 library(purrr)
 library(data.table)
 library(tidyverse)
+library(svglite)
+library(VennDiagram)
+library(grid)
+library(gridExtra)
 
 # Specify paths ----------------------------------------------------------------
 print('Specify paths')
