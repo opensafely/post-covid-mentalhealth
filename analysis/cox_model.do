@@ -24,8 +24,9 @@ describe
 
 * Filter data
 
-keep patient_id exposure outcome outcome_status fup_start fup_stop cox_weight cov_cat* cov_num* cov_bin*
+keep patient_id exposure outcome fup_start fup_stop cox_weight cov_cat* cov_num* cov_bin*
 drop cov_num_age_sq
+duplicates drop
 
 * Rename variables
 
@@ -80,6 +81,10 @@ format fup_stop %td
 
 centile age, centile(10 50 90)
 mkspline age_spline = age, cubic knots(`r(c_1)' `r(c_2)' `r(c_3)')
+
+* Make outcome status variable
+
+egen outcome_status = rownonmiss(outcome)
 
 * Apply stset including IPW here as unsampled datasets will be provided with cox_weights set to 1
 
