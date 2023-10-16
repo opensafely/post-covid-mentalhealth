@@ -469,6 +469,16 @@ actions_list <- splice(
   ),
   
   action(
+    name = "make_stata_model_output",
+    run = "r:latest analysis/make_stata_model_output.R",
+    needs = as.list(stata$name),
+    moderately_sensitive = list(
+      stata_model_output = glue("output/stata_model_output.csv"),
+      stata_model_output_rounded = glue("output/stata_model_output_rounded.csv")
+    )
+  ),
+  
+  action(
     name = "make_consort_output",
     run = "r:latest analysis/make_other_output.R consort prevax_extf;vax;unvax_extf",
     needs = list("stage1_data_cleaning_prevax_extf",

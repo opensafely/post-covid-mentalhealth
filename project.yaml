@@ -6149,6 +6149,16 @@ actions:
         model_output: output/model_output.csv
         model_output_rounded: output/model_output_rounded.csv
 
+  make_stata_model_output:
+    run: r:latest analysis/make_stata_model_output.R
+    needs:
+    - cohort_prevax_extf-day0_sub_covid_hospitalised-depression
+    - cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
+    outputs:
+      moderately_sensitive:
+        stata_model_output: output/stata_model_output.csv
+        stata_model_output_rounded: output/stata_model_output_rounded.csv
+
   make_consort_output:
     run: r:latest analysis/make_other_output.R consort prevax_extf;vax;unvax_extf
     needs:
