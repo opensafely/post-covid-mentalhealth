@@ -6152,8 +6152,8 @@ actions:
   make_stata_model_output:
     run: r:latest analysis/make_stata_model_output.R
     needs:
-    - cohort_prevax_extf-day0_sub_covid_hospitalised-depression
-    - cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
         stata_model_output: output/stata_model_output.csv

@@ -471,7 +471,7 @@ actions_list <- splice(
   action(
     name = "make_stata_model_output",
     run = "r:latest analysis/make_stata_model_output.R",
-    needs = as.list(stata$name),
+    needs = as.list(paste0("stata_cox_ipw-",stata$name)),
     moderately_sensitive = list(
       stata_model_output = glue("output/stata_model_output.csv"),
       stata_model_output_rounded = glue("output/stata_model_output_rounded.csv")
