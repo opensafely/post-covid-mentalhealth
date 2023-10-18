@@ -176,7 +176,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
-    sex <- stringr::str_to_title(gsub("sub_sex_","",active_analyses$analysis[i]))
+    sex <- stringr::str_to_title(gsub(".*sub_sex_","",active_analyses$analysis[i]))
     
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_sex==sex,]
@@ -196,8 +196,8 @@ for (i in 1:nrow(active_analyses)) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
-    min_age <- as.numeric(strsplit(gsub("sub_age_","",active_analyses$analysis[i]), split = "_")[[1]][1])
-    max_age <- as.numeric(strsplit(gsub("sub_age_","",active_analyses$analysis[i]), split = "_")[[1]][2])
+    min_age <- as.numeric(strsplit(gsub(".*sub_age_","",active_analyses$analysis[i]), split = "_")[[1]][1])
+    max_age <- as.numeric(strsplit(gsub(".*sub_age_","",active_analyses$analysis[i]), split = "_")[[1]][2])
     
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_num_age>=min_age &
@@ -218,7 +218,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
-    ethnicity <- stringr::str_to_title(gsub("sub_ethnicity_","",active_analyses$analysis[i]))
+    ethnicity <- stringr::str_to_title(gsub(".*sub_ethnicity_","",active_analyses$analysis[i]))
     ethnicity <- ifelse(ethnicity=="Asian","South Asian",ethnicity)
     
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
@@ -239,7 +239,7 @@ for (i in 1:nrow(active_analyses)) {
     
     print(paste0('Make model input: ',active_analyses$analysis[i]))
     
-    history <- gsub("sub_history_","",active_analyses$analysis[i])
+    history <- gsub(".*sub_history_","",active_analyses$analysis[i])
 
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     df <- dplyr::rename(df, "history" = gsub("out_date","cov_cat_history",active_analyses$outcome[i]))
