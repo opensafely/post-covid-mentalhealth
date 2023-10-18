@@ -281,10 +281,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_main-addiction.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-addiction.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-addiction.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-addiction
     outputs:
@@ -303,10 +303,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_main-anxiety_general.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-anxiety_general.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-anxiety_general.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-anxiety_general
     outputs:
@@ -325,10 +325,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_main-anxiety_ptsd.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-anxiety_ptsd.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-anxiety_ptsd.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-anxiety_ptsd
     outputs:
@@ -347,10 +347,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_main-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-depression
     outputs:
@@ -369,10 +369,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_main-eating_disorders.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-eating_disorders.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-eating_disorders.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-eating_disorders
     outputs:
@@ -391,10 +391,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_main-self_harm.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-self_harm.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-self_harm.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-self_harm
     outputs:
@@ -413,10 +413,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_main-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-serious_mental_illness
     outputs:
@@ -435,10 +435,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_main-suicide.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-suicide.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_main-suicide.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_main-suicide
     outputs:
@@ -809,10 +809,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_age_18_39-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_18_39-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=FALSE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_18_39-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_age_18_39-depression
     outputs:
@@ -831,10 +831,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_age_18_39-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_18_39-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=FALSE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_18_39-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_age_18_39-serious_mental_illness
     outputs:
@@ -941,10 +941,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_age_40_59-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_40_59-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=FALSE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_40_59-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_age_40_59-depression
     outputs:
@@ -963,10 +963,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_age_40_59-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_40_59-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=FALSE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_40_59-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_age_40_59-serious_mental_illness
     outputs:
@@ -1073,10 +1073,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_age_60_79-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_60_79-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=FALSE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_60_79-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_age_60_79-depression
     outputs:
@@ -1095,10 +1095,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=FALSE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness
     outputs:
@@ -1205,10 +1205,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_age_80_110-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_80_110-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=FALSE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_80_110-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_age_80_110-depression
     outputs:
@@ -1227,10 +1227,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=FALSE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness
     outputs:
@@ -1689,10 +1689,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction
     outputs:
@@ -1711,10 +1711,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general
     outputs:
@@ -1733,10 +1733,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
     outputs:
@@ -1755,10 +1755,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=TRUE
-      --run_analysis=FALSE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=TRUE --run_analysis=FALSE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
     outputs:
@@ -1777,10 +1777,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders
     outputs:
@@ -1799,10 +1799,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm
     outputs:
@@ -1821,10 +1821,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=TRUE
-      --run_analysis=FALSE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=TRUE --run_analysis=FALSE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     outputs:
@@ -1843,10 +1843,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide
     outputs:
@@ -2217,10 +2217,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction
     outputs:
@@ -2239,10 +2239,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_general.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_general.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_general.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_general
     outputs:
@@ -2261,10 +2261,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd
     outputs:
@@ -2283,10 +2283,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression
     outputs:
@@ -2305,10 +2305,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-eating_disorders.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-eating_disorders.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-eating_disorders.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-eating_disorders
     outputs:
@@ -2327,10 +2327,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-self_harm.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-self_harm.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-self_harm.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-self_harm
     outputs:
@@ -2349,10 +2349,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness
     outputs:
@@ -2371,10 +2371,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide
     outputs:
@@ -2745,10 +2745,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_asian-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_asian-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_asian-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_asian-depression
     outputs:
@@ -2767,10 +2767,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_asian-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_asian-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_asian-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_asian-serious_mental_illness
     outputs:
@@ -2877,10 +2877,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_black-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_black-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_black-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_black-depression
     outputs:
@@ -2899,10 +2899,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness
     outputs:
@@ -3009,10 +3009,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_mixed-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_mixed-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_mixed-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_mixed-depression
     outputs:
@@ -3031,10 +3031,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_mixed-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_mixed-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_mixed-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_mixed-serious_mental_illness
     outputs:
@@ -3141,10 +3141,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_other-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_other-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_other-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_other-depression
     outputs:
@@ -3163,10 +3163,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_other-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_other-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_other-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_other-serious_mental_illness
     outputs:
@@ -3273,10 +3273,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_white-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_white-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_white-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_white-depression
     outputs:
@@ -3295,10 +3295,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_ethnicity_white-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_white-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_ethnicity_white-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_ethnicity_white-serious_mental_illness
     outputs:
@@ -3405,10 +3405,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_history_none-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_none-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_none-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_none-depression
     outputs:
@@ -3427,10 +3427,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness
     outputs:
@@ -3537,10 +3537,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_history_notrecent-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_notrecent-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_notrecent-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_notrecent-depression
     outputs:
@@ -3559,10 +3559,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness
     outputs:
@@ -3669,10 +3669,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_history_recent-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_recent-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_recent-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_recent-depression
     outputs:
@@ -3691,10 +3691,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness
     outputs:
@@ -3801,10 +3801,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_sex_female-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_sex_female-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_sex_female-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_sex_female-depression
     outputs:
@@ -3823,10 +3823,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_sex_female-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_sex_female-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_sex_female-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_sex_female-serious_mental_illness
     outputs:
@@ -3933,10 +3933,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_sex_male-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_sex_male-depression.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_sex_male-depression.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_sex_male-depression
     outputs:
@@ -3955,10 +3955,10 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-day0_sub_sex_male-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=10 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_sex_male-serious_mental_illness.csv
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=10
+      --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
+      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_sex_male-serious_mental_illness.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_sex_male-serious_mental_illness
     outputs:
@@ -4065,8 +4065,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-main-addiction.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-main-addiction.csv
     needs:
@@ -4087,8 +4087,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-main-anxiety_general.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-main-anxiety_general.csv
     needs:
@@ -4109,8 +4109,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-main-anxiety_ptsd.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-main-anxiety_ptsd.csv
     needs:
@@ -4131,8 +4131,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-main-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-main-depression.csv
     needs:
@@ -4153,8 +4153,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-main-eating_disorders.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-main-eating_disorders.csv
     needs:
@@ -4175,8 +4175,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-main-self_harm.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-main-self_harm.csv
     needs:
@@ -4197,8 +4197,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-main-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-main-serious_mental_illness.csv
     needs:
@@ -4219,8 +4219,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-main-suicide.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-main-suicide.csv
     needs:
@@ -4593,8 +4593,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_age_18_39-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_age_18_39-depression.csv
     needs:
@@ -4615,8 +4615,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_age_18_39-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_age_18_39-serious_mental_illness.csv
     needs:
@@ -4725,8 +4725,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_age_40_59-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_age_40_59-depression.csv
     needs:
@@ -4747,8 +4747,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_age_40_59-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_age_40_59-serious_mental_illness.csv
     needs:
@@ -4857,8 +4857,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_age_60_79-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_age_60_79-depression.csv
     needs:
@@ -4879,8 +4879,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_age_60_79-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_age_60_79-serious_mental_illness.csv
     needs:
@@ -4989,8 +4989,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_age_80_110-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_age_80_110-depression.csv
     needs:
@@ -5011,8 +5011,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_age_80_110-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=FALSE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_age_80_110-serious_mental_illness.csv
     needs:
@@ -5473,8 +5473,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_hospitalised-addiction.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-addiction.csv
     needs:
@@ -5495,8 +5495,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_hospitalised-anxiety_general.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-anxiety_general.csv
     needs:
@@ -5517,8 +5517,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_hospitalised-anxiety_ptsd.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-anxiety_ptsd.csv
     needs:
@@ -5539,8 +5539,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_hospitalised-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-depression.csv
     needs:
@@ -5561,8 +5561,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_hospitalised-eating_disorders.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-eating_disorders.csv
     needs:
@@ -5583,8 +5583,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_hospitalised-self_harm.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-self_harm.csv
     needs:
@@ -5605,8 +5605,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_hospitalised-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-serious_mental_illness.csv
     needs:
@@ -5627,8 +5627,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_hospitalised-suicide.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_hospitalised-suicide.csv
     needs:
@@ -6001,8 +6001,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_nonhospitalised-addiction.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-addiction.csv
     needs:
@@ -6023,8 +6023,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_general.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_general.csv
     needs:
@@ -6045,8 +6045,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_ptsd.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_ptsd.csv
     needs:
@@ -6067,8 +6067,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_nonhospitalised-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-depression.csv
     needs:
@@ -6089,8 +6089,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_nonhospitalised-eating_disorders.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-eating_disorders.csv
     needs:
@@ -6111,8 +6111,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_nonhospitalised-self_harm.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-self_harm.csv
     needs:
@@ -6133,8 +6133,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_nonhospitalised-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-serious_mental_illness.csv
     needs:
@@ -6155,8 +6155,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_covid_nonhospitalised-suicide.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=20 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=20 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_covid_nonhospitalised-suicide.csv
     needs:
@@ -6529,8 +6529,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_asian-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_asian-depression.csv
     needs:
@@ -6551,8 +6551,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_asian-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_asian-serious_mental_illness.csv
     needs:
@@ -6661,8 +6661,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_black-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_black-depression.csv
     needs:
@@ -6683,8 +6683,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_black-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_black-serious_mental_illness.csv
     needs:
@@ -6793,8 +6793,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_mixed-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_mixed-depression.csv
     needs:
@@ -6815,8 +6815,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_mixed-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_mixed-serious_mental_illness.csv
     needs:
@@ -6925,8 +6925,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_other-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_other-depression.csv
     needs:
@@ -6947,8 +6947,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_other-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_other-serious_mental_illness.csv
     needs:
@@ -7057,8 +7057,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_white-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_white-depression.csv
     needs:
@@ -7079,8 +7079,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_ethnicity_white-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_ethnicity_white-serious_mental_illness.csv
     needs:
@@ -7189,8 +7189,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_history_none-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_none-depression.csv
     needs:
@@ -7211,8 +7211,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_history_none-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_none-serious_mental_illness.csv
     needs:
@@ -7321,8 +7321,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_history_notrecent-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_notrecent-depression.csv
     needs:
@@ -7343,8 +7343,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_history_notrecent-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_notrecent-serious_mental_illness.csv
     needs:
@@ -7453,8 +7453,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_history_recent-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_recent-depression.csv
     needs:
@@ -7475,8 +7475,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_history_recent-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=cov_cat_sex
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_history_recent-serious_mental_illness.csv
     needs:
@@ -7585,8 +7585,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_sex_female-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_sex_female-depression.csv
     needs:
@@ -7607,8 +7607,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_sex_female-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_sex_female-serious_mental_illness.csv
     needs:
@@ -7717,8 +7717,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_sex_male-depression.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_sex_male-depression.csv
     needs:
@@ -7739,8 +7739,8 @@ actions:
     run: cox-ipw:v0.0.27 --df_input=model_input-cohort_prevax_extf-sub_sex_male-serious_mental_illness.rds
       --ipw=TRUE --exposure=exp_date --outcome=out_date --strata=cov_cat_region --covariate_sex=NULL
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
-      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
-      --study_stop=2021-12-14 --cut_points=28;197 --controls_per_case=10 --total_event_threshold=50
+      --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
+      --study_stop=2021-12-14 --cut_points=28;197;365;714 --controls_per_case=10 --total_event_threshold=50
       --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
       --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-sub_sex_male-serious_mental_illness.csv
     needs:
