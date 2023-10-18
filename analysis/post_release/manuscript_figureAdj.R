@@ -1,14 +1,13 @@
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(path_model_output,
+df <- readr::read_csv("output/plot_model_output.csv",
                       show_col_types = FALSE)
 
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
-df <- df[df$analysis=="main" & 
-           grepl("day",df$term),
+df <- df[df$analysis=="main",
          c("cohort","outcome","outcome_time_median","model","term","hr","conf_low","conf_high")]
 
 df <- df[df$term!="days_pre",]

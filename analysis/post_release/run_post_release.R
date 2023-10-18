@@ -31,11 +31,34 @@ print('Make post-release directory')
 
 dir.create("output/post_release/", recursive = TRUE, showWarnings = FALSE)
 
-# Run absolute excess risk -------------------------------------------------------
+# Run absolute excess risk -----------------------------------------------------
 print('Run absolute excess risk')
 
 source("analysis/post_release/fn-lifetable.R")
 source("analysis/post_release/lifetables_compiled.R")
+
+# Make master plot file --------------------------------------------------------
+
+df <- readr::read_csv(path_model_output,
+                            show_col_types = FALSE)
+
+df$source <- "R"
+
+
+tmp <- readr::read_csv(path_stata_model_output,
+                       show_col_types = FALSE)
+
+tmp$source <- "Stata"
+  
+df <- df[!(df$name %in% tmp$name),]
+
+df <- rbind(df, tmp)
+
+df <- df[grepl("day",df$term),
+         c("cohort","analysis","outcome","source","model",
+           "outcome_time_median","term","hr","conf_low","conf_high")]
+
+readr::write_csv(df, "output/plot_model_output.csv")
 
 # Identify tables and figures to run -------------------------------------------
 print('Identify tables and figures to run')

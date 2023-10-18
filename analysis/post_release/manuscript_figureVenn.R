@@ -7,7 +7,7 @@ df <- readr::read_csv(path_venn,
 # Remove suicide (defined in death only) ---------------------------------------
 print("Remove suicide (defined in death only)")
 
-df <- venn[venn$outcome!="suicide",]
+df <- df[df$outcome!="suicide",]
 
 # Create Venn for each outcome/cohort combo ------------------------------------
 print("Create Venn for each outcome/cohort combo")

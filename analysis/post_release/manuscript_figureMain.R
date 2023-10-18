@@ -1,14 +1,13 @@
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(path_model_output,
+df <- readr::read_csv("output/plot_model_output.csv",
                       show_col_types = FALSE)
 
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
 df <- df[df$outcome %in% c("depression","serious_mental_illness") &
-           grepl("day",df$term) & 
            df$model=="mdl_max_adj",
          c("cohort","analysis","outcome","outcome_time_median","term","hr","conf_low","conf_high")]
 
@@ -19,7 +18,6 @@ print("Make columns numeric")
 
 df <- df %>% 
   dplyr::mutate_at(c("outcome_time_median","hr","conf_low","conf_high"), as.numeric)
-
 
 # Add plot labels ---------------------------------------------------------
 print("Add plot labels")
@@ -65,15 +63,6 @@ for (i in unique(df$analysis_group)){
   print("Calculate number of facet col")
   
   facet_cols <- length(unique(df_plot$analysis))
-  
-  # Remove extreme estimates from plot -----------------------------------------
-  print("Remove extreme estimates from plot")
-  
-  df_plot$hr <- ifelse(df_plot$hr>64 | df_plot$hr < 0.5, NA, df_plot$hr)
-  df_plot$conf_low <- ifelse(is.na(df_plot$hr), NA, df_plot$conf_low)
-  df_plot$conf_high <- ifelse(is.na(df_plot$hr), NA, df_plot$conf_high)
-
-  #df_plot <- df_plot[order(df_plot$outcome_label, df_plot$analysis_label, df_plot$term),]  
 
   # Plot data ------------------------------------------------------------------
   print("Plot data")
@@ -87,7 +76,6 @@ for (i in unique(df$analysis_group)){
                                                   width = 0), 
                            position = ggplot2::position_dodge(width = 0)) +
     ggplot2::geom_line(position = ggplot2::position_dodge(width = 0)) +
-    ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
     ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
     ggplot2::scale_color_manual(breaks = c("prevax_extf", "vax", "unvax_extf"),
                                 labels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
@@ -107,17 +95,23 @@ for (i in unique(df$analysis_group)){
   
   if (facet_cols==1) {
     #p + ggplot2::facet_wrap(outcome_label~., ncol = facet_cols) +
-    p + ggplot2::facet_grid(outcome_label~.) + 
+    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+      ggplot2::facet_grid(outcome_label~.) + 
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE)) 
     plot_width = ifelse(grepl("detailed",i),297*0.7,297*0.5)
   } else if (i %in% c("sub_covid_history","sub_sex")) {
-    #p + ggplot2::facet_wrap(outcome_label~forcats::fct_rev(analysis_label), ncol = facet_cols) + 
-    p + ggplot2::facet_grid(outcome_label~forcats::fct_rev(analysis_label)) + 
+    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+      ggplot2::facet_grid(outcome_label~forcats::fct_rev(analysis_label)) + 
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE))
     plot_width = 297*0.7
+  } else if (i %in% c("day0")) {
+      p + ggplot2::scale_y_continuous(lim = c(0.5,512), breaks = c(0.5,1,2,4,8,16,32,64,128,256,512), trans = "log") +
+      ggplot2::facet_grid(outcome_label~analysis_label) +
+      ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))
+    plot_width = 297
   } else {
-    #p + ggplot2::facet_wrap(outcome_label~analysis_label, ncol = facet_cols) +
-    p + ggplot2::facet_grid(outcome_label~analysis_label, switch = "y") +
+    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+      ggplot2::facet_grid(outcome_label~analysis_label) +
       ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))
     plot_width = 297
   }

@@ -1,14 +1,13 @@
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(path_model_output,
+df <- readr::read_csv("output/plot_model_output.csv",
                       show_col_types = FALSE)
 
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
-df <- df[grepl("day",df$term) & 
-           df$model=="mdl_max_adj",
+df <- df[df$model=="mdl_max_adj",
          c("analysis","cohort","outcome","term","hr","conf_low","conf_high")]
 
 df <- df[df$term!="days_pre",]
