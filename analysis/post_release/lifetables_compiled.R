@@ -1,7 +1,7 @@
 # Specify parameters -----------------------------------------------------------
 print('Specify parameters')
 
-analysis <- "main"
+analysis <- "day0_main"
 
 # Load model output ------------------------------------------------------------
 print('Load model output')
@@ -30,6 +30,7 @@ model_output$time_period_end <- as.numeric(gsub(".*_", "",model_output$term))
 print('Load AER input')
 
 aer_input <- read_csv(path_aer_input)
+aer_input$analysis <- paste0("day0_",aer_input$analysis) # To save rerunning aer_input as day0 models use same sample but different analysis names 
 
 # Run AER function -------------------------------------------------------------
 print('Run AER function')
@@ -42,7 +43,7 @@ for (i in 1:nrow(aer_input)) {
                          model_output$cohort==aer_input$cohort[i],])>0) {
     
     tmp <- lifetable(model_output = model_output,
-                     aer_input = aer_input[i,])
+                     aer_input = aer_input[i,]) 
     
     lifetables_compiled <- rbind(lifetables_compiled, tmp)
     

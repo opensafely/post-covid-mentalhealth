@@ -13,7 +13,7 @@ print("Filter data")
 
 df <- df[df$aer_age=="overall" &
            df$aer_sex=="overall" &
-           df$analysis=="main" & 
+           df$analysis=="day0_main" & 
            df$days==196,]
 
 # Add plot labels --------------------------------------------------------------
