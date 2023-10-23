@@ -23,9 +23,9 @@ cohorts <- unique(active_analyses$cohort)
 
 run_stata <- c("cohort_prevax_extf-day0_sub_covid_hospitalised-depression",
                "cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness",
-               "cox_ipw-cohort_vax-day0_main-eating_disorders",
-               "cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd",
-               "cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders")
+               "cohort_vax-day0_main-eating_disorders",
+               "cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd",
+               "cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders")
 
 active_analyses$save_analysis_ready <- active_analyses$name %in% run_stata
 active_analyses$run_analysis <- !(active_analyses$save_analysis_ready)

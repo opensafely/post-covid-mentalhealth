@@ -723,13 +723,13 @@ actions:
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_vax-day0_main-eating_disorders.csv
+      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=TRUE
+      --run_analysis=FALSE --df_output=model_output-cohort_vax-day0_main-eating_disorders.csv
     needs:
     - make_model_input-cohort_vax-day0_main-eating_disorders
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-day0_main-eating_disorders.csv
+        model_output: output/ready-cohort_vax-day0_main-eating_disorders.csv.gz
 
   make_model_input-cohort_vax-day0_main-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-self_harm
@@ -1736,12 +1736,12 @@ actions:
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2020-01-01
       --study_stop=2021-12-14 --cut_points=1;28;197;365;714 --controls_per_case=20
       --total_event_threshold=50 --episode_event_threshold=5 --covariate_threshold=5
-      --age_spline=TRUE --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv
+      --age_spline=TRUE --save_analysis_ready=TRUE --run_analysis=FALSE --df_output=model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv
+        model_output: output/ready-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv.gz
 
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-depression
@@ -2659,13 +2659,13 @@ actions:
       --covariate_age=cov_num_age --covariate_other=cov_cat_ethnicity;cov_cat_deprivation;cov_cat_smoking_status;cov_bin_carehome_status;cov_num_consulation_rate;cov_bin_healthcare_worker;cov_bin_dementia;cov_bin_liver_disease;cov_bin_chronic_kidney_disease;cov_bin_cancer;cov_bin_hypertension;cov_bin_diabetes;cov_bin_obesity;cov_bin_chronic_obstructive_pulmonary_disease;cov_bin_ami;cov_bin_stroke_isch;cov_cat_history_depression;cov_cat_history_anxiety_general;cov_cat_history_eating_disorders;cov_cat_history_serious_mental_illness;cov_cat_history_self_harm
       --cox_start=index_date --cox_stop=end_date_outcome --study_start=2021-06-01
       --study_stop=2021-12-14 --cut_points=1;28;197 --controls_per_case=20 --total_event_threshold=50
-      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=FALSE
-      --run_analysis=TRUE --df_output=model_output-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.csv
+      --episode_event_threshold=5 --covariate_threshold=5 --age_spline=TRUE --save_analysis_ready=TRUE
+      --run_analysis=FALSE --df_output=model_output-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.csv
     needs:
     - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
     outputs:
       moderately_sensitive:
-        model_output: output/model_output-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.csv
+        model_output: output/ready-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.csv.gz
 
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-self_harm
@@ -7837,6 +7837,26 @@ actions:
       moderately_sensitive:
         model_output: output/model_output-cohort_vax-sub_sex_male-serious_mental_illness.csv
 
+  stata_cox_ipw-cohort_vax-day0_main-eating_disorders:
+    run: stata-mp:latest analysis/cox_model.do cohort_vax-day0_main-eating_disorders
+      TRUE
+    needs:
+    - cox_ipw-cohort_vax-day0_main-eating_disorders
+    outputs:
+      moderately_sensitive:
+        stata_fup: output/stata_fup-cohort_vax-day0_main-eating_disorders.csv
+        stata_model_output: output/stata_model_output-cohort_vax-day0_main-eating_disorders.txt
+
+  stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd:
+    run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
+      TRUE
+    needs:
+    - cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
+    outputs:
+      moderately_sensitive:
+        stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv
+        stata_model_output: output/stata_model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.txt
+
   stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-depression:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_covid_hospitalised-depression
       TRUE
@@ -7856,6 +7876,16 @@ actions:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv
         stata_model_output: output/stata_model_output-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.txt
+
+  stata_cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders:
+    run: stata-mp:latest analysis/cox_model.do cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
+      TRUE
+    needs:
+    - cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
+    outputs:
+      moderately_sensitive:
+        stata_fup: output/stata_fup-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.csv
+        stata_model_output: output/stata_model_output-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.txt
 
   ## Table 2 - prevax_extf 
 
@@ -8302,8 +8332,11 @@ actions:
   make_stata_model_output:
     run: r:latest analysis/make_stata_model_output.R
     needs:
+    - stata_cox_ipw-cohort_vax-day0_main-eating_disorders
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
     - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
     - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
+    - stata_cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
     outputs:
       moderately_sensitive:
         stata_model_output: output/stata_model_output.csv
