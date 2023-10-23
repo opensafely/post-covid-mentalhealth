@@ -40,10 +40,10 @@ print("Add plot labels")
 plot_labels <- readr::read_csv("lib/plot_labels.csv",
                                show_col_types = FALSE)
 
-df <- merge(df, plot_labels, by.x = "outcome", by.y = "term", all.x = TRUE)
+df <- merge(df, plot_labels[,c("term","label")], by.x = "outcome", by.y = "term", all.x = TRUE)
 df <- dplyr::rename(df, "outcome_label" = "label")
 
-df <- merge(df, plot_labels, by.x = "cohort", by.y = "term", all.x = TRUE)
+df <- merge(df, plot_labels[,c("term","label")], by.x = "cohort", by.y = "term", all.x = TRUE)
 df <- dplyr::rename(df, "cohort_label" = "label")
 
 # Order cohorts ----------------------------------------------------------------
@@ -53,6 +53,26 @@ df$cohort_label <- factor(df$cohort_label,
                           levels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
                                      "Vaccinated (Jun 1 2021 - Dec 14 2021)",
                                      "Unvaccinated (Jun 1 2021 - Dec 14 2021)"))
+
+# Generate facet info --------------------------------------------------------
+print("Generate facet info")
+
+facet_info <- unique(df[,c("outcome_label","cohort_label")])
+facet_info <- facet_info[order(facet_info$outcome_label,facet_info$cohort_label),]
+facet_info$facet_order <- 1:nrow(facet_info)
+
+facet_info$facet_label <- ""
+for (j in 1:nrow(facet_info)) {
+  facet_info[j,]$facet_label <- paste0(ifelse(facet_info[j,]$cohort_label=="Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
+                                              facet_info[j,]$outcome_label,
+                                              paste0(rep(" ",j),collapse = "")),
+                                       "\n\n",facet_info[j,]$cohort_label)
+}
+
+facet_info$facet_label <- factor(facet_info$facet_label, 
+                                  levels = facet_info[order(facet_info$facet_order),]$facet_label)
+
+df <- merge(df, facet_info)
 
 # Plot data --------------------------------------------------------------------
 print("Plot data")
@@ -80,13 +100,14 @@ ggplot2::ggplot(data = df[df$days<197,],
                  panel.grid.minor = ggplot2::element_blank(),
                  panel.spacing.x = ggplot2::unit(0.5, "lines"),
                  panel.spacing.y = ggplot2::unit(0, "lines"),
+                 strip.text = ggplot2::element_text(hjust = 0, vjust = 0),
                  legend.key = ggplot2::element_rect(colour = NA, fill = NA),
                  legend.title = ggplot2::element_blank(),
                  legend.position="bottom",
                  plot.background = ggplot2::element_rect(fill = "white", colour = "white"),
                  plot.title = ggplot2::element_text(hjust = 0.5),
                  text = ggplot2::element_text(size=13)) +
-  ggplot2::facet_wrap(outcome_label ~ cohort_label, scales = "free_x")
+  ggplot2::facet_wrap(~factor(facet_label), ncol = 3, scales = "free_x")
 
 # Save plot --------------------------------------------------------------------
 print("Save plot")

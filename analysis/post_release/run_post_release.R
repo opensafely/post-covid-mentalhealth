@@ -58,6 +58,7 @@ df <- df[grepl("day",df$term),
          c("cohort","analysis","outcome","source","model",
            "outcome_time_median","term","hr","conf_low","conf_high")]
 
+df <- df[!grepl("detailed",df$analysis),]
 readr::write_csv(df, "output/plot_model_output.csv")
 
 # Identify tables and figures to run -------------------------------------------

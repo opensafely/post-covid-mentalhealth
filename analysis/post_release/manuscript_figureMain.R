@@ -11,7 +11,7 @@ df <- df[df$outcome %in% c("depression","serious_mental_illness") &
            df$model=="mdl_max_adj",
          c("cohort","analysis","outcome","outcome_time_median","term","hr","conf_low","conf_high")]
 
-df <- df[df$term!="days_pre",]
+df <- df[!(df$term %in% c("days_pre","days0_1")),]
 
 # Make columns numeric ---------------------------------------------------------
 print("Make columns numeric")
@@ -34,7 +34,7 @@ df <- dplyr::rename(df, "analysis_label" = "label")
 # Add facet labels -------------------------------------------------------------
 print("Add facet labels")
 
-df$facet_label <- ifelse(df$ref==TRUE & !is.na(df$ref), 
+df$facet_label <- ifelse(df$ref==1, 
                          paste0(df$outcome_label,"\n\n",df$analysis_label),
                          df$analysis_label)
 
@@ -52,7 +52,7 @@ for (i in unique(df$analysis_group)){
 
   # Update labels --------------------------------------------------------------
   
-  if (i=="sub_covid_history") {
+  if (grepl("history_exposure",i)) {
     print("Update labels")
     df_plot$analysis_label <- ifelse(df_plot$analysis_label=="All COVID-19",
                                      "No history of COVID-19",df_plot$analysis_label)
@@ -63,7 +63,24 @@ for (i in unique(df$analysis_group)){
   print("Calculate number of facet col")
   
   facet_cols <- length(unique(df_plot$analysis))
+  
+  # Generate facet info --------------------------------------------------------
+  print("Generate facet info")
+  
+  facet_info <- unique(df_plot[,c("outcome","analysis","ref","facet_label")])
+  facet_info <- facet_info[order(facet_info$outcome,facet_info$ref),]
+  facet_info$facet_order <- 1:nrow(facet_info)
+  
+  facet_info$facet_label2 <- ""
+  for (j in 1:nrow(facet_info)) {
+    facet_info[j,]$facet_label2 <- paste0(facet_info[j,]$facet_label, paste0(rep(" ",j),collapse = ""))
+  }
+  
+  facet_info$facet_label2 <- factor(facet_info$facet_label2, 
+                                 levels = facet_info[order(facet_info$facet_order),]$facet_label2)
 
+  df_plot <- merge(df_plot, facet_info)
+  
   # Plot data ------------------------------------------------------------------
   print("Plot data")
   
@@ -76,7 +93,6 @@ for (i in unique(df$analysis_group)){
                                                   width = 0), 
                            position = ggplot2::position_dodge(width = 0)) +
     ggplot2::geom_line(position = ggplot2::position_dodge(width = 0)) +
-    ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
     ggplot2::scale_color_manual(breaks = c("prevax_extf", "vax", "unvax_extf"),
                                 labels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
                                            "Vaccinated (Jun 1 2021 - Dec 14 2021)",
@@ -88,32 +104,36 @@ for (i in unique(df$analysis_group)){
                    panel.grid.minor = ggplot2::element_blank(),
                    panel.spacing.x = ggplot2::unit(0.5, "lines"),
                    panel.spacing.y = ggplot2::unit(0, "lines"),
+                   strip.text = ggplot2::element_text(hjust = 0, vjust = 0),
                    legend.key = ggplot2::element_rect(colour = NA, fill = NA),
                    legend.title = ggplot2::element_blank(),
                    legend.position="bottom",
                    plot.background = ggplot2::element_rect(fill = "white", colour = "white"))
   
-  if (facet_cols==1) {
-    #p + ggplot2::facet_wrap(outcome_label~., ncol = facet_cols) +
+  if (grepl("history_exposure",i)) {
     p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
-      ggplot2::facet_grid(outcome_label~.) + 
-      ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE)) 
-    plot_width = ifelse(grepl("detailed",i),297*0.7,297*0.5)
-  } else if (i %in% c("sub_covid_history","sub_sex")) {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
-      ggplot2::facet_grid(outcome_label~forcats::fct_rev(analysis_label)) + 
+      ggplot2::scale_x_continuous(lim = c(0,84), breaks = seq(0,84,14), labels = seq(0,84,14)/7) +
+      ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE))
-    plot_width = 297*0.7
-  } else if (i %in% c("day0")) {
-      p + ggplot2::scale_y_continuous(lim = c(0.5,512), breaks = c(0.5,1,2,4,8,16,32,64,128,256,512), trans = "log") +
-      ggplot2::facet_grid(outcome_label~analysis_label) +
+    plot_width <- 297*0.5
+  } else if (facet_cols==1) {
+    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+      ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
+      ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))
-    plot_width = 297
+    plot_width <- 297*0.5
+  } else if (facet_cols==2) {
+    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+      ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
+      ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
+      ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE)) 
+    plot_width <- 297*0.7
   } else {
     p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
-      ggplot2::facet_grid(outcome_label~analysis_label) +
+      ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
+      ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))
-    plot_width = 297
+    plot_width <- 297
   }
   
   # Save plot ------------------------------------------------------------------
