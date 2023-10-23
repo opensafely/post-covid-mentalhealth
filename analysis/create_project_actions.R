@@ -22,7 +22,10 @@ cohorts <- unique(active_analyses$cohort)
 # Specify active analyses requiring Stata --------------------------------------
 
 run_stata <- c("cohort_prevax_extf-day0_sub_covid_hospitalised-depression",
-               "cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness")
+               "cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness",
+               "cox_ipw-cohort_vax-day0_main-eating_disorders",
+               "cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd",
+               "cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders")
 
 active_analyses$save_analysis_ready <- active_analyses$name %in% run_stata
 active_analyses$run_analysis <- !(active_analyses$save_analysis_ready)
@@ -462,7 +465,10 @@ actions_list <- splice(
                               "cox_ipw-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness",
                               "cox_ipw-cohort_vax-day0_sub_history_recent-depression",
                               "cox_ipw-cohort_vax-day0_sub_history_recent-serious_mental_illness",
-                              "cox_ipw-cohort_vax-detailed_main-eating_disorders"))),
+                              "cox_ipw-cohort_vax-detailed_main-eating_disorders",
+                              "cox_ipw-cohort_vax-day0_main-eating_disorders",
+                              "cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd",
+                              "cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders"))),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv"),
       model_output_rounded = glue("output/model_output_rounded.csv")
