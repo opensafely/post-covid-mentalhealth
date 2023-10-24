@@ -728,8 +728,8 @@ actions:
     needs:
     - make_model_input-cohort_vax-day0_main-eating_disorders
     outputs:
-      moderately_sensitive:
-        model_output: output/ready-cohort_vax-day0_main-eating_disorders.csv.gz
+      highly_sensitive:
+        ready: output/ready-cohort_vax-day0_main-eating_disorders.csv.gz
 
   make_model_input-cohort_vax-day0_main-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-self_harm
@@ -1740,8 +1740,8 @@ actions:
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
     outputs:
-      moderately_sensitive:
-        model_output: output/ready-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv.gz
+      highly_sensitive:
+        ready: output/ready-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.csv.gz
 
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-depression
@@ -1762,8 +1762,8 @@ actions:
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
     outputs:
-      moderately_sensitive:
-        model_output: output/ready-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.csv.gz
+      highly_sensitive:
+        ready: output/ready-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.csv.gz
 
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders
@@ -1828,8 +1828,8 @@ actions:
     needs:
     - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     outputs:
-      moderately_sensitive:
-        model_output: output/ready-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv.gz
+      highly_sensitive:
+        ready: output/ready-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv.gz
 
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-suicide
@@ -2664,8 +2664,8 @@ actions:
     needs:
     - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
     outputs:
-      moderately_sensitive:
-        model_output: output/ready-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.csv.gz
+      highly_sensitive:
+        ready: output/ready-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.csv.gz
 
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-self_harm
