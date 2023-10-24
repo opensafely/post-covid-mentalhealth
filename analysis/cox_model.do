@@ -102,12 +102,12 @@ if `prevax_cohort'==1 {
 } 
 else {
 	if "`day0'"=="TRUE" {
-		stset follow_up [pweight=cox_weight], failure(outcome_status) id(patient_id) enter(fup_start) origin(time mdy(01,06,2021))
+		stset fup_stop [pweight=cox_weight], failure(outcome_status) id(patient_id) enter(fup_start) origin(time mdy(01,06,2021))
 		stsplit time, after(exposure) at(0 1 28 197)
 		replace time = 197 if time==-1
 	} 
 	else {
-		stset follow_up [pweight=cox_weight], failure(outcome_status) id(patient_id) enter(fup_start) origin(time mdy(01,06,2021))
+		stset fup_stop [pweight=cox_weight], failure(outcome_status) id(patient_id) enter(fup_start) origin(time mdy(01,06,2021))
 		stsplit time, after(exposure) at(0 28 197)
 		replace time = 197 if time==-1
 	}
