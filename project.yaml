@@ -8438,3 +8438,17 @@ actions:
       moderately_sensitive:
         model_output: output/median_iqr_age.csv
 
+  ## Make review files 
+
+  make_review_files:
+    run: r:latest analysis/make_review_files.R
+    needs:
+    - make_model_output
+    - make_stata_model_output
+    outputs:
+      moderately_sensitive:
+        failures: output/review-failures.csv
+        counts_name_rounded: output/review-counts_name_rounded.csv
+        counts_term_rounded: output/review-counts_term_rounded.csv
+        model_output_rounded: output/review-model_output_rounded.csv
+
