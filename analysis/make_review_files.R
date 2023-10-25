@@ -1,12 +1,12 @@
 # Make master file -------------------------------------------------------------
 print('Make master file')
 
-df <- readr::read_csv(path_model_output,
+df <- readr::read_csv("output/model_output_rounded.csv",
                       show_col_types = FALSE)
 
 df$source <- "R"
 
-tmp <- readr::read_csv(path_stata_model_output,
+tmp <- readr::read_csv("output/stata_model_output_rounded.csv",
                        show_col_types = FALSE)
 
 tmp$source <- "Stata"
