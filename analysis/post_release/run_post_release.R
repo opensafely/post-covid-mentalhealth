@@ -38,28 +38,9 @@ source("analysis/post_release/fn-lifetable.R")
 source("analysis/post_release/lifetables_compiled.R")
 
 # Make master plot file --------------------------------------------------------
+print('Make master plot file')
 
-df <- readr::read_csv(path_model_output,
-                            show_col_types = FALSE)
-
-df$source <- "R"
-
-
-tmp <- readr::read_csv(path_stata_model_output,
-                       show_col_types = FALSE)
-
-tmp$source <- "Stata"
-  
-df <- df[!(df$name %in% tmp$name),]
-
-df <- rbind(df, tmp)
-
-df <- df[grepl("day",df$term),
-         c("cohort","analysis","outcome","source","model",
-           "outcome_time_median","term","hr","conf_low","conf_high")]
-
-df <- df[!grepl("detailed",df$analysis),]
-readr::write_csv(df, "output/plot_model_output.csv")
+source("analysis/post_release/make_plot_data.R")
 
 # Identify tables and figures to run -------------------------------------------
 print('Identify tables and figures to run')

@@ -6,7 +6,7 @@ analysis <- "day0_main"
 # Load model output ------------------------------------------------------------
 print('Load model output')
 
-model_output <- read_csv(path_model_output)
+model_output <- read_csv("output/plot_model_output.csv")
 
 # Format and restrict to relevant models ---------------------------------------
 print('Restrict to relevant models')
