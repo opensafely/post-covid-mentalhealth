@@ -69,7 +69,7 @@ for (c in cohorts) {
   for (i in outcomes_runmain) {
     
     ## Reduce sampling for common outcomes due to memory issues ----------------
- 
+    
     controls_per_case <- ifelse(i %in% outcomes_runall, 10L, 20L) 
     
     ## analysis: main ----------------------------------------------------------
@@ -93,6 +93,12 @@ for (c in cohorts) {
                          covariate_threshold = covariate_threshold,
                          age_spline = TRUE,
                          analysis = "main")
+    
+  }
+  
+  for (i in outcomes_runall) {
+    
+    controls_per_case <- 10L
     
     ## analysis: sub_covid_hospitalised ----------------------------------------
     
@@ -141,7 +147,7 @@ for (c in cohorts) {
     ## analysis: sub_covid_history ---------------------------------------------
     
     if (c!="prevax_extf") {
-     
+      
       df[nrow(df)+1,] <- c(cohort = c,
                            exposure = exposure, 
                            outcome = i,
@@ -163,12 +169,6 @@ for (c in cohorts) {
                            analysis = "sub_covid_history")
       
     }
-    
-  }
-  
-  for (i in outcomes_runall) {
-    
-    controls_per_case <- 10L
     
     ## analysis: sub_sex_female ------------------------------------------------
     
@@ -494,7 +494,7 @@ df <- rbind(df,tmp)
 df$name <- paste0("cohort_",df$cohort, "-", 
                   df$analysis, "-", 
                   gsub("out_date_","",df$outcome))
-  
+
 # Check names are unique and save active analyses list -------------------------
 
 if (length(unique(df$name))==nrow(df)) {

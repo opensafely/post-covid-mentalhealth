@@ -25,7 +25,21 @@ run_stata <- c("cohort_prevax_extf-day0_sub_covid_hospitalised-depression",
                "cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness",
                "cohort_vax-day0_main-eating_disorders",
                "cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd",
-               "cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders")
+               "cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders",
+               "cohort_prevax_extf-day0_sub_age_60_79-depression",
+               "cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness",
+               "cohort_prevax_extf-day0_sub_age_80_110-depression",
+               "cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness",
+               "cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness",
+               "cohort_prevax_extf-day0_sub_ethnicity_other-depression",
+               "cohort_unvax_extf-day0_main-addiction",
+               "cohort_unvax_extf-day0_main-anxiety_ptsd",
+               "cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness",
+               "cohort_unvax_extf-day0_sub_age_80_110-depression",
+               "cohort_unvax_extf-day0_sub_covid_history-anxiety_general",
+               "cohort_unvax_extf-day0_sub_covid_history-depression",
+               "cohort_unvax_extf-day0_sub_ethnicity_other-depression",
+               "cohort_vax-day0_sub_age_80_110-serious_mental_illness")
 
 active_analyses$save_analysis_ready <- active_analyses$name %in% run_stata
 active_analyses$run_analysis <- !(active_analyses$save_analysis_ready)
