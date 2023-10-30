@@ -5743,7 +5743,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_unvax_extf-day0_main-addiction
       TRUE
     needs:
-    - cox_ipw-cohort_unvax_extf-day0_main-addiction
+    - ready-cohort_unvax_extf-day0_main-addiction
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_unvax_extf-day0_main-addiction.csv
@@ -5767,7 +5767,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_unvax_extf-day0_main-anxiety_ptsd
       TRUE
     needs:
-    - cox_ipw-cohort_unvax_extf-day0_main-anxiety_ptsd
+    - ready-cohort_unvax_extf-day0_main-anxiety_ptsd
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_unvax_extf-day0_main-anxiety_ptsd.csv
@@ -5791,7 +5791,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_vax-day0_main-eating_disorders
       TRUE
     needs:
-    - cox_ipw-cohort_vax-day0_main-eating_disorders
+    - ready-cohort_vax-day0_main-eating_disorders
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_vax-day0_main-eating_disorders.csv
@@ -5815,7 +5815,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_age_60_79-depression
       TRUE
     needs:
-    - cox_ipw-cohort_prevax_extf-day0_sub_age_60_79-depression
+    - ready-cohort_prevax_extf-day0_sub_age_60_79-depression
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_age_60_79-depression.csv
@@ -5839,7 +5839,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness
       TRUE
     needs:
-    - cox_ipw-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness
+    - ready-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness.csv
@@ -5863,7 +5863,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness
       TRUE
     needs:
-    - cox_ipw-cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness
+    - ready-cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness.csv
@@ -5887,7 +5887,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_age_80_110-depression
       TRUE
     needs:
-    - cox_ipw-cohort_prevax_extf-day0_sub_age_80_110-depression
+    - ready-cohort_prevax_extf-day0_sub_age_80_110-depression
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_age_80_110-depression.csv
@@ -5911,7 +5911,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness
       TRUE
     needs:
-    - cox_ipw-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness
+    - ready-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness.csv
@@ -5935,7 +5935,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_unvax_extf-day0_sub_age_80_110-depression
       TRUE
     needs:
-    - cox_ipw-cohort_unvax_extf-day0_sub_age_80_110-depression
+    - ready-cohort_unvax_extf-day0_sub_age_80_110-depression
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_unvax_extf-day0_sub_age_80_110-depression.csv
@@ -5959,7 +5959,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_vax-day0_sub_age_80_110-serious_mental_illness
       TRUE
     needs:
-    - cox_ipw-cohort_vax-day0_sub_age_80_110-serious_mental_illness
+    - ready-cohort_vax-day0_sub_age_80_110-serious_mental_illness
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_vax-day0_sub_age_80_110-serious_mental_illness.csv
@@ -5983,7 +5983,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_unvax_extf-day0_sub_covid_history-depression
       TRUE
     needs:
-    - cox_ipw-cohort_unvax_extf-day0_sub_covid_history-depression
+    - ready-cohort_unvax_extf-day0_sub_covid_history-depression
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_unvax_extf-day0_sub_covid_history-depression.csv
@@ -6007,7 +6007,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_covid_hospitalised-depression
       TRUE
     needs:
-    - cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
+    - ready-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.csv
@@ -6031,7 +6031,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
       TRUE
     needs:
-    - cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
+    - ready-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.csv
@@ -6055,7 +6055,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness
       TRUE
     needs:
-    - cox_ipw-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness
+    - ready-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness.csv
@@ -6079,7 +6079,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_prevax_extf-day0_sub_ethnicity_other-depression
       TRUE
     needs:
-    - cox_ipw-cohort_prevax_extf-day0_sub_ethnicity_other-depression
+    - ready-cohort_prevax_extf-day0_sub_ethnicity_other-depression
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_prevax_extf-day0_sub_ethnicity_other-depression.csv
@@ -6103,7 +6103,7 @@ actions:
     run: stata-mp:latest analysis/cox_model.do cohort_unvax_extf-day0_sub_ethnicity_other-depression
       TRUE
     needs:
-    - cox_ipw-cohort_unvax_extf-day0_sub_ethnicity_other-depression
+    - ready-cohort_unvax_extf-day0_sub_ethnicity_other-depression
     outputs:
       moderately_sensitive:
         stata_fup: output/stata_fup-cohort_unvax_extf-day0_sub_ethnicity_other-depression.csv
