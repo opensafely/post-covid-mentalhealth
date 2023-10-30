@@ -41,12 +41,9 @@ run_stata <- c("cohort_prevax_extf-day0_sub_covid_hospitalised-depression",
                "cohort_unvax_extf-day0_sub_ethnicity_other-depression",
                "cohort_vax-day0_sub_age_80_110-serious_mental_illness")
 
-active_analyses$save_analysis_ready <- active_analyses$name %in% run_stata
-active_analyses$run_analysis <- !(active_analyses$save_analysis_ready)
-
 stata <- active_analyses[active_analyses$name %in% run_stata,]
+stata$save_analysis_ready <- TRUE
 stata$day0 <- grepl("1;",stata$cut_points)
-stata <- stata[,c("name","day0")]
 
 # Create generic action function -----------------------------------------------
 
@@ -201,8 +198,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
                                  cox_start, cox_stop, study_start, study_stop,
                                  cut_points, controls_per_case,
                                  total_event_threshold, episode_event_threshold,
-                                 covariate_threshold, age_spline, 
-                                 save_analysis_ready, run_analysis){
+                                 covariate_threshold, age_spline){
   
   splice(
     action(
@@ -223,22 +219,13 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
     #   )
     # ),
     
-    if ({save_analysis_ready}==TRUE){
-      action(
-        name = glue("cox_ipw-{name}"),
-        run = glue("cox-ipw:v0.0.27 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready={save_analysis_ready} --run_analysis={run_analysis} --df_output=model_output-{name}.csv"),
-        needs = list(glue("make_model_input-{name}")),
-        highly_sensitive = list(ready = glue("output/ready-{name}.csv.gz"))
-      )
-    } else {
-      action(
-        name = glue("cox_ipw-{name}"),
-        run = glue("cox-ipw:v0.0.27 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready={save_analysis_ready} --run_analysis={run_analysis} --df_output=model_output-{name}.csv"),
-        needs = list(glue("make_model_input-{name}")),
-        moderately_sensitive = list(model_output = glue("output/model_output-{name}.csv"))
-      )
-    }
-
+    action(
+      name = glue("cox_ipw-{name}"),
+      run = glue("cox-ipw:v0.0.27 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-{name}.csv"),
+      needs = list(glue("make_model_input-{name}")),
+      moderately_sensitive = list(model_output = glue("output/model_output-{name}.csv"))
+    )
+    
   )
 }
 
@@ -286,10 +273,21 @@ venn <- function(cohort){
   )
 }
 
-# Create function to make Stata models
+# Create function to make Stata models -----------------------------------------
 
-apply_stata_model_function <- function(name, day0){
+apply_stata_model_function <- function(name, cohort, analysis, ipw, strata, 
+                                       covariate_sex, covariate_age, covariate_other, 
+                                       cox_start, cox_stop, study_start, study_stop,
+                                       cut_points, controls_per_case,
+                                       total_event_threshold, episode_event_threshold,
+                                       covariate_threshold, age_spline, day0){
   splice(
+    action(
+      name = glue("ready-{name}"),
+      run = glue("cox-ipw:v0.0.27 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready=TRUE --run_analysis=FALSE --df_output=model_output-{name}.csv"),
+      needs = list(glue("make_model_input-{name}")),
+      highly_sensitive = list(ready = glue("output/ready-{name}.csv.gz"))
+    ),
     action(
       name = glue("stata_cox_ipw-{name}"),
       run = "stata-mp:latest analysis/cox_model.do",
@@ -426,9 +424,7 @@ actions_list <- splice(
                                                    total_event_threshold = active_analyses$total_event_threshold[x],
                                                    episode_event_threshold = active_analyses$episode_event_threshold[x],
                                                    covariate_threshold = active_analyses$covariate_threshold[x],
-                                                   age_spline = active_analyses$age_spline[x],
-                                                   save_analysis_ready = active_analyses$save_analysis_ready[x],
-                                                   run_analysis = active_analyses$run_analysis[x])), 
+                                                   age_spline = active_analyses$age_spline[x])), 
            recursive = FALSE
     )
   ),
@@ -436,6 +432,23 @@ actions_list <- splice(
   splice(
     unlist(lapply(1:nrow(stata), 
                   function(x) apply_stata_model_function(name = stata$name[x],
+                                                         cohort = stata$cohort[x],
+                                                         analysis = stata$analysis[x],
+                                                         ipw = stata$ipw[x],
+                                                         strata = stata$strata[x],
+                                                         covariate_sex = stata$covariate_sex[x],
+                                                         covariate_age = stata$covariate_age[x],
+                                                         covariate_other = stata$covariate_other[x],
+                                                         cox_start = stata$cox_start[x],
+                                                         cox_stop = stata$cox_stop[x],
+                                                         study_start = stata$study_start[x],
+                                                         study_stop = stata$study_stop[x],
+                                                         cut_points = stata$cut_points[x],
+                                                         controls_per_case = stata$controls_per_case[x],
+                                                         total_event_threshold = stata$total_event_threshold[x],
+                                                         episode_event_threshold = stata$episode_event_threshold[x],
+                                                         covariate_threshold = stata$covariate_threshold[x],
+                                                         age_spline = stata$age_spline[x],
                                                          day0 = stata$day0[x])), 
            recursive = FALSE
     )
@@ -464,32 +477,7 @@ actions_list <- splice(
   action(
     name = "make_model_output",
     run = "r:latest analysis/make_model_output.R",
-    needs = as.list(setdiff(paste0("cox_ipw-",active_analyses$name),
-                            c("cox_ipw-cohort_vax-main-eating_disorders",
-                              "cox_ipw-cohort_vax-sub_covid_nonhospitalised-eating_disorders",
-                              "cox_ipw-cohort_vax-day0-eating_disorders",
-                              "cox_ipw-cohort_prevax_extf-day0_sub_history_none-depression",
-                              "cox_ipw-cohort_unvax_extf-day0_sub_history_none-depression",
-                              "cox_ipw-cohort_unvax_extf-day0_sub_history_none-serious_mental_illness",
-                              "cox_ipw-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness",
-                              "cox_ipw-cohort_vax-day0_sub_history_none-depression",
-                              "cox_ipw-cohort_vax-day0_sub_history_none-serious_mental_illness",
-                              "cox_ipw-cohort_unvax_extf-day0_sub_history_notrecent-depression",
-                              "cox_ipw-cohort_prevax_extf-day0_sub_history_notrecent-depression",
-                              "cox_ipw-cohort_unvax_extf-day0_sub_history_notrecent-serious_mental_illness",
-                              "cox_ipw-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness",
-                              "cox_ipw-cohort_vax-day0_sub_history_notrecent-depression",
-                              "cox_ipw-cohort_vax-day0_sub_history_notrecent-serious_mental_illness",
-                              "cox_ipw-cohort_prevax_extf-day0_sub_history_recent-depression",
-                              "cox_ipw-cohort_unvax_extf-day0_sub_history_recent-depression",
-                              "cox_ipw-cohort_unvax_extf-day0_sub_history_recent-serious_mental_illness",
-                              "cox_ipw-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness",
-                              "cox_ipw-cohort_vax-day0_sub_history_recent-depression",
-                              "cox_ipw-cohort_vax-day0_sub_history_recent-serious_mental_illness",
-                              "cox_ipw-cohort_vax-detailed_main-eating_disorders",
-                              "cox_ipw-cohort_vax-day0_main-eating_disorders",
-                              "cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd",
-                              "cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders"))),
+    needs = as.list(paste0("cox_ipw-",setdiff(active_analyses$name, stata$name))),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv"),
       model_output_rounded = glue("output/model_output_rounded.csv")
