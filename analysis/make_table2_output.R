@@ -47,8 +47,6 @@ for (cohort in c("prevax_extf","vax","unvax_extf")) {
   
   table2$total_events_rounded <- table2$exposed_events_rounded + table2$unexposed_events_rounded
   
-  
-  
   # Merge to main dataframe ----------------------------------------------------
   print('Recalculate total columns')
   
