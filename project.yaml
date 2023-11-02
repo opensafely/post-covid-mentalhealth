@@ -6517,7 +6517,7 @@ actions:
         table1_output_rounded: output/extendedtable1_output_rounded.csv
 
   make_table2_output:
-    run: r:latest analysis/make_other_output.R table2 prevax_extf;vax;unvax_extf
+    run: r:latest analysis/make_table2_output.R
     needs:
     - table2_prevax_extf
     - table2_vax
