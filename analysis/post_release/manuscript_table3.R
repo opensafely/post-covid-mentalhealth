@@ -109,11 +109,11 @@ df$analysis_label <- factor(df$analysis_label,
 print("Order outcomes")
 
 df$outcome_label <- factor(df$outcome_label,
-                           levels = c("General anxiety",
-                                      "Post-traumatic stress disorder",
-                                      "Depression",
-                                      "Eating disorders",
+                           levels = c("Depression",
                                       "Serious mental illness",
+                                      "General anxiety",
+                                      "Post-traumatic stress disorder",
+                                      "Eating disorders",
                                       "Addiction",
                                       "Self-harm",
                                       "Suicide"))
