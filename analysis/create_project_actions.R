@@ -41,7 +41,8 @@ run_stata <- c("cohort_prevax_extf-day0_sub_covid_hospitalised-depression",
                "cohort_unvax_extf-day0_sub_ethnicity_other-depression",
                "cohort_vax-day0_sub_age_80_110-serious_mental_illness",
                "cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness",
-               "cohort_vax-sub_covid_nonhospitalised-eating_disorders")
+               "cohort_vax-sub_covid_nonhospitalised-eating_disorders",
+               "cohort_vax-main-eating_disorders")
 
 stata <- active_analyses[active_analyses$name %in% run_stata,]
 stata$save_analysis_ready <- TRUE
@@ -480,8 +481,7 @@ actions_list <- splice(
     name = "make_model_output",
     run = "r:latest analysis/make_model_output.R",
     needs = as.list(paste0("cox_ipw-",
-                           setdiff(active_analyses$name, 
-                                   c(stata$name,"cohort_vax-main-eating_disorders")))),
+                           setdiff(active_analyses$name,stata$name))),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv"),
       model_output_rounded = glue("output/model_output_rounded.csv")
