@@ -7,6 +7,8 @@ df <- readr::read_csv("output/plot_model_output.csv",
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
+df <- df[grepl("days",df$term),]
+
 df <- df[grepl("day0",df$analysis),]
 
 df <- df[df$model=="mdl_max_adj",

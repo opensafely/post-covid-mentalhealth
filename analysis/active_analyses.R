@@ -94,12 +94,6 @@ for (c in cohorts) {
                          age_spline = TRUE,
                          analysis = "main")
     
-  }
-  
-  for (i in outcomes_runall) {
-    
-    controls_per_case <- 10L
-    
     ## analysis: sub_covid_hospitalised ----------------------------------------
     
     df[nrow(df)+1,] <- c(cohort = c,
@@ -143,6 +137,12 @@ for (c in cohorts) {
                          covariate_threshold = covariate_threshold,
                          age_spline = TRUE,
                          analysis = "sub_covid_nonhospitalised")
+    
+  }
+  
+  for (i in outcomes_runall) {
+    
+    controls_per_case <- 10L
     
     ## analysis: sub_covid_history ---------------------------------------------
     
