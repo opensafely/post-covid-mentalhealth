@@ -48,7 +48,7 @@ df$outcome_label <- factor(df$outcome_label,
                                       "Eating disorders",
                                       "Serious mental illness",
                                       "Addiction",
-                                      "Self harm",
+                                      "Self-harm",
                                       "Suicide"))
 
 # Tidy table -------------------------------------------------------------------
