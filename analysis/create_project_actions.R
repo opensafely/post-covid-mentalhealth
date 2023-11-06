@@ -572,22 +572,22 @@ actions_list <- splice(
     moderately_sensitive = list(
       model_output = glue("output/median_iqr_age.csv")
     )
-  ),
-  
-  comment("Make review files"),
-  
-  action(
-    name = "make_review_files",
-    run = "r:latest analysis/make_review_files.R",
-    needs = list("make_model_output",
-                 "make_stata_model_output"),
-    moderately_sensitive = list(
-      failures = "output/review-failures.csv",
-      counts_name_rounded = "output/review-counts_name_rounded.csv",
-      counts_term_rounded = "output/review-counts_term_rounded.csv",
-      model_output_rounded = "output/review-model_output_rounded.csv"
-    )
   )
+  
+  # comment("Make review files"),
+  # 
+  # action(
+  #   name = "make_review_files",
+  #   run = "r:latest analysis/make_review_files.R",
+  #   needs = list("make_model_output",
+  #                "make_stata_model_output"),
+  #   moderately_sensitive = list(
+  #     failures = "output/review-failures.csv",
+  #     counts_name_rounded = "output/review-counts_name_rounded.csv",
+  #     counts_term_rounded = "output/review-counts_term_rounded.csv",
+  #     model_output_rounded = "output/review-model_output_rounded.csv"
+  #   )
+  # )
   
 )
 
