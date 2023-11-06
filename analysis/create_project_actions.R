@@ -39,7 +39,8 @@ run_stata <- c("cohort_prevax_extf-day0_sub_covid_hospitalised-depression",
                "cohort_unvax_extf-day0_sub_covid_history-anxiety_general",
                "cohort_unvax_extf-day0_sub_covid_history-depression",
                "cohort_unvax_extf-day0_sub_ethnicity_other-depression",
-               "cohort_vax-day0_sub_age_80_110-serious_mental_illness")
+               "cohort_vax-day0_sub_age_80_110-serious_mental_illness",
+               "cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness")
 
 stata <- active_analyses[active_analyses$name %in% run_stata,]
 stata$save_analysis_ready <- TRUE
