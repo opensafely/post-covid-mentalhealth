@@ -477,7 +477,9 @@ actions_list <- splice(
   action(
     name = "make_model_output",
     run = "r:latest analysis/make_model_output.R",
-    needs = as.list(paste0("cox_ipw-",setdiff(active_analyses$name, stata$name))),
+    needs = as.list(paste0("cox_ipw-",
+                           setdiff(active_analyses$name, 
+                                   c(stata$name,"cohort_vax-main-eating_disorders")))),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv"),
       model_output_rounded = glue("output/model_output_rounded.csv")
