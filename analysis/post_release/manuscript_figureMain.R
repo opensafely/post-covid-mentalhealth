@@ -111,25 +111,25 @@ for (i in unique(df$analysis_group)){
                    plot.background = ggplot2::element_rect(fill = "white", colour = "white"))
   
   if (grepl("history_exposure",i)) {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+    p + ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
       ggplot2::scale_x_continuous(lim = c(0,84), breaks = seq(0,84,14), labels = seq(0,84,14)/7) +
       ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE))
     plot_width <- 297*0.5
   } else if (facet_cols==1) {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+    p + ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
       ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
       ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))
     plot_width <- 297*0.5
   } else if (facet_cols==2) {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+    p + ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
       ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
       ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE)) 
     plot_width <- 297*0.7
   } else {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,64), breaks = c(0.5,1,2,4,8,16,32,64), trans = "log") +
+    p + ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
       ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
       ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))

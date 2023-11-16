@@ -51,7 +51,7 @@ ggplot2::ggplot(data = df,
                                                 width = 0), 
                          position = ggplot2::position_dodge(width = 0)) +
   ggplot2::geom_line(position = ggplot2::position_dodge(width = 0), ggplot2::aes(linetype=model)) +
-  ggplot2::scale_y_continuous(lim = c(0.5,8), breaks = c(0.5,1,2,4,8), trans = "log") +
+  ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
   ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
   ggplot2::scale_linetype_manual(values=c("solid", "dashed"), 
                                  breaks = c("mdl_max_adj", "mdl_age_sex"),
@@ -96,7 +96,7 @@ ggplot2::ggplot(data = df[df$model=="mdl_max_adj" & !(df$outcome %in% c("depress
                                                 width = 0), 
                          position = ggplot2::position_dodge(width = 0)) +
   ggplot2::geom_line(position = ggplot2::position_dodge(width = 0)) +
-  ggplot2::scale_y_continuous(lim = c(0.5,8), breaks = c(0.5,1,2,4,8), trans = "log") +
+  ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
   ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
   ggplot2::scale_color_manual(breaks = c("prevax_extf", "vax", "unvax_extf"),
                               labels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
