@@ -11,13 +11,7 @@ print('Restrict to plot data')
 
 df <- df[grepl("day",df$term),
          c("name", "cohort","analysis","outcome","model",
-           "outcome_time_median","term","hr","conf_low","conf_high")]
-
-# Remove unsuccessful models ---------------------------------------------------
-print('Remove unsuccessful models')
-
-# tmp <- unique(df[df$conf_high==Inf & grepl("day",df$term),]$name)
-# df <- df[!(df$name %in% tmp),]
+           "outcome_time_median","term","hr","conf_low","conf_high","source")]
 
 # Load stata model output ------------------------------------------------------
 print('Load stata model output')
