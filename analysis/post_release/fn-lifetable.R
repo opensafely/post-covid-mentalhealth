@@ -2,7 +2,7 @@
 # (1) model_output
 # (2) aer_input [adapted Table 2 with age and sex groupings]
 
-lifetable <- function(model_output, aer_input) {
+lifetable <- function(model_output, aer_input, day0) {
 
   # Filter model output --------------------------------------------------------
   print('Filter model output')
@@ -14,13 +14,23 @@ lifetable <- function(model_output, aer_input) {
   # Step 0. Create life table --------------------------------------------------
   print('Step 0. Create life table')
   
-  lifetable <- data.frame(analysis = aer_input$analysis, 
-                          outcome = aer_input$outcome, 
-                          cohort = aer_input$cohort,
-                          aer_age = aer_input$aer_age,
-                          aer_sex = aer_input$aer_sex,
-                          days = c(0:(max(model_output$time_period_end)-1)),
-                          stringsAsFactors = FALSE)
+  if (day0==FALSE) {
+    lifetable <- data.frame(analysis = aer_input$analysis, 
+                            outcome = aer_input$outcome, 
+                            cohort = aer_input$cohort,
+                            aer_age = aer_input$aer_age,
+                            aer_sex = aer_input$aer_sex,
+                            days = c(1:(max(model_output$time_period_end)-1)),
+                            stringsAsFactors = FALSE)
+  } else {
+    lifetable <- data.frame(analysis = aer_input$analysis, 
+                            outcome = aer_input$outcome, 
+                            cohort = aer_input$cohort,
+                            aer_age = aer_input$aer_age,
+                            aer_sex = aer_input$aer_sex,
+                            days = c(0:(max(model_output$time_period_end)-1)),
+                            stringsAsFactors = FALSE)
+  }
   
   # Step 1. Average daily incidence of the outcome in the unexposed ------------
   print('Step 1. Average daily incidence of the outcome in the unexposed')

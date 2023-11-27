@@ -16,13 +16,26 @@ df <- df[df$model=="mdl_max_adj",
 
 df <- df[df$term!="days_pre",]
 
-# Make columns numeric ---------------------------------------------------------
-print("Make columns numeric")
+# Add less than 50 events ------------------------------------------------------
+print("Add less than 50 events")
 
-df <- df %>% 
-  dplyr::mutate_at(c("hr","conf_low","conf_high"), as.numeric)
+tmp <- readr::read_csv(path_model_output,
+                       show_col_types = FALSE)
 
-# Add plot labels ---------------------------------------------------------
+tmp$source <- "R"
+
+tmp <- tmp[!is.na(tmp$error),colnames(df)]
+
+tmp$term <- NULL
+
+tmp2 <- unique(df[,c("cohort","analysis","term")])
+tmp <- merge(tmp, tmp2, by = c("cohort","analysis"))
+
+tmp$hr <- "X"
+
+df <- rbind(df,tmp)
+
+# Add plot labels --------------------------------------------------------------
 print("Add plot labels")
 
 plot_labels <- readr::read_csv("lib/plot_labels.csv",
@@ -45,7 +58,9 @@ df$episodes <- ifelse(grepl("detailed",df$analysis),"Detailed", df$episodes)
 # Tidy estimate ----------------------------------------------------------------
 print("Tidy estimate")
 
-df$estimate <- paste0(display(df$hr)," (",display(df$conf_low),"-",display(df$conf_high),")")
+df$estimate <- ifelse(df$hr=="X",
+                      "X",
+                      paste0(display(as.numeric(df$hr))," (",display(as.numeric(df$conf_low)),"-",display(as.numeric(df$conf_high)),")"))
 
 # Tidy term --------------------------------------------------------------------
 print("Tidy term")
@@ -82,7 +97,6 @@ df <- tidyr::pivot_wider(df,
                          id_cols = c("episodes","analysis_label","outcome_label","weeks"),
                          names_from = "cohort",
                          values_from = "estimate")
-
 # Order analyses ---------------------------------------------------------------
 print("Order analyses")
 
@@ -127,6 +141,10 @@ df$episodes <- factor(df$episodes,
                       levels = c("Standard",
                                  "Day zero",
                                  "Detailed"))
+
+
+
+
 
 # Tidy table -------------------------------------------------------------------
 print("Tidy table")
