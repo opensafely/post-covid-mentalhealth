@@ -17,15 +17,11 @@
 
 ## Manuscript
 
-This manuscript is currently being drafted.
+The manuscript associated with this code is currently under review at a journal. Please check out our [preprint](https://www.medrxiv.org/content/10.1101/2023.12.06.23299602v1).
 
 ## Code
 
-The [`project.yaml`](./project.yaml) defines project actions, run-order and dependencies for all analysis scripts. **This file should *not* be edited directly**. To make changes to the yaml, edit and run the [`create_project.R`](./analysis/create_project.R) script instead. Project actions are then run securely using [OpenSAFELY Jobs](https://jobs.opensafely.org/repo/https%253A%252F%252Fgithub.com%252Fopensafely%252Fpost-covid-vaccinated). Details of the purpose and any published outputs from this project can be found at this link as well.
-
-Below is a description of each action in the [`project.yaml`](./project.yaml) with arguments denoted by {arg} in the action name:
-
-*To be completed.*
+The [`project.yaml`](./project.yaml) defines project actions, run-order and dependencies for all analysis scripts. **This file should *not* be edited directly**. To make changes to the yaml, edit and run the [`create_project.R`](./analysis/create_project.R) script instead. Project actions are then run securely using [OpenSAFELY Jobs](https://jobs.opensafely.org/investigating-events-following-sars-cov-2-infection/post-covid-mentalhealth-v2). Any published outputs from this project can be found at this link as well.
 
 ## Output
 
@@ -83,7 +79,7 @@ Below is a description of each action in the [`project.yaml`](./project.yaml) wi
 |     total               | total outcomes identified                                                   |
 |     cohort              | cohort under consideration                                                  |
 
-### model_output.csv
+### *model_output.csv
 
 | Variable                   | Description                                                                   |
 |----------------------------|-------------------------------------------------------------------------------|
