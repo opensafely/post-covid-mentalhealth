@@ -103,6 +103,20 @@ The [`project.yaml`](./project.yaml) defines project actions, run-order and depe
 |     strata_warning         | string to identify strata variables that may cause model faults               |
 |     surv_formula           | survival formula for the analysis                                             |
 
+### aer_input_\*.csv
+
+| Variable                     | Description                                                                    |
+|------------------------------|--------------------------------------------------------------------------------|
+|     aer_sex                  |      sex subgroup under consideration                                          |
+|     aer_age                  |      age subgroup under consideration                                          |
+|     analysis                 |      string to identify whether this is the   ‘main’ analysis or a subgroup    |
+|     cohort                   |      cohort used for the analysis                                              |
+|     outcome                  |      outcome used for the analysis                                             |
+|     unexposed_person_days    |      unexposed person days in the age/sex   grouping                           |
+|     unexposed_events         |      number of events in   unexposed people in the age/sex grouping            |
+|     total_exposed            |      total number of   people with the exposure in the age/sex grouping        |
+|     sample_size              |      total number of   people in the age/sex grouping                          |
+
 ## About the OpenSAFELY framework
 
 The OpenSAFELY framework is a Trusted Research Environment (TRE) for electronic health records research in the NHS, with a focus on public accountability and research quality. Read more at [OpenSAFELY.org](https://opensafely.org).
