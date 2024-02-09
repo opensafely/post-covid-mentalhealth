@@ -248,7 +248,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
 table2 <- function(cohort){
   
   table2_names <- gsub("out_date_","",unique(active_analyses[active_analyses$cohort=={cohort},]$name))
-  table2_names <- table2_names[grepl("-main-",table2_names)]
+  table2_names <- table2_names[grepl("-main-",table2_names) | grepl("hospitalised-",table2_names)]
   
   splice(
     comment(glue("Table 2 - {cohort}")),
@@ -587,22 +587,31 @@ actions_list <- splice(
     moderately_sensitive = list(
       model_output = glue("output/median_iqr_age.csv")
     )
-  )
+  ),
   
-  # comment("Make review files"),
-  # 
-  # action(
-  #   name = "make_review_files",
-  #   run = "r:latest analysis/make_review_files.R",
-  #   needs = list("make_model_output",
-  #                "make_stata_model_output"),
-  #   moderately_sensitive = list(
-  #     failures = "output/review-failures.csv",
-  #     counts_name_rounded = "output/review-counts_name_rounded.csv",
-  #     counts_term_rounded = "output/review-counts_term_rounded.csv",
-  #     model_output_rounded = "output/review-model_output_rounded.csv"
-  #   )
-  # )
+  comment("Record deaths within 28 days of COVID-19"),
+  
+  action(
+    name = "death28days",
+    run = "r:latest analysis/death28days.R",
+    needs = list("generate_study_population_prelim",
+                 "make_model_input-cohort_prevax_extf-main-depression",
+                 "make_model_input-cohort_unvax_extf-main-depression",
+                 "make_model_input-cohort_vax-main-depression"),
+    moderately_sensitive = list(
+      death28days = "output/death28days.csv",
+      death28days_rounded = "output/death28days_rounded.csv",
+      hist_input_prelim_prevax = "output/hist_input_prelim_prevax.png",
+      hist_input_prelim_restricted_prevax = "output/hist_input_prelim_restricted_prevax.png",
+      hist_model_input_prevax = "output/hist_model_input_prevax.png",
+      hist_input_prelim_vax = "output/hist_input_prelim_vax.png",
+      hist_input_prelim_restricted_vax = "output/hist_input_prelim_restricted_vax.png",
+      hist_model_input_vax = "output/hist_model_input_vax.png",
+      hist_input_prelim_unvax = "output/hist_input_prelim_unvax.png",
+      hist_input_prelim_restricted_unvax = "output/hist_input_prelim_restricted_unvax.png",
+      hist_model_input_unvax = "output/hist_model_input_unvax.png"
+    )
+  )
   
 )
 
