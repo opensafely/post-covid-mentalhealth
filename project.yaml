@@ -8076,27 +8076,11 @@ actions:
         stata_fup: output/stata_fup-cohort_vax-sub_covid_nonhospitalised-eating_disorders.csv
         stata_model_output: output/stata_model_output-cohort_vax-sub_covid_nonhospitalised-eating_disorders.txt
 
-  ## Table 2 - prevax_extf 
+  ## Table 2 - severity - prevax_extf 
 
-  table2_prevax_extf:
-    run: r:latest analysis/table2.R prevax_extf
+  table2_severity_prevax_extf:
+    run: r:latest analysis/table2.R prevax_extf severity
     needs:
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_general
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-eating_disorders
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-self_harm
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness
-    - make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide
     - make_model_input-cohort_prevax_extf-main-addiction
     - make_model_input-cohort_prevax_extf-main-anxiety_general
     - make_model_input-cohort_prevax_extf-main-anxiety_ptsd
@@ -8123,30 +8107,14 @@ actions:
     - make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-suicide
     outputs:
       moderately_sensitive:
-        table2: output/table2_prevax_extf.csv
-        table2_rounded: output/table2_prevax_extf_rounded.csv
+        table2: output/table2_severity_prevax_extf.csv
+        table2_rounded: output/table2_severity_prevax_extf_rounded.csv
 
-  ## Table 2 - unvax_extf 
+  ## Table 2 - severity - unvax_extf 
 
-  table2_unvax_extf:
-    run: r:latest analysis/table2.R unvax_extf
+  table2_severity_unvax_extf:
+    run: r:latest analysis/table2.R unvax_extf severity
     needs:
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-addiction
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_general
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-depression
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-eating_disorders
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-self_harm
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-serious_mental_illness
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-suicide
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-addiction
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-anxiety_general
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-depression
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-eating_disorders
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-self_harm
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-suicide
     - make_model_input-cohort_unvax_extf-main-addiction
     - make_model_input-cohort_unvax_extf-main-anxiety_general
     - make_model_input-cohort_unvax_extf-main-anxiety_ptsd
@@ -8155,6 +8123,8 @@ actions:
     - make_model_input-cohort_unvax_extf-main-self_harm
     - make_model_input-cohort_unvax_extf-main-serious_mental_illness
     - make_model_input-cohort_unvax_extf-main-suicide
+    - make_model_input-cohort_unvax_extf-sub_covid_history-depression
+    - make_model_input-cohort_unvax_extf-sub_covid_history-serious_mental_illness
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-addiction
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-anxiety_general
     - make_model_input-cohort_unvax_extf-sub_covid_hospitalised-anxiety_ptsd
@@ -8173,30 +8143,14 @@ actions:
     - make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-suicide
     outputs:
       moderately_sensitive:
-        table2: output/table2_unvax_extf.csv
-        table2_rounded: output/table2_unvax_extf_rounded.csv
+        table2: output/table2_severity_unvax_extf.csv
+        table2_rounded: output/table2_severity_unvax_extf_rounded.csv
 
-  ## Table 2 - vax 
+  ## Table 2 - severity - vax 
 
-  table2_vax:
-    run: r:latest analysis/table2.R vax
+  table2_severity_vax:
+    run: r:latest analysis/table2.R vax severity
     needs:
-    - make_model_input-cohort_vax-day0_sub_covid_hospitalised-addiction
-    - make_model_input-cohort_vax-day0_sub_covid_hospitalised-anxiety_general
-    - make_model_input-cohort_vax-day0_sub_covid_hospitalised-anxiety_ptsd
-    - make_model_input-cohort_vax-day0_sub_covid_hospitalised-depression
-    - make_model_input-cohort_vax-day0_sub_covid_hospitalised-eating_disorders
-    - make_model_input-cohort_vax-day0_sub_covid_hospitalised-self_harm
-    - make_model_input-cohort_vax-day0_sub_covid_hospitalised-serious_mental_illness
-    - make_model_input-cohort_vax-day0_sub_covid_hospitalised-suicide
-    - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-addiction
-    - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-anxiety_general
-    - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-anxiety_ptsd
-    - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-depression
-    - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
-    - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-self_harm
-    - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-serious_mental_illness
-    - make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-suicide
     - make_model_input-cohort_vax-main-addiction
     - make_model_input-cohort_vax-main-anxiety_general
     - make_model_input-cohort_vax-main-anxiety_ptsd
@@ -8205,6 +8159,8 @@ actions:
     - make_model_input-cohort_vax-main-self_harm
     - make_model_input-cohort_vax-main-serious_mental_illness
     - make_model_input-cohort_vax-main-suicide
+    - make_model_input-cohort_vax-sub_covid_history-depression
+    - make_model_input-cohort_vax-sub_covid_history-serious_mental_illness
     - make_model_input-cohort_vax-sub_covid_hospitalised-addiction
     - make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_general
     - make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ptsd
@@ -8223,8 +8179,56 @@ actions:
     - make_model_input-cohort_vax-sub_covid_nonhospitalised-suicide
     outputs:
       moderately_sensitive:
-        table2: output/table2_vax.csv
-        table2_rounded: output/table2_vax_rounded.csv
+        table2: output/table2_severity_vax.csv
+        table2_rounded: output/table2_severity_vax_rounded.csv
+
+  ## Table 2 - history - prevax_extf 
+
+  table2_history_prevax_extf:
+    run: r:latest analysis/table2.R prevax_extf history
+    needs:
+    - make_model_input-cohort_prevax_extf-sub_history_none-depression
+    - make_model_input-cohort_prevax_extf-sub_history_none-serious_mental_illness
+    - make_model_input-cohort_prevax_extf-sub_history_notrecent-depression
+    - make_model_input-cohort_prevax_extf-sub_history_notrecent-serious_mental_illness
+    - make_model_input-cohort_prevax_extf-sub_history_recent-depression
+    - make_model_input-cohort_prevax_extf-sub_history_recent-serious_mental_illness
+    outputs:
+      moderately_sensitive:
+        table2: output/table2_history_prevax_extf.csv
+        table2_rounded: output/table2_history_prevax_extf_rounded.csv
+
+  ## Table 2 - history - unvax_extf 
+
+  table2_history_unvax_extf:
+    run: r:latest analysis/table2.R unvax_extf history
+    needs:
+    - make_model_input-cohort_unvax_extf-sub_history_none-depression
+    - make_model_input-cohort_unvax_extf-sub_history_none-serious_mental_illness
+    - make_model_input-cohort_unvax_extf-sub_history_notrecent-depression
+    - make_model_input-cohort_unvax_extf-sub_history_notrecent-serious_mental_illness
+    - make_model_input-cohort_unvax_extf-sub_history_recent-depression
+    - make_model_input-cohort_unvax_extf-sub_history_recent-serious_mental_illness
+    outputs:
+      moderately_sensitive:
+        table2: output/table2_history_unvax_extf.csv
+        table2_rounded: output/table2_history_unvax_extf_rounded.csv
+
+  ## Table 2 - history - vax 
+
+  table2_history_vax:
+    run: r:latest analysis/table2.R vax history
+    needs:
+    - make_model_input-cohort_vax-sub_history_none-depression
+    - make_model_input-cohort_vax-sub_history_none-serious_mental_illness
+    - make_model_input-cohort_vax-sub_history_notrecent-depression
+    - make_model_input-cohort_vax-sub_history_notrecent-serious_mental_illness
+    - make_model_input-cohort_vax-sub_history_recent-depression
+    - make_model_input-cohort_vax-sub_history_recent-serious_mental_illness
+    outputs:
+      moderately_sensitive:
+        table2: output/table2_history_vax.csv
+        table2_rounded: output/table2_history_vax_rounded.csv
 
   ## Venn - prevax_extf 
 
@@ -8651,15 +8655,25 @@ actions:
       moderately_sensitive:
         table1_output_rounded: output/extendedtable1_output_rounded.csv
 
-  make_table2_output:
-    run: r:latest analysis/make_table2_output.R
+  make_table2_severity_output:
+    run: r:latest analysis/make_table2_severity_output.R
     needs:
-    - table2_prevax_extf
-    - table2_vax
-    - table2_unvax_extf
+    - table2_severity_prevax_extf
+    - table2_severity_vax
+    - table2_severity_unvax_extf
     outputs:
       moderately_sensitive:
-        table2_output_rounded: output/table2_output_rounded.csv
+        table2_output_rounded: output/table2_severity_output_rounded.csv
+
+  make_table2_history_output:
+    run: r:latest analysis/make_table2_history_output.R
+    needs:
+    - table2_history_prevax_extf
+    - table2_history_vax
+    - table2_history_unvax_extf
+    outputs:
+      moderately_sensitive:
+        table2_output_rounded: output/table2_history_output_rounded.csv
 
   make_venn_output:
     run: r:latest analysis/make_other_output.R venn prevax_extf;vax;unvax_extf
@@ -8716,27 +8730,4 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/median_iqr_age.csv
-
-  ## Record deaths within 28 days of COVID-19 
-
-  death28days:
-    run: r:latest analysis/death28days.R
-    needs:
-    - generate_study_population_prelim
-    - make_model_input-cohort_prevax_extf-main-depression
-    - make_model_input-cohort_unvax_extf-main-depression
-    - make_model_input-cohort_vax-main-depression
-    outputs:
-      moderately_sensitive:
-        death28days: output/death28days.csv
-        death28days_rounded: output/death28days_rounded.csv
-        hist_input_prelim_prevax: output/hist_input_prelim_prevax.png
-        hist_input_prelim_restricted_prevax: output/hist_input_prelim_restricted_prevax.png
-        hist_model_input_prevax: output/hist_model_input_prevax.png
-        hist_input_prelim_vax: output/hist_input_prelim_vax.png
-        hist_input_prelim_restricted_vax: output/hist_input_prelim_restricted_vax.png
-        hist_model_input_vax: output/hist_model_input_vax.png
-        hist_input_prelim_unvax: output/hist_input_prelim_unvax.png
-        hist_input_prelim_restricted_unvax: output/hist_input_prelim_restricted_unvax.png
-        hist_model_input_unvax: output/hist_model_input_unvax.png
 

@@ -224,15 +224,6 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
       )
     ),
     
-    # action(
-    #   name = glue("describe_model_input-{name}"),
-    #   run = glue("r:latest analysis/describe_file.R model_input-{name} rds"),
-    #   needs = list(glue("make_model_input-{name}")),
-    #   moderately_sensitive = list(
-    #     describe_model_input = glue("output/describe-model_input-{name}.txt")
-    #   )
-    # ),
-    
     action(
       name = glue("cox_ipw-{name}"),
       run = glue("cox-ipw:v0.0.27 --df_input=model_input-{name}.rds --ipw={ipw} --exposure=exp_date --outcome=out_date --strata={strata} --covariate_sex={covariate_sex} --covariate_age={covariate_age} --covariate_other={covariate_other} --cox_start={cox_start} --cox_stop={cox_stop} --study_start={study_start} --study_stop={study_stop} --cut_points={cut_points} --controls_per_case={controls_per_case} --total_event_threshold={total_event_threshold} --episode_event_threshold={episode_event_threshold} --covariate_threshold={covariate_threshold} --age_spline={age_spline} --save_analysis_ready=FALSE --run_analysis=TRUE --df_output=model_output-{name}.csv"),
@@ -245,21 +236,28 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
 
 # Create function to make Table 2 ----------------------------------------------
 
-table2 <- function(cohort){
+table2 <- function(cohort, focus){
   
   table2_names <- gsub("out_date_","",unique(active_analyses[active_analyses$cohort=={cohort},]$name))
-  table2_names <- table2_names[grepl("-main-",table2_names) | grepl("hospitalised-",table2_names)]
+  
+  if (focus=="severity") {
+    table2_names <- table2_names[grepl("-main-",table2_names) | grepl("-sub_covid_",table2_names)]
+  }
+  
+  if (focus=="history") {
+    table2_names <- table2_names[grepl("-sub_history_",table2_names)]
+  }
   
   splice(
-    comment(glue("Table 2 - {cohort}")),
+    comment(glue("Table 2 - {focus} - {cohort}")),
     action(
-      name = glue("table2_{cohort}"),
+      name = glue("table2_{focus}_{cohort}"),
       run = "r:latest analysis/table2.R",
-      arguments = c(cohort),
+      arguments = c(cohort, focus),
       needs = c(as.list(paste0("make_model_input-",table2_names))),
       moderately_sensitive = list(
-        table2 = glue("output/table2_{cohort}.csv"),
-        table2_rounded = glue("output/table2_{cohort}_rounded.csv")
+        table2 = glue("output/table2_{focus}_{cohort}.csv"),
+        table2_rounded = glue("output/table2_{focus}_{cohort}_rounded.csv")
       )
     )
   )
@@ -472,7 +470,14 @@ actions_list <- splice(
   
   splice(
     unlist(lapply(unique(active_analyses$cohort), 
-                  function(x) table2(cohort = x)), 
+                  function(x) table2(cohort = x, focus = "severity")), 
+           recursive = FALSE
+    )
+  ),
+  
+  splice(
+    unlist(lapply(unique(active_analyses$cohort), 
+                  function(x) table2(cohort = x, focus = "history")), 
            recursive = FALSE
     )
   ),
@@ -543,13 +548,24 @@ actions_list <- splice(
   ),
   
   action(
-    name = "make_table2_output",
-    run = "r:latest analysis/make_table2_output.R",
-    needs = list("table2_prevax_extf",
-                 "table2_vax",
-                 "table2_unvax_extf"),
+    name = "make_table2_severity_output",
+    run = "r:latest analysis/make_table2_severity_output.R",
+    needs = list("table2_severity_prevax_extf",
+                 "table2_severity_vax",
+                 "table2_severity_unvax_extf"),
     moderately_sensitive = list(
-      table2_output_rounded = glue("output/table2_output_rounded.csv")
+      table2_output_rounded = glue("output/table2_severity_output_rounded.csv")
+    )
+  ),
+  
+  action(
+    name = "make_table2_history_output",
+    run = "r:latest analysis/make_table2_history_output.R",
+    needs = list("table2_history_prevax_extf",
+                 "table2_history_vax",
+                 "table2_history_unvax_extf"),
+    moderately_sensitive = list(
+      table2_output_rounded = glue("output/table2_history_output_rounded.csv")
     )
   ),
   
@@ -586,30 +602,6 @@ actions_list <- splice(
                  "stage1_data_cleaning_unvax_extf"),
     moderately_sensitive = list(
       model_output = glue("output/median_iqr_age.csv")
-    )
-  ),
-  
-  comment("Record deaths within 28 days of COVID-19"),
-  
-  action(
-    name = "death28days",
-    run = "r:latest analysis/death28days.R",
-    needs = list("generate_study_population_prelim",
-                 "make_model_input-cohort_prevax_extf-main-depression",
-                 "make_model_input-cohort_unvax_extf-main-depression",
-                 "make_model_input-cohort_vax-main-depression"),
-    moderately_sensitive = list(
-      death28days = "output/death28days.csv",
-      death28days_rounded = "output/death28days_rounded.csv",
-      hist_input_prelim_prevax = "output/hist_input_prelim_prevax.png",
-      hist_input_prelim_restricted_prevax = "output/hist_input_prelim_restricted_prevax.png",
-      hist_model_input_prevax = "output/hist_model_input_prevax.png",
-      hist_input_prelim_vax = "output/hist_input_prelim_vax.png",
-      hist_input_prelim_restricted_vax = "output/hist_input_prelim_restricted_vax.png",
-      hist_model_input_vax = "output/hist_model_input_vax.png",
-      hist_input_prelim_unvax = "output/hist_input_prelim_unvax.png",
-      hist_input_prelim_restricted_unvax = "output/hist_input_prelim_restricted_unvax.png",
-      hist_model_input_unvax = "output/hist_model_input_unvax.png"
     )
   )
   
