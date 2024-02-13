@@ -22,15 +22,28 @@ args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
   cohort <- "vax"
+  focus <- "severity"
 } else {
   cohort <- args[[1]]
+  focus <- args[[2]]
 }
 
 # Load active analyses ---------------------------------------------------------
 print('Load active analyses')
 
 active_analyses <- readr::read_rds("lib/active_analyses.rds")
-active_analyses <- active_analyses[active_analyses$cohort==cohort,]
+
+table2_names <- gsub("out_date_","",unique(active_analyses[active_analyses$cohort=={cohort},]$name))
+
+if (focus=="severity") {
+  table2_names <- table2_names[grepl("-main-",table2_names) | grepl("-sub_covid_",table2_names)]
+}
+
+if (focus=="history") {
+  table2_names <- table2_names[grepl("-sub_history_",table2_names)]
+}
+
+active_analyses <- active_analyses[active_analyses$name %in% table2_names,]
 
 # Make empty table 2 -----------------------------------------------------------
 print('Make empty table 2')
@@ -116,7 +129,7 @@ for (i in 1:nrow(active_analyses)) {
 # Save Table 2 -----------------------------------------------------------------
 print('Save Table 2')
 
-write.csv(table2, paste0("output/table2_",cohort,".csv"), row.names = FALSE)
+write.csv(table2, paste0("output/table2_",focus,"_",cohort,".csv"), row.names = FALSE)
 
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
@@ -127,4 +140,4 @@ table2[,setdiff(colnames(table2),c("name","cohort","exposure","outcome","analysi
 # Save Table 2 -----------------------------------------------------------------
 print('Save rounded Table 2')
 
-write.csv(table2, paste0("output/table2_",cohort,"_rounded.csv"), row.names = FALSE)
+write.csv(table2, paste0("output/table2_",focus,"_",cohort,"_rounded.csv"), row.names = FALSE)
