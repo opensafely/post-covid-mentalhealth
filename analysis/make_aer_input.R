@@ -140,10 +140,12 @@ write.csv(input, paste0("output/aer_input-",analysis,".csv"), row.names = FALSE)
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
 
-input[,setdiff(colnames(input),c("aer_sex","aer_age","analysis","cohort","outcome"))] <- lapply(input[,setdiff(colnames(input),c("aer_sex","aer_age","analysis","cohort","outcome"))],
-                                                                                     FUN=function(y){roundmid_any(as.numeric(y), to=threshold)})
-
+input$unexposed_events_midpoint6 <- roundmid_any(as.numeric(input$unexposed_events), to=threshold)
+input$total_exposed_midpoint6 <- roundmid_any(as.numeric(input$total_exposed), to=threshold)
+input$sample_size_midpoint6 <- roundmid_any(as.numeric(input$sample_size), to=threshold)
+input[,c("unexposed_events","total_exposed","sample_size")] <- NULL
+  
 # Save rounded AER input -------------------------------------------------------
 print('Save rounded AER input')
 
-write.csv(input, paste0("output/aer_input-",analysis,"-rounded.csv"), row.names = FALSE)
+write.csv(input, paste0("output/aer_input-",analysis,"-midpoint6.csv"), row.names = FALSE)
