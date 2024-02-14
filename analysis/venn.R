@@ -201,10 +201,21 @@ write.csv(df, paste0("output/venn_",cohort,".csv"), row.names = FALSE)
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
 
-df[,setdiff(colnames(df),c("outcome"))] <- lapply(df[,setdiff(colnames(df),c("outcome"))],
-                                                  FUN=function(y){roundmid_any(as.numeric(y), to=threshold)})
+df$only_snomed_midpoint6 <- roundmid_any(as.numeric(df$only_snomed), to=threshold)
+df$only_hes_midpoint6 <- roundmid_any(as.numeric(df$only_hes), to=threshold)
+df$only_death_midpoint6 <- roundmid_any(as.numeric(df$only_death), to=threshold)
+df$snomed_hes_midpoint6 <- roundmid_any(as.numeric(df$snomed_hes), to=threshold)
+df$snomed_death_midpoint6 <- roundmid_any(as.numeric(df$snomed_death), to=threshold)
+df$hes_death_midpoint6 <- roundmid_any(as.numeric(df$hes_death), to=threshold)
+df$snomed_hes_death_midpoint6 <- roundmid_any(as.numeric(df$snomed_hes_death), to=threshold)
+df$total_snomed_midpoint6 <- roundmid_any(as.numeric(df$total_snomed), to=threshold)
+df$total_hes_midpoint6 <- roundmid_any(as.numeric(df$total_hes), to=threshold)
+df$total_death_midpoint6 <- roundmid_any(as.numeric(df$total_death), to=threshold)
+df$total_midpoint6 <- roundmid_any(as.numeric(df$total), to=threshold)
+
+df <- df[,c("outcome",colnames(df)[grepl("_midpoint6",colnames(df))],"error")]
 
 # Save rounded Venn data -------------------------------------------------------
 print('Save rounded Venn data')
 
-write.csv(df, paste0("output/venn_",cohort,"_rounded.csv"), row.names = FALSE)
+write.csv(df, paste0("output/venn_",cohort,"_midpoint6.csv"), row.names = FALSE)
