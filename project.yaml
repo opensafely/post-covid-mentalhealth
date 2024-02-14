@@ -134,7 +134,7 @@ actions:
     outputs:
       moderately_sensitive:
         consort: output/consort_prevax_extf.csv
-        consort_rounded: output/consort_prevax_extf_rounded.csv
+        consort_midpoint6: output/consort_prevax_extf_midpoint6.csv
       highly_sensitive:
         cohort: output/input_prevax_extf_stage1.rds
 
@@ -156,7 +156,7 @@ actions:
     outputs:
       moderately_sensitive:
         consort: output/consort_unvax_extf.csv
-        consort_rounded: output/consort_unvax_extf_rounded.csv
+        consort_midpoint6: output/consort_unvax_extf_midpoint6.csv
       highly_sensitive:
         cohort: output/input_unvax_extf_stage1.rds
 
@@ -178,7 +178,7 @@ actions:
     outputs:
       moderately_sensitive:
         consort: output/consort_vax.csv
-        consort_rounded: output/consort_vax_rounded.csv
+        consort_midpoint6: output/consort_vax_midpoint6.csv
       highly_sensitive:
         cohort: output/input_vax_stage1.rds
 
@@ -199,7 +199,7 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/table1_prevax_extf.csv
-        table1_rounded: output/table1_prevax_extf_rounded.csv
+        table1_midpoint6: output/table1_prevax_extf_midpoint6.csv
 
   extendedtable1_prevax_extf:
     run: r:latest analysis/extendedtable1.R prevax_extf
@@ -208,7 +208,7 @@ actions:
     outputs:
       moderately_sensitive:
         extendedtable1: output/extendedtable1_prevax_extf.csv
-        extendedtable1_rounded: output/extendedtable1_prevax_extf_rounded.csv
+        extendedtable1_midpoint6: output/extendedtable1_prevax_extf_midpoint6.csv
 
   ## Table 1 - unvax_extf 
 
@@ -219,7 +219,7 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/table1_unvax_extf.csv
-        table1_rounded: output/table1_unvax_extf_rounded.csv
+        table1_midpoint6: output/table1_unvax_extf_midpoint6.csv
 
   extendedtable1_unvax_extf:
     run: r:latest analysis/extendedtable1.R unvax_extf
@@ -228,7 +228,7 @@ actions:
     outputs:
       moderately_sensitive:
         extendedtable1: output/extendedtable1_unvax_extf.csv
-        extendedtable1_rounded: output/extendedtable1_unvax_extf_rounded.csv
+        extendedtable1_midpoint6: output/extendedtable1_unvax_extf_midpoint6.csv
 
   ## Table 1 - vax 
 
@@ -239,7 +239,7 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/table1_vax.csv
-        table1_rounded: output/table1_vax_rounded.csv
+        table1_midpoint6: output/table1_vax_midpoint6.csv
 
   extendedtable1_vax:
     run: r:latest analysis/extendedtable1.R vax
@@ -248,31 +248,14 @@ actions:
     outputs:
       moderately_sensitive:
         extendedtable1: output/extendedtable1_vax.csv
-        extendedtable1_rounded: output/extendedtable1_vax_rounded.csv
-
-  ## Replace suicide variable with data from death registry only 
-
-  replace_suicide:
-    run: r:latest analysis/replace_suicide.R
-    needs:
-    - preprocess_data_prevax_extf
-    - preprocess_data_vax
-    - preprocess_data_unvax_extf
-    - stage1_data_cleaning_prevax_extf
-    - stage1_data_cleaning_vax
-    - stage1_data_cleaning_unvax_extf
-    outputs:
-      highly_sensitive:
-        prevax_cohort: output/input_prevax_extf_stage1_v1.rds
-        vax_cohort: output/input_vax_stage1_v1.rds
-        unvax_cohort: output/input_unvax_extf_stage1_v1.rds
+        extendedtable1_midpoint6: output/extendedtable1_vax_midpoint6.csv
 
   ## Run models 
 
   make_model_input-cohort_prevax_extf-day0_main-addiction:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_main-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_main-addiction.rds
@@ -294,7 +277,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_main-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_main-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_main-anxiety_general.rds
@@ -316,7 +299,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_main-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_main-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_main-anxiety_ptsd.rds
@@ -338,7 +321,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_main-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_main-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_main-depression.rds
@@ -360,7 +343,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_main-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_main-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_main-eating_disorders.rds
@@ -382,7 +365,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_main-self_harm:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_main-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_main-self_harm.rds
@@ -404,7 +387,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_main-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_main-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_main-serious_mental_illness.rds
@@ -426,7 +409,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_main-suicide:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_main-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_main-suicide.rds
@@ -448,7 +431,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_main-addiction:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_main-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_main-addiction.rds
@@ -470,7 +453,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_main-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_main-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_main-anxiety_general.rds
@@ -492,7 +475,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_main-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_main-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_main-anxiety_ptsd.rds
@@ -514,7 +497,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_main-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_main-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_main-depression.rds
@@ -536,7 +519,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_main-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_main-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_main-eating_disorders.rds
@@ -558,7 +541,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_main-self_harm:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_main-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_main-self_harm.rds
@@ -580,7 +563,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_main-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_main-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_main-serious_mental_illness.rds
@@ -602,7 +585,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_main-suicide:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_main-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_main-suicide.rds
@@ -624,7 +607,7 @@ actions:
   make_model_input-cohort_vax-day0_main-addiction:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_main-addiction.rds
@@ -646,7 +629,7 @@ actions:
   make_model_input-cohort_vax-day0_main-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_main-anxiety_general.rds
@@ -668,7 +651,7 @@ actions:
   make_model_input-cohort_vax-day0_main-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_main-anxiety_ptsd.rds
@@ -690,7 +673,7 @@ actions:
   make_model_input-cohort_vax-day0_main-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_main-depression.rds
@@ -712,7 +695,7 @@ actions:
   make_model_input-cohort_vax-day0_main-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_main-eating_disorders.rds
@@ -734,7 +717,7 @@ actions:
   make_model_input-cohort_vax-day0_main-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_main-self_harm.rds
@@ -756,7 +739,7 @@ actions:
   make_model_input-cohort_vax-day0_main-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_main-serious_mental_illness.rds
@@ -778,7 +761,7 @@ actions:
   make_model_input-cohort_vax-day0_main-suicide:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_main-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_main-suicide.rds
@@ -800,7 +783,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_age_18_39-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_age_18_39-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_age_18_39-depression.rds
@@ -822,7 +805,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_age_18_39-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_age_18_39-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_age_18_39-serious_mental_illness.rds
@@ -844,7 +827,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_age_18_39-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_age_18_39-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_age_18_39-depression.rds
@@ -866,7 +849,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_age_18_39-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_age_18_39-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_age_18_39-serious_mental_illness.rds
@@ -888,7 +871,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_age_18_39-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_age_18_39-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_age_18_39-depression.rds
@@ -910,7 +893,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_age_18_39-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_age_18_39-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_age_18_39-serious_mental_illness.rds
@@ -932,7 +915,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_age_40_59-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_age_40_59-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_age_40_59-depression.rds
@@ -954,7 +937,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_age_40_59-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_age_40_59-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_age_40_59-serious_mental_illness.rds
@@ -976,7 +959,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_age_40_59-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_age_40_59-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_age_40_59-depression.rds
@@ -998,7 +981,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_age_40_59-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_age_40_59-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_age_40_59-serious_mental_illness.rds
@@ -1020,7 +1003,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_age_40_59-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_age_40_59-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_age_40_59-depression.rds
@@ -1042,7 +1025,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_age_40_59-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_age_40_59-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_age_40_59-serious_mental_illness.rds
@@ -1064,7 +1047,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_age_60_79-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_age_60_79-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_age_60_79-depression.rds
@@ -1086,7 +1069,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness.rds
@@ -1108,7 +1091,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_age_60_79-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_age_60_79-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_age_60_79-depression.rds
@@ -1130,7 +1113,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness.rds
@@ -1152,7 +1135,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_age_60_79-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_age_60_79-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_age_60_79-depression.rds
@@ -1174,7 +1157,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_age_60_79-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_age_60_79-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_age_60_79-serious_mental_illness.rds
@@ -1196,7 +1179,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_age_80_110-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_age_80_110-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_age_80_110-depression.rds
@@ -1218,7 +1201,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness.rds
@@ -1240,7 +1223,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_age_80_110-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_age_80_110-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_age_80_110-depression.rds
@@ -1262,7 +1245,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_age_80_110-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_age_80_110-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_age_80_110-serious_mental_illness.rds
@@ -1284,7 +1267,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_age_80_110-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_age_80_110-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_age_80_110-depression.rds
@@ -1306,7 +1289,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_age_80_110-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_age_80_110-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_age_80_110-serious_mental_illness.rds
@@ -1328,7 +1311,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_history-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_history-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_history-depression.rds
@@ -1350,7 +1333,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_history-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_history-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_history-serious_mental_illness.rds
@@ -1372,7 +1355,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_history-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_history-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_history-depression.rds
@@ -1394,7 +1377,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_history-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_history-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_history-serious_mental_illness.rds
@@ -1416,7 +1399,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction.rds
@@ -1438,7 +1421,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general.rds
@@ -1460,7 +1443,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.rds
@@ -1482,7 +1465,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-depression.rds
@@ -1504,7 +1487,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders.rds
@@ -1526,7 +1509,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm.rds
@@ -1548,7 +1531,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness.rds
@@ -1570,7 +1553,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_hospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_hospitalised-suicide.rds
@@ -1592,7 +1575,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_hospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-addiction.rds
@@ -1614,7 +1597,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_general.rds
@@ -1636,7 +1619,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_ptsd.rds
@@ -1658,7 +1641,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_hospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-depression.rds
@@ -1680,7 +1663,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_hospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-eating_disorders.rds
@@ -1702,7 +1685,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_hospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-self_harm.rds
@@ -1724,7 +1707,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_hospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-serious_mental_illness.rds
@@ -1746,7 +1729,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_hospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-suicide.rds
@@ -1768,7 +1751,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_hospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_hospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_hospitalised-addiction.rds
@@ -1790,7 +1773,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_hospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_hospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_hospitalised-anxiety_general.rds
@@ -1812,7 +1795,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_hospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_hospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_hospitalised-anxiety_ptsd.rds
@@ -1834,7 +1817,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_hospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_hospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_hospitalised-depression.rds
@@ -1856,7 +1839,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_hospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_hospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_hospitalised-eating_disorders.rds
@@ -1878,7 +1861,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_hospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_hospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_hospitalised-self_harm.rds
@@ -1900,7 +1883,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_hospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_hospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_hospitalised-serious_mental_illness.rds
@@ -1922,7 +1905,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_hospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_hospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_hospitalised-suicide.rds
@@ -1944,7 +1927,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction.rds
@@ -1966,7 +1949,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_general.rds
@@ -1988,7 +1971,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd.rds
@@ -2010,7 +1993,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-depression.rds
@@ -2032,7 +2015,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_nonhospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-eating_disorders.rds
@@ -2054,7 +2037,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_nonhospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-self_harm.rds
@@ -2076,7 +2059,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness.rds
@@ -2098,7 +2081,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_covid_nonhospitalised-suicide.rds
@@ -2120,7 +2103,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_nonhospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-addiction.rds
@@ -2142,7 +2125,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_nonhospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-anxiety_general.rds
@@ -2164,7 +2147,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-anxiety_ptsd.rds
@@ -2186,7 +2169,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_nonhospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-depression.rds
@@ -2208,7 +2191,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_nonhospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-eating_disorders.rds
@@ -2230,7 +2213,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_nonhospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-self_harm.rds
@@ -2252,7 +2235,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-serious_mental_illness.rds
@@ -2274,7 +2257,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_covid_nonhospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_covid_nonhospitalised-suicide.rds
@@ -2296,7 +2279,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_nonhospitalised-addiction.rds
@@ -2318,7 +2301,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_nonhospitalised-anxiety_general.rds
@@ -2340,7 +2323,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_nonhospitalised-anxiety_ptsd.rds
@@ -2362,7 +2345,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_nonhospitalised-depression.rds
@@ -2384,7 +2367,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders.rds
@@ -2406,7 +2389,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_nonhospitalised-self_harm.rds
@@ -2428,7 +2411,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_nonhospitalised-serious_mental_illness.rds
@@ -2450,7 +2433,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_covid_nonhospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_covid_nonhospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_covid_nonhospitalised-suicide.rds
@@ -2472,7 +2455,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_asian-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_asian-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_asian-depression.rds
@@ -2494,7 +2477,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_asian-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_asian-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_asian-serious_mental_illness.rds
@@ -2516,7 +2499,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_asian-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_asian-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_asian-depression.rds
@@ -2538,7 +2521,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_asian-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_asian-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_asian-serious_mental_illness.rds
@@ -2560,7 +2543,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_asian-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_asian-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_asian-depression.rds
@@ -2582,7 +2565,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_asian-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_asian-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_asian-serious_mental_illness.rds
@@ -2604,7 +2587,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_black-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_black-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_black-depression.rds
@@ -2626,7 +2609,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness.rds
@@ -2648,7 +2631,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_black-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_black-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_black-depression.rds
@@ -2670,7 +2653,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_black-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_black-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_black-serious_mental_illness.rds
@@ -2692,7 +2675,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_black-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_black-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_black-depression.rds
@@ -2714,7 +2697,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_black-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_black-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_black-serious_mental_illness.rds
@@ -2736,7 +2719,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_mixed-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_mixed-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_mixed-depression.rds
@@ -2758,7 +2741,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_mixed-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_mixed-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_mixed-serious_mental_illness.rds
@@ -2780,7 +2763,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_mixed-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_mixed-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_mixed-depression.rds
@@ -2802,7 +2785,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_mixed-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_mixed-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_mixed-serious_mental_illness.rds
@@ -2824,7 +2807,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_mixed-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_mixed-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_mixed-depression.rds
@@ -2846,7 +2829,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_mixed-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_mixed-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_mixed-serious_mental_illness.rds
@@ -2868,7 +2851,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_other-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_other-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_other-depression.rds
@@ -2890,7 +2873,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_other-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_other-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_other-serious_mental_illness.rds
@@ -2912,7 +2895,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_other-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_other-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_other-depression.rds
@@ -2934,7 +2917,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_other-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_other-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_other-serious_mental_illness.rds
@@ -2956,7 +2939,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_other-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_other-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_other-depression.rds
@@ -2978,7 +2961,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_other-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_other-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_other-serious_mental_illness.rds
@@ -3000,7 +2983,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_white-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_white-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_white-depression.rds
@@ -3022,7 +3005,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_ethnicity_white-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_ethnicity_white-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_ethnicity_white-serious_mental_illness.rds
@@ -3044,7 +3027,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_white-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_white-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_white-depression.rds
@@ -3066,7 +3049,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_ethnicity_white-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_ethnicity_white-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_ethnicity_white-serious_mental_illness.rds
@@ -3088,7 +3071,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_white-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_white-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_white-depression.rds
@@ -3110,7 +3093,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_ethnicity_white-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_ethnicity_white-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_ethnicity_white-serious_mental_illness.rds
@@ -3132,7 +3115,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_history_none-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_history_none-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_history_none-depression.rds
@@ -3154,7 +3137,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_history_none-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_history_none-serious_mental_illness.rds
@@ -3176,7 +3159,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_history_none-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_history_none-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_history_none-depression.rds
@@ -3198,7 +3181,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_history_none-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_history_none-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_history_none-serious_mental_illness.rds
@@ -3220,7 +3203,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_history_none-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_history_none-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_history_none-depression.rds
@@ -3242,7 +3225,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_history_none-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_history_none-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_history_none-serious_mental_illness.rds
@@ -3264,7 +3247,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_history_notrecent-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_history_notrecent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_history_notrecent-depression.rds
@@ -3286,7 +3269,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_history_notrecent-serious_mental_illness.rds
@@ -3308,7 +3291,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_history_notrecent-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_history_notrecent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_history_notrecent-depression.rds
@@ -3330,7 +3313,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_history_notrecent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_history_notrecent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_history_notrecent-serious_mental_illness.rds
@@ -3352,7 +3335,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_history_notrecent-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_history_notrecent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_history_notrecent-depression.rds
@@ -3374,7 +3357,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_history_notrecent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_history_notrecent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_history_notrecent-serious_mental_illness.rds
@@ -3396,7 +3379,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_history_recent-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_history_recent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_history_recent-depression.rds
@@ -3418,7 +3401,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness.rds
@@ -3440,7 +3423,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_history_recent-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_history_recent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_history_recent-depression.rds
@@ -3462,7 +3445,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_history_recent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_history_recent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_history_recent-serious_mental_illness.rds
@@ -3484,7 +3467,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_history_recent-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_history_recent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_history_recent-depression.rds
@@ -3506,7 +3489,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_history_recent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_history_recent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_history_recent-serious_mental_illness.rds
@@ -3528,7 +3511,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_sex_female-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_sex_female-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_sex_female-depression.rds
@@ -3550,7 +3533,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_sex_female-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_sex_female-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_sex_female-serious_mental_illness.rds
@@ -3572,7 +3555,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_sex_female-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_sex_female-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_sex_female-depression.rds
@@ -3594,7 +3577,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_sex_female-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_sex_female-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_sex_female-serious_mental_illness.rds
@@ -3616,7 +3599,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_sex_female-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_sex_female-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_sex_female-depression.rds
@@ -3638,7 +3621,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_sex_female-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_sex_female-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_sex_female-serious_mental_illness.rds
@@ -3660,7 +3643,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_sex_male-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_sex_male-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_sex_male-depression.rds
@@ -3682,7 +3665,7 @@ actions:
   make_model_input-cohort_prevax_extf-day0_sub_sex_male-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-day0_sub_sex_male-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-day0_sub_sex_male-serious_mental_illness.rds
@@ -3704,7 +3687,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_sex_male-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_sex_male-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_sex_male-depression.rds
@@ -3726,7 +3709,7 @@ actions:
   make_model_input-cohort_unvax_extf-day0_sub_sex_male-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-day0_sub_sex_male-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-day0_sub_sex_male-serious_mental_illness.rds
@@ -3748,7 +3731,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_sex_male-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_sex_male-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_sex_male-depression.rds
@@ -3770,7 +3753,7 @@ actions:
   make_model_input-cohort_vax-day0_sub_sex_male-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-day0_sub_sex_male-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-day0_sub_sex_male-serious_mental_illness.rds
@@ -3792,7 +3775,7 @@ actions:
   make_model_input-cohort_prevax_extf-main-addiction:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-main-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-main-addiction.rds
@@ -3814,7 +3797,7 @@ actions:
   make_model_input-cohort_prevax_extf-main-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-main-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-main-anxiety_general.rds
@@ -3836,7 +3819,7 @@ actions:
   make_model_input-cohort_prevax_extf-main-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-main-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-main-anxiety_ptsd.rds
@@ -3858,7 +3841,7 @@ actions:
   make_model_input-cohort_prevax_extf-main-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-main-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-main-depression.rds
@@ -3880,7 +3863,7 @@ actions:
   make_model_input-cohort_prevax_extf-main-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-main-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-main-eating_disorders.rds
@@ -3902,7 +3885,7 @@ actions:
   make_model_input-cohort_prevax_extf-main-self_harm:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-main-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-main-self_harm.rds
@@ -3924,7 +3907,7 @@ actions:
   make_model_input-cohort_prevax_extf-main-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-main-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-main-serious_mental_illness.rds
@@ -3946,7 +3929,7 @@ actions:
   make_model_input-cohort_prevax_extf-main-suicide:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-main-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-main-suicide.rds
@@ -3968,7 +3951,7 @@ actions:
   make_model_input-cohort_unvax_extf-main-addiction:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-main-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-main-addiction.rds
@@ -3990,7 +3973,7 @@ actions:
   make_model_input-cohort_unvax_extf-main-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-main-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-main-anxiety_general.rds
@@ -4012,7 +3995,7 @@ actions:
   make_model_input-cohort_unvax_extf-main-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-main-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-main-anxiety_ptsd.rds
@@ -4034,7 +4017,7 @@ actions:
   make_model_input-cohort_unvax_extf-main-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-main-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-main-depression.rds
@@ -4056,7 +4039,7 @@ actions:
   make_model_input-cohort_unvax_extf-main-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-main-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-main-eating_disorders.rds
@@ -4078,7 +4061,7 @@ actions:
   make_model_input-cohort_unvax_extf-main-self_harm:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-main-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-main-self_harm.rds
@@ -4100,7 +4083,7 @@ actions:
   make_model_input-cohort_unvax_extf-main-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-main-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-main-serious_mental_illness.rds
@@ -4122,7 +4105,7 @@ actions:
   make_model_input-cohort_unvax_extf-main-suicide:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-main-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-main-suicide.rds
@@ -4144,7 +4127,7 @@ actions:
   make_model_input-cohort_vax-main-addiction:
     run: r:latest analysis/make_model_input.R cohort_vax-main-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-main-addiction.rds
@@ -4166,7 +4149,7 @@ actions:
   make_model_input-cohort_vax-main-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_vax-main-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-main-anxiety_general.rds
@@ -4188,7 +4171,7 @@ actions:
   make_model_input-cohort_vax-main-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_vax-main-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-main-anxiety_ptsd.rds
@@ -4210,7 +4193,7 @@ actions:
   make_model_input-cohort_vax-main-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-main-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-main-depression.rds
@@ -4232,7 +4215,7 @@ actions:
   make_model_input-cohort_vax-main-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_vax-main-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-main-eating_disorders.rds
@@ -4254,7 +4237,7 @@ actions:
   make_model_input-cohort_vax-main-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-main-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-main-self_harm.rds
@@ -4276,7 +4259,7 @@ actions:
   make_model_input-cohort_vax-main-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-main-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-main-serious_mental_illness.rds
@@ -4298,7 +4281,7 @@ actions:
   make_model_input-cohort_vax-main-suicide:
     run: r:latest analysis/make_model_input.R cohort_vax-main-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-main-suicide.rds
@@ -4320,7 +4303,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_age_18_39-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_age_18_39-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_age_18_39-depression.rds
@@ -4342,7 +4325,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_age_18_39-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_age_18_39-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_age_18_39-serious_mental_illness.rds
@@ -4364,7 +4347,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_age_18_39-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_age_18_39-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_age_18_39-depression.rds
@@ -4386,7 +4369,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_age_18_39-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_age_18_39-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_age_18_39-serious_mental_illness.rds
@@ -4408,7 +4391,7 @@ actions:
   make_model_input-cohort_vax-sub_age_18_39-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_age_18_39-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_age_18_39-depression.rds
@@ -4430,7 +4413,7 @@ actions:
   make_model_input-cohort_vax-sub_age_18_39-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_age_18_39-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_age_18_39-serious_mental_illness.rds
@@ -4452,7 +4435,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_age_40_59-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_age_40_59-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_age_40_59-depression.rds
@@ -4474,7 +4457,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_age_40_59-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_age_40_59-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_age_40_59-serious_mental_illness.rds
@@ -4496,7 +4479,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_age_40_59-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_age_40_59-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_age_40_59-depression.rds
@@ -4518,7 +4501,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_age_40_59-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_age_40_59-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_age_40_59-serious_mental_illness.rds
@@ -4540,7 +4523,7 @@ actions:
   make_model_input-cohort_vax-sub_age_40_59-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_age_40_59-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_age_40_59-depression.rds
@@ -4562,7 +4545,7 @@ actions:
   make_model_input-cohort_vax-sub_age_40_59-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_age_40_59-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_age_40_59-serious_mental_illness.rds
@@ -4584,7 +4567,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_age_60_79-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_age_60_79-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_age_60_79-depression.rds
@@ -4606,7 +4589,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_age_60_79-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_age_60_79-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_age_60_79-serious_mental_illness.rds
@@ -4628,7 +4611,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_age_60_79-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_age_60_79-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_age_60_79-depression.rds
@@ -4650,7 +4633,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_age_60_79-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_age_60_79-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_age_60_79-serious_mental_illness.rds
@@ -4672,7 +4655,7 @@ actions:
   make_model_input-cohort_vax-sub_age_60_79-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_age_60_79-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_age_60_79-depression.rds
@@ -4694,7 +4677,7 @@ actions:
   make_model_input-cohort_vax-sub_age_60_79-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_age_60_79-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_age_60_79-serious_mental_illness.rds
@@ -4716,7 +4699,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_age_80_110-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_age_80_110-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_age_80_110-depression.rds
@@ -4738,7 +4721,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_age_80_110-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_age_80_110-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_age_80_110-serious_mental_illness.rds
@@ -4760,7 +4743,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_age_80_110-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_age_80_110-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_age_80_110-depression.rds
@@ -4782,7 +4765,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_age_80_110-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_age_80_110-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_age_80_110-serious_mental_illness.rds
@@ -4804,7 +4787,7 @@ actions:
   make_model_input-cohort_vax-sub_age_80_110-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_age_80_110-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_age_80_110-depression.rds
@@ -4826,7 +4809,7 @@ actions:
   make_model_input-cohort_vax-sub_age_80_110-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_age_80_110-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_age_80_110-serious_mental_illness.rds
@@ -4848,7 +4831,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_history-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_history-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_history-depression.rds
@@ -4870,7 +4853,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_history-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_history-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_history-serious_mental_illness.rds
@@ -4892,7 +4875,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_history-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_history-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_history-depression.rds
@@ -4914,7 +4897,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_history-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_history-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_history-serious_mental_illness.rds
@@ -4936,7 +4919,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_hospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_hospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_hospitalised-addiction.rds
@@ -4958,7 +4941,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_hospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_hospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_hospitalised-anxiety_general.rds
@@ -4980,7 +4963,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_hospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_hospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_hospitalised-anxiety_ptsd.rds
@@ -5002,7 +4985,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_hospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_hospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_hospitalised-depression.rds
@@ -5024,7 +5007,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_hospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_hospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_hospitalised-eating_disorders.rds
@@ -5046,7 +5029,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_hospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_hospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_hospitalised-self_harm.rds
@@ -5068,7 +5051,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_hospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_hospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_hospitalised-serious_mental_illness.rds
@@ -5090,7 +5073,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_hospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_hospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_hospitalised-suicide.rds
@@ -5112,7 +5095,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_hospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_hospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_hospitalised-addiction.rds
@@ -5134,7 +5117,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_hospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_hospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_hospitalised-anxiety_general.rds
@@ -5156,7 +5139,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_hospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_hospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_hospitalised-anxiety_ptsd.rds
@@ -5178,7 +5161,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_hospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_hospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_hospitalised-depression.rds
@@ -5200,7 +5183,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_hospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_hospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_hospitalised-eating_disorders.rds
@@ -5222,7 +5205,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_hospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_hospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_hospitalised-self_harm.rds
@@ -5244,7 +5227,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_hospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_hospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_hospitalised-serious_mental_illness.rds
@@ -5266,7 +5249,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_hospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_hospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_hospitalised-suicide.rds
@@ -5288,7 +5271,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_hospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_hospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-addiction.rds
@@ -5310,7 +5293,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_hospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-anxiety_general.rds
@@ -5332,7 +5315,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_hospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_hospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-anxiety_ptsd.rds
@@ -5354,7 +5337,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_hospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_hospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-depression.rds
@@ -5376,7 +5359,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_hospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_hospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-eating_disorders.rds
@@ -5398,7 +5381,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_hospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_hospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-self_harm.rds
@@ -5420,7 +5403,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_hospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_hospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-serious_mental_illness.rds
@@ -5442,7 +5425,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_hospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_hospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_hospitalised-suicide.rds
@@ -5464,7 +5447,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_nonhospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_nonhospitalised-addiction.rds
@@ -5486,7 +5469,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_general.rds
@@ -5508,7 +5491,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_nonhospitalised-anxiety_ptsd.rds
@@ -5530,7 +5513,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_nonhospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_nonhospitalised-depression.rds
@@ -5552,7 +5535,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_nonhospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_nonhospitalised-eating_disorders.rds
@@ -5574,7 +5557,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_nonhospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_nonhospitalised-self_harm.rds
@@ -5596,7 +5579,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_nonhospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_nonhospitalised-serious_mental_illness.rds
@@ -5618,7 +5601,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_covid_nonhospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_covid_nonhospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_covid_nonhospitalised-suicide.rds
@@ -5640,7 +5623,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_nonhospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_nonhospitalised-addiction.rds
@@ -5662,7 +5645,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_general.rds
@@ -5684,7 +5667,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_nonhospitalised-anxiety_ptsd.rds
@@ -5706,7 +5689,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_nonhospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_nonhospitalised-depression.rds
@@ -5728,7 +5711,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_nonhospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_nonhospitalised-eating_disorders.rds
@@ -5750,7 +5733,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_nonhospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_nonhospitalised-self_harm.rds
@@ -5772,7 +5755,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_nonhospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_nonhospitalised-serious_mental_illness.rds
@@ -5794,7 +5777,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_covid_nonhospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_covid_nonhospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_covid_nonhospitalised-suicide.rds
@@ -5816,7 +5799,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_nonhospitalised-addiction:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_nonhospitalised-addiction
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-addiction.rds
@@ -5838,7 +5821,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_general:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_nonhospitalised-anxiety_general
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_general.rds
@@ -5860,7 +5843,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-anxiety_ptsd.rds
@@ -5882,7 +5865,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_nonhospitalised-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_nonhospitalised-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-depression.rds
@@ -5904,7 +5887,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_nonhospitalised-eating_disorders:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_nonhospitalised-eating_disorders
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-eating_disorders.rds
@@ -5926,7 +5909,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_nonhospitalised-self_harm:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_nonhospitalised-self_harm
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-self_harm.rds
@@ -5948,7 +5931,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_nonhospitalised-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-serious_mental_illness.rds
@@ -5970,7 +5953,7 @@ actions:
   make_model_input-cohort_vax-sub_covid_nonhospitalised-suicide:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_covid_nonhospitalised-suicide
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_covid_nonhospitalised-suicide.rds
@@ -5992,7 +5975,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_asian-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_asian-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_asian-depression.rds
@@ -6014,7 +5997,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_asian-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_asian-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_asian-serious_mental_illness.rds
@@ -6036,7 +6019,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_asian-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_asian-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_asian-depression.rds
@@ -6058,7 +6041,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_asian-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_asian-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_asian-serious_mental_illness.rds
@@ -6080,7 +6063,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_asian-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_asian-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_asian-depression.rds
@@ -6102,7 +6085,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_asian-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_asian-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_asian-serious_mental_illness.rds
@@ -6124,7 +6107,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_black-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_black-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_black-depression.rds
@@ -6146,7 +6129,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_black-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_black-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_black-serious_mental_illness.rds
@@ -6168,7 +6151,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_black-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_black-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_black-depression.rds
@@ -6190,7 +6173,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_black-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_black-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_black-serious_mental_illness.rds
@@ -6212,7 +6195,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_black-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_black-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_black-depression.rds
@@ -6234,7 +6217,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_black-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_black-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_black-serious_mental_illness.rds
@@ -6256,7 +6239,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_mixed-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_mixed-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_mixed-depression.rds
@@ -6278,7 +6261,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_mixed-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_mixed-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_mixed-serious_mental_illness.rds
@@ -6300,7 +6283,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_mixed-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_mixed-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_mixed-depression.rds
@@ -6322,7 +6305,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_mixed-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_mixed-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_mixed-serious_mental_illness.rds
@@ -6344,7 +6327,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_mixed-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_mixed-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_mixed-depression.rds
@@ -6366,7 +6349,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_mixed-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_mixed-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_mixed-serious_mental_illness.rds
@@ -6388,7 +6371,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_other-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_other-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_other-depression.rds
@@ -6410,7 +6393,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_other-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_other-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_other-serious_mental_illness.rds
@@ -6432,7 +6415,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_other-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_other-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_other-depression.rds
@@ -6454,7 +6437,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_other-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_other-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_other-serious_mental_illness.rds
@@ -6476,7 +6459,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_other-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_other-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_other-depression.rds
@@ -6498,7 +6481,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_other-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_other-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_other-serious_mental_illness.rds
@@ -6520,7 +6503,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_white-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_white-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_white-depression.rds
@@ -6542,7 +6525,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_ethnicity_white-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_ethnicity_white-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_ethnicity_white-serious_mental_illness.rds
@@ -6564,7 +6547,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_white-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_white-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_white-depression.rds
@@ -6586,7 +6569,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_ethnicity_white-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_ethnicity_white-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_ethnicity_white-serious_mental_illness.rds
@@ -6608,7 +6591,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_white-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_white-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_white-depression.rds
@@ -6630,7 +6613,7 @@ actions:
   make_model_input-cohort_vax-sub_ethnicity_white-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_ethnicity_white-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_ethnicity_white-serious_mental_illness.rds
@@ -6652,7 +6635,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_history_none-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_history_none-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_history_none-depression.rds
@@ -6674,7 +6657,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_history_none-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_history_none-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_history_none-serious_mental_illness.rds
@@ -6696,7 +6679,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_history_none-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_history_none-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_history_none-depression.rds
@@ -6718,7 +6701,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_history_none-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_history_none-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_history_none-serious_mental_illness.rds
@@ -6740,7 +6723,7 @@ actions:
   make_model_input-cohort_vax-sub_history_none-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_history_none-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_history_none-depression.rds
@@ -6762,7 +6745,7 @@ actions:
   make_model_input-cohort_vax-sub_history_none-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_history_none-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_history_none-serious_mental_illness.rds
@@ -6784,7 +6767,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_history_notrecent-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_history_notrecent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_history_notrecent-depression.rds
@@ -6806,7 +6789,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_history_notrecent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_history_notrecent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_history_notrecent-serious_mental_illness.rds
@@ -6828,7 +6811,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_history_notrecent-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_history_notrecent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_history_notrecent-depression.rds
@@ -6850,7 +6833,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_history_notrecent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_history_notrecent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_history_notrecent-serious_mental_illness.rds
@@ -6872,7 +6855,7 @@ actions:
   make_model_input-cohort_vax-sub_history_notrecent-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_history_notrecent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_history_notrecent-depression.rds
@@ -6894,7 +6877,7 @@ actions:
   make_model_input-cohort_vax-sub_history_notrecent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_history_notrecent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_history_notrecent-serious_mental_illness.rds
@@ -6916,7 +6899,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_history_recent-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_history_recent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_history_recent-depression.rds
@@ -6938,7 +6921,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_history_recent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_history_recent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_history_recent-serious_mental_illness.rds
@@ -6960,7 +6943,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_history_recent-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_history_recent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_history_recent-depression.rds
@@ -6982,7 +6965,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_history_recent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_history_recent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_history_recent-serious_mental_illness.rds
@@ -7004,7 +6987,7 @@ actions:
   make_model_input-cohort_vax-sub_history_recent-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_history_recent-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_history_recent-depression.rds
@@ -7026,7 +7009,7 @@ actions:
   make_model_input-cohort_vax-sub_history_recent-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_history_recent-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_history_recent-serious_mental_illness.rds
@@ -7048,7 +7031,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_sex_female-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_sex_female-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_sex_female-depression.rds
@@ -7070,7 +7053,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_sex_female-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_sex_female-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_sex_female-serious_mental_illness.rds
@@ -7092,7 +7075,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_sex_female-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_sex_female-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_sex_female-depression.rds
@@ -7114,7 +7097,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_sex_female-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_sex_female-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_sex_female-serious_mental_illness.rds
@@ -7136,7 +7119,7 @@ actions:
   make_model_input-cohort_vax-sub_sex_female-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_sex_female-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_sex_female-depression.rds
@@ -7158,7 +7141,7 @@ actions:
   make_model_input-cohort_vax-sub_sex_female-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_sex_female-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_sex_female-serious_mental_illness.rds
@@ -7180,7 +7163,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_sex_male-depression:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_sex_male-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_sex_male-depression.rds
@@ -7202,7 +7185,7 @@ actions:
   make_model_input-cohort_prevax_extf-sub_sex_male-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_prevax_extf-sub_sex_male-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_prevax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_prevax_extf-sub_sex_male-serious_mental_illness.rds
@@ -7224,7 +7207,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_sex_male-depression:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_sex_male-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_sex_male-depression.rds
@@ -7246,7 +7229,7 @@ actions:
   make_model_input-cohort_unvax_extf-sub_sex_male-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_unvax_extf-sub_sex_male-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_unvax_extf
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_unvax_extf-sub_sex_male-serious_mental_illness.rds
@@ -7268,7 +7251,7 @@ actions:
   make_model_input-cohort_vax-sub_sex_male-depression:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_sex_male-depression
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_sex_male-depression.rds
@@ -7290,7 +7273,7 @@ actions:
   make_model_input-cohort_vax-sub_sex_male-serious_mental_illness:
     run: r:latest analysis/make_model_input.R cohort_vax-sub_sex_male-serious_mental_illness
     needs:
-    - replace_suicide
+    - stage1_data_cleaning_vax
     outputs:
       highly_sensitive:
         model_input: output/model_input-cohort_vax-sub_sex_male-serious_mental_illness.rds
@@ -8108,7 +8091,7 @@ actions:
     outputs:
       moderately_sensitive:
         table2: output/table2_severity_prevax_extf.csv
-        table2_rounded: output/table2_severity_prevax_extf_rounded.csv
+        table2_midpoint6: output/table2_severity_prevax_extf_midpoint6.csv
 
   ## Table 2 - severity - unvax_extf 
 
@@ -8144,7 +8127,7 @@ actions:
     outputs:
       moderately_sensitive:
         table2: output/table2_severity_unvax_extf.csv
-        table2_rounded: output/table2_severity_unvax_extf_rounded.csv
+        table2_midpoint6: output/table2_severity_unvax_extf_midpoint6.csv
 
   ## Table 2 - severity - vax 
 
@@ -8180,7 +8163,7 @@ actions:
     outputs:
       moderately_sensitive:
         table2: output/table2_severity_vax.csv
-        table2_rounded: output/table2_severity_vax_rounded.csv
+        table2_midpoint6: output/table2_severity_vax_midpoint6.csv
 
   ## Table 2 - history - prevax_extf 
 
@@ -8196,7 +8179,7 @@ actions:
     outputs:
       moderately_sensitive:
         table2: output/table2_history_prevax_extf.csv
-        table2_rounded: output/table2_history_prevax_extf_rounded.csv
+        table2_midpoint6: output/table2_history_prevax_extf_midpoint6.csv
 
   ## Table 2 - history - unvax_extf 
 
@@ -8212,7 +8195,7 @@ actions:
     outputs:
       moderately_sensitive:
         table2: output/table2_history_unvax_extf.csv
-        table2_rounded: output/table2_history_unvax_extf_rounded.csv
+        table2_midpoint6: output/table2_history_unvax_extf_midpoint6.csv
 
   ## Table 2 - history - vax 
 
@@ -8228,7 +8211,7 @@ actions:
     outputs:
       moderately_sensitive:
         table2: output/table2_history_vax.csv
-        table2_rounded: output/table2_history_vax_rounded.csv
+        table2_midpoint6: output/table2_history_vax_midpoint6.csv
 
   ## Venn - prevax_extf 
 
@@ -8247,7 +8230,7 @@ actions:
     outputs:
       moderately_sensitive:
         venn: output/venn_prevax_extf.csv
-        venn_rounded: output/venn_prevax_extf_rounded.csv
+        venn_midpoint6: output/venn_prevax_extf_midpoint6.csv
 
   ## Venn - unvax_extf 
 
@@ -8266,7 +8249,7 @@ actions:
     outputs:
       moderately_sensitive:
         venn: output/venn_unvax_extf.csv
-        venn_rounded: output/venn_unvax_extf_rounded.csv
+        venn_midpoint6: output/venn_unvax_extf_midpoint6.csv
 
   ## Venn - vax 
 
@@ -8285,7 +8268,7 @@ actions:
     outputs:
       moderately_sensitive:
         venn: output/venn_vax.csv
-        venn_rounded: output/venn_vax_rounded.csv
+        venn_midpoint6: output/venn_vax_midpoint6.csv
 
   ## Stage 6 - make output 
 
@@ -8583,47 +8566,7 @@ actions:
     outputs:
       moderately_sensitive:
         model_output: output/model_output.csv
-        model_output_rounded: output/model_output_rounded.csv
-
-  make_stata_model_output:
-    run: r:latest analysis/make_stata_model_output.R
-    needs:
-    - stata_cox_ipw-cohort_unvax_extf-day0_main-addiction
-    - stata_cox_ipw-cohort_unvax_extf-day0_main-anxiety_ptsd
-    - stata_cox_ipw-cohort_vax-day0_main-eating_disorders
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_age_60_79-depression
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness
-    - stata_cox_ipw-cohort_unvax_extf-day0_sub_age_60_79-depression
-    - stata_cox_ipw-cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_age_80_110-depression
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness
-    - stata_cox_ipw-cohort_unvax_extf-day0_sub_age_80_110-depression
-    - stata_cox_ipw-cohort_vax-day0_sub_age_80_110-serious_mental_illness
-    - stata_cox_ipw-cohort_unvax_extf-day0_sub_covid_history-depression
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
-    - stata_cox_ipw-cohort_unvax_extf-day0_sub_covid_hospitalised-addiction
-    - stata_cox_ipw-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
-    - stata_cox_ipw-cohort_unvax_extf-day0_sub_covid_hospitalised-serious_mental_illness
-    - stata_cox_ipw-cohort_vax-day0_sub_covid_hospitalised-anxiety_general
-    - stata_cox_ipw-cohort_vax-day0_sub_covid_hospitalised-depression
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction
-    - stata_cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_ethnicity_other-depression
-    - stata_cox_ipw-cohort_unvax_extf-day0_sub_ethnicity_other-depression
-    - stata_cox_ipw-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness
-    - stata_cox_ipw-cohort_vax-main-eating_disorders
-    - stata_cox_ipw-cohort_vax-sub_covid_nonhospitalised-eating_disorders
-    outputs:
-      moderately_sensitive:
-        stata_model_output: output/stata_model_output.csv
-        stata_model_output_rounded: output/stata_model_output_rounded.csv
+        model_output_midpoint6: output/model_output_midpoint6.csv
 
   make_consort_output:
     run: r:latest analysis/make_other_output.R consort prevax_extf;vax;unvax_extf
@@ -8633,7 +8576,7 @@ actions:
     - stage1_data_cleaning_unvax_extf
     outputs:
       moderately_sensitive:
-        consort_output_rounded: output/consort_output_rounded.csv
+        consort_output_midpoint6: output/consort_output_midpoint6.csv
 
   make_table1_output:
     run: r:latest analysis/make_other_output.R table1 prevax_extf;vax;unvax_extf
@@ -8643,7 +8586,7 @@ actions:
     - table1_unvax_extf
     outputs:
       moderately_sensitive:
-        table1_output_rounded: output/table1_output_rounded.csv
+        table1_output_midpoint6: output/table1_output_midpoint6.csv
 
   make_extendedtable1_output:
     run: r:latest analysis/make_other_output.R extendedtable1 prevax_extf;vax;unvax_extf
@@ -8653,7 +8596,7 @@ actions:
     - extendedtable1_unvax_extf
     outputs:
       moderately_sensitive:
-        table1_output_rounded: output/extendedtable1_output_rounded.csv
+        table1_output_midpoint6: output/extendedtable1_output_midpoint6.csv
 
   make_table2_severity_output:
     run: r:latest analysis/make_table2_severity_output.R
@@ -8663,7 +8606,7 @@ actions:
     - table2_severity_unvax_extf
     outputs:
       moderately_sensitive:
-        table2_output_rounded: output/table2_severity_output_rounded.csv
+        table2_output_midpoint6: output/table2_severity_output_midpoint6.csv
 
   make_table2_history_output:
     run: r:latest analysis/make_table2_history_output.R
@@ -8673,7 +8616,7 @@ actions:
     - table2_history_unvax_extf
     outputs:
       moderately_sensitive:
-        table2_output_rounded: output/table2_history_output_rounded.csv
+        table2_output_midpoint6: output/table2_history_output_midpoint6.csv
 
   make_venn_output:
     run: r:latest analysis/make_other_output.R venn prevax_extf;vax;unvax_extf
@@ -8683,7 +8626,7 @@ actions:
     - venn_unvax_extf
     outputs:
       moderately_sensitive:
-        venn_output_rounded: output/venn_output_rounded.csv
+        venn_output_midpoint6: output/venn_output_midpoint6.csv
 
   ## Make absolute excess risk (AER) input 
 
@@ -8717,7 +8660,7 @@ actions:
     outputs:
       moderately_sensitive:
         aer_input: output/aer_input-main.csv
-        aer_input_rounded: output/aer_input-main-rounded.csv
+        aer_input_midpoint6: output/aer_input-main-midpoint6.csv
 
   ## Calculate median (IQR) for age 
 

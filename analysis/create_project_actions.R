@@ -160,7 +160,7 @@ stage1_data_cleaning <- function(cohort){
       needs = list("vax_eligibility_inputs",glue("preprocess_data_{cohort}")),
       moderately_sensitive = list(
         consort = glue("output/consort_{cohort}.csv"),
-        consort_rounded = glue("output/consort_{cohort}_rounded.csv")
+        consort_midpoint6 = glue("output/consort_{cohort}_midpoint6.csv")
       ),
       highly_sensitive = list(
         cohort = glue("output/input_{cohort}_stage1.rds")
@@ -189,7 +189,7 @@ table1 <- function(cohort){
       needs = list(glue("stage1_data_cleaning_{cohort}")),
       moderately_sensitive = list(
         table1 = glue("output/table1_{cohort}.csv"),
-        table1_rounded = glue("output/table1_{cohort}_rounded.csv")
+        table1_midpoint6 = glue("output/table1_{cohort}_midpoint6.csv")
       )
     ),
     action(
@@ -199,7 +199,7 @@ table1 <- function(cohort){
       needs = list(glue("stage1_data_cleaning_{cohort}")),
       moderately_sensitive = list(
         extendedtable1 = glue("output/extendedtable1_{cohort}.csv"),
-        extendedtable1_rounded = glue("output/extendedtable1_{cohort}_rounded.csv")
+        extendedtable1_midpoint6 = glue("output/extendedtable1_{cohort}_midpoint6.csv")
       )
     )
   )
@@ -218,7 +218,7 @@ apply_model_function <- function(name, cohort, analysis, ipw, strata,
     action(
       name = glue("make_model_input-{name}"),
       run = glue("r:latest analysis/make_model_input.R {name}"),
-      needs = list("replace_suicide"),
+      needs = as.list(glue("stage1_data_cleaning_{cohort}")),
       highly_sensitive = list(
         model_input = glue("output/model_input-{name}.rds")
       )
@@ -257,7 +257,7 @@ table2 <- function(cohort, focus){
       needs = c(as.list(paste0("make_model_input-",table2_names))),
       moderately_sensitive = list(
         table2 = glue("output/table2_{focus}_{cohort}.csv"),
-        table2_rounded = glue("output/table2_{focus}_{cohort}_rounded.csv")
+        table2_midpoint6 = glue("output/table2_{focus}_{cohort}_midpoint6.csv")
       )
     )
   )
@@ -279,7 +279,7 @@ venn <- function(cohort){
                 as.list(paste0(glue("make_model_input-cohort_{cohort}-main-"),venn_outcomes))),
       moderately_sensitive = list(
         venn = glue("output/venn_{cohort}.csv"),
-        venn_rounded = glue("output/venn_{cohort}_rounded.csv")
+        venn_midpoint6 = glue("output/venn_{cohort}_midpoint6.csv")
       )
     )
   )
@@ -398,22 +398,7 @@ actions_list <- splice(
            recursive = FALSE
     )
   ),
-  
-  ## Replace suicide variable with data from death registry only ---------------
-  comment("Replace suicide variable with data from death registry only"),
-  
-  action(
-    name = glue("replace_suicide"),
-    run = "r:latest analysis/replace_suicide.R",
-    needs = as.list(c(paste0("preprocess_data_",c("prevax_extf","vax","unvax_extf")),
-                      paste0("stage1_data_cleaning_",c("prevax_extf","vax","unvax_extf")))),
-    highly_sensitive = list(
-      prevax_cohort = glue("output/input_prevax_extf_stage1_v1.rds"),
-      vax_cohort = glue("output/input_vax_stage1_v1.rds"),
-      unvax_cohort = glue("output/input_unvax_extf_stage1_v1.rds")
-    )
-  ),
-  
+
   ## Run models ----------------------------------------------------------------
   comment("Run models"),
   
@@ -496,24 +481,14 @@ actions_list <- splice(
   action(
     name = "make_model_output",
     run = "r:latest analysis/make_model_output.R",
-    needs = as.list(paste0("cox_ipw-",
-                           setdiff(active_analyses$name,stata$name))),
+    needs = as.list(paste0("cox_ipw-",setdiff(active_analyses$name,stata$name)),
+                    paste0("stata_cox_ipw-",stata$name)),
     moderately_sensitive = list(
       model_output = glue("output/model_output.csv"),
-      model_output_rounded = glue("output/model_output_rounded.csv")
+      model_output_midpoint6 = glue("output/model_output_midpoint6.csv")
     )
   ),
-  
-  action(
-    name = "make_stata_model_output",
-    run = "r:latest analysis/make_stata_model_output.R",
-    needs = as.list(paste0("stata_cox_ipw-",stata$name)),
-    moderately_sensitive = list(
-      stata_model_output = glue("output/stata_model_output.csv"),
-      stata_model_output_rounded = glue("output/stata_model_output_rounded.csv")
-    )
-  ),
-  
+
   action(
     name = "make_consort_output",
     run = "r:latest analysis/make_other_output.R consort prevax_extf;vax;unvax_extf",
@@ -521,7 +496,7 @@ actions_list <- splice(
                  "stage1_data_cleaning_vax",
                  "stage1_data_cleaning_unvax_extf"),
     moderately_sensitive = list(
-      consort_output_rounded = glue("output/consort_output_rounded.csv")
+      consort_output_midpoint6 = glue("output/consort_output_midpoint6.csv")
     )
   ),
   
@@ -532,7 +507,7 @@ actions_list <- splice(
                  "table1_vax",
                  "table1_unvax_extf"),
     moderately_sensitive = list(
-      table1_output_rounded = glue("output/table1_output_rounded.csv")
+      table1_output_midpoint6 = glue("output/table1_output_midpoint6.csv")
     )
   ),
   
@@ -543,7 +518,7 @@ actions_list <- splice(
                  "extendedtable1_vax",
                  "extendedtable1_unvax_extf"),
     moderately_sensitive = list(
-      table1_output_rounded = glue("output/extendedtable1_output_rounded.csv")
+      table1_output_midpoint6 = glue("output/extendedtable1_output_midpoint6.csv")
     )
   ),
   
@@ -554,7 +529,7 @@ actions_list <- splice(
                  "table2_severity_vax",
                  "table2_severity_unvax_extf"),
     moderately_sensitive = list(
-      table2_output_rounded = glue("output/table2_severity_output_rounded.csv")
+      table2_output_midpoint6 = glue("output/table2_severity_output_midpoint6.csv")
     )
   ),
   
@@ -565,7 +540,7 @@ actions_list <- splice(
                  "table2_history_vax",
                  "table2_history_unvax_extf"),
     moderately_sensitive = list(
-      table2_output_rounded = glue("output/table2_history_output_rounded.csv")
+      table2_output_midpoint6 = glue("output/table2_history_output_midpoint6.csv")
     )
   ),
   
@@ -576,7 +551,7 @@ actions_list <- splice(
                  "venn_vax",
                  "venn_unvax_extf"),
     moderately_sensitive = list(
-      venn_output_rounded = glue("output/venn_output_rounded.csv")
+      venn_output_midpoint6 = glue("output/venn_output_midpoint6.csv")
     )
   ),
   
@@ -588,7 +563,7 @@ actions_list <- splice(
     needs = as.list(paste0("make_model_input-",active_analyses[grepl("-main-",active_analyses$name),]$name)),
     moderately_sensitive = list(
       aer_input = glue("output/aer_input-main.csv"),
-      aer_input_rounded = glue("output/aer_input-main-rounded.csv")
+      aer_input_midpoint6 = glue("output/aer_input-main-midpoint6.csv")
     )
   ),
   
