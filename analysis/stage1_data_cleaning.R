@@ -367,14 +367,15 @@ write.csv(consort,
 print('Perform redaction')
 
 consort$removed <- NULL
-consort$N <- roundmid_any(consort$N, to=threshold)
-consort$removed <- dplyr::lag(consort$N, default = dplyr::first(consort$N)) - consort$N
+consort$N_midpoint6 <- roundmid_any(consort$N, to=threshold)
+consort$removed_derived <- dplyr::lag(consort$N_midpoint6, default = dplyr::first(consort$N_midpoint6)) - consort$N_midpoint6
+consort$N <- NULL
 
 # Save rounded consort data ----------------------------------------------------
 print('Save rounded consort data ')
 
 write.csv(consort, 
-          file = paste0("output/consort_",cohort, "_rounded.csv"), 
+          file = paste0("output/consort_",cohort, "_midpoint6.csv"), 
           row.names=F)
 
 # Save stage 1 dataset ---------------------------------------------------------
