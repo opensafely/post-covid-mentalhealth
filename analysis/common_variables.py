@@ -36,7 +36,7 @@ def generate_common_variables(index_date_variable,exposure_end_date_variable,out
 
             ## COVID-19 
             
-                ### SGSS
+                ### SGSS
                 tmp_exp_date_covid19_confirmed_sgss=patients.with_test_result_in_sgss(
                     pathogen="SARS-CoV-2",
                     test_result="positive",
@@ -124,11 +124,10 @@ def generate_common_variables(index_date_variable,exposure_end_date_variable,out
                 ),
 
             ## Deregistraton date
-                dereg_date=patients.date_deregistered_from_all_supported_practices( 
-                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
+                deregistraton_date=patients.date_deregistered_from_all_supported_practices( 
                     date_format = 'YYYY-MM-DD',
                     return_expectations={
-                    "date": {"earliest": study_dates["pandemic_start"], "latest": "today"},
+                    "date": {"earliest": "2000-01-01", "latest": "today"},
                     "rate": "uniform",
                     "incidence": 0.01
                     },
@@ -484,22 +483,7 @@ def generate_common_variables(index_date_variable,exposure_end_date_variable,out
 
             ## Suicide
 
-                ### SUS
-                tmp_out_date_suicide_hes=patients.admitted_to_hospital(
-                    returning="date_admitted",
-                    with_these_diagnoses=suicide_icd10,
-                    between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
-                    date_format="YYYY-MM-DD",
-                    find_first_match_in_period=True,
-                    return_expectations={
-                        "date": {"earliest": study_dates["pandemic_start"], "latest" : "today"},
-                        "rate": "uniform",
-                        "incidence": 0.1,
-                    },
-                ),
-
-                ### Death registry
-                tmp_out_date_suicide_death=patients.with_these_codes_on_death_certificate(
+               out_date_suicide=patients.with_these_codes_on_death_certificate(
                     suicide_icd10,
                     returning="date_of_death",
                     between=[f"{index_date_variable}",f"{outcome_end_date_variable}"],
@@ -511,11 +495,6 @@ def generate_common_variables(index_date_variable,exposure_end_date_variable,out
                         "incidence": 0.1,
                     },
                 ),
-
-                ### Combined
-                out_date_suicide=patients.minimum_of(
-                    "tmp_out_date_suicide_hes", "tmp_out_date_suicide_death"
-                ),          
 
             ## Addiction
 
