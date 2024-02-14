@@ -123,16 +123,6 @@ def generate_common_variables(index_date_variable,exposure_end_date_variable,out
                     f"{index_date_variable}",
                 ),
 
-            ## Deregistraton date
-                deregistraton_date=patients.date_deregistered_from_all_supported_practices( 
-                    date_format = 'YYYY-MM-DD',
-                    return_expectations={
-                    "date": {"earliest": "2000-01-01", "latest": "today"},
-                    "rate": "uniform",
-                    "incidence": 0.01
-                    },
-                ),
-
         # Subgroup variables ----------------------------------------------------------------------
 
             ## COVID-19 severity
