@@ -487,7 +487,7 @@ for (c in cohorts) {
 tmp <- df
 tmp$analysis <- paste0("day0_",tmp$analysis)
 tmp$cut_points <- gsub("28","1;28",tmp$cut_points)
-df <- rbind(df,tmp)
+df <- tmp # rbind(df,tmp)
 
 # Assign unique name -----------------------------------------------------------
 
