@@ -110,4 +110,4 @@ colnames(df) <- c("Characteristic","Subcharacteristic","N (%) [midpoint6_derived
 # Save Table 1 -----------------------------------------------------------------
 print('Save rounded Table 1')
 
-write.csv(df, paste0("output/table1_",cohort,"_midpoint6.csv"), row.names = FALSE)
+write.csv(df, paste0("output/extendedtable1_",cohort,"_midpoint6.csv"), row.names = FALSE)
