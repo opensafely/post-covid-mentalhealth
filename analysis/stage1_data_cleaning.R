@@ -208,35 +208,35 @@ consort[nrow(consort)+1,] <- c("Quality assurance: Prostate cancer codes for wom
 
 # Inclusion criteria -----------------------------------------------------------
 
-print('Inclusion criteria: Alive on the first day of follow up')
+print('Inclusion criteria: Alive at index')
 
 input <- input %>% filter(index_date < death_date | is.na(death_date))
 
-consort[nrow(consort)+1,] <- c("Inclusion criteria: Alive on the first day of follow up",
+consort[nrow(consort)+1,] <- c("Inclusion criteria: Alive at index",
                                nrow(input))
 
-print('Inclusion criteria: Known age 18 or over on 01/06/2021')
+print('Inclusion criteria: Known age 18 or over at index')
 
-input <- subset(input, input$cov_num_age >= 18) # Subset input if age between 18 and 110 on 01/06/2021.
-consort[nrow(consort)+1,] <- c("Inclusion criteria: Known age 18 or over on 01/06/2021",
+input <- subset(input, input$cov_num_age >= 18) # Subset input if age between 18 and 110 at index.
+consort[nrow(consort)+1,] <- c("Inclusion criteria: Known age 18 or over at index",
                                nrow(input))
 
-print('Inclusion criteria: Known age 110 or under on 01/06/2021')
+print('Inclusion criteria: Known age 110 or under at index')
 
 input <- subset(input, input$cov_num_age <= 110) # Subset input if age between 18 and 110 on 01/06/2021.
-consort[nrow(consort)+1,] <- c("Inclusion criteria: Known age 110 or under on 01/06/2021",
+consort[nrow(consort)+1,] <- c("Inclusion criteria: Known age 110 or under at index",
                                nrow(input))
 
-print('Inclusion criteria: Known sex')
+print('Inclusion criteria: Known sex at index')
 
 input <- input[!is.na(input$cov_cat_sex),] # removes NAs, if any
-consort[nrow(consort)+1,] <- c("Inclusion criteria: Known sex",
+consort[nrow(consort)+1,] <- c("Inclusion criteria: Known sex at index",
                                nrow(input))
 
-print('Inclusion criteria: Known deprivation')
+print('Inclusion criteria: Known deprivation at index')
 
 input <- input[!is.na(input$cov_cat_deprivation),] # removes NAs, if any
-consort[nrow(consort)+1,] <- c("Inclusion criteria: Known deprivation",
+consort[nrow(consort)+1,] <- c("Inclusion criteria: Known deprivation at index",
                                nrow(input))
 
 print('Inclusion criteria: Six months follow up prior to index')
@@ -245,14 +245,14 @@ input <- subset(input, input$has_follow_up_previous_6months == TRUE)
 consort[nrow(consort)+1,] <- c("Inclusion criteria: Six months follow up prior to index",
                                nrow(input))
 
-print('Inclusion criteria: Active registration')
+print('Inclusion criteria: Active registration at index')
 
 input <- input %>%
   filter(is.na(deregistration_date) | (!is.na(deregistration_date) & deregistration_date>=index_date))
-consort[nrow(consort)+1,] <- c("Inclusion criteria: Active registration",
+consort[nrow(consort)+1,] <- c("Inclusion criteria: Active registration at index",
                                nrow(input))
 
-print('Inclusion criteria: Known region')
+print('Inclusion criteria: Known region at index')
 
 input <- input %>% mutate(cov_cat_region = as.character(cov_cat_region)) %>%
   filter(cov_cat_region != "Missing")%>%
@@ -260,7 +260,7 @@ input <- input %>% mutate(cov_cat_region = as.character(cov_cat_region)) %>%
 
 input$cov_cat_region <- relevel(input$cov_cat_region, ref = "East")
 
-consort[nrow(consort)+1,] <- c("Inclusion criteria: Known region",
+consort[nrow(consort)+1,] <- c("Inclusion criteria: Known region at index",
                                nrow(input))
 
 # Apply cohort specific inclusion criteria -------------------------------------
