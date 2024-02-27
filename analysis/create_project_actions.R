@@ -41,8 +41,8 @@ run_stata <- c("cohort_prevax_extf-day0_sub_covid_hospitalised-depression",
                "cohort_unvax_extf-day0_sub_ethnicity_other-depression",
                "cohort_vax-day0_sub_age_80_110-serious_mental_illness",
                "cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness",
-               "cohort_vax-sub_covid_nonhospitalised-eating_disorders",
-               "cohort_vax-main-eating_disorders",
+               #"cohort_vax-sub_covid_nonhospitalised-eating_disorders",
+               #"cohort_vax-main-eating_disorders",
                "cohort_prevax_extf-day0_sub_covid_hospitalised-addiction",
                "cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general",
                "cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders",
@@ -241,11 +241,11 @@ table2 <- function(cohort, focus){
   table2_names <- gsub("out_date_","",unique(active_analyses[active_analyses$cohort=={cohort},]$name))
   
   if (focus=="severity") {
-    table2_names <- table2_names[grepl("-main-",table2_names) | grepl("-sub_covid_",table2_names)]
+    table2_names <- table2_names[grepl("-day0_main-",table2_names) | grepl("-day0_sub_covid_",table2_names)]
   }
   
   if (focus=="history") {
-    table2_names <- table2_names[grepl("-sub_history_",table2_names)]
+    table2_names <- table2_names[grepl("-day0_sub_history_",table2_names)]
   }
   
   splice(
@@ -276,7 +276,7 @@ venn <- function(cohort){
       run = "r:latest analysis/venn.R",
       arguments = c(cohort),
       needs = c(as.list(glue("preprocess_data_{cohort}")),
-                as.list(paste0(glue("make_model_input-cohort_{cohort}-main-"),venn_outcomes))),
+                as.list(paste0(glue("make_model_input-cohort_{cohort}-day0_main-"),venn_outcomes))),
       moderately_sensitive = list(
         venn = glue("output/venn_{cohort}.csv"),
         venn_midpoint6 = glue("output/venn_{cohort}_midpoint6.csv")
@@ -559,11 +559,11 @@ actions_list <- splice(
   
   action(
     name = "make_aer_input",
-    run = "r:latest analysis/make_aer_input.R",
-    needs = as.list(paste0("make_model_input-",active_analyses[grepl("-main-",active_analyses$name),]$name)),
+    run = "r:latest analysis/make_aer_input.R day0_main",
+    needs = as.list(paste0("make_model_input-",active_analyses[grepl("-day0_main-",active_analyses$name),]$name)),
     moderately_sensitive = list(
-      aer_input = glue("output/aer_input-main.csv"),
-      aer_input_midpoint6 = glue("output/aer_input-main-midpoint6.csv")
+      aer_input = glue("output/aer_input-day0_main.csv"),
+      aer_input_midpoint6 = glue("output/aer_input-day0_main-midpoint6.csv")
     )
   ),
   

@@ -32,7 +32,7 @@ active_analyses <- readr::read_rds("lib/active_analyses.rds")
 
 outcomes <- gsub("out_date_","",
                  unique(active_analyses[active_analyses$cohort==cohort &
-                                     active_analyses$analysis=="main",]$outcome))
+                                     active_analyses$analysis=="day0_main",]$outcome))
 
 # Load Venn data ---------------------------------------------------------------
 print('Load Venn data')
@@ -67,7 +67,7 @@ for (outcome in outcomes) {
   # Load model input data ------------------------------------------------------
   print('Load model input data')
   
-  model_input <- readr::read_rds(paste0("output/model_input-cohort_",cohort,"-main-",outcome,".rds"))  
+  model_input <- readr::read_rds(paste0("output/model_input-cohort_",cohort,"-day0_main-",outcome,".rds"))  
   model_input <- model_input[!is.na(model_input$out_date),c("patient_id","out_date")]
   
   if (nrow(model_input)>0) {
