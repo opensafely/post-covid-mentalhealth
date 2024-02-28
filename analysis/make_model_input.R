@@ -71,7 +71,7 @@ for (i in 1:nrow(active_analyses)) {
   # Identify final list of variables to keep -----------------------------------
   print('Identify final list of variables to keep')
   
-  keep <- c("patient_id","index_date","exp_date","out_date","end_date_outcome")
+  keep <- c("patient_id","index_date","exp_date","out_date","end_date_exposure","end_date_outcome")
   varlists <- c("strata","covariate_age","covariate_sex","covariate_other")
   for (j in varlists) {
     if (active_analyses[i,j] == "NULL") {
