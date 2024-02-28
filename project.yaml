@@ -4850,6 +4850,36 @@ actions:
     - cox_ipw-cohort_unvax_extf-day0_sub_sex_male-serious_mental_illness
     - cox_ipw-cohort_vax-day0_sub_sex_male-depression
     - cox_ipw-cohort_vax-day0_sub_sex_male-serious_mental_illness
+    - stata_cox_ipw-cohort_unvax_extf-day0_main-addiction
+    - stata_cox_ipw-cohort_unvax_extf-day0_main-anxiety_ptsd
+    - stata_cox_ipw-cohort_vax-day0_main-eating_disorders
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_age_60_79-depression
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_age_60_79-serious_mental_illness
+    - stata_cox_ipw-cohort_unvax_extf-day0_sub_age_60_79-depression
+    - stata_cox_ipw-cohort_unvax_extf-day0_sub_age_60_79-serious_mental_illness
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_age_80_110-depression
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_age_80_110-serious_mental_illness
+    - stata_cox_ipw-cohort_unvax_extf-day0_sub_age_80_110-depression
+    - stata_cox_ipw-cohort_vax-day0_sub_age_80_110-serious_mental_illness
+    - stata_cox_ipw-cohort_unvax_extf-day0_sub_covid_history-depression
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-addiction
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_general
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-depression
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-eating_disorders
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-self_harm
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_hospitalised-serious_mental_illness
+    - stata_cox_ipw-cohort_unvax_extf-day0_sub_covid_hospitalised-addiction
+    - stata_cox_ipw-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
+    - stata_cox_ipw-cohort_unvax_extf-day0_sub_covid_hospitalised-serious_mental_illness
+    - stata_cox_ipw-cohort_vax-day0_sub_covid_hospitalised-anxiety_general
+    - stata_cox_ipw-cohort_vax-day0_sub_covid_hospitalised-depression
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_covid_nonhospitalised-addiction
+    - stata_cox_ipw-cohort_vax-day0_sub_covid_nonhospitalised-eating_disorders
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_ethnicity_black-serious_mental_illness
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_ethnicity_other-depression
+    - stata_cox_ipw-cohort_unvax_extf-day0_sub_ethnicity_other-depression
+    - stata_cox_ipw-cohort_prevax_extf-day0_sub_history_recent-serious_mental_illness
     outputs:
       moderately_sensitive:
         model_output: output/model_output.csv
