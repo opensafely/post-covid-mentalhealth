@@ -138,13 +138,17 @@ actions:
       highly_sensitive:
         cohort: output/input_prevax_extf_stage1.rds
 
-  describe_stage1_data_cleaning_prevax_extf:
-    run: r:latest analysis/describe_file.R input_prevax_extf_stage1 rds
+  stage1_data_cleaning_v2_prevax_extf:
+    run: r:latest analysis/stage1_data_cleaning_v2.R prevax_extf
     needs:
-    - stage1_data_cleaning_prevax_extf
+    - vax_eligibility_inputs
+    - preprocess_data_prevax_extf
     outputs:
       moderately_sensitive:
-        describe_model_input: output/describe-input_prevax_extf_stage1.txt
+        consort: output/consort_prevax_extf_v2.csv
+        consort_midpoint6: output/consort_prevax_extf_midpoint6_v2.csv
+      highly_sensitive:
+        cohort: output/input_prevax_extf_stage1_v2.rds
 
   ## Stage 1 - data cleaning - unvax_extf 
 
@@ -160,13 +164,17 @@ actions:
       highly_sensitive:
         cohort: output/input_unvax_extf_stage1.rds
 
-  describe_stage1_data_cleaning_unvax_extf:
-    run: r:latest analysis/describe_file.R input_unvax_extf_stage1 rds
+  stage1_data_cleaning_v2_unvax_extf:
+    run: r:latest analysis/stage1_data_cleaning_v2.R unvax_extf
     needs:
-    - stage1_data_cleaning_unvax_extf
+    - vax_eligibility_inputs
+    - preprocess_data_unvax_extf
     outputs:
       moderately_sensitive:
-        describe_model_input: output/describe-input_unvax_extf_stage1.txt
+        consort: output/consort_unvax_extf_v2.csv
+        consort_midpoint6: output/consort_unvax_extf_midpoint6_v2.csv
+      highly_sensitive:
+        cohort: output/input_unvax_extf_stage1_v2.rds
 
   ## Stage 1 - data cleaning - vax 
 
@@ -182,13 +190,17 @@ actions:
       highly_sensitive:
         cohort: output/input_vax_stage1.rds
 
-  describe_stage1_data_cleaning_vax:
-    run: r:latest analysis/describe_file.R input_vax_stage1 rds
+  stage1_data_cleaning_v2_vax:
+    run: r:latest analysis/stage1_data_cleaning_v2.R vax
     needs:
-    - stage1_data_cleaning_vax
+    - vax_eligibility_inputs
+    - preprocess_data_vax
     outputs:
       moderately_sensitive:
-        describe_model_input: output/describe-input_vax_stage1.txt
+        consort: output/consort_vax_v2.csv
+        consort_midpoint6: output/consort_vax_midpoint6_v2.csv
+      highly_sensitive:
+        cohort: output/input_vax_stage1_v2.rds
 
   ## Table 1 - prevax_extf 
 

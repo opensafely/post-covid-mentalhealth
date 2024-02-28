@@ -167,11 +167,16 @@ stage1_data_cleaning <- function(cohort){
       )
     ),
     action(
-      name = glue("describe_stage1_data_cleaning_{cohort}"),
-      run = glue("r:latest analysis/describe_file.R input_{cohort}_stage1 rds"),
-      needs = list(glue("stage1_data_cleaning_{cohort}")),
+      name = glue("stage1_data_cleaning_v2_{cohort}"),
+      run = glue("r:latest analysis/stage1_data_cleaning_v2.R"),
+      arguments = c(cohort),
+      needs = list("vax_eligibility_inputs",glue("preprocess_data_{cohort}")),
       moderately_sensitive = list(
-        describe_model_input = glue("output/describe-input_{cohort}_stage1.txt")
+        consort = glue("output/consort_{cohort}_v2.csv"),
+        consort_midpoint6 = glue("output/consort_{cohort}_midpoint6_v2.csv")
+      ),
+      highly_sensitive = list(
+        cohort = glue("output/input_{cohort}_stage1_v2.rds")
       )
     )
   )
