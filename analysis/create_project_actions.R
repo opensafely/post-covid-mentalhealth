@@ -529,7 +529,7 @@ actions_list <- splice(
   
   action(
     name = "make_table2_severity_output",
-    run = "r:latest analysis/make_table2_severity_output.R",
+    run = "r:latest analysis/make_other_output.R table2_severity prevax_extf;vax;unvax_extf",
     needs = list("table2_severity_prevax_extf",
                  "table2_severity_vax",
                  "table2_severity_unvax_extf"),
@@ -540,7 +540,7 @@ actions_list <- splice(
   
   action(
     name = "make_table2_history_output",
-    run = "r:latest analysis/make_table2_history_output.R",
+    run = "r:latest analysis/make_other_output.R table2_history prevax_extf;vax;unvax_extf",
     needs = list("table2_history_prevax_extf",
                  "table2_history_vax",
                  "table2_history_unvax_extf"),

@@ -4916,7 +4916,7 @@ actions:
         table1_output_midpoint6: output/extendedtable1_output_midpoint6.csv
 
   make_table2_severity_output:
-    run: r:latest analysis/make_table2_severity_output.R
+    run: r:latest analysis/make_other_output.R table2_severity prevax_extf;vax;unvax_extf
     needs:
     - table2_severity_prevax_extf
     - table2_severity_vax
@@ -4926,7 +4926,7 @@ actions:
         table2_output_midpoint6: output/table2_severity_output_midpoint6.csv
 
   make_table2_history_output:
-    run: r:latest analysis/make_table2_history_output.R
+    run: r:latest analysis/make_other_output.R table2_history prevax_extf;vax;unvax_extf
     needs:
     - table2_history_prevax_extf
     - table2_history_vax
