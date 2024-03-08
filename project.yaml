@@ -4551,8 +4551,6 @@ actions:
     - make_model_input-cohort_unvax_extf-day0_main-self_harm
     - make_model_input-cohort_unvax_extf-day0_main-serious_mental_illness
     - make_model_input-cohort_unvax_extf-day0_main-suicide
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_history-depression
-    - make_model_input-cohort_unvax_extf-day0_sub_covid_history-serious_mental_illness
     - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-addiction
     - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_general
     - make_model_input-cohort_unvax_extf-day0_sub_covid_hospitalised-anxiety_ptsd
@@ -4587,8 +4585,6 @@ actions:
     - make_model_input-cohort_vax-day0_main-self_harm
     - make_model_input-cohort_vax-day0_main-serious_mental_illness
     - make_model_input-cohort_vax-day0_main-suicide
-    - make_model_input-cohort_vax-day0_sub_covid_history-depression
-    - make_model_input-cohort_vax-day0_sub_covid_history-serious_mental_illness
     - make_model_input-cohort_vax-day0_sub_covid_hospitalised-addiction
     - make_model_input-cohort_vax-day0_sub_covid_hospitalised-anxiety_general
     - make_model_input-cohort_vax-day0_sub_covid_hospitalised-anxiety_ptsd

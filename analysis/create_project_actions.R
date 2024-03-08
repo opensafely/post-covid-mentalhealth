@@ -246,7 +246,7 @@ table2 <- function(cohort, focus){
   table2_names <- gsub("out_date_","",unique(active_analyses[active_analyses$cohort=={cohort},]$name))
   
   if (focus=="severity") {
-    table2_names <- table2_names[grepl("-day0_main-",table2_names) | grepl("-day0_sub_covid_",table2_names)]
+    table2_names <- table2_names[grepl("-day0_main-",table2_names) | grepl("-day0_sub_covid_hospitalised",table2_names) | grepl("-day0_sub_covid_nonhospitalised",table2_names)]
   }
   
   if (focus=="history") {
