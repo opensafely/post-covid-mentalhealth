@@ -22,8 +22,6 @@ print("Add less than 50 events")
 tmp <- readr::read_csv(path_model_output,
                        show_col_types = FALSE)
 
-tmp$source <- "R"
-
 tmp <- tmp[!is.na(tmp$error),colnames(df)]
 
 tmp$term <- NULL
@@ -141,10 +139,6 @@ df$episodes <- factor(df$episodes,
                       levels = c("Standard",
                                  "Day zero",
                                  "Detailed"))
-
-
-
-
 
 # Tidy table -------------------------------------------------------------------
 print("Tidy table")

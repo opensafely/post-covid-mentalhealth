@@ -4,10 +4,12 @@ print("Load data")
 df <- readr::read_csv("output/plot_model_output.csv",
                       show_col_types = FALSE)
 
+df <- df[!is.na(df$hr),]
+
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
-df <- df[df$analysis=="main",
+df <- df[df$analysis=="day0_main",
          c("cohort","outcome","outcome_time_median","model","term","hr","conf_low","conf_high")]
 
 df <- df[df$term!="days_pre",]

@@ -31,16 +31,16 @@ print('Make post-release directory')
 
 dir.create("output/post_release/", recursive = TRUE, showWarnings = FALSE)
 
+# Make master plot file --------------------------------------------------------
+print('Make master plot file')
+
+source("analysis/post_release/make_plot_data.R")
+
 # Run absolute excess risk -----------------------------------------------------
 print('Run absolute excess risk')
 
 source("analysis/post_release/fn-lifetable.R")
 source("analysis/post_release/lifetables_compiled.R")
-
-# Make master plot file --------------------------------------------------------
-print('Make master plot file')
-
-source("analysis/post_release/make_plot_data.R")
 
 # Identify tables and figures to run -------------------------------------------
 print('Identify tables and figures to run')

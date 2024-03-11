@@ -4,6 +4,8 @@ print("Load data")
 df <- readr::read_csv("output/plot_model_output.csv",
                       show_col_types = FALSE)
 
+df <- df[!is.na(df$hr),]
+
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
