@@ -2,6 +2,7 @@
 print('Load data')
 
 df <- read.csv("output/post_release/lifetables_compiled.csv")
+df <- df[df$day0==TRUE,]
 
 # Filter data ------------------------------------------------------------------
 print("Filter data")
@@ -83,6 +84,7 @@ ggplot2::ggplot(data = df[df$days<197,],
                                        color = aer_age, linetype = aer_sex)) +
   ggplot2::geom_line() +
   ggplot2::scale_x_continuous(lim = c(0,28), breaks = seq(0,28,4), labels = seq(0,28,4)) +
+  ggplot2::scale_y_continuous(lim = c(0,2), breaks = seq(0,2,0.5), labels = seq(0,2,0.5)) +
   ggplot2::scale_color_manual(values = c("#006d2c",
                                          "#31a354",
                                          "#74c476",
