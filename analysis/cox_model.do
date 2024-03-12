@@ -3,11 +3,10 @@
 local name "`1'"
 local day0 "`2'"
 
-/*
+
 // For local testing:
-local name "cohort_prevax_extf-day0_main-depression"
+local name "cohort_prevax_extf-day0_sub_sex_male-depression"
 local day0 "TRUE"
-*/
 
 * Set Ado file path
 
@@ -37,6 +36,11 @@ rename cov_cat_region region
 
 local prevax_cohort = regexm("`name'", "_pre")
 display "`prevax_cohort'"
+
+* Generate sex indicator
+
+local sub_sex = regexm("`name'", "sub_sex")
+display "`sub_sex'"
 
 * Replace NA with missing value that Stata recognises
 
@@ -154,10 +158,19 @@ tab time outcome_status
 di "Total follow-up in days: " fup_total
 bysort time: summarize(fup), detail
 
-stcox days* i.cov_cat_sex age_spline1 age_spline2, strata(region) vce(r)
-est store min, title(Age_Sex)
-stcox days* age_spline1 age_spline2 i.cov_cat_* cov_num_* cov_bin_*, strata(region) vce(r)
-est store max, title(Maximal)
+if `sub_sex'==1 {
+	stcox days* age_spline1 age_spline2, strata(region) vce(r)
+	est store min, title(Age_Sex)
+	stcox days* age_spline1 age_spline2 i.cov_cat_* cov_num_* cov_bin_*, strata(region) vce(r)
+	est store max, title(Maximal)
+}
+else {
+	stcox days* i.cov_cat_sex age_spline1 age_spline2, strata(region) vce(r)
+	est store min, title(Age_Sex)
+	stcox days* age_spline1 age_spline2 i.cov_cat_* cov_num_* cov_bin_*, strata(region) vce(r)
+	est store max, title(Maximal)	
+}
+
 
 estout * using "output/stata_model_output-`name'.txt", cells("b se t ci_l ci_u p") stats(risk N_fail N_sub N N_clust) replace 
 
