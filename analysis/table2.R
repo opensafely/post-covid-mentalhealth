@@ -36,11 +36,11 @@ active_analyses <- readr::read_rds("lib/active_analyses.rds")
 table2_names <- gsub("out_date_","",unique(active_analyses[active_analyses$cohort=={cohort},]$name))
 
 if (focus=="severity") {
-  table2_names <- table2_names[grepl("-main-",table2_names) | grepl("-sub_covid_",table2_names)]
+  table2_names <- table2_names[grepl("-day0_main-",table2_names) | grepl("-day0_sub_covid_hospitalised",table2_names) | grepl("-day0_sub_covid_nonhospitalised",table2_names)]
 }
 
 if (focus=="history") {
-  table2_names <- table2_names[grepl("-sub_history_",table2_names)]
+  table2_names <- table2_names[grepl("-day0_sub_history_",table2_names)]
 }
 
 active_analyses <- active_analyses[active_analyses$name %in% table2_names,]
@@ -134,10 +134,29 @@ write.csv(table2, paste0("output/table2_",focus,"_",cohort,".csv"), row.names = 
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
 
-table2[,setdiff(colnames(table2),c("name","cohort","exposure","outcome","analysis"))] <- lapply(table2[,setdiff(colnames(table2),c("name","cohort","exposure","outcome","analysis"))],
-                                            FUN=function(y){roundmid_any(as.numeric(y), to=threshold)})
+table2$sample_size_midpoint6 <- roundmid_any(as.numeric(table2$sample_size), threshold)
+table2$day0_events_midpoint6 <- roundmid_any(as.numeric(table2$day0_events), threshold)
+table2$total_exposed_midpoint6 <- roundmid_any(as.numeric(table2$total_exposed), threshold)
+table2$unexposed_events_midpoint6 <- roundmid_any(as.numeric(table2$unexposed_events), threshold)
+table2$exposed_events_midpoint6 <- roundmid_any(as.numeric(table2$exposed_events), threshold)
+table2$total_events_midpoint6_derived <- table2$unexposed_events_midpoint6 + table2$exposed_events_midpoint6
+
+table2 <- table2[,c("name",
+                    "cohort",
+                    "exposure",
+                    "outcome",
+                    "analysis",
+                    "unexposed_person_days",
+                    "unexposed_events_midpoint6",
+                    "exposed_person_days",
+                    "exposed_events_midpoint6",
+                    "total_person_days",
+                    "total_events_midpoint6_derived",
+                    "day0_events_midpoint6",
+                    "total_exposed_midpoint6",
+                    "sample_size_midpoint6")]
 
 # Save Table 2 -----------------------------------------------------------------
 print('Save rounded Table 2')
 
-write.csv(table2, paste0("output/table2_",focus,"_",cohort,"_rounded.csv"), row.names = FALSE)
+write.csv(table2, paste0("output/table2_",focus,"_",cohort,"_midpoint6.csv"), row.names = FALSE)

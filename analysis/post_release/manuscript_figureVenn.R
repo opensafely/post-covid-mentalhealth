@@ -1,8 +1,15 @@
+# Create directory -------------------------------------------------------------
+print("Create directory")
+
+fs::dir_create(here::here("output/post_release/", "figure_venn"))
+
 # Load data --------------------------------------------------------------------
 print("Load data")
 
 df <- readr::read_csv(path_venn,
                         show_col_types = FALSE)
+
+colnames(df) <- gsub("_midpoint6","",colnames(df))
 
 # Remove suicide (defined in death only) ---------------------------------------
 print("Remove suicide (defined in death only)")
@@ -33,7 +40,7 @@ for(i in 1:nrow(df)) {
   
   grid.draw(venn.plot)
   grid.newpage()
-  tiff(paste0("output/post_release/figure_venn-",df[i,]$cohort,"-",df[i,]$outcome,".tiff"), compression = "lzw")
+  tiff(paste0("output/post_release/figure_venn/figure_venn-",df[i,]$cohort,"-",df[i,]$outcome,".tiff"), compression = "lzw")
   grid.draw(venn.plot)
   dev.off()
   

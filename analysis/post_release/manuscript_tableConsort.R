@@ -4,6 +4,11 @@ print("Load data")
 df <- readr::read_csv(path_consort,
                       show_col_types = FALSE)
 
+
+df <- dplyr::rename(df,
+                    "N" = "N_midpoint6",
+                    "removed" = "removed_derived")
+
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 

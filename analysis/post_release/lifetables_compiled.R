@@ -30,7 +30,6 @@ model_output$time_period_end <- as.numeric(gsub(".*_", "",model_output$term))
 print('Load AER input')
 
 aer_input <- read_csv(path_aer_input)
-aer_input$analysis <- paste0("day0_",aer_input$analysis) # To save rerunning aer_input as day0 models use same sample but different analysis names 
 
 # Run AER function -------------------------------------------------------------
 print('Run AER function')
@@ -68,10 +67,10 @@ prevax_weightings <- aer_input[aer_input$cohort=="prevax_extf",
                                  "outcome",
                                  "aer_sex", 
                                  "aer_age", 
-                                 "sample_size")]
+                                 "sample_size_midpoint6")]
 
-prevax_weightings$weight <- prevax_weightings$sample_size/sum(prevax_weightings$sample_size)
-prevax_weightings$sample_size <- NULL
+prevax_weightings$weight <- prevax_weightings$sample_size_midpoint6/sum(prevax_weightings$sample_size_midpoint6)
+prevax_weightings$sample_size_midpoint6 <- NULL
 
 # Calculate overall AER --------------------------------------------------------
 print('Calculate overall AER')
