@@ -10,7 +10,7 @@ df <- df[!is.na(df$hr),]
 print("Filter data")
 
 df <- df[df$outcome %in% c("depression","serious_mental_illness") &
-           df$model=="mdl_max_adj",
+           df$model=="mdl_max_adj" & grepl("days",df$term),
          c("cohort","analysis","outcome","outcome_time_median","term","hr","conf_low","conf_high")]
 
 df <- df[!(df$term %in% c("days_pre","days0_1")),]
@@ -96,7 +96,7 @@ for (i in unique(df$analysis_group)){
                            position = ggplot2::position_dodge(width = 0)) +
     ggplot2::geom_line(position = ggplot2::position_dodge(width = 0)) +
     ggplot2::scale_color_manual(breaks = c("prevax_extf", "vax", "unvax_extf"),
-                                labels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
+                                labels = c("Pre-vaccine availability (Jan 1 2020 - Dec 14 2021)",
                                            "Vaccinated (Jun 1 2021 - Dec 14 2021)",
                                            "Unvaccinated (Jun 1 2021 - Dec 14 2021)"),
                                 values = c("#d2ac47", "#58764c", "#0018a8")) +
@@ -113,25 +113,25 @@ for (i in unique(df$analysis_group)){
                    plot.background = ggplot2::element_rect(fill = "white", colour = "white"))
   
   if (grepl("history_exposure",i)) {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
+    p + ggplot2::scale_y_continuous(lim = c(0.25,20), breaks = c(0.25,0.5,1,2,4,8,16,32), trans = "log") +
       ggplot2::scale_x_continuous(lim = c(0,84), breaks = seq(0,84,14), labels = seq(0,84,14)/7) +
       ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE))
     plot_width <- 297*0.5
   } else if (facet_cols==1) {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
+    p + ggplot2::scale_y_continuous(lim = c(0.25,20), breaks = c(0.25,0.5,1,2,4,8,16,32), trans = "log") +
       ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
       ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))
     plot_width <- 297*0.5
   } else if (facet_cols==2) {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
+    p + ggplot2::scale_y_continuous(lim = c(0.25,20), breaks = c(0.25,0.5,1,2,4,8,16,32), trans = "log") +
       ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
       ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(ncol = 1, byrow = TRUE)) 
     plot_width <- 297*0.7
   } else {
-    p + ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
+    p + ggplot2::scale_y_continuous(lim = c(0.25,20), breaks = c(0.25,0.5,1,2,4,8,16,32), trans = "log") +
       ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
       ggplot2::facet_wrap(~factor(facet_label2), ncol = facet_cols) +
       ggplot2::guides(color=ggplot2::guide_legend(nrow = 1, byrow = TRUE))

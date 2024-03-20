@@ -151,7 +151,7 @@ df <- dplyr::rename(df,
                     "Analysis" = "analysis_label",
                     "Outcome" = "outcome_label",
                     "Time since COVID-19" = "weeks",
-                    "Pre-vaccination cohort" = "prevax_extf",
+                    "Pre-vaccine availability cohort" = "prevax_extf",
                     "Vaccinated cohort" = "vax",
                     "Unvaccinated cohort" = "unvax_extf")
 

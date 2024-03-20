@@ -51,7 +51,7 @@ df <- dplyr::rename(df, "cohort_label" = "label")
 print("Order cohorts")
 
 df$cohort_label <- factor(df$cohort_label,
-                          levels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
+                          levels = c("Pre-vaccine availability (Jan 1 2020 - Dec 14 2021)",
                                      "Vaccinated (Jun 1 2021 - Dec 14 2021)",
                                      "Unvaccinated (Jun 1 2021 - Dec 14 2021)"))
 
@@ -64,7 +64,7 @@ facet_info$facet_order <- 1:nrow(facet_info)
 
 facet_info$facet_label <- ""
 for (j in 1:nrow(facet_info)) {
-  facet_info[j,]$facet_label <- paste0(ifelse(facet_info[j,]$cohort_label=="Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
+  facet_info[j,]$facet_label <- paste0(ifelse(facet_info[j,]$cohort_label=="Pre-vaccine availability (Jan 1 2020 - Dec 14 2021)",
                                               facet_info[j,]$outcome_label,
                                               paste0(rep(" ",j),collapse = "")),
                                        "\n\n",facet_info[j,]$cohort_label)

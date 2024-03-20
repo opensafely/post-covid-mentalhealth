@@ -9,10 +9,10 @@ df <- df[!is.na(df$hr),]
 # Filter data ------------------------------------------------------------------
 print("Filter data")
 
-df <- df[df$analysis=="day0_main",
+df <- df[df$analysis=="day0_main" & grepl("days",df$term),
          c("cohort","outcome","outcome_time_median","model","term","hr","conf_low","conf_high")]
 
-df <- df[df$term!="days_pre",]
+df <- df[!(df$term %in% c("days_pre","days0_1")),]
 
 # Make columns numeric ---------------------------------------------------------
 print("Make columns numeric")
@@ -53,13 +53,13 @@ ggplot2::ggplot(data = df,
                                                 width = 0), 
                          position = ggplot2::position_dodge(width = 0)) +
   ggplot2::geom_line(position = ggplot2::position_dodge(width = 0), ggplot2::aes(linetype=model)) +
-  ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
+  ggplot2::scale_y_continuous(lim = c(0.25,20), breaks = c(0.25,0.5,1,2,4,8,16,32), trans = "log") +
   ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
   ggplot2::scale_linetype_manual(values=c("solid", "dashed"), 
                                  breaks = c("mdl_max_adj", "mdl_age_sex"),
                                 labels = c("Maximally adjusted","Age- and sex- adjusted")) +
   ggplot2::scale_color_manual(breaks = c("prevax_extf", "vax", "unvax_extf"),
-                              labels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
+                              labels = c("Pre-vaccine availability (Jan 1 2020 - Dec 14 2021)",
                                         "Vaccinated (Jun 1 2021 - Dec 14 2021)",
                                         "Unvaccinated (Jun 1 2021 - Dec 14 2021)"),
                               values = c("#d2ac47", "#58764c", "#0018a8")) +
@@ -98,10 +98,10 @@ ggplot2::ggplot(data = df[df$model=="mdl_max_adj" & !(df$outcome %in% c("depress
                                                 width = 0), 
                          position = ggplot2::position_dodge(width = 0)) +
   ggplot2::geom_line(position = ggplot2::position_dodge(width = 0)) +
-  ggplot2::scale_y_continuous(lim = c(0.5,32), breaks = c(0.5,1,2,4,8,16,32), trans = "log") +
+  ggplot2::scale_y_continuous(lim = c(0.25,20), breaks = c(0.25,0.5,1,2,4,8,16,32), trans = "log") +
   ggplot2::scale_x_continuous(lim = c(0,511), breaks = seq(0,511,56), labels = seq(0,511,56)/7) +
   ggplot2::scale_color_manual(breaks = c("prevax_extf", "vax", "unvax_extf"),
-                              labels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
+                              labels = c("Pre-vaccine availability (Jan 1 2020 - Dec 14 2021)",
                                          "Vaccinated (Jun 1 2021 - Dec 14 2021)",
                                          "Unvaccinated (Jun 1 2021 - Dec 14 2021)"),
                               values = c("#d2ac47", "#58764c", "#0018a8")) +

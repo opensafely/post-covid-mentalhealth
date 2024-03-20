@@ -1,8 +1,11 @@
 # Load data --------------------------------------------------------------------
 print("Load data")
 
-df <- readr::read_csv(path_table2,
+df <- readr::read_csv(path_table2_severity,
                       show_col_types = FALSE)
+
+colnames(df) <- gsub("_midpoint6","",colnames(df))
+df$analysis <- gsub("day0_","",df$analysis)
 
 # Keep totals ------------------------------------------------------------------
 print("Keep totals")
@@ -67,11 +70,11 @@ print("Order outcomes")
 
 df$outcome_label <- factor(df$outcome_label,
                            levels = c("N",
+                                      "Depression",
+                                      "Serious mental illness",
                                       "General anxiety",
                                       "Post-traumatic stress disorder",
-                                      "Depression",
                                       "Eating disorders",
-                                      "Serious mental illness",
                                       "Addiction",
                                       "Self-harm",
                                       "Suicide"))
@@ -92,4 +95,4 @@ df <- dplyr::rename(df,
 # Save table -------------------------------------------------------------------
 print("Save table")
 
-readr::write_csv(df, "output/post_release/table2.csv", na = "-")
+readr::write_csv(df, "output/post_release/table2_severity.csv", na = "-")

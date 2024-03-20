@@ -48,6 +48,8 @@ print('Identify tables and figures to run')
 tables <- list.files(path = "analysis/post_release/", 
                      pattern = "manuscript_table")
 
+tables <- c(tables, "manuscript_extendedtable1.R")
+
 figures <- list.files(path = "analysis/post_release/", 
                       pattern = "manuscript_figure")
 
