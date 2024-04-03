@@ -81,7 +81,7 @@ ggplot2::ggplot(data = df,
 # Save plot --------------------------------------------------------------------
 print("Save plot")
 
-ggplot2::ggsave("output/post_release/figureAdj.png", 
+ggplot2::ggsave("output/post_release/figureAdj.eps", 
                 height = 297, width = 210, 
                 unit = "mm", dpi = 600, scale = 0.8)
 
@@ -122,6 +122,6 @@ ggplot2::ggplot(data = df[df$model=="mdl_max_adj" & !(df$outcome %in% c("depress
 # Save plot --------------------------------------------------------------------
 print("Save plot")
 
-ggplot2::ggsave("output/post_release/figureOther.png", 
+ggplot2::ggsave("output/post_release/figureOther.eps", 
                 height = 297*0.82, width = 210, 
                 unit = "mm", dpi = 600, scale = 0.8)

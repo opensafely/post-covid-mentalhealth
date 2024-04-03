@@ -114,5 +114,5 @@ ggplot2::ggplot(data = df[df$days<197,],
 # Save plot --------------------------------------------------------------------
 print("Save plot")
 
-ggplot2::ggsave(paste0("output/post_release/figureAER.png"), 
+ggplot2::ggsave("output/post_release/figureAER.eps", 
                 height = 210, width = 297, unit = "mm", dpi = 600, scale = 1)

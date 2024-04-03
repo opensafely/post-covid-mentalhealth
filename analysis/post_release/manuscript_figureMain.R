@@ -141,7 +141,7 @@ for (i in unique(df$analysis_group)){
   # Save plot ------------------------------------------------------------------
   print("Save plot")
   
-  ggplot2::ggsave(paste0("output/post_release/figure_",gsub("day0_","",i),".png"), 
+  ggplot2::ggsave(paste0("output/post_release/figure_",gsub("day0_","",i),".eps"),
                   height = 210, width = plot_width, 
                   unit = "mm", dpi = 600, scale = 0.8)
 }
