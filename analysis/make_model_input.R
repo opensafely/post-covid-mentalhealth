@@ -15,7 +15,7 @@ print('Specify arguments')
 args <- commandArgs(trailingOnly=TRUE)
 
 if(length(args)==0){
-  name <- "all" # prepare datasets for all active analyses 
+  name <- "cohort_prevax_extf-sub_sex_female-depression" # prepare datasets for all active analyses 
   # name <- "cohort_vax-sub_history_none-depression" # prepare datasets for all active analyses whose name contains X
   # name <- "vax-depression-main;vax-depression-sub_covid_hospitalised;vax-depression-sub_covid_nonhospitalised" # prepare datasets for specific active analyses
 } else {
@@ -48,10 +48,10 @@ for (i in 1:nrow(active_analyses)) {
   # Load data ------------------------------------------------------------------
   print(paste0("Load data for ",active_analyses$name[i]))
   
-  input <- dplyr::as_tibble(readr::read_rds(paste0("output/input_",active_analyses$cohort[i],"_stage1_v1.rds"))) # v1 is the version where suicide has been updated
+  input <- dplyr::as_tibble(readr::read_rds(paste0("output/input_",active_analyses$cohort[i],"_stage1.rds")))
   
-  # Restrict to required variables ---------------------------------------------
-  print('Restrict to required variables')
+  # Restrict to required variables for dataset preparation ---------------------
+  print('Restrict to required variables for dataset preparation')
   
   input <- input[,unique(c("patient_id",
                            "index_date",
@@ -67,6 +67,21 @@ for (i in 1:nrow(active_analyses)) {
                            "cov_num_age",
                            "cov_cat_ethnicity",
                            colnames(input)[grepl("cov_cat_history_",colnames(input))]))]
+  
+  # Identify final list of variables to keep -----------------------------------
+  print('Identify final list of variables to keep')
+  
+  keep <- c("patient_id","index_date","exp_date","out_date","end_date_exposure","end_date_outcome")
+  varlists <- c("strata","covariate_age","covariate_sex","covariate_other")
+  for (j in varlists) {
+    if (active_analyses[i,j] == "NULL") {
+      tmp <- NULL
+    } else {
+      tmp <- stringr::str_split(as.vector(active_analyses[i,j]), ";")[[1]]
+    }
+    keep <- c(keep,tmp)
+    rm(tmp)
+  }
   
   # Remove outcomes outside of follow-up time ----------------------------------
   print('Remove outcomes outside of follow-up time')
@@ -95,7 +110,8 @@ for (i in 1:nrow(active_analyses)) {
     
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE,]
     
-    df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
+    df <- df %>%
+      dplyr::select(tidyselect::all_of(keep))
     
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")
@@ -119,7 +135,8 @@ for (i in 1:nrow(active_analyses)) {
     
     df <- df[df$end_date_outcome>=df$index_date,]
     
-    df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
+    df <- df %>%
+      dplyr::select(tidyselect::all_of(keep))
     
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")
@@ -144,7 +161,8 @@ for (i in 1:nrow(active_analyses)) {
     df <- df[df$end_date_outcome>=df$index_date,]
     df$index_date <- as.Date(df$index_date)
     
-    df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
+    df <- df %>%
+      dplyr::select(tidyselect::all_of(keep))
     
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")
@@ -161,7 +179,8 @@ for (i in 1:nrow(active_analyses)) {
     
     df <- input[input$sub_bin_covid19_confirmed_history==TRUE,]
     
-    df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
+    df <- df %>%
+      dplyr::select(tidyselect::all_of(keep))
     
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")
@@ -181,7 +200,8 @@ for (i in 1:nrow(active_analyses)) {
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_sex==sex,]
     
-    df[,c(colnames(df)[grepl("sub_",colnames(df))],"cov_cat_sex")] <- NULL
+    df <- df %>%
+      dplyr::select(tidyselect::all_of(keep))
     
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")
@@ -203,7 +223,8 @@ for (i in 1:nrow(active_analyses)) {
                   input$cov_num_age>=min_age &
                   input$cov_num_age<ifelse(max_age==110,max_age+1,max_age),]
     
-    df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
+    df <- df %>%
+      dplyr::select(tidyselect::all_of(keep))
 
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")
@@ -224,7 +245,8 @@ for (i in 1:nrow(active_analyses)) {
     df <- input[input$sub_bin_covid19_confirmed_history==FALSE & 
                   input$cov_cat_ethnicity==ethnicity,]
     
-    df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
+    df <- df %>%
+      dplyr::select(tidyselect::all_of(keep))
     
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")
@@ -245,7 +267,8 @@ for (i in 1:nrow(active_analyses)) {
     df <- dplyr::rename(df, "history" = gsub("out_date","cov_cat_history",active_analyses$outcome[i]))
     df <- df[df$history==history & !is.na(df$history),]
     
-    df[,colnames(df)[grepl("sub_",colnames(df))]] <- NULL
+    df <- df %>%
+      dplyr::select(tidyselect::all_of(keep))
     
     check_vitals(df)
     readr::write_rds(df, file.path("output", paste0("model_input-",active_analyses$name[i],".rds")), compress = "gz")

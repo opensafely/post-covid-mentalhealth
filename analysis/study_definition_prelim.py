@@ -237,5 +237,15 @@ study = StudyDefinition(
 
         **jcvi_variables,
         
+    # Deregistration date
     
+        deregistration_date=patients.date_deregistered_from_all_supported_practices( 
+            date_format = 'YYYY-MM-DD',
+            return_expectations={
+            "date": {"earliest": "2000-01-01", "latest": "today"},
+            "rate": "uniform",
+            "incidence": 0.01
+            },
+        ),
+
 )

@@ -62,16 +62,17 @@ df <- read_csv(paste0("output/input_",cohort_name,".csv.gz"),
 
 message(paste0("Dataset has been read successfully with N = ", nrow(df), " rows"))
 
-# Add death_date from prelim data ----------------------------------------------
+# Add death_date and deregistration_date from prelim data ----------------------
 
 prelim_data <- read_csv("output/index_dates.csv.gz")
-prelim_data <- prelim_data[,c("patient_id","death_date")]
+prelim_data <- prelim_data[,c("patient_id","death_date","deregistration_date")]
 prelim_data$patient_id <- as.character(prelim_data$patient_id)
 prelim_data$death_date <- as.Date(prelim_data$death_date)
+prelim_data$deregistration_date <- as.Date(prelim_data$deregistration_date)
 
 df <- df %>% inner_join(prelim_data,by="patient_id")
 
-message("Death date added!")
+message("Death and deregistration dates added!")
 
 # Format columns ---------------------------------------------------------------
 
@@ -126,10 +127,10 @@ message("COVID19 severity determined successfully")
 
 df1 <- df %>% 
   select(patient_id,
-         "death_date",
+         death_date,
          starts_with("index_date_"),
          has_follow_up_previous_6months,
-         dereg_date,
+         deregistration_date,
          starts_with("end_date_"),
          contains("sub_"), # Subgroups
          contains("exp_"), # Exposures

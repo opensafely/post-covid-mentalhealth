@@ -22,8 +22,6 @@ print("Add less than 50 events")
 tmp <- readr::read_csv(path_model_output,
                        show_col_types = FALSE)
 
-tmp$source <- "R"
-
 tmp <- tmp[!is.na(tmp$error),colnames(df)]
 
 tmp$term <- NULL
@@ -142,10 +140,6 @@ df$episodes <- factor(df$episodes,
                                  "Day zero",
                                  "Detailed"))
 
-
-
-
-
 # Tidy table -------------------------------------------------------------------
 print("Tidy table")
 
@@ -157,7 +151,7 @@ df <- dplyr::rename(df,
                     "Analysis" = "analysis_label",
                     "Outcome" = "outcome_label",
                     "Time since COVID-19" = "weeks",
-                    "Pre-vaccination cohort" = "prevax_extf",
+                    "Pre-vaccine availability cohort" = "prevax_extf",
                     "Vaccinated cohort" = "vax",
                     "Unvaccinated cohort" = "unvax_extf")
 

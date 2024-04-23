@@ -45,12 +45,12 @@ cohorts <- c("vax","unvax_extf","prevax_extf")
 
 # Specify outcomes -------------------------------------------------------------
 
-## Outcomes for which we will RUN ALL analyses
+## Outcomes for which we will run ALL analyses
 
 outcomes_runall <- c("out_date_depression", 
                      "out_date_serious_mental_illness")
 
-## Outcomes for which we will RUN MAIN analyses only
+## Outcomes for which we will run MAIN analyses only
 
 outcomes_runmain <- c(outcomes_runall, 
                       "out_date_anxiety_general", 
@@ -484,10 +484,8 @@ for (c in cohorts) {
 
 # Add day 0 analyses -----------------------------------------------------------
 
-tmp <- df
-tmp$analysis <- paste0("day0_",tmp$analysis)
-tmp$cut_points <- gsub("28","1;28",tmp$cut_points)
-df <- rbind(df,tmp)
+df$analysis <- paste0("day0_",df$analysis)
+df$cut_points <- gsub("28","1;28",df$cut_points)
 
 # Assign unique name -----------------------------------------------------------
 

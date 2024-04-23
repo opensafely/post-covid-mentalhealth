@@ -4,6 +4,8 @@ print("Load data")
 df <- readr::read_csv(path_table1,
                       show_col_types = FALSE)
 
+colnames(df) <- gsub(" \\[.*","",colnames(df))
+
 # Pivot table ------------------------------------------------------------------
 print("Pivot table")
 

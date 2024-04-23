@@ -2,6 +2,7 @@
 print('Load data')
 
 df <- read.csv("output/post_release/lifetables_compiled.csv")
+df <- df[df$day0==TRUE,]
 
 # Filter data ------------------------------------------------------------------
 print("Filter data")
@@ -50,7 +51,7 @@ df <- dplyr::rename(df, "cohort_label" = "label")
 print("Order cohorts")
 
 df$cohort_label <- factor(df$cohort_label,
-                          levels = c("Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
+                          levels = c("Pre-vaccine availability (Jan 1 2020 - Dec 14 2021)",
                                      "Vaccinated (Jun 1 2021 - Dec 14 2021)",
                                      "Unvaccinated (Jun 1 2021 - Dec 14 2021)"))
 
@@ -63,7 +64,7 @@ facet_info$facet_order <- 1:nrow(facet_info)
 
 facet_info$facet_label <- ""
 for (j in 1:nrow(facet_info)) {
-  facet_info[j,]$facet_label <- paste0(ifelse(facet_info[j,]$cohort_label=="Pre-vaccination (Jan 1 2020 - Dec 14 2021)",
+  facet_info[j,]$facet_label <- paste0(ifelse(facet_info[j,]$cohort_label=="Pre-vaccine availability (Jan 1 2020 - Dec 14 2021)",
                                               facet_info[j,]$outcome_label,
                                               paste0(rep(" ",j),collapse = "")),
                                        "\n\n",facet_info[j,]$cohort_label)
@@ -83,6 +84,7 @@ ggplot2::ggplot(data = df[df$days<197,],
                                        color = aer_age, linetype = aer_sex)) +
   ggplot2::geom_line() +
   ggplot2::scale_x_continuous(lim = c(0,28), breaks = seq(0,28,4), labels = seq(0,28,4)) +
+  ggplot2::scale_y_continuous(lim = c(0,2), breaks = seq(0,2,0.5), labels = seq(0,2,0.5)) +
   ggplot2::scale_color_manual(values = c("#006d2c",
                                          "#31a354",
                                          "#74c476",
@@ -112,5 +114,5 @@ ggplot2::ggplot(data = df[df$days<197,],
 # Save plot --------------------------------------------------------------------
 print("Save plot")
 
-ggplot2::ggsave(paste0("output/post_release/figureAER.png"), 
+ggplot2::ggsave("output/post_release/figureAER.eps", 
                 height = 210, width = 297, unit = "mm", dpi = 600, scale = 1)

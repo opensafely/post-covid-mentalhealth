@@ -7,7 +7,7 @@ eating_disorders,Eating disorders,,
 self_harm,Self-harm,,
 serious_mental_illness,Serious mental illness,,
 suicide,Suicide,,
-prevax,Pre-vaccination (Jan 1 2020 - Jun 18 2021),,
+prevax,Pre-vaccine availability (Jan 1 2020 - Jun 18 2021),,
 vax,Vaccinated (Jun 1 2021 - Dec 14 2021),,
 unvax,Unvaccinated (Jun 1 2021 - Dec 14 2021),,
 main,All COVID-19,main,1
@@ -28,7 +28,7 @@ sub_history_recent,"Prior history of event, within six months",history_outcome,2
 sub_sex_female,Sex: Female,sex,1
 sub_sex_male,Sex: Male,sex,2
 sub_covid_history,History of COVID-19,history_exposure,1
-prevax_extf,Pre-vaccination (Jan 1 2020 - Dec 14 2021),,
+prevax_extf,Pre-vaccine availability (Jan 1 2020 - Dec 14 2021),,
 unvax_extf,Unvaccinated (Jun 1 2021 - Dec 14 2021),,
 cov_bin_ami,Acute myocardial infarction ,,
 cov_bin_cancer,Cancer ,,

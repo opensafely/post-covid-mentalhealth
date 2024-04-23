@@ -4,14 +4,14 @@ print("Load data")
 df <- readr::read_csv(path_extendedtable1,
                       show_col_types = FALSE)
 
+colnames(df) <- gsub(" \\[.*","",colnames(df))
+
 # Pivot table ------------------------------------------------------------------
 print("Pivot table")
 
 df <- tidyr::pivot_wider(df, 
                          names_from = "cohort",
                          values_from = c("N (%)","COVID-19 diagnoses"))
-
-
 
 # Remove diabetes components ---------------------------------------------------
 print("Remove diabetes components")

@@ -43,9 +43,12 @@ df <- tidyr::pivot_wider(df,
 # Difference attributable to day0 ----------------------------------------------
 print("Difference attributable to day0")
 
-df$prevax_extf_day0diff <- (1-(df$prevax_extf_day0FALSE/df$prevax_extf_day0TRUE))*100
-df$vax_day0diff <- (1-(df$vax_day0FALSE/df$vax_day0TRUE))*100
-df$unvax_extf_day0diff <- (1-(df$unvax_extf_day0FALSE/df$unvax_extf_day0TRUE))*100
+df <- df %>%
+  dplyr::group_by(outcome_label) %>%
+  dplyr::mutate(prevax_extf_day0diff = prevax_extf_day0TRUE-prevax_extf_day0FALSE,
+                vax_day0diff = vax_day0TRUE-vax_day0FALSE,
+                unvax_extf_day0diff = unvax_extf_day0TRUE-unvax_extf_day0FALSE) %>%
+  dplyr::ungroup()
 
 # Round numerics ---------------------------------------------------------------
 print("Round numerics")

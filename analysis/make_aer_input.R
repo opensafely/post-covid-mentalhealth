@@ -5,6 +5,17 @@ library(readr)
 library(dplyr)
 library(magrittr)
 
+# Specify command arguments ----------------------------------------------------
+print('Specify command arguments')
+
+args <- commandArgs(trailingOnly=TRUE)
+
+if(length(args)==0){
+  analysis <- "day0_main"
+} else {
+  analysis <- args[[1]]
+}
+
 # Specify redaction threshold --------------------------------------------------
 print('Specify redaction threshold')
 
@@ -14,18 +25,6 @@ threshold <- 6
 print('Source common functions')
 
 source("analysis/utility.R")
-
-# Specify arguments ------------------------------------------------------------
-print('Specify arguments')
-
-args <- commandArgs(trailingOnly=TRUE)
-
-if(length(args)==0){
-  analysis <- "main"
-} else {
-  analysis <- args[[1]]
-}
-
 
 # Load active analyses ---------------------------------------------------------
 print('Load active analyses')
@@ -62,7 +61,7 @@ for (i in 1:nrow(active_analyses)) {
   ## Load data -----------------------------------------------------------------
   print(paste0("Load data for ",active_analyses$name[i]))
   
-  model_input <- read_rds(paste0("output/model_input-cohort_",active_analyses$cohort[i],"-main-",active_analyses$outcome[i],".rds"))
+  model_input <- read_rds(paste0("output/model_input-cohort_",active_analyses$cohort[i],"-",analysis,"-",active_analyses$outcome[i],".rds"))
   model_input <- model_input[,c("patient_id","index_date","exp_date","out_date","end_date_exposure","end_date_outcome","cov_cat_sex","cov_num_age")]
   
   for (sex in c("Female","Male")) {
@@ -140,10 +139,12 @@ write.csv(input, paste0("output/aer_input-",analysis,".csv"), row.names = FALSE)
 # Perform redaction ------------------------------------------------------------
 print('Perform redaction')
 
-input[,setdiff(colnames(input),c("aer_sex","aer_age","analysis","cohort","outcome"))] <- lapply(input[,setdiff(colnames(input),c("aer_sex","aer_age","analysis","cohort","outcome"))],
-                                                                                     FUN=function(y){roundmid_any(as.numeric(y), to=threshold)})
-
+input$unexposed_events_midpoint6 <- roundmid_any(as.numeric(input$unexposed_events), to=threshold)
+input$total_exposed_midpoint6 <- roundmid_any(as.numeric(input$total_exposed), to=threshold)
+input$sample_size_midpoint6 <- roundmid_any(as.numeric(input$sample_size), to=threshold)
+input[,c("unexposed_events","total_exposed","sample_size")] <- NULL
+  
 # Save rounded AER input -------------------------------------------------------
 print('Save rounded AER input')
 
-write.csv(input, paste0("output/aer_input-",analysis,"-rounded.csv"), row.names = FALSE)
+write.csv(input, paste0("output/aer_input-",analysis,"-midpoint6.csv"), row.names = FALSE)
