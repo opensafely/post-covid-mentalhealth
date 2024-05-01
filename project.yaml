@@ -4807,6 +4807,110 @@ actions:
         venn: output/venn_vax.csv
         venn_midpoint6: output/venn_vax_midpoint6.csv
 
+  ## Cohort overlap - addiction 
+
+  cohortoverlap_addiction:
+    run: r:latest analysis/cohortoverlap.R addiction
+    needs:
+    - make_model_input-cohort_prevax_extf-day0_main-addiction
+    - make_model_input-cohort_vax-day0_main-addiction
+    - make_model_input-cohort_unvax_extf-day0_main-addiction
+    outputs:
+      moderately_sensitive:
+        cohortoverlap: output/cohortoverlap_addiction.csv
+        cohortoverlap_midpoint6: output/cohortoverlap_addiction_midpoint6.csv
+
+  ## Cohort overlap - anxiety_general 
+
+  cohortoverlap_anxiety_general:
+    run: r:latest analysis/cohortoverlap.R anxiety_general
+    needs:
+    - make_model_input-cohort_prevax_extf-day0_main-anxiety_general
+    - make_model_input-cohort_vax-day0_main-anxiety_general
+    - make_model_input-cohort_unvax_extf-day0_main-anxiety_general
+    outputs:
+      moderately_sensitive:
+        cohortoverlap: output/cohortoverlap_anxiety_general.csv
+        cohortoverlap_midpoint6: output/cohortoverlap_anxiety_general_midpoint6.csv
+
+  ## Cohort overlap - anxiety_ptsd 
+
+  cohortoverlap_anxiety_ptsd:
+    run: r:latest analysis/cohortoverlap.R anxiety_ptsd
+    needs:
+    - make_model_input-cohort_prevax_extf-day0_main-anxiety_ptsd
+    - make_model_input-cohort_vax-day0_main-anxiety_ptsd
+    - make_model_input-cohort_unvax_extf-day0_main-anxiety_ptsd
+    outputs:
+      moderately_sensitive:
+        cohortoverlap: output/cohortoverlap_anxiety_ptsd.csv
+        cohortoverlap_midpoint6: output/cohortoverlap_anxiety_ptsd_midpoint6.csv
+
+  ## Cohort overlap - depression 
+
+  cohortoverlap_depression:
+    run: r:latest analysis/cohortoverlap.R depression
+    needs:
+    - make_model_input-cohort_prevax_extf-day0_main-depression
+    - make_model_input-cohort_vax-day0_main-depression
+    - make_model_input-cohort_unvax_extf-day0_main-depression
+    outputs:
+      moderately_sensitive:
+        cohortoverlap: output/cohortoverlap_depression.csv
+        cohortoverlap_midpoint6: output/cohortoverlap_depression_midpoint6.csv
+
+  ## Cohort overlap - eating_disorders 
+
+  cohortoverlap_eating_disorders:
+    run: r:latest analysis/cohortoverlap.R eating_disorders
+    needs:
+    - make_model_input-cohort_prevax_extf-day0_main-eating_disorders
+    - make_model_input-cohort_vax-day0_main-eating_disorders
+    - make_model_input-cohort_unvax_extf-day0_main-eating_disorders
+    outputs:
+      moderately_sensitive:
+        cohortoverlap: output/cohortoverlap_eating_disorders.csv
+        cohortoverlap_midpoint6: output/cohortoverlap_eating_disorders_midpoint6.csv
+
+  ## Cohort overlap - self_harm 
+
+  cohortoverlap_self_harm:
+    run: r:latest analysis/cohortoverlap.R self_harm
+    needs:
+    - make_model_input-cohort_prevax_extf-day0_main-self_harm
+    - make_model_input-cohort_vax-day0_main-self_harm
+    - make_model_input-cohort_unvax_extf-day0_main-self_harm
+    outputs:
+      moderately_sensitive:
+        cohortoverlap: output/cohortoverlap_self_harm.csv
+        cohortoverlap_midpoint6: output/cohortoverlap_self_harm_midpoint6.csv
+
+  ## Cohort overlap - serious_mental_illness 
+
+  cohortoverlap_serious_mental_illness:
+    run: r:latest analysis/cohortoverlap.R serious_mental_illness
+    needs:
+    - make_model_input-cohort_prevax_extf-day0_main-serious_mental_illness
+    - make_model_input-cohort_vax-day0_main-serious_mental_illness
+    - make_model_input-cohort_unvax_extf-day0_main-serious_mental_illness
+    outputs:
+      moderately_sensitive:
+        cohortoverlap: output/cohortoverlap_serious_mental_illness.csv
+        cohortoverlap_midpoint6: output/cohortoverlap_serious_mental_illness_midpoint6.csv
+
+  ## Cohort overlap - suicide 
+
+  cohortoverlap_suicide:
+    run: r:latest analysis/cohortoverlap.R suicide
+    needs:
+    - make_model_input-cohort_prevax_extf-day0_main-suicide
+    - make_model_input-cohort_vax-day0_main-suicide
+    - make_model_input-cohort_unvax_extf-day0_main-suicide
+    outputs:
+      moderately_sensitive:
+        cohortoverlap: output/cohortoverlap_suicide.csv
+        cohortoverlap_midpoint6: output/cohortoverlap_suicide_midpoint6.csv
+
   ## Stage 6 - make output 
 
   make_model_output:
@@ -5036,6 +5140,21 @@ actions:
     outputs:
       moderately_sensitive:
         venn_output_midpoint6: output/venn_output_midpoint6.csv
+
+  make_cohortoverlap_output:
+    run: r:latest analysis/make_outcome_output.R cohortoverlap addiction;anxiety_general;anxiety_ptsd;depression;eating_disorders;self_harm;serious_mental_illness;suicide
+    needs:
+    - cohortoverlap_addiction
+    - cohortoverlap_anxiety_general
+    - cohortoverlap_anxiety_ptsd
+    - cohortoverlap_depression
+    - cohortoverlap_eating_disorders
+    - cohortoverlap_self_harm
+    - cohortoverlap_serious_mental_illness
+    - cohortoverlap_suicide
+    outputs:
+      moderately_sensitive:
+        cohortoverlap_output_midpoint6: output/cohortoverlap_output_midpoint6.csv
 
   ## Make absolute excess risk (AER) input 
 
