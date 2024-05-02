@@ -53,6 +53,8 @@ for (cohort in c("prevax","vax","unvax")) {
   
 }
 
+rm(tmp)
+
 # Create empty data frame to record information ----
 print('Create empty data frame to record information')
 
@@ -70,16 +72,19 @@ df <- data.frame(outcome = rep(outcome, 4),
                  unvax_only = rep(NA,4),
                  prevax_vax = rep(NA,4),
                  prevax_unvax = rep(NA,4),
-                 vax_unvax = rep(NA,4)) # This should always be zero
+                 vax_unvax = rep(NA,4), # This should always be zero
+                 total_prevax = rep(NA,4),
+                 total_vax = rep(NA,4),
+                 total_unvax = rep(NA,4))
 
-# Record number of patients on 2020-01-01
+# Record number of patients on 2020-01-01 ----
 print('Record number of patients on 2020-01-01')
 
 date <- "2020-01-01"
 
 df[df$date==date,"prevax_only"] <- nrow(prevax[prevax$index_date==date,])
 
-# Record number of patients on 2021-06-01
+# Record number of patients on 2021-06-01 ----
 print('Record number of patients on 2021-06-01')
 
 date <- "2021-06-01"
@@ -92,8 +97,11 @@ df[df$date==date,"unvax_only"] <- length(setdiff(unvax[unvax$index_date==date,]$
 df[df$date==date,"prevax_vax"] <- length(intersect(prevax[prevax$index_date<=date,]$patient_id,vax[vax$index_date==date,]$patient_id))
 df[df$date==date,"prevax_unvax"] <- length(intersect(prevax[prevax$index_date<=date,]$patient_id,unvax[unvax$index_date==date,]$patient_id))
 df[df$date==date,"vax_unvax"] <- length(intersect(vax[vax$index_date==date,]$patient_id,unvax[unvax$index_date==date,]$patient_id))
+df[df$date==date,"total_prevax"] <- nrow(prevax)
+df[df$date==date,"total_vax"] <- nrow(vax)
+df[df$date==date,"total_unvax"] <- nrow(unvax)
 
-# Record number of patients on 2021-06-18
+# Record number of patients on 2021-06-18 ----
 print('Record number of patients on 2021-06-18')
 
 date <- "2021-06-18"
@@ -108,8 +116,11 @@ df[df$date==date,"unvax_only"] <- length(setdiff(unvax[unvax$index_date<=date,]$
 df[df$date==date,"prevax_vax"] <- length(intersect(prevax[prevax$index_date<=date,]$patient_id,vax[vax$index_date<=date,]$patient_id))
 df[df$date==date,"prevax_unvax"] <- length(intersect(prevax[prevax$index_date<=date,]$patient_id,unvax[unvax$index_date<=date,]$patient_id))
 df[df$date==date,"vax_unvax"] <- length(intersect(vax[vax$index_date<=date,]$patient_id,unvax[unvax$index_date<=date,]$patient_id))
+df[df$date==date,"total_prevax"] <- nrow(prevax)
+df[df$date==date,"total_vax"] <- nrow(vax)
+df[df$date==date,"total_unvax"] <- nrow(unvax)
 
-# Record number of patients on 2021-12-14
+# Record number of patients on 2021-12-14 ----
 print('Record number of patients on 2021-12-14')
 
 date <- "2021-12-14"
@@ -124,13 +135,16 @@ df[df$date==date,"unvax_only"] <- length(setdiff(unvax[unvax$index_date<=date,]$
 df[df$date==date,"prevax_vax"] <- length(intersect(prevax[prevax$index_date<=date,]$patient_id,vax[vax$index_date<=date,]$patient_id))
 df[df$date==date,"prevax_unvax"] <- length(intersect(prevax[prevax$index_date<=date,]$patient_id,unvax[unvax$index_date<=date,]$patient_id))
 df[df$date==date,"vax_unvax"] <-  length(intersect(vax[vax$index_date<=date,]$patient_id,unvax[unvax$index_date<=date,]$patient_id))
+df[df$date==date,"total_prevax"] <- nrow(prevax)
+df[df$date==date,"total_vax"] <- nrow(vax)
+df[df$date==date,"total_unvax"] <- nrow(unvax)
 
 # Save output ----
 print('Save output')
 
 write.csv(df, paste0("output/cohortoverlap_",outcome,".csv"), row.names = FALSE)
 
-# Perform redaction ------------------------------------------------------------
+# Perform redaction ----
 print('Perform redaction')
 
 df$prevax_only_midpoint6 <- roundmid_any(as.numeric(df$prevax_only), to=threshold)
@@ -139,6 +153,9 @@ df$unvax_only_midpoint6 <- roundmid_any(as.numeric(df$unvax_only), to=threshold)
 df$prevax_vax_midpoint6 <- roundmid_any(as.numeric(df$prevax_vax), to=threshold)
 df$prevax_unvax_midpoint6 <- roundmid_any(as.numeric(df$prevax_unvax), to=threshold)
 df$vax_unvax_midpoint6 <- roundmid_any(as.numeric(df$vax_unvax), to=threshold)
+df$total_prevax_midpoint6 <- roundmid_any(as.numeric(df$total_prevax), to=threshold)
+df$total_vax_midpoint6 <- roundmid_any(as.numeric(df$total_vax), to=threshold)
+df$total_unvax_midpoint6 <- roundmid_any(as.numeric(df$total_unvax), to=threshold)
 
 # Save redacted output ----
 print('Save redacted output')
