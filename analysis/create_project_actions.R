@@ -272,27 +272,6 @@ table2 <- function(cohort, focus){
 
 # Create function to make Venn data --------------------------------------------
 
-cohortoverlap <- function(outcome){
-  
-  splice(
-    comment(glue("Cohort overlap - {outcome}")),
-    action(
-      name = glue("cohortoverlap_{outcome}"),
-      run = "r:latest analysis/cohortoverlap.R",
-      arguments = c(outcome),
-      needs = c(as.list(c(glue("make_model_input-cohort_prevax_extf-day0_main-{outcome}"),
-                          glue("make_model_input-cohort_vax-day0_main-{outcome}"),
-                          glue("make_model_input-cohort_unvax_extf-day0_main-{outcome}")))),
-      moderately_sensitive = list(
-        cohortoverlap = glue("output/cohortoverlap_{outcome}.csv"),
-        cohortoverlap_midpoint6 = glue("output/cohortoverlap_{outcome}_midpoint6.csv")
-      )
-    )
-  )
-}
-
-# Create function to make Venn data --------------------------------------------
-
 venn <- function(cohort){
   
   venn_outcomes <- gsub("out_date_","",unique(active_analyses[active_analyses$cohort=={cohort},]$outcome))
@@ -504,12 +483,29 @@ actions_list <- splice(
     )
   ),
   
-  ## Cohort overlap -----------------------------------------------------------------
+  ## Cohort overlap ------------------------------------------------------------
   
-  splice(
-    unlist(lapply(gsub("out_date_","",unique(active_analyses$outcome)), 
-                  function(x) cohortoverlap(outcome = x)), 
-           recursive = FALSE
+  comment(glue("Cohort overlap")),
+  action(
+    name = glue("cohortoverlap"),
+    run = "r:latest analysis/cohortoverlap.R",
+    needs = as.list(paste0("stage1_data_cleaning_",c("prevax_extf","vax","unvax_extf"))),
+    moderately_sensitive = list(
+      cohortoverlap = glue("output/cohortoverlap.csv"),
+      cohortoverlap_midpoint6 = glue("output/cohortoverlap_midpoint6.csv")
+    )
+  ),
+  
+  ## Cohort covid --------------------------------------------------------------
+  
+  comment(glue("Cohort covid")),
+  action(
+    name = glue("cohortcovid"),
+    run = "r:latest analysis/cohortcovid.R",
+    needs = as.list(paste0("stage1_data_cleaning_",c("prevax_extf","vax","unvax_extf"))),
+    moderately_sensitive = list(
+      cohortoverlap = glue("output/cohortcovid.csv"),
+      cohortoverlap_midpoint6 = glue("output/cohortcovid_midpoint6.csv")
     )
   ),
   
@@ -591,15 +587,6 @@ actions_list <- splice(
                  "venn_unvax_extf"),
     moderately_sensitive = list(
       venn_output_midpoint6 = glue("output/venn_output_midpoint6.csv")
-    )
-  ),
-  
-  action(
-    name = "make_cohortoverlap_output",
-    run = glue("r:latest analysis/make_outcome_output.R cohortoverlap ",paste(gsub("out_date_","",unique(active_analyses$outcome)), collapse = ";")),
-    needs = as.list(paste0("cohortoverlap_",paste0(gsub("out_date_","",unique(active_analyses$outcome))))),
-    moderately_sensitive = list(
-      cohortoverlap_output_midpoint6 = glue("output/cohortoverlap_output_midpoint6.csv")
     )
   ),
   
