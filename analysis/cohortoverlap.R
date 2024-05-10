@@ -26,17 +26,26 @@ for (cohort in c("prevax","vax","unvax")) {
   
 }
 
+# Make a record of cohort participation ----
+
+df <- data.frame(patient_id = unique(c(prevax,vax,unvax)))
+df$prevax <- df$patient_id %in% prevax
+df$vax <- df$patient_id %in% vax
+df$unvax <- df$patient_id %in% unvax
+
+df$group <- ""
+df$group <- ifelse(df$prevax==TRUE & df$vax==FALSE & df$unvax==FALSE,"prevax_only",df$group)
+df$group <- ifelse(df$prevax==FALSE & df$vax==TRUE & df$unvax==FALSE,"vax_only",df$group)
+df$group <- ifelse(df$prevax==FALSE & df$vax==FALSE & df$unvax==TRUE,"unvax_only",df$group)
+df$group <- ifelse(df$prevax==TRUE & df$vax==TRUE & df$unvax==FALSE,"prevax_vax",df$group)
+df$group <- ifelse(df$prevax==TRUE & df$vax==FALSE & df$unvax==TRUE,"prevax_unvax",df$group)
+df$group <- ifelse(df$prevax==FALSE & df$vax==TRUE & df$unvax==TRUE,"vax_unvax",df$group)
+df$group <- ifelse(df$prevax==TRUE & df$vax==TRUE & df$unvax==TRUE,"prevax_vax_unvax",df$group)
+
 # Calculate cohort combinations ----
 
-df <- data.frame(rbind(c("prevax_only",length(setdiff(prevax,c(unvax,vax)))),
-                       c("vax_only",length(setdiff(vax,c(prevax,unvax)))),
-                       c("unvax_only",length(setdiff(unvax,c(prevax,vax)))),
-                       c("prevax_vax",length(intersect(prevax,vax))),
-                       c("prevax_unvax",length(intersect(prevax,unvax))),
-                       c("vax_unvax",length(intersect(vax,unvax))),
-                       c("prevax_vax_unvax",length(intersect(prevax,intersect(vax,unvax))))))
-
-colnames(df) <- c("cohort","N")
+df <- as.data.frame(table(df$group))
+df <- dplyr::rename(df, "cohort" = "Var1", "N" = "Freq")
 
 # Perform redaction ----
 
